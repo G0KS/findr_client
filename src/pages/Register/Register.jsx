@@ -85,7 +85,7 @@ function Register() {
          className="d-flex justify-content-center align-items-center loginSection"
          //  style={{ height: "90vh" }}
       >
-         <div className="d-flex justify-content-center align-items-center bg-body-tertiary mx-4">
+         <div className="d-flex justify-content-center align-items-center rounded-4 p-4 shadow-lg bg-white mx-4">
             <div
                className="signupCard row"
                style={{ maxWidth: "40rem" }}
