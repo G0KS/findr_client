@@ -95,7 +95,7 @@ function Register() {
                      <img src={Logo} style={{ height: "100%" }} alt="" />
                   </div>
                   <div className="title">
-                     <h4>Create Findr account</h4>
+                     <h4>Create <span style={{color:"#0F6990"}}>Findr</span> account</h4>
                      <p style={{ fontSize: "13px" }}>
                         Provide all the details to create your account. Already
                         have an account?{" "}
