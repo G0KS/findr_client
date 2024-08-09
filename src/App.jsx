@@ -6,6 +6,7 @@ import Register from "./pages/Register/Register.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./App.css"
 
 function App() {
    return (

@@ -6,22 +6,28 @@ function Home() {
   return (
     <>
       {/* hero section */}
-      <section className="container">
+      <section className="container ">
         <div>
           <Row>
             <Col style={{ width: '50px' }}>
               <img style={{ width: '100%' }} src={hero} alt="" />
             </Col>
-            <Col className="d-flex align-items-center">
-              <h1>Your Gateway to Global Education</h1>
+            <Col className="d-flex align-items-center justify-content-center">
+              <h1 style={{fontSize:"50px"}} >Your Gateway to <br /> Global <span style={{color:"#0f6990"}} >Education</span></h1>
             </Col>
           </Row>
         </div>
 
         {/* about us */}
-        <div className="text-center d-flex justify-content-between align-items-center my-5 bg-body-tertiary rounded-3 p-4">
-          <h1 style={{ width: '100%' }}>What we do</h1>
-          <p style={{ width: '100%' }}>
+        <div
+          className="text-center d-flex flex-lg-row flex-column   justify-content-between align-items-center my-5 bg-body-tertiary rounded-3 p-4"
+          style={{
+            backgroundImage:
+              ' linear-gradient(270deg, #0f6990 0%, #80D0C7 100%)  ',
+          } } 
+        >
+          <h1 style={{ width: '100%',fontSize:"50px", color:"white" }}>What we do</h1>
+          <p style={{ width: '100%', color:"#ffff" }}>
             At Findr, we understand that studying abroad is a life-changing
             decision. It opens doors to unparalleled opportunities for personal
             growth, academic excellence, and cultural enrichment. However,
@@ -32,7 +38,7 @@ function Home() {
 
         {/* services section */}
         <div>
-          <h1 className="text-center">Our Services</h1>
+          <h1 className="text-center">Our <span style={{color:"#0f6990"}} >Services</span></h1>
           <div className="p-5">
             <p className="mb-0 text-center">
               At Findr, we specialize in providing expert consultation to
@@ -45,8 +51,8 @@ function Home() {
         </div>
         <div className="cardContainer my-3 mx-5 mx-lg-1 d-flex justify-content-between align-items-center flex-wrap row-gap-3">
           <div
-            className="cardBody border p-4"
-            style={{ width: '19rem', height: '26rem', borderRadius: '16px' }}
+            className="cardBody border p-4 shadow "
+            style={{ width: '19rem', height: '26rem', borderRadius: '16px', backgroundImage: "linear-gradient(338deg, #0f6990 64%, #66d1cf 100%)",color:"#ffff" }}
           >
             <div
               className="icon d-flex align-items-center justify-content-center mb-3"
@@ -71,11 +77,11 @@ function Home() {
             </p>
           </div>
           <div
-            className="cardBody border p-4"
+            className="cardBody border p-4 shadow"
             style={{ width: '19rem', height: '26rem', borderRadius: '16px' }}
           >
             <div
-              className="icon d-flex align-items-center justify-content-center mb-3"
+              className="icon d-flex align-items-center justify-content-center mb-3 "
               style={{
                 borderRadius: '50%',
                 backgroundColor: '#0F6990',
@@ -100,7 +106,7 @@ function Home() {
             </p>
           </div>
           <div
-            className="cardBody border p-4"
+            className="cardBody border p-4 shadow"
             style={{ width: '19rem', height: '26rem', borderRadius: '16px' }}
           >
             <div
@@ -127,7 +133,7 @@ function Home() {
             </p>
           </div>
           <div
-            className="cardBody border p-4"
+            className="cardBody border p-4 shadow"
             style={{ width: '19rem', height: '26rem', borderRadius: '16px' }}
           >
             <div
@@ -140,7 +146,7 @@ function Home() {
               }}
             >
               <span className="material-symbols-outlined fs-2 text-light">
-              currency_rupee_circle
+                currency_rupee_circle
               </span>
             </div>
             <h5 className="fw-bold mb-3">Affordable Pricing</h5>

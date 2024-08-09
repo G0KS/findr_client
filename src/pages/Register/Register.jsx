@@ -82,12 +82,12 @@ function Register() {
 
    return (
       <section
-         className="d-flex justify-content-center align-items-center bg-body-tertiary p-3"
+         className="d-flex justify-content-center align-items-center loginSection"
          //  style={{ height: "90vh" }}
       >
          <div className="d-flex justify-content-center align-items-center bg-body-tertiary mx-4">
             <div
-               className="signupCard rounded-4 p-4 shadow-lg row"
+               className="signupCard row"
                style={{ maxWidth: "40rem" }}
             >
                <div className="col-lg-6">
