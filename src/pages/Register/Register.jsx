@@ -83,7 +83,7 @@ function Register() {
    return (
       <section
          className="d-flex justify-content-center align-items-center loginSection"
-         //  style={{ height: "90vh" }}
+          style={{ height: "90vh" }}
       >
          <div className="d-flex justify-content-center align-items-center rounded-4 p-4 shadow-lg bg-white mx-4">
             <div

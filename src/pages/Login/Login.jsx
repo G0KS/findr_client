@@ -45,7 +45,7 @@ function Login() {
          style={{ height: "90vh" }}
       >
          <div
-            className="loginCard rounded-4 p-4 shadow-lg"
+            className="loginCard rounded-4 p-4 bg-white shadow-lg"
             style={{ width: "22rem", height: "30rem" }}
          >
             <div style={{ height: "70px", width: "70px" }}>
