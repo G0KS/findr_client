@@ -7,12 +7,12 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <section
-      className="d-flex justify-content-center align-items-center bg-body-tertiary"
+    <section 
+      className="d-flex justify-content-center align-items-center loginSection"
       style={{ height: '90vh' }}
     >
       <div
-        className="loginCard rounded-4 p-4 shadow-lg"
+        className="loginCard bg-white rounded-4 p-4 shadow-lg"
         style={{ width: '22rem', height: '30rem' }}
       >
         <div style={{ height: '70px', width: '70px' }}>
