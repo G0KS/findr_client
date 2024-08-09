@@ -42,7 +42,7 @@ function Login() {
    return (
       <section
          className="d-flex justify-content-center align-items-center loginSection"
-         style={{ height: "90vh" }}
+         style={{ height: "100vh" }}
       >
          <div
             className="loginCard rounded-4 p-4 bg-white shadow-lg"
@@ -52,7 +52,7 @@ function Login() {
                <img src={Logo} style={{ height: "100%" }} alt="" />
             </div>
             <div className="title">
-               <h4>Login to Findr</h4>
+               <h4>Login to <span style={{color:"#0F6990"}}>Findr</span></h4>
                <p style={{ fontSize: "13px" }}>
                   Enter your email below to login to your account
                </p>

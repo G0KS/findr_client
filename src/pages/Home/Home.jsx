@@ -6,7 +6,7 @@ function Home() {
   return (
     <>
       {/* hero section */}
-      <section className="container ">
+      <section className="container py-5">
         <div>
           <Row>
             <Col style={{ width: '50px' }}>
