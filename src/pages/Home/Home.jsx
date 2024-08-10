@@ -20,7 +20,7 @@ function Home() {
             </Col>
           </Row>
         </div>
-
+ I
         {/* about us */}
         <div
           className="text-center d-flex flex-lg-row flex-column justify-content-between align-items-center my-5 bg-body-tertiary rounded-3 p-4"
@@ -56,7 +56,7 @@ function Home() {
             </p>
           </div>
         </div>
-        <div className="cardContainer my-3 mx-5 mx-lg-1 d-flex justify-content-between align-items-center flex-wrap row-gap-3">
+        <div className="cardContainer my-3 mx-5 mx-lg-1 d-flex justify-content-between align-items-center flex-wrap row-gap-3 ">
           <div
             className="cardBody border p-4 shadow "
             style={{

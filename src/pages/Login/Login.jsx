@@ -67,7 +67,7 @@ function Login() {
                      className="mb-1"
                      style={{ fontSize: "12px" }}
                   >
-                     Email
+                     <span className="fw-bolder" >Email</span>
                   </label>
                   <div className="input-group input-group-sm mb-3">
                      <input
@@ -85,7 +85,7 @@ function Login() {
                      className="mb-1"
                      style={{ fontSize: "12px" }}
                   >
-                     Password
+                     <span className=" fw-bolder">Password</span>
                   </label>
                   <div className="input-group input-group-sm mb-3">
                      <input
