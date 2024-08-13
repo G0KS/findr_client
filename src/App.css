@@ -1,17 +1,48 @@
-.loginSection{
-    background: linear-gradient(-45deg, #ffffff, #0f699083, #ffffff, #ffffff);
-    background-size: 400% 400%;
-    animation: gradient 6s ease infinite;
+.loginSection {
+  background: linear-gradient(-45deg, #ffffff, #0f699083, #ffffff, #ffffff);
+  background-size: 400% 400%;
+  animation: gradient 6s ease infinite;
 }
 
 @keyframes gradient {
-    0% {
-        background-position: 0% 25%;
-    }
-    50% {
-        background-position:  60%;
-    }
-    100% {
-        background-position: 25% 0%;
-    }
+  0% {
+    background-position: 0% 25%;
+  }
+  50% {
+    background-position: 60%;
+  }
+  100% {
+    background-position: 25% 0%;
+  }
+}
+
+.cardBody {
+  position: relative;
+}
+
+.cardBody::before,
+.cardBody::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.cardBody::after {
+  opacity: 0;
+  background-image: linear-gradient(338deg, #0f6990 64%, #66d1cf 100%);
+  transition: opacity.3s ease-in-out;
+}
+
+.cardBody:hover {
+  color: #ffffff;
+}
+
+.cardBody:hover::after {
+  opacity: 1;
 }

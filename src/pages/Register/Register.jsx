@@ -95,7 +95,7 @@ function Register() {
                      <img src={Logo} style={{ height: "100%" }} alt="" />
                   </div>
                   <div className="title">
-                     <h4>Create Findr account</h4>
+                     <h4>Create <span style={{color:"#0F6990"}}>Findr</span> account</h4>
                      <p style={{ fontSize: "13px" }}>
                         Provide all the details to create your account. Already
                         have an account?{" "}
@@ -143,7 +143,7 @@ function Register() {
                            className="mb-1"
                            style={{ fontSize: "12px" }}
                         >
-                           First Name
+                           <span className="fw-bold" >First Name</span>
                         </label>
                         <div className="input-group input-group-sm mb-3">
                            <input
@@ -161,8 +161,9 @@ function Register() {
                            htmlFor="lastName"
                            className="mb-1"
                            style={{ fontSize: "12px" }}
+                           
                         >
-                           Last Name
+                           <span className="fw-bolder">Last Name</span>
                         </label>
                         <div className="input-group input-group-sm mb-3">
                            <input
@@ -181,7 +182,7 @@ function Register() {
                            className="mb-1"
                            style={{ fontSize: "12px" }}
                         >
-                           Phone Number
+                           <span className="fw-bolder" >Phone Number</span>
                         </label>
                         <div className="input-group input-group-sm mb-3">
                            <input
@@ -200,7 +201,7 @@ function Register() {
                            className="mb-1"
                            style={{ fontSize: "12px" }}
                         >
-                           Email
+                           <span className="fw-bolder">Email</span>
                         </label>
                         <div className="input-group input-group-sm mb-3">
                            <input
@@ -219,7 +220,7 @@ function Register() {
                            className="mb-1"
                            style={{ fontSize: "12px" }}
                         >
-                           Address
+                           <span className="fw-bolder" >Address</span>
                         </label>
                         <div className="input-group input-group-sm mb-3">
                            <textarea
@@ -238,7 +239,7 @@ function Register() {
                            className="mb-1"
                            style={{ fontSize: "12px" }}
                         >
-                           Password
+                           <span className="fw-bolder">Password</span>
                         </label>
                         <div className="input-group input-group-sm mb-3">
                            <input
@@ -257,7 +258,7 @@ function Register() {
                            className="mb-1"
                            style={{ fontSize: "12px" }}
                         >
-                           Confirm Password
+                           <span className="fw-bolder">Confirm Password</span>
                         </label>
                         <div className="input-group input-group-sm mb-3">
                            <input

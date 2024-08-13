@@ -7,6 +7,7 @@ import Profile from "./pages/Profile/Profile.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css"
+import FooterComponent from "./components/FooterComponent/FooterComponent.jsx";
 
 function App() {
    return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/signup" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
          </Routes>
+         <FooterComponent/>
          <ToastContainer
             position="top-right"
             autoClose={3500}

@@ -1,60 +1,49 @@
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
-import Logo from "../../assets/logo3.png";
-import Row from "react-bootstrap/row";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
+
+import Navbar from 'react-bootstrap/Navbar';
+import Logo from '../../assets/logo3.png';
+
+import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';
 
 function NavbarComponent() {
-   const navigate = useNavigate();
-   return (
-      <>
-         <Navbar
-            className="d-flex justify-content-between"
-            style={{
-               position: "fixed",
-               width: "100%",
-               backdropFilter: "blur(5px)",
+  const navigate = useNavigate();
+  return (
+    <>
+      <Navbar
+        className="d-flex justify-content-between px-5"
+        style={{
+          position: 'fixed',
+          width: '100%',
+          backdropFilter: 'blur(5px)',
+          zIndex: '9999',
+        }}
+      >
+        <Navbar.Brand>
+          <img
+            src={Logo}
+            width="100"
+            alt="React Bootstrap logo"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate('/');
             }}
-         >
-            <Container>
-               <Navbar.Brand>
-                  <img
-                     src={Logo}
-                     width="150"
-                     className="d-inline-block align-top"
-                     alt="React Bootstrap logo"
-                     onClick={(e) => {
-                        e.preventDefault();
-                        navigate("/");
-                     }}
-                     role="button"
-                  />
-               </Navbar.Brand>
-            </Container>
+            role="button"
+          />
+        </Navbar.Brand>
 
-            <Form inline>
-               <Row className="container">
-                  <Col xs="auto"></Col>
-                  <Col xs="auto">
-                     <Button
-                        onClick={(e) => {
-                           e.preventDefault();
-                           navigate("/login");
-                        }}
-                        className="btn text-light"
-                        style={{ backgroundColor: "#0F6990" }}
-                     >
-                        Login{" "}
-                     </Button>
-                  </Col>
-               </Row>
-            </Form>
-         </Navbar>
-      </>
-   );
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            navigate('/login');
+          }}
+          className="btn text-light"
+          style={{ backgroundColor: '#0F6990' }}
+        >
+          Login{' '}
+        </Button>
+      </Navbar>
+    </>
+  );
 }
 
 export default NavbarComponent;
