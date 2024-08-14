@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { candidateUpdate } from "../../api/allApi";
 
 function Profile() {
    const [inputData, setInputData] = useState({
@@ -18,20 +19,29 @@ function Profile() {
    const handleSubmit = async (e) => {
       e.preventDefault();
       const { tenth_institution, tenth_marks, tenth_mode_of_study } = inputData;
-      if(!tenth_institution||!tenth_marks||!tenth_mode_of_study){
-         toast.warning("Fill all details")
-      }else{
-         const response = await axios.put()
+      if (!tenth_institution || !tenth_marks || !tenth_mode_of_study) {
+         toast.warning("Fill all details");
+      } else {
+         const name = localStorage.getItem("findrData");
+         const body = {
+            name,
+            doctype: "Student",
+            tenth_institution,
+            tenth_marks,
+            tenth_mode_of_study,
+         };
+         const response = await candidateUpdate(body, name);
+         console.log(response.data.data);
       }
    };
 
    return (
       <section>
-         <div style={{ paddingTop: "100px" }} className="container ms-auto">
+         <div style={{ paddingBlock: "100px" }} className="container ms-auto">
             <h1 className="text-center mt-5">Complete Your Profile</h1>
             <div
                className="card shadow p-5 mx-auto my-5 rounded-4"
-               style={{ width: "50%" }}
+               style={{ maxWidth: "700px" }}
             >
                <h3 className="card-title">Tenth Qualification</h3>
                <div className="card-body">
@@ -103,6 +113,7 @@ function Profile() {
                      <button
                         className="btn text-light rounded-4"
                         style={{ backgroundColor: "#0F6990" }}
+                        onClick={(e) => handleSubmit(e)}
                      >
                         Next
                      </button>
