@@ -10,7 +10,6 @@ export const commonRequest = async (method, url, body, header) => {
 
    return await axios(config)
       .then((data) => {
-         console.log("here");
          return data;
       })
       .catch((err) => {
