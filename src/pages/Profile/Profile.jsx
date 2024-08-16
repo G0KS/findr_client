@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { candidateUpdate } from "../../api/allApi";
+import { profileContext } from "../../context/ContextShare";
 
 function Profile() {
    const cards = [
@@ -45,12 +46,11 @@ function Profile() {
    const [currentIndex, setCurrentIndex] = useState(0);
 
    const Cards = ({ index, data }) => {
-      const [inputData, setInputData] = useState({});
-
+      const { profileData, setProfileData } = useContext(profileContext);
 
       const getInputData = (e) => {
          const { name, value } = e.target;
-         setInputData({ ...inputData, [name]: value });
+         setProfileData({ ...profileData, [name]: value });
       };
 
       return (
@@ -122,7 +122,7 @@ function Profile() {
                   <button
                      className="btn text-light rounded-4 me-2"
                      style={{ backgroundColor: "#0F6990" }}
-                     onClick={(e) => handlePrevious(e)}
+                     onClick={handlePrevious}
                      disabled={cards.length <= 1}
                   >
                      Prev
@@ -130,7 +130,7 @@ function Profile() {
                   <button
                      className="btn text-light rounded-4"
                      style={{ backgroundColor: "#0F6990" }}
-                     onClick={(e) => handleNext(e, inputData)}
+                     onClick={handleNext}
                      disabled={cards.length <= 1}
                   >
                      Next
@@ -141,8 +141,7 @@ function Profile() {
       );
    };
 
-   const handleNext = (e, inputData) => {
-      // handleSubmit(e, inputData);
+   const handleNext = () => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
    };
 
@@ -152,7 +151,7 @@ function Profile() {
       );
    };
 
-   const handleSubmit = async (e, inputData) => {
+   const handleSubmit = async (e) => {
       e.preventDefault();
       const { tenth_institution, tenth_marks, tenth_mode_of_study } = inputData;
       if (!tenth_institution || !tenth_marks || !tenth_mode_of_study) {
@@ -178,7 +177,7 @@ function Profile() {
    return (
       <section>
          <div style={{ paddingBlock: "100px" }} className="container ms-auto">
-            <h1 className="text-center mt-5">Complete Your Profile {currentIndex} </h1>
+            <h1 className="text-center mt-5">Complete Your Profile</h1>
             <div className="cardContainer">
                <Cards index={currentIndex} data={cards[currentIndex]} />
             </div>
