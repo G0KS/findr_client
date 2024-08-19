@@ -13,7 +13,7 @@ function Home() {
               <img style={{ width: '100%' }} src={hero} alt="" />
             </Col>
             <Col className="d-flex align-items-center justify-content-center">
-              <h1 style={{ fontSize: '50px' }}>
+              <h1 style={{ fontSize: '65px' }}>
                 Your Gateway to <br /> Global{' '}
                 <span style={{ color: '#0f6990' }}>Education</span>
               </h1>
@@ -29,7 +29,7 @@ function Home() {
               ' linear-gradient(270deg, #0f6990 0%, #80D0C7 100%)  ',
           }}
         >
-          <h1 style={{ width: '100%', fontSize: '50px', color: 'white' }}>
+          <h1 style={{ width: '100%', fontSize: '60px', color: 'white' }}>
             What we do
           </h1>
           <p style={{ width: '100%', color: '#ffff' }}>
