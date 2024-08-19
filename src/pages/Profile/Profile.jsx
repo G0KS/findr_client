@@ -51,6 +51,7 @@ function Profile() {
       const getInputData = (e) => {
          const { name, value } = e.target;
          setProfileData({ ...profileData, [name]: value });
+       
       };
 
       return (
@@ -68,6 +69,7 @@ function Profile() {
                      type="text"
                      placeholder="Institution Name"
                      name={data.institution}
+                     value={}
                      onChange={(e) => getInputData(e)}
                      className="shadow-sm border rounded-4 px-3 py-2 "
                      style={{
@@ -127,6 +129,9 @@ function Profile() {
                   >
                      Prev
                   </button>
+                  <button onClick={(e) => handleSubmit(e, profileData)}>
+                     Submit
+                  </button>
                   <button
                      className="btn text-light rounded-4"
                      style={{ backgroundColor: "#0F6990" }}
@@ -151,9 +156,27 @@ function Profile() {
       );
    };
 
-   const handleSubmit = async (e) => {
+   const handleSubmit = async (e, profileData) => {
+      console.log("e");
+
       e.preventDefault();
-      const { tenth_institution, tenth_marks, tenth_mode_of_study } = inputData;
+      const {
+         tenth_institution,
+         tenth_marks,
+         tenth_mode_of_study,
+         twelfth_institution,
+         twelfth_marks,
+         twelfth_mode_of_study,
+         undergraduate_institution,
+         undergraduate_marks,
+         undergraduate_mode_of_study,
+         postgraduate_institution,
+         postgraduate_marks,
+         postgraduate_mode_of_study,
+         phd_institution,
+         phd_marks,
+         phd_mode_of_study,
+      } = profileData;
       if (!tenth_institution || !tenth_marks || !tenth_mode_of_study) {
          toast.warning("Fill all details");
       } else {
@@ -164,6 +187,18 @@ function Profile() {
             tenth_institution,
             tenth_marks,
             tenth_mode_of_study,
+            twelfth_institution,
+            twelfth_marks,
+            twelfth_mode_of_study,
+            undergraduate_institution,
+            undergraduate_marks,
+            undergraduate_mode_of_study,
+            postgraduate_institution,
+            postgraduate_marks,
+            postgraduate_mode_of_study,
+            phd_institution,
+            phd_marks,
+            phd_mode_of_study,
          };
          try {
             await candidateUpdate(body, name);
