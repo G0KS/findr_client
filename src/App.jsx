@@ -8,6 +8,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css"
 import FooterComponent from "./components/FooterComponent/FooterComponent.jsx";
+import Contactus from "./pages/Contactus/Contactus.jsx";
+import Terms from "./pages/Termscont/Terms.jsx";
+import Privacy from "./pages/Privacy/Privacy.jsx";
 
 function App() {
    return (
@@ -18,6 +21,10 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/contactus" element={<Contactus />} />
+            <Route path="/terms" element={<Terms/>} />
+            <Route path="/privacy" element={<Privacy/>} />
+     
          </Routes>
          <FooterComponent/>
          <ToastContainer
