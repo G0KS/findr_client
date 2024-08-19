@@ -4,6 +4,7 @@ import RegImg from "../../assets/login.svg";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { candidateRegister } from "../../api/allApi";
 
 function Register() {
    const navigate = useNavigate();
@@ -58,13 +59,7 @@ function Register() {
             phone_number,
          };
          try {
-            const response = await axios.post(
-               "http://127.0.0.1:8000/api/resource/Student",
-               body,
-               {
-                  withCredentials: true, // Important to handle cookies
-               }
-            );
+            const response = await candidateRegister(body);
 
             // Handle successful login
             console.log(response.data);
@@ -83,19 +78,19 @@ function Register() {
    return (
       <section
          className="d-flex justify-content-center align-items-center loginSection"
-          style={{ height: "100vh" }}
+         style={{ height: "100vh" }}
       >
          <div className="d-flex justify-content-center align-items-center rounded-4 mt-5 p-4 shadow-lg bg-white mx-4">
-            <div
-               className="signupCard row"
-               style={{ maxWidth: "40rem" }}
-            >
+            <div className="signupCard row" style={{ maxWidth: "40rem" }}>
                <div className="col-lg-6">
                   <div style={{ height: "70px", width: "70px" }}>
                      <img src={Logo} style={{ height: "100%" }} alt="" />
                   </div>
                   <div className="title">
-                     <h4>Create <span style={{color:"#0F6990"}}>Findr</span> account</h4>
+                     <h4>
+                        Create <span style={{ color: "#0F6990" }}>Findr</span>{" "}
+                        account
+                     </h4>
                      <p style={{ fontSize: "13px" }}>
                         Provide all the details to create your account. Already
                         have an account?{" "}
@@ -143,7 +138,7 @@ function Register() {
                            className="mb-1"
                            style={{ fontSize: "12px" }}
                         >
-                           <span className="fw-bold" >First Name</span>
+                           <span className="fw-bold">First Name</span>
                         </label>
                         <div className="input-group input-group-sm mb-3">
                            <input
@@ -161,7 +156,6 @@ function Register() {
                            htmlFor="lastName"
                            className="mb-1"
                            style={{ fontSize: "12px" }}
-                           
                         >
                            <span className="fw-bolder">Last Name</span>
                         </label>
@@ -182,7 +176,7 @@ function Register() {
                            className="mb-1"
                            style={{ fontSize: "12px" }}
                         >
-                           <span className="fw-bolder" >Phone Number</span>
+                           <span className="fw-bolder">Phone Number</span>
                         </label>
                         <div className="input-group input-group-sm mb-3">
                            <input
@@ -220,7 +214,7 @@ function Register() {
                            className="mb-1"
                            style={{ fontSize: "12px" }}
                         >
-                           <span className="fw-bolder" >Address</span>
+                           <span className="fw-bolder">Address</span>
                         </label>
                         <div className="input-group input-group-sm mb-3">
                            <textarea

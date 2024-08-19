@@ -3,6 +3,7 @@ import Logo from "../../assets/f.png";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { candidateLogin } from "../../api/allApi";
 
 function Login() {
    const navigate = useNavigate();
@@ -25,9 +26,10 @@ function Login() {
          toast.warning("Fill the form");
       } else {
          try {
-            const response = await axios.get(
-               `http://127.0.0.1:8000/api/resource/Student/${email}`
-            );
+            const response = await candidateLogin(email);
+            console.log(response.data.data);
+            localStorage.setItem("findrData", response.data.data.name);
+
             if (response.data.data.password === password) {
                toast.success("Successfully logged in");
                navigate("/profile");
@@ -52,7 +54,9 @@ function Login() {
                <img src={Logo} style={{ height: "100%" }} alt="" />
             </div>
             <div className="title">
-               <h4>Login to <span style={{color:"#0F6990"}}>Findr</span></h4>
+               <h4>
+                  Login to <span style={{ color: "#0F6990" }}>Findr</span>
+               </h4>
                <p style={{ fontSize: "13px" }}>
                   Enter your email below to login to your account
                </p>
@@ -67,7 +71,7 @@ function Login() {
                      className="mb-1"
                      style={{ fontSize: "12px" }}
                   >
-                     <span className="fw-bolder" >Email</span>
+                     <span className="fw-bolder">Email</span>
                   </label>
                   <div className="input-group input-group-sm mb-3">
                      <input
