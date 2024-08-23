@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Privacy() {
+function Privacy({setShow}) {
+  setShow (false)
   return (
-    <div>
-      <div className="container d-flex justify-content-start shadow rounded   " style={{marginTrim:"500px"}}>
-        <div className="p-4">
+    <div className='mt-5 mb-5' >
+      <div className="container d-flex justify-content-start shadow rounded" style={{marginTrim:"500px"}}>
+        <div className="p-4 ">
           <h2 style={{ marginTop: '100px' }}>Privacy Policy</h2>
           <p className=" " style={{ fontSize: '13px' }}>
             Last updated on Aug 18 2024

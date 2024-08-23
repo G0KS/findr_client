@@ -1,13 +1,14 @@
-import Row from "react-bootstrap/row";
-import Col from "react-bootstrap/Col";
-import hero from "../../assets/hero.svg";
+import Row from 'react-bootstrap/row';
+import Col from 'react-bootstrap/Col';
+import hero from '../../assets/hero.svg';
 
-function Home() {
+function Home({ setShow }) {
+  setShow(true);
   return (
     <>
       {/* hero section */}
       <section className="container py-5">
-        <div className='my-5 py-5'>
+        <div className="my-5 py-5">
           <Row>
             <Col style={{ width: '50px' }}>
               <img style={{ width: '100%' }} src={hero} alt="" />
@@ -39,7 +40,6 @@ function Home() {
             That&#39;s where we come in.
           </p>
         </div>
-
         {/* services section */}
         <div>
           <h1 className="text-center">

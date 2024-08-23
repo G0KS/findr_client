@@ -54,7 +54,7 @@ function Profile() {
       // Add more cards as needed
    ];
 
-   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
    const Cards = ({ index, data }) => {
       const { profileData, setProfileData } = useContext(profileContext);
@@ -325,11 +325,11 @@ function Profile() {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
    };
 
-   const handlePrevious = () => {
-      setCurrentIndex(
-         (prevIndex) => (prevIndex - 1 + cards.length) % cards.length
-      );
-   };
+  const handlePrevious = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + cards.length) % cards.length
+    );
+  };
 
    const handleSubmit = async (e, profileData) => {
       console.log("e");
