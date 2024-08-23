@@ -13,7 +13,7 @@ function FooterComponent() {
         background: '',
         paddingTop: '20px',
         boxShadow: '0px -5px 10px rgba(50, 50, 50, 0.10)',
-        // marginTop: '20px',
+        marginTop: '20px',
       }}
     >
       <div className="container d-flex flex-column flex-lg-row justify-content-between align-items-lg-center">
