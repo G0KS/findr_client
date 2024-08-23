@@ -40,6 +40,17 @@ function Profile() {
          marks: "phd_marks",
          mode: "phd_mode_of_study",
       },
+      {
+         id: 6,
+         title: "Language Proficiency",
+         english: "english_skill",
+         new_language: "new_language",
+         proficiency: "proficiency_in_language",
+         language_proficiency: "language_proficiency",
+         language: "language",
+         certificate: "certificate",
+         level_of_proficiency: "level_of_proficiency",
+      },
       // Add more cards as needed
    ];
 
@@ -51,75 +62,239 @@ function Profile() {
       const getInputData = (e) => {
          const { name, value } = e.target;
          setProfileData({ ...profileData, [name]: value });
-       
       };
+
+      console.log(profileData);
 
       return (
          <div
             className="card active shadow p-5 mx-auto my-5 rounded-4"
             style={{ maxWidth: "700px" }}
          >
-            <h3 className="card-title">{data.title}</h3>
+            <h2 className="card-title ">{data.title}</h2>
             <div className="card-body">
-               <div className="d-flex justify-content-between mb-3">
-                  <label htmlFor="" className="fs-4">
-                     Instituiton
-                  </label>
-                  <input
-                     type="text"
-                     placeholder="Institution Name"
-                     name={data.institution}
-                     value={}
-                     onChange={(e) => getInputData(e)}
-                     className="shadow-sm border rounded-4 px-3 py-2 "
-                     style={{
-                        border: "none",
-                        outline: "none",
-                        width: "220px",
-                     }}
-                  />
-               </div>
-               <div className="d-flex justify-content-between mb-3">
-                  <label htmlFor="" className="fs-4">
-                     Marks
-                  </label>
-                  <input
-                     type="text"
-                     placeholder="Marks"
-                     name={data.marks}
-                     onChange={(e) => getInputData(e)}
-                     className="shadow-sm border rounded-4 px-3 py-2 "
-                     style={{
-                        border: "none",
-                        outline: "none",
-                        width: "220px",
-                     }}
-                  />
-               </div>
-               <div className="d-flex justify-content-between mb-3">
-                  <label htmlFor="" className="fs-4">
-                     Mode of Study
-                  </label>
-                  <select
-                     className="shadow-sm border rounded-4 px-3 py-2 "
-                     name={data.mode}
-                     onChange={(e) => getInputData(e)}
-                     style={{
-                        border: "none",
-                        outline: "none",
-                        width: "220px",
-                     }}
-                  >
-                     <option defaultValue hidden>
+               {data.institution && (
+                  <div className="d-flex justify-content-between mb-3">
+                     <label htmlFor="" className="fs-5">
+                        Instituiton
+                     </label>
+                     <input
+                        type="text"
+                        placeholder="Institution Name"
+                        name={data.institution}
+                        onChange={(e) => getInputData(e)}
+                        className="shadow-sm border rounded-4 px-3 py-2 "
+                        style={{
+                           border: "none",
+                           outline: "none",
+                           width: "220px",
+                        }}
+                     />
+                  </div>
+               )}
+               {data.marks && (
+                  <div className="d-flex justify-content-between mb-3">
+                     <label htmlFor="" className="fs-5">
+                        Marks
+                     </label>
+                     <input
+                        type="text"
+                        placeholder="Marks"
+                        name={data.marks}
+                        onChange={(e) => getInputData(e)}
+                        className="shadow-sm border rounded-4 px-3 py-2 "
+                        style={{
+                           border: "none",
+                           outline: "none",
+                           width: "220px",
+                        }}
+                     />
+                  </div>
+               )}
+               {data.mode && (
+                  <div className="d-flex justify-content-between mb-3">
+                     <label htmlFor="" className="fs-5">
                         Mode of Study
-                     </option>
-                     <option value="Full Time">Full Time</option>
-                     <option value="Part Time">Part Time</option>
-                     <option value="Distance / Online">
-                        Distance / Online
-                     </option>
-                  </select>
-               </div>
+                     </label>
+                     <select
+                        className="shadow-sm border rounded-4 px-3 py-2 "
+                        name={data.mode}
+                        onChange={(e) => getInputData(e)}
+                        style={{
+                           border: "none",
+                           outline: "none",
+                           width: "220px",
+                        }}
+                     >
+                        <option defaultValue hidden>
+                           Mode of Study
+                        </option>
+                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time">Part Time</option>
+                        <option value="Distance / Online">
+                           Distance / Online
+                        </option>
+                     </select>
+                  </div>
+               )}
+               {data.english && (
+                  <div className=" mb-3">
+                     <p className="fs-5">
+                        Do you have good communication skill in English?
+                     </p>
+                     <div className="d-flex align-items-center justify-content-evenly">
+                        <div className="d-flex align-items-center gap-2">
+                           <label>Yes</label>
+                           <input
+                              type="radio"
+                              name={data.english}
+                              value={"yes"}
+                              onChange={(e) => getInputData(e)}
+                              style={{
+                                 border: "none",
+                                 outline: "none",
+                                 height: "16px",
+                                 width: "16px",
+                              }}
+                           />
+                        </div>
+                        <div className="d-flex align-items-center gap-2">
+                           <label>No</label>
+                           <input
+                              type="radio"
+                              name={data.english}
+                              value={"no"}
+                              onChange={(e) => getInputData(e)}
+                              style={{
+                                 border: "none",
+                                 outline: "none",
+                                 height: "16px",
+                                 width: "16px",
+                              }}
+                           />
+                        </div>
+                     </div>
+                  </div>
+               )}
+               {data.new_language && (
+                  <div className=" mb-3">
+                     <p className="fs-5">
+                        Are you comfortable spending few months in learning a
+                        new language?
+                     </p>
+                     <div className="d-flex align-items-center justify-content-evenly">
+                        <div className="d-flex align-items-center gap-2">
+                           <label>Yes</label>
+                           <input
+                              type="radio"
+                              name={data.new_language}
+                              value={"yes"}
+                              onChange={(e) => getInputData(e)}
+                              style={{
+                                 border: "none",
+                                 outline: "none",
+                                 height: "16px",
+                                 width: "16px",
+                              }}
+                           />
+                        </div>
+                        <div className="d-flex align-items-center gap-2">
+                           <label>No</label>
+                           <input
+                              type="radio"
+                              name={data.new_language}
+                              value={"no"}
+                              onChange={(e) => getInputData(e)}
+                              style={{
+                                 border: "none",
+                                 outline: "none",
+                                 height: "16px",
+                                 width: "16px",
+                              }}
+                           />
+                        </div>
+                     </div>
+                  </div>
+               )}
+               {data.proficiency && (
+                  <div className=" mb-3">
+                     <p className="fs-5">
+                        Have you got any language proficiency?
+                     </p>
+                     <div className="d-flex align-items-center justify-content-evenly">
+                        <div className="d-flex align-items-center gap-2">
+                           <label>Yes</label>
+                           <input
+                              type="radio"
+                              name={data.proficiency}
+                              value={"yes"}
+                              onChange={(e) => getInputData(e)}
+                              style={{
+                                 border: "none",
+                                 outline: "none",
+                                 height: "16px",
+                                 width: "16px",
+                              }}
+                           />
+                        </div>
+                        <div className="d-flex align-items-center gap-2">
+                           <label>No</label>
+                           <input
+                              type="radio"
+                              name={data.proficiency}
+                              value={"no"}
+                              onChange={(e) => getInputData(e)}
+                              style={{
+                                 border: "none",
+                                 outline: "none",
+                                 height: "16px",
+                                 width: "16px",
+                              }}
+                           />
+                        </div>
+                     </div>
+                  </div>
+               )}
+               {data.language_proficiency && (
+                  <div className="d-flex flex-wrap gap-2 justify-content-center align-items-center mb-3">
+                     <input
+                        type="text"
+                        placeholder="Language"
+                        name={data.language}
+                        onChange={(e) => getInputData(e)}
+                        className="shadow-sm border rounded-4 px-3 py-2 "
+                        style={{
+                           border: "none",
+                           outline: "none",
+                           width: "180px",
+                        }}
+                     />
+                     <input
+                        type="text"
+                        placeholder="Certificate"
+                        name={data.certificate}
+                        onChange={(e) => getInputData(e)}
+                        className="shadow-sm border rounded-4 px-3 py-2 "
+                        style={{
+                           border: "none",
+                           outline: "none",
+                           width: "180px",
+                        }}
+                     />
+                     <input
+                        type="text"
+                        placeholder="Level of Proficiency"
+                        name={data.level_of_proficiency}
+                        onChange={(e) => getInputData(e)}
+                        className="shadow-sm border rounded-4 px-3 py-2 "
+                        style={{
+                           border: "none",
+                           outline: "none",
+                           width: "180px",
+                        }}
+                     />
+                  </div>
+               )}
                <div className="d-flex justify-content-between">
                   <button
                      className="btn text-light rounded-4 me-2"
@@ -212,7 +387,7 @@ function Profile() {
    return (
       <section>
          <div style={{ paddingBlock: "100px" }} className="container ms-auto">
-            <h1 className="text-center mt-5">Complete Your Profile</h1>
+            <h1 className="text-center mt-5 fw-bold">Complete Your Profile</h1>
             <div className="cardContainer">
                <Cards index={currentIndex} data={cards[currentIndex]} />
             </div>

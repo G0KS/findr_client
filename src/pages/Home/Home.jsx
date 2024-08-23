@@ -20,7 +20,6 @@ function Home() {
             </Col>
           </Row>
         </div>
- I
         {/* about us */}
         <div
           className="text-center d-flex flex-lg-row flex-column justify-content-between align-items-center my-5 bg-body-tertiary rounded-3 p-4"
@@ -192,3 +191,7 @@ function Home() {
 }
 
 export default Home;
+
+
+
+
