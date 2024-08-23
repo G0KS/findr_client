@@ -706,7 +706,7 @@ function Profile() {
         className="d-none d-lg-block"
       />
       <div style={{ paddingBlock: '100px' }} className="container ms-auto">
-        <h1 className="text-center mt-5 fw-bold">Complete Your Profile</h1>
+        <h2 className="text-center mt-5 fw-bold">Complete Your <span style={{color:'#0f6990'}}>Profile</span></h2>
         <div className="cardContainer">
           <Cards index={currentIndex} data={cards[currentIndex]} />
         </div>
