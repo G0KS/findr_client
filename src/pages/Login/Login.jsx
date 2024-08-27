@@ -5,8 +5,9 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { candidateLogin } from '../../api/allApi';
 
-function Login({ setShow }) {
+function Login({ setShow,setSliderShow }) {
   setShow(true);
+  setSliderShow(false)
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 

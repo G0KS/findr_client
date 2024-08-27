@@ -2,8 +2,9 @@ import Row from 'react-bootstrap/row';
 import Col from 'react-bootstrap/Col';
 import hero from '../../assets/hero.svg';
 
-function Home({ setShow }) {
-  setShow(true);
+function Home({ setShow,setSliderShow }) {
+  setShow(true)
+  setSliderShow(false)
   return (
     <>
       {/* hero section */}

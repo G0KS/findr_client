@@ -4,7 +4,10 @@ import { candidateLogin, candidateUpdate } from '../../api/allApi';
 import { profileContext } from '../../context/ContextShare';
 import world from '../../assets/world.svg'
 
-function Profile() {
+
+function Profile({ setShow,setSliderShow }) {
+  setShow(true);
+  setSliderShow(true)
   const email = localStorage.getItem('findrData');
 
   const check = async () => {
