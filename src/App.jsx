@@ -11,25 +11,27 @@ import FooterComponent from './components/FooterComponent/FooterComponent.jsx';
 import Contactus from './pages/Contactus/Contactus.jsx';
 import Terms from './pages/Termscont/Terms.jsx';
 import Privacy from './pages/Privacy/Privacy.jsx';
-import {  useState } from 'react';
+import { useState } from 'react';
 import Payment from './pages/Payment/Payment.jsx';
+import SliderComponent from './components/SliderComponent/SliderComponent.jsx';
 
 function App() {
   const [show, setShow] = useState(true);
+  const [sliderShow, setSliderShow] = useState(false);
 
   return (
     <>
       {show && <NavbarComponent />}
+      {sliderShow && <SliderComponent />}
       <Routes>
-        <Route path="/" element={<Home setShow={setShow} />} />
-        <Route path="/login" element={<Login setShow={setShow} />} />
-        <Route path="/signup" element={<Register setShow={setShow} />} />
-        <Route path="/profile" element={<Profile setShow={setShow} />} />
-        <Route path="/contactus" element={<Contactus setShow={setShow} />} />
-        <Route path="/terms" element={<Terms setShow={setShow} />} />
-        <Route path="/privacy" element={<Privacy setShow={setShow} />} />
-        <Route path="/payment" element={<Payment setShow={setShow} />} />
-
+        <Route path="/" element={<Home setShow={setShow} setSliderShow={setSliderShow} />} />
+        <Route path="/login" element={<Login setShow={setShow} setSliderShow={setSliderShow}/>} />
+        <Route path="/signup" element={<Register setShow={setShow} setSliderShow={setSliderShow}/>} />
+        <Route path="/profile" element={<Profile setShow={setShow} setSliderShow={setSliderShow}/>} />
+        <Route path="/contactus" element={<Contactus setShow={setShow} setSliderShow={setSliderShow}/>} />
+        <Route path="/terms" element={<Terms setShow={setShow} setSliderShow={setSliderShow}/>} />
+        <Route path="/privacy" element={<Privacy setShow={setShow} setSliderShow={setSliderShow}/>} />
+        <Route path="/payment" element={<Payment setShow={setShow} setSliderShow={setSliderShow}/>} />
       </Routes>
       {show && <FooterComponent />}
       <ToastContainer

@@ -6,14 +6,11 @@ import world from "../../assets/world.svg";
 
 // checkbox implemented
 
-function Profile() {
-   const { email } = JSON.parse(localStorage.getItem("findrData"));
 
-   console.log(email);
-
-   useEffect(() => {
-      getUserData();
-   });
+function Profile({ setShow,setSliderShow }) {
+  setShow(true);
+  setSliderShow(true)
+  const email = localStorage.getItem('findrData');
 
    const getUserData = async () => {
       const userData = await getCandidate(email);

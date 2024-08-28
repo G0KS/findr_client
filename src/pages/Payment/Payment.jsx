@@ -4,7 +4,9 @@ import RazorpayButton from "../../components/RazorpayButton";
 import { getCandidate } from "../../api/allApi";
 import { userContext } from "../../context/ContextShare";
 
-function Payment() {
+function Payment({setShow,setSliderShow}) {
+   setShow(true)
+   setSliderShow(true)
    const email = JSON.parse(localStorage.getItem("findrData")).email;
    console.log(email);
 

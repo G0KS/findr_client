@@ -4,10 +4,11 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { getCandidate } from "../../api/allApi";
 
-function Login({ setShow }) {
-   setShow(true);
-   const navigate = useNavigate();
-   const [showPassword, setShowPassword] = useState(false);
+function Login({ setShow,setSliderShow }) {
+  setShow(true);
+  setSliderShow(false)
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
    const [inputData, setInputData] = useState({
       email: "",
