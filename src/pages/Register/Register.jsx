@@ -4,12 +4,12 @@ import RegImg from "../../assets/login.svg";
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { candidateRegister } from "../../api/allApi";
-import { userContext } from "../../context/ContextShare";
+// import { userContext } from "../../context/ContextShare";
 
 function Register({ setShow }) {
    setShow(true);
    const navigate = useNavigate();
-   const { userData, setUserData } = useContext(userContext);
+   // const { userData, setUserData } = useContext(userContext);
    const [showPassword, setShowPassword] = useState(false);
    const [error, setError] = useState("");
 
@@ -62,7 +62,6 @@ function Register({ setShow }) {
          };
          try {
             const response = await candidateRegister(body);
-            
 
             // Handle successful login
             console.log(response);

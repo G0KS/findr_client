@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import paymentimg from "../../assets/paymentimg.jpeg";
 import RazorpayButton from "../../components/RazorpayButton";
 import { getCandidate } from "../../api/allApi";
-import { userContext } from "../../context/ContextShare";
+// import { userContext } from "../../context/ContextShare";
 
 function Payment({setShow,setSliderShow}) {
    setShow(true)

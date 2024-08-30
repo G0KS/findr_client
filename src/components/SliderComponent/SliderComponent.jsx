@@ -22,20 +22,17 @@ function SliderComponent() {
                   to={"/"}
                >
                   <MenuItem>
-                     {" "}
                      <img className="p-2" src={Home} alt="" /> Home
                   </MenuItem>
                </Link>
                <Link to={"/profile"} style={{ textDecoration: "none" }}>
                   <MenuItem>
-                     {" "}
                      <img className="p-2" src={Profile} alt="" />
                      Profile
                   </MenuItem>
                </Link>
                <Link to={"/payment"} style={{ textDecoration: "none" }}>
                   <MenuItem>
-                     {" "}
                      <img className="p-2" src={Payment} alt="" />
                      Payment
                   </MenuItem>
@@ -47,7 +44,6 @@ function SliderComponent() {
                   </MenuItem>
                </Link>
                <MenuItem className="" style={{ textDecoration: "none" }}>
-                  {" "}
                   <img className="p-2" src={Logout} alt="" /> Logout
                </MenuItem>
             </Menu>
