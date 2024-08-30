@@ -15,7 +15,7 @@ import world from "../../assets/world.svg";
 function UpdateProfile({ setShow, setSliderShow }) {
    setShow(true);
    setSliderShow(true);
-   // const email = JSON.parse(localStorage.getItem("findrData")).email;
+   const email = JSON.parse(localStorage.getItem("findrData")).email;
 
    const getUserData = async () => {
       const userData = await getCandidate(email);
