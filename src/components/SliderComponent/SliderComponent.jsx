@@ -7,14 +7,16 @@ import Profile from "../../assets/Profile.svg";
 import Payment from "../../assets/Payment.svg";
 import Document from "../../assets/Document.svg";
 import Logout from "../../assets/Logout.svg";
+import Calling from "../../assets/Calling.svg";
 
 function SliderComponent() {
    return (
-      <div style={{ position: "absolute", height: "100%" }}>
-         <Sidebar>
+      <div style={{ position: "absolute", height: "100%"  }}>
+         <Sidebar 
+         >
             <Menu
-               className="d-flex align-items-center"
-               style={{ height: "100vh" }}
+               className="d-flex ms-2"
+               style={{ height: "90vh",marginTop:"80px" }}
             >
                <Link
                   className="fw-bold"
@@ -33,8 +35,9 @@ function SliderComponent() {
                </Link>
                <Link to={"/payment"}  className="fw-bold"  style={{ textDecoration: "none", color: "gray"  }}>
                   <MenuItem>
-                     <img className="p-2" src={Payment} alt="" />
-                     Payment
+                     {" "}
+                     <img className="p-2"  src={Payment} alt="" />
+                      Payment
                   </MenuItem>
                </Link>
                <Link to={"/courses"}  className="fw-bold" style={{ textDecoration: "none", color: "gray"  }}>
@@ -43,7 +46,14 @@ function SliderComponent() {
                      Courses
                   </MenuItem>
                </Link>
-               <MenuItem className="" style={{ textDecoration: "none" }}>
+               <Link to={"/contactus"}  className="fw-bold" style={{ textDecoration: "none", color: "gray"  }}>
+                  <MenuItem>
+                     <img className="p-2" src={Calling} alt="" />
+                     Contact us
+                  </MenuItem>
+               </Link>
+               <MenuItem className="fw-bold"  style={{ textDecoration: "none", color: "gray"  }}>
+                  {" "}
                   <img className="p-2" src={Logout} alt="" /> Logout
                </MenuItem>
             </Menu>

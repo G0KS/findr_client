@@ -50,3 +50,16 @@
 .active {
    display: block;
 }
+
+.shapeParent {
+   position: relative;
+ }
+ 
+ .shape {
+   position: absolute;
+   left: 0;
+   background-color: #067bc2;
+   height: 30px;
+   width: 8px;
+   border-radius: 2px;
+ }

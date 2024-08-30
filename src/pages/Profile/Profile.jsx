@@ -1,14 +1,11 @@
-import React from "react";
+import React from 'react'
 
-// checkbox implemented
-
-function Profile({ setShow, setSliderShow }) {
-   setShow(true);
-   setSliderShow(true);
-
-   return <section>
+function Profile() {
+  return (
+    <div>
       
-   </section>;
+    </div>
+  )
 }
 
-export default Profile;
+export default Profile

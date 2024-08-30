@@ -250,7 +250,7 @@ function UpdateProfile({ setShow, setSliderShow }) {
                            <option defaultValue hidden>
                               Mode of Study
                            </option>
-                           <option value="Full Time">Full Time</option>
+                           <option  value="Full Time">Full Time</option>
                            <option value="Part Time">Part Time</option>
                            <option value="Distance / Online">
                               Distance / Online
@@ -423,8 +423,9 @@ function UpdateProfile({ setShow, setSliderShow }) {
                   </div>
                )}
                {data.work && (
-                  <div>
+                  <div className="d-flex flex-wrap gap-3 justify-content-center align-items-center mb-3" >
                      <h4>{data.subtitle}</h4>
+                     <br />
                      <input
                         type="text"
                         placeholder="Position (Job Role)"
@@ -449,7 +450,7 @@ function UpdateProfile({ setShow, setSliderShow }) {
                            width: "220px",
                         }}
                      />
-                     <div>
+                     <div className="p-1">
                         <label htmlFor="">From</label>
                         <input
                            type="date"
@@ -481,7 +482,7 @@ function UpdateProfile({ setShow, setSliderShow }) {
                      </div>
                      {data.work === "Intern" ? (
                         <div>
-                           <label htmlFor="addIntern">✅ Af\dd</label>
+                           <label htmlFor="addIntern">✅ Ad \dd</label>
                            <label htmlFor="">❌</label>
                            <input
                               className="d-none"
