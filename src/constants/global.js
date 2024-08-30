@@ -1,4 +1,4 @@
-const userData = {
+export const userData = {
    tenth_institution: "",
    tenth_marks: "",
    tenth_mode_of_study: "",
@@ -17,9 +17,6 @@ const userData = {
    english_skill: "",
    new_language: "",
    proficiency_in_language: "",
-   language: "",
-   certificate: "",
-   level_of_proficiency: "",
    language_proficiency: [
       {
          parent: "",
@@ -30,10 +27,6 @@ const userData = {
          level_of_proficiency: "",
       },
    ],
-   intern_position: "",
-   intern_company_name: "",
-   intern_from: "",
-   intern_to: "",
    internship_details: [
       {
          parent: "",
@@ -46,10 +39,6 @@ const userData = {
          intern_from: "",
       },
    ],
-   work_position: "",
-   work_company_name: "",
-   work_from: "",
-   work_to: "",
    work_experience: [
       {
          parent: "",
@@ -61,8 +50,6 @@ const userData = {
          work_from: "",
       },
    ],
-   preferred_course: "",
-   preferred_country: "",
    preferences: [
       {
          parent: "",
