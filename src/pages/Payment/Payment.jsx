@@ -10,21 +10,6 @@ function Payment({setShow,setSliderShow}) {
    const email = JSON.parse(localStorage.getItem("findrData")).email;
    console.log(email);
 
-   useEffect(() => {
-      getCandidateData(email);
-   }, []);
-
-   const getCandidateData = async () => {
-      const response = await getCandidate(email);
-      console.log(response.data.data);
-      const candidateData = response.data.data;
-      setUserData({
-         email: candidateData.email,
-         name: candidateData.first_name + " " + candidateData.last_name,
-         contact: candidateData.phone_number,
-      });
-   };
-
    return (
       <section
          className="d-flex justify-content-center align-items-center "

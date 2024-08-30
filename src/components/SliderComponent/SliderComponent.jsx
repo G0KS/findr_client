@@ -1,34 +1,59 @@
-import React from 'react';
-import { Sidebar, Menu, MenuItem,  } from 'react-pro-sidebar';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
+import { Link } from "react-router-dom";
 
-import Home from '../../assets/home.svg';
-import Profile from '../../assets/Profile.svg';
-import Payment from '../../assets/Ticket.svg';
-import Document from '../../assets/Document.svg';
-import Logout from '../../assets/Logout red.svg';
-
-
-
+import Home from "../../assets/home.svg";
+import Profile from "../../assets/Profile.svg";
+import Payment from "../../assets/Ticket.svg";
+import Document from "../../assets/Document.svg";
+import Logout from "../../assets/Logout red.svg";
 
 function SliderComponent() {
-  return (
-    <div
-      className="d-flex align-items-center"
-      style={{ position: 'fixed', height: '100%' }}
-    >
-      <Sidebar>
-        <Menu  style={{backgroundColor:""}}>
-            <Link className='fw-bold' style={{textDecoration:'none',color:"gray"}} ><MenuItem> <img className='p-2' src={Home} alt="" /> Home</MenuItem></Link>
-          <MenuItem>  <img className='p-2' src={Profile} alt="" />Profile</MenuItem>
-          <MenuItem> <img className='p-2' src={Payment} alt="" />Payment</MenuItem>
-          <MenuItem><img className='p-2' src={Document} alt="" />Courses</MenuItem>
-          
-          <MenuItem className=''> <img className='p-2' src={Logout} alt="" /> Logout</MenuItem>
-        </Menu>
-      </Sidebar>
-    </div>
-  );
+   return (
+      <div style={{ position: "absolute", height: "100%" }}>
+         <Sidebar>
+            <Menu
+               className="d-flex align-items-center"
+               style={{ height: "100vh" }}
+            >
+               <Link
+                  className="fw-bold"
+                  style={{ textDecoration: "none", color: "gray" }}
+                  to={"/"}
+               >
+                  <MenuItem>
+                     {" "}
+                     <img className="p-2" src={Home} alt="" /> Home
+                  </MenuItem>
+               </Link>
+               <Link to={"/profile"} style={{ textDecoration: "none" }}>
+                  <MenuItem>
+                     {" "}
+                     <img className="p-2" src={Profile} alt="" />
+                     Profile
+                  </MenuItem>
+               </Link>
+               <Link to={"/payment"} style={{ textDecoration: "none" }}>
+                  <MenuItem>
+                     {" "}
+                     <img className="p-2" src={Payment} alt="" />
+                     Payment
+                  </MenuItem>
+               </Link>
+               <Link to={"/courses"} style={{ textDecoration: "none" }}>
+                  <MenuItem>
+                     <img className="p-2" src={Document} alt="" />
+                     Courses
+                  </MenuItem>
+               </Link>
+               <MenuItem className="" style={{ textDecoration: "none" }}>
+                  {" "}
+                  <img className="p-2" src={Logout} alt="" /> Logout
+               </MenuItem>
+            </Menu>
+         </Sidebar>
+      </div>
+   );
 }
 
 export default SliderComponent;
