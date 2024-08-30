@@ -6,7 +6,9 @@ function Profile({ setShow, setSliderShow }) {
    setShow(true);
    setSliderShow(true);
 
-   return <section></section>;
+   return <section>
+      
+   </section>;
 }
 
 export default Profile;
