@@ -2,11 +2,11 @@ import React from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link } from "react-router-dom";
 
-import Home from "../../assets/home.svg";
+import Home from "../../assets/Home.svg";
 import Profile from "../../assets/Profile.svg";
-import Payment from "../../assets/Ticket.svg";
+import Payment from "../../assets/Payment.svg";
 import Document from "../../assets/Document.svg";
-import Logout from "../../assets/Logout red.svg";
+import Logout from "../../assets/Logout.svg";
 
 function SliderComponent() {
    return (
@@ -25,19 +25,19 @@ function SliderComponent() {
                      <img className="p-2" src={Home} alt="" /> Home
                   </MenuItem>
                </Link>
-               <Link to={"/profile"} style={{ textDecoration: "none" }}>
+               <Link to={"/profile"}  className="fw-bold" style={{ textDecoration: "none", color: "gray" }}>
                   <MenuItem>
                      <img className="p-2" src={Profile} alt="" />
                      Profile
                   </MenuItem>
                </Link>
-               <Link to={"/payment"} style={{ textDecoration: "none" }}>
+               <Link to={"/payment"}  className="fw-bold"  style={{ textDecoration: "none", color: "gray"  }}>
                   <MenuItem>
                      <img className="p-2" src={Payment} alt="" />
                      Payment
                   </MenuItem>
                </Link>
-               <Link to={"/courses"} style={{ textDecoration: "none" }}>
+               <Link to={"/courses"}  className="fw-bold" style={{ textDecoration: "none", color: "gray"  }}>
                   <MenuItem>
                      <img className="p-2" src={Document} alt="" />
                      Courses
