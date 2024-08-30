@@ -18,6 +18,7 @@ import UpdateProfile from './pages/UpdateProfile/UpdateProfile.jsx';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import ScrollToTop from './components/ScrollToTop.jsx';
+import Courses from './pages/Courses/Courses.jsx';
 
 function App() {
   const [show, setShow] = useState(true);
@@ -34,6 +35,7 @@ function App() {
         <Route path="/signup" element={<Register setShow={setShow} setSliderShow={setSliderShow}/>} />
         <Route path="/profile/update" element={<UpdateProfile setShow={setShow} setSliderShow={setSliderShow}/>} />
         <Route path="/profile" element={<Profile setShow={setShow} setSliderShow={setSliderShow}/>} />
+        <Route path="/courses" element={<Courses setShow={setShow} setSliderShow={setSliderShow}/>} />
         <Route path="/contactus" element={<Contactus setShow={setShow} setSliderShow={setSliderShow}/>} />
         <Route path="/terms" element={<Terms setShow={setShow} setSliderShow={setSliderShow}/>} />
         <Route path="/privacy" element={<Privacy setShow={setShow} setSliderShow={setSliderShow}/>} />
