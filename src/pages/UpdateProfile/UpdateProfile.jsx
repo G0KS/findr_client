@@ -120,9 +120,6 @@ function UpdateProfile({ setShow, setSliderShow }) {
       // Add more cards as needed
    ];
 
-   // const { profileData, setProfileData } = useContext(profileContext);
-   console.log("asd");
-
    const [currentIndex, setCurrentIndex] = useState(0);
 
    const Cards = ({ data }) => {
