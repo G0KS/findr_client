@@ -58,8 +58,19 @@
  .shape {
    position: absolute;
    left: 0;
-   background-color: #067bc2;
+   background-color: #0F6990;
    height: 30px;
    width: 8px;
    border-radius: 2px;
  }
+
+ .inputBox {
+   width: 300px;
+   padding: 5px 15px;
+   height: 50px;
+   border: 1px solid #067bc2;
+   outline: none;
+   border-radius: 10px;
+   overflow: hidden;
+}
+

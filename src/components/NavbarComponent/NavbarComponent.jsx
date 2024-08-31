@@ -1,6 +1,7 @@
 
 import Navbar from 'react-bootstrap/Navbar';
 import Logo from '../../assets/logo3.png';
+import login from '../../assets/login.svg';
 
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
@@ -39,6 +40,7 @@ function NavbarComponent() {
           className="btn text-light"
           style={{ backgroundColor: '#0F6990' }}
         >
+          <img className='me-2' src={login} alt="" />
           Login{' '}
         </Button>
       </Navbar>
