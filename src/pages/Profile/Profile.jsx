@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-function Profile() {
+function Profile({ setShow, setSliderShow }) {
+  setShow(true);
+  setSliderShow(true);
    const [inputData, setInputData] = useState({});
    const [editable, setEditable] = useState(true);
 
@@ -12,10 +14,7 @@ function Profile() {
    return (
       <div style={{ paddingBlock: "100px" }} className="container ms-auto">
          <h2 className="">Personal Details</h2>
-         <div
-            className="d-flex p-4"
-            style={{ backgroundColor: "lightblue" }}
-         >
+         <div className="d-flex p-4" style={{ backgroundColor: "lightblue" }}>
             <div className="col-md-6 col-lg-5">
                {/* input section */}
 
@@ -108,7 +107,7 @@ function Profile() {
                      type="date"
                      name="dob"
                      value={inputData.dob || ""}
-                    //  disabled={editable}
+                     //  disabled={editable}
                      onChange={(e) => getInputData(e)}
                      placeholder="Select DOB"
                      style={{ fontSize: "15px", border: "none", color: "gray" }}
@@ -126,7 +125,7 @@ function Profile() {
                      type="text"
                      name="passport_no"
                      value={inputData.passport_no || ""}
-                    //  disabled={editable}
+                     //  disabled={editable}
                      onChange={(e) => getInputData(e)}
                      placeholder="Enter Passport No"
                      style={{ fontSize: "15px", border: "none" }}
@@ -143,7 +142,7 @@ function Profile() {
                      className="inputBox shadow  "
                      name="address"
                      value={inputData.address || ""}
-                    //  disabled={editable}
+                     //  disabled={editable}
                      onChange={(e) => getInputData(e)}
                      placeholder="Enter Address"
                      style={{ fontSize: "15px", border: "none" }}

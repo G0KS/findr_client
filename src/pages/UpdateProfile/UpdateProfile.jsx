@@ -7,14 +7,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { candidateUpdate, getCandidate } from "../../api/allApi";
 import {
-   profileContext,
    updatedProfileContext,
 } from "../../context/ContextShare";
 import world from "../../assets/world.svg";
 
 function UpdateProfile({ setShow, setSliderShow }) {
    setShow(true);
-   setSliderShow(true);
+   setSliderShow(false);
    const email = JSON.parse(localStorage.getItem("findrData")).email;
 
    const getUserData = async () => {
@@ -250,7 +249,7 @@ function UpdateProfile({ setShow, setSliderShow }) {
                            <option defaultValue hidden>
                               Mode of Study
                            </option>
-                           <option  value="Full Time">Full Time</option>
+                           <option value="Full Time">Full Time</option>
                            <option value="Part Time">Part Time</option>
                            <option value="Distance / Online">
                               Distance / Online
@@ -423,7 +422,7 @@ function UpdateProfile({ setShow, setSliderShow }) {
                   </div>
                )}
                {data.work && (
-                  <div className="d-flex flex-wrap gap-3 justify-content-center align-items-center mb-3" >
+                  <div className="d-flex flex-wrap gap-3 justify-content-center align-items-center mb-3">
                      <h4>{data.subtitle}</h4>
                      <br />
                      <input
