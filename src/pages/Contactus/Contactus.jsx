@@ -42,6 +42,7 @@ function Contactus({ setShow, setSliderShow }) {
             </div>
           </Link>
           <Link
+          target="_blank"
             to=""
             className="fw-bold"
             style={{ textDecoration: 'none', color: 'gray' }}
@@ -52,6 +53,7 @@ function Contactus({ setShow, setSliderShow }) {
             </div>
           </Link>
           <Link
+          target='blank'
             to="https://maps.app.goo.gl/ZYE7EkCH6xiDuTap7"
             className="fw-bold"
             style={{ textDecoration: 'none', color: 'gray' }}

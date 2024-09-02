@@ -13,8 +13,8 @@ import menu from '../../assets/menu.svg';
 function SliderComponent() {
   const [collapse, setCollapse] = useState(false);
   return (
-    <div style={{ position: 'absolute', height: '100%' }}>
-      <Sidebar collapsed={collapse}>
+    <div style={{ position: 'absolute', top: '0', left: '0' }}>
+      <Sidebar collapsed={collapse} style={{ position: 'relative' }}>
         <Menu className="d-flex ms-2" style={{ marginTop: '80px' }}>
           <Link
             onClick={() => {
@@ -82,7 +82,6 @@ function SliderComponent() {
             style={{
               textDecoration: 'none',
               color: 'gray',
-              marginTop: '380px',
             }}
           >
             {' '}

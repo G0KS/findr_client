@@ -67,7 +67,7 @@ function Faqpage() {
       title:
         '10.How do I contact findr.study if I have more questions?',
       answer:
-        'You can reach us through our contact page or email [insert email].',
+        'You can reach us through our contact page or email support@findr.study .',
     },
     
   ];

@@ -44,9 +44,9 @@ function Profile({ setShow, setSliderShow }) {
                 className="ms-auto py-2  px-3 shadow border "
                 style={{
                   backgroundColor: "#0F6990",
-                  borderRadius: "20px",
+                  borderRadius: "10px",
                   textDecoration: "none",
-                  width: "7rem",
+                  width: "6rem",
                 }}
                 onClick={() => handleEdit()}
               >

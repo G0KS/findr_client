@@ -26,7 +26,7 @@ function Home({ setShow, setSliderShow }) {
               
               <div className='mt-2 ms-1'>
                 <Link
-                
+                to={'/signup'}
                   className="d-flex align-items-center fw-bold"
                   style={{color:"#0F6990",width:"200px",height:'18px', textDecoration:"none",fontSize:"18px" }}
                 >
