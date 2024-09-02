@@ -75,7 +75,7 @@ function Faqpage() {
     <div>
       <section
         id="faqSection"
-        className=" "
+        className="mb-5 "
         style={{ paddingTop: '100px', paddingBottom: '10px' }}
       >
         <div className="faqTitle mb-5">
@@ -88,6 +88,7 @@ function Faqpage() {
           {data.map((item, i) => (
             <div
               className="faq rounded shadow-sm p-3"
+              style={{cursor:"pointer"}}
               onClick={() => toggle(i)}
               key={i}
             >
@@ -99,7 +100,7 @@ function Faqpage() {
               </div>
               <div className={selected === i ? 'answer show' : 'answer'}>
                 <hr className="answerLine" />
-                <p className="px-3 text-secondary">{item.answer}</p>
+                <p className="px-3 " style={{color:"#0F6990"}}>{item.answer}</p>
               </div>
             </div>
           ))}
