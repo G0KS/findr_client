@@ -1,10 +1,11 @@
 import Row from 'react-bootstrap/row';
 import Col from 'react-bootstrap/Col';
-  import hero from '../../assets/hero.svg';
+import hero from '../../assets/hero.svg';
+import { Button } from 'react-bootstrap';
 
-function Home({ setShow,setSliderShow }) {
-  setShow(true)
-  setSliderShow(false)
+function Home({ setShow, setSliderShow }) {
+  setShow(true);
+  setSliderShow(false);
   return (
     <>
       {/* hero section */}
@@ -19,6 +20,15 @@ function Home({ setShow,setSliderShow }) {
                 Your Gateway to <br /> Global{' '}
                 <span style={{ color: '#0f6990' }}>Education</span>
               </h1>
+              
+              <div className='' >
+                <Button
+                  className="btn text-light"
+                  style={{ backgroundColor: '#0F6990' }}
+                >
+                  Register
+                </Button>
+              </div>
             </Col>
           </Row>
         </div>
@@ -192,7 +202,3 @@ function Home({ setShow,setSliderShow }) {
 }
 
 export default Home;
-
-
-
-

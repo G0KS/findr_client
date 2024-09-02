@@ -46,6 +46,14 @@ function FooterComponent() {
                      Contact
                   </Link>
                </li>
+               <li>
+                  <Link
+                     to="/faq"
+                     style={{ textDecoration: "none", color: "black" }}
+                  >
+                     Faq
+                  </Link>
+               </li>
             </ul>
             <div className="socials text-light ms-3">
                <Link className={style.socialIcon}>
