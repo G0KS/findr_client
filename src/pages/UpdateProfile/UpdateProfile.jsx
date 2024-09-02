@@ -22,7 +22,7 @@ import { Button } from 'react-bootstrap';
 function UpdateProfile({ setShow, setSliderShow }) {
   setShow(true);
   setSliderShow(true);
-  const email = JSON.parse(localStorage.getItem("findrData")).email;
+  // const email = JSON.parse(localStorage.getItem("findrData")).email;
 
   const getUserData = async () => {
     const userData = await getCandidate(email);
@@ -207,12 +207,12 @@ function UpdateProfile({ setShow, setSliderShow }) {
           //  backgroundImage: 'linear-gradient(315deg, #0f6990  1%, #ffffff  45%)',
         }}
       >
-       <div className='d-flex justify-content-center align-items-center mb-3'>
-           <img style={{ maxWidth: '70px' }} src={Logo} alt="" />
-           <h2 className=" fw-bold">
-             Complete Your <span style={{ color: '#0f6990' }}>Profile</span>
-           </h2>
-       </div>
+        <div className="d-flex justify-content-center align-items-center mb-3">
+          <img style={{ maxWidth: '70px' }} src={Logo} alt="" />
+          <h2 className=" fw-bold">
+            Complete Your <span style={{ color: '#0f6990' }}>Profile</span>
+          </h2>
+        </div>
         <h3 className="card-title ">{data.title}</h3>
         <div className="card-body mt-4">
           {data.institution && (
@@ -233,7 +233,7 @@ function UpdateProfile({ setShow, setSliderShow }) {
                   onChange={(e) => getInputData(e)}
                   className="shadow-sm border rounded-4 px-3 py-2 "
                   style={{
-                     fontSize: '15px',
+                    fontSize: '15px',
                     border: 'none',
                     outline: 'none',
                     width: '300px',
@@ -256,8 +256,8 @@ function UpdateProfile({ setShow, setSliderShow }) {
                   onChange={(e) => getInputData(e)}
                   className="shadow-sm border rounded-4 px-3 py-2 "
                   style={{
-                     border: 'none',
-                     outline: 'none',
+                    border: 'none',
+                    outline: 'none',
                     width: '300px',
                   }}
                 />
@@ -294,10 +294,10 @@ function UpdateProfile({ setShow, setSliderShow }) {
           {data.english && (
             <div>
               <div className=" mb-3">
-                <p className="fs-5">
+                <p className="fw-bold"  style={{fontSize:"17px"}}>
                   Do you have good communication skill in English?
                 </p>
-                <div className="d-flex align-items-center justify-content-evenly">
+                <div className="d-flex align-items-center gap-3">
                   <div className="d-flex align-items-center gap-2">
                     <label>Yes</label>
                     <input
@@ -331,11 +331,11 @@ function UpdateProfile({ setShow, setSliderShow }) {
                 </div>
               </div>
               <div className=" mb-3">
-                <p className="fs-5">
+                <p className="fw-bold"  style={{fontSize:"17px"}}>
                   Are you comfortable spending few months in learning a new
                   language?
                 </p>
-                <div className="d-flex align-items-center justify-content-evenly">
+                <div className="d-flex align-items-center gap-3">
                   <div className="d-flex align-items-center gap-2">
                     <label>Yes</label>
                     <input
@@ -369,8 +369,8 @@ function UpdateProfile({ setShow, setSliderShow }) {
                 </div>
               </div>
               <div className=" mb-3">
-                <p className="fs-5">Have you got any language proficiency?</p>
-                <div className="d-flex align-items-center justify-content-evenly">
+                <p className="fw-bold"  style={{fontSize:"17px"}}>Have you got any language proficiency?</p>
+                <div className="d-flex align-items-center gap-3">
                   <div className="d-flex align-items-center gap-2">
                     <label>Yes</label>
                     <input
@@ -537,14 +537,14 @@ function UpdateProfile({ setShow, setSliderShow }) {
 
               {data.work === 'Intern' ? (
                 <div>
-                  <div className='d-flex justify-content-center align-items-center p-3'>
-            <Button
-              className="btn ext-light d-flex justify-content-center align-items-center"
-              style={{ backgroundColor: '#0F6990' }}
-            >
-             Save & add more
-            </Button>
-          </div>
+                  <div className="d-flex justify-content-center align-items-center p-3">
+                    <Button
+                      className="btn ext-light d-flex justify-content-center align-items-center"
+                      style={{ backgroundColor: '#0F6990' }}
+                    >
+                      Save & add more
+                    </Button>
+                  </div>
                   <input
                     className="d-none"
                     type="checkbox"
@@ -555,14 +555,14 @@ function UpdateProfile({ setShow, setSliderShow }) {
                 </div>
               ) : (
                 <div>
-                 <div className='d-flex justify-content-center align-items-center p-3'>
-            <Button
-              className="btn ext-light d-flex justify-content-center align-items-center"
-              style={{ backgroundColor: '#0F6990' }}
-            >
-              Add more
-            </Button>
-          </div>
+                  <div className="d-flex justify-content-center align-items-center p-3">
+                    <Button
+                      className="btn ext-light d-flex justify-content-center align-items-center"
+                      style={{ backgroundColor: '#0F6990' }}
+                    >
+                      Add more
+                    </Button>
+                  </div>
                   <input
                     className="d-none"
                     type="checkbox"
@@ -574,148 +574,260 @@ function UpdateProfile({ setShow, setSliderShow }) {
               )}
             </div>
           )}
-          
+
           {data.preferred_course && (
             <div>
-              <input
-                type="text"
-                placeholder="Preferred Course"
-                name={data.preferred_course}
-                onChange={(e) => getInputData(e)}
-                className="shadow-sm border rounded-4 px-3 py-2 "
-                style={{
-                  border: 'none',
-                  outline: 'none',
-                  width: '220px',
-                }}
-              />
-              <input
-                type="text"
-                placeholder="Preferred Country"
-                name={data.preferred_country}
-                onChange={(e) => getInputData(e)}
-                className="shadow-sm border rounded-4 px-3 py-2 "
-                style={{
-                  border: 'none',
-                  outline: 'none',
-                  width: '220px',
-                }}
-              />
-              <div>
-                {/* <img src={check} alt="" />
-              <img src={cancel} alt="" /> */}
+              <div className="d-flex justify-content-between mb-3">
+                <label
+                  htmlFor=""
+                  className="fw-bold"
+                  style={{ fontSize: '21px' }}
+                >
+                  Preferred course
+                </label>
                 <input
-                  className="d-none"
-                  type="checkbox"
-                  name=""
-                  id="addPreference"
-                  onClick={addPreferences}
+                  type="text"
+                  value={updatedData[data.institution]}
+                  placeholder="Course Name"
+                  name={data.institution}
+                  onChange={(e) => getInputData(e)}
+                  className="shadow-sm border rounded-4 px-3 py-2 "
+                  style={{
+                    fontSize: '15px',
+                    border: 'none',
+                    outline: 'none',
+                    width: '300px',
+                  }}
+                />
+              </div>
+              <div className="d-flex justify-content-between mb-3">
+                <label
+                  htmlFor=""
+                  className="fw-bold"
+                  style={{ fontSize: '20px' }}
+                >
+                  Preferred Country
+                </label>
+                <input
+                  type="text"
+                  value={updatedData[data.marks]}
+                  placeholder="Country Name"
+                  name={data.marks}
+                  onChange={(e) => getInputData(e)}
+                  className="shadow-sm border rounded-4 px-3 py-2 "
+                  style={{
+                    border: 'none',
+                    outline: 'none',
+                    width: '300px',
+                  }}
                 />
               </div>
             </div>
           )}
           {data.budget && (
             <div>
-              <input
-                type="text"
-                placeholder="Budget"
-                name={data.budget}
-                onChange={(e) => getInputData(e)}
-                className="shadow-sm border rounded-4 px-3 py-2 "
-                style={{
-                  border: 'none',
-                  outline: 'none',
-                  width: '220px',
-                }}
-              />
+              <div className="d-flex justify-content-between mb-3">
+                <label
+                  htmlFor=""
+                  className="fw-bold"
+                  style={{ fontSize: '21px' }}
+                >
+                  Budget
+                </label>
+                <input
+                  type="text"
+                  value={updatedData[data.institution]}
+                  placeholder="Enter Budget"
+                  name={data.institution}
+                  onChange={(e) => getInputData(e)}
+                  className="shadow-sm border rounded-4 px-3 py-2 "
+                  style={{
+                    fontSize: '15px',
+                    border: 'none',
+                    outline: 'none',
+                    width: '300px',
+                  }}
+                />
+              </div>
             </div>
           )}
           {data.availing_scholarship && (
-            <div className="">
-              <input
-                type="checkbox"
-                placeholder="scholarship"
-                name={data.availing_scholarship}
-                onChange={(e) => getInputData(e)}
-              />
-              <label htmlFor="">Availing Scholarship</label>
-              <input
-                type="text"
-                placeholder="Religion"
-                name={data.religion}
-                onChange={(e) => getInputData(e)}
-                className="shadow-sm border rounded-4 px-3 py-2 "
-                style={{
-                  border: 'none',
-                  outline: 'none',
-                  width: '220px',
-                }}
-              />
-              <input
-                type="text"
-                placeholder="Caste"
-                name={data.caste}
-                onChange={(e) => getInputData(e)}
-                className="shadow-sm border rounded-4 px-3 py-2 "
-                style={{
-                  border: 'none',
-                  outline: 'none',
-                  width: '220px',
-                }}
-              />
+            <div className=" mb-3">
+              <p className="fw-bold"  style={{fontSize:"19px"}}>Do you wish to Avail Scholarship?</p>
+              <div className="d-flex align-items-center gap-3 mb-3">
+                <div className="d-flex align-items-center gap-2">
+                  <label>Yes</label>
+                  <input
+                    type="radio"
+                    name={data.english}
+                    value={1}
+                    onChange={(e) => getInputData(e)}
+                    style={{
+                      border: 'none',
+                      outline: 'none',
+                      height: '16px',
+                      width: '16px',
+                    }}
+                  />
+                </div>
+                <div className="d-flex align-items-center gap-2">
+                  <label>No</label>
+                  <input
+                    type="radio"
+                    name={data.english}
+                    value={0}
+                    onChange={(e) => getInputData(e)}
+                    style={{
+                      border: 'none',
+                      outline: 'none',
+                      height: '16px',
+                      width: '16px',
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="d-flex mb-2 align-items-center">
+                <label
+                  htmlFor=""
+                  className="fw-bold"
+                  style={{ fontSize: '20px', width: '200px' }}
+                >
+                  Religion
+                </label>
+                <input
+                  type="text"
+                  value={updatedData[data.marks]}
+                  placeholder="Country Name"
+                  name={data.marks}
+                  onChange={(e) => getInputData(e)}
+                  className="shadow-sm border rounded-4 px-3 py-2 "
+                  style={{
+                    border: 'none',
+                    outline: 'none',
+                    width: '300px',
+                  }}
+                />
+              </div>
+              <p style={{ color: 'gray' }}>
+                Due to Reservation and Scholarships{' '}
+              </p>
+              <div className="d-flex align-items-center  mb-2">
+                <label
+                  htmlFor=""
+                  className="fw-bold"
+                  style={{ fontSize: '20px', width: '200px' }}
+                >
+                  Caste
+                </label>
+                <input
+                  type="text"
+                  value={updatedData[data.marks]}
+                  placeholder="Country Name"
+                  name={data.marks}
+                  onChange={(e) => getInputData(e)}
+                  className="shadow-sm border rounded-4 px-3 py-2 "
+                  style={{
+                    border: 'none',
+                    outline: 'none',
+                    width: '300px',
+                  }}
+                />
+              </div>
+              <p style={{ color: 'gray' }}>
+                Due to Reservation and Scholarships{' '}
+              </p>
             </div>
           )}
           {data.additional_info && (
             <div>
-              <input
-                type="text"
-                placeholder="Nationality"
-                name={data.nationality}
-                onChange={(e) => getInputData(e)}
-                className="shadow-sm border rounded-4 px-3 py-2 "
-                style={{
-                  border: 'none',
-                  outline: 'none',
-                  width: '220px',
-                }}
-              />
-              <label htmlFor="">DOB</label>
-              <input
-                type="date"
-                placeholder="Date of Birth"
-                name={data.date_of_birth}
-                onChange={(e) => getInputData(e)}
-                className="shadow-sm border rounded-4 px-3 py-2 "
-                style={{
-                  border: 'none',
-                  outline: 'none',
-                  width: '220px',
-                }}
-              />
-              <input
-                type="text"
-                placeholder="Intake"
-                name={data.intake}
-                onChange={(e) => getInputData(e)}
-                className="shadow-sm border rounded-4 px-3 py-2 "
-                style={{
-                  border: 'none',
-                  outline: 'none',
-                  width: '220px',
-                }}
-              />
-              <input
-                type="text"
-                placeholder="Year of Study"
-                name={data.year_of_study}
-                onChange={(e) => getInputData(e)}
-                className="shadow-sm border rounded-4 px-3 py-2 "
-                style={{
-                  border: 'none',
-                  outline: 'none',
-                  width: '220px',
-                }}
-              />
+              <div className="d-flex align-items-center  mb-3">
+                <label
+                  htmlFor=""
+                  className="fw-bold"
+                  style={{ fontSize: '20px', width: '200px' }}
+                >
+                  Nationality
+                </label>
+                <input
+                  type="text"
+                  value={updatedData[data.marks]}
+                  placeholder="Enter Nationality"
+                  name={data.marks}
+                  onChange={(e) => getInputData(e)}
+                  className="shadow-sm border rounded-4 px-3 py-2 "
+                  style={{
+                    border: 'none',
+                    outline: 'none',
+                    width: '300px',
+                  }}
+                />
+              </div>
+              <div className="d-flex align-items-center  mb-3">
+                <label
+                  htmlFor=""
+                  className="fw-bold"
+                  style={{ fontSize: '20px', width: '200px' }}
+                >
+                  Date Of Birth
+                </label>
+                <input
+                  type="date"
+                  value={updatedData[data.marks]}
+                  placeholder="Enter Date Of Birth"
+                  name={data.marks}
+                  onChange={(e) => getInputData(e)}
+                  className="shadow-sm border rounded-4 px-3 py-2 "
+                  style={{
+                    border: 'none',
+                    outline: 'none',
+                    width: '300px',
+                  }}
+                />
+              </div>
+              <div className="d-flex align-items-center  mb-3">
+                <label
+                  htmlFor=""
+                  className="fw-bold"
+                  style={{ fontSize: '20px', width: '200px' }}
+                >
+                  Intake
+                </label>
+                <input
+                  type="text"
+                  value={updatedData[data.marks]}
+                  placeholder="Enter Intake"
+                  name={data.marks}
+                  onChange={(e) => getInputData(e)}
+                  className="shadow-sm border rounded-4 px-3 py-2 "
+                  style={{
+                    border: 'none',
+                    outline: 'none',
+                    width: '300px',
+                  }}
+                />
+              </div>
+              <div className="d-flex align-items-center  mb-3">
+                <label
+                  htmlFor=""
+                  className="fw-bold"
+                  style={{ fontSize: '20px', width: '200px' }}
+                >
+                  Year Of Study
+                </label>
+                <input
+                  type="text"
+                  value={updatedData[data.marks]}
+                  placeholder="Enter Year Of Study "
+                  name={data.marks}
+                  onChange={(e) => getInputData(e)}
+                  className="shadow-sm border rounded-4 px-3 py-2 "
+                  style={{
+                    border: 'none',
+                    outline: 'none',
+                    width: '300px',
+                  }}
+                />
+              </div>
             </div>
           )}
 
@@ -806,7 +918,6 @@ function UpdateProfile({ setShow, setSliderShow }) {
         className="d-none d-lg-block"
       />
       <div style={{ paddingBlock: '65px' }} className="container ms-auto">
-       
         <div className="cardContainer">
           <Cards index={currentIndex} data={cards[currentIndex]} />
         </div>
