@@ -7,7 +7,7 @@ import check from '../../assets/check.svg';
 import cancel from '../../assets/cancel.svg';
 import right from '../../assets/right.svg';
 import left from '../../assets/left.svg';
-import Logo from '../../assets/logo3.png';
+import Logo from '../../assets/f.png';
 import submit from '../../assets/submit.svg';
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -22,7 +22,7 @@ import { Button } from 'react-bootstrap';
 function UpdateProfile({ setShow, setSliderShow }) {
   setShow(true);
   setSliderShow(true);
-  // const email = JSON.parse(localStorage.getItem("findrData")).email;
+  const email = JSON.parse(localStorage.getItem("findrData")).email;
 
   const getUserData = async () => {
     const userData = await getCandidate(email);
@@ -198,7 +198,7 @@ function UpdateProfile({ setShow, setSliderShow }) {
 
     return (
       <div
-        className="card active shadow p-5 mx-auto my-4 rounded-4"
+        className="card active shadow px-5 py-4 mx-auto my-4 rounded-4"
         style={{
           maxWidth: '700px',
           height: '620px',
@@ -207,7 +207,12 @@ function UpdateProfile({ setShow, setSliderShow }) {
           //  backgroundImage: 'linear-gradient(315deg, #0f6990  1%, #ffffff  45%)',
         }}
       >
-        <img className="mb-4" style={{ maxWidth: '100px' }} src={Logo} alt="" />
+       <div className='d-flex justify-content-center align-items-center mb-3'>
+           <img style={{ maxWidth: '70px' }} src={Logo} alt="" />
+           <h2 className=" fw-bold">
+             Complete Your <span style={{ color: '#0f6990' }}>Profile</span>
+           </h2>
+       </div>
         <h3 className="card-title ">{data.title}</h3>
         <div className="card-body mt-4">
           {data.institution && (
@@ -228,7 +233,7 @@ function UpdateProfile({ setShow, setSliderShow }) {
                   onChange={(e) => getInputData(e)}
                   className="shadow-sm border rounded-4 px-3 py-2 "
                   style={{
-                    fontSize: '15px',
+                     fontSize: '15px',
                     border: 'none',
                     outline: 'none',
                     width: '300px',
@@ -245,13 +250,14 @@ function UpdateProfile({ setShow, setSliderShow }) {
                 </label>
                 <input
                   type="text"
+                  value={updatedData[data.marks]}
                   placeholder="Marks"
                   name={data.marks}
                   onChange={(e) => getInputData(e)}
                   className="shadow-sm border rounded-4 px-3 py-2 "
                   style={{
-                    border: 'none',
-                    outline: 'none',
+                     border: 'none',
+                     outline: 'none',
                     width: '300px',
                   }}
                 />
@@ -266,6 +272,7 @@ function UpdateProfile({ setShow, setSliderShow }) {
                 </label>
                 <select
                   className="shadow-sm border rounded-4 px-3 py-2 "
+                  value={updatedData[data.mode]}
                   name={data.mode}
                   onChange={(e) => getInputData(e)}
                   style={{
@@ -798,10 +805,8 @@ function UpdateProfile({ setShow, setSliderShow }) {
         alt=""
         className="d-none d-lg-block"
       />
-      <div style={{ paddingBlock: '100px' }} className="container ms-auto">
-        <h2 className="text-center fw-bold">
-          Complete Your <span style={{ color: '#0f6990' }}>Profile</span>
-        </h2>
+      <div style={{ paddingBlock: '65px' }} className="container ms-auto">
+       
         <div className="cardContainer">
           <Cards index={currentIndex} data={cards[currentIndex]} />
         </div>
