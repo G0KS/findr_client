@@ -19,6 +19,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import ScrollToTop from './components/ScrollToTop.jsx';
 import Courses from './pages/Courses/Courses.jsx';
+import Faqpage from './pages/FAQ/Faqpage.jsx';
+
 
 function App() {
   const [show, setShow] = useState(true);
@@ -40,6 +42,8 @@ function App() {
         <Route path="/terms" element={<Terms setShow={setShow} setSliderShow={setSliderShow}/>} />
         <Route path="/privacy" element={<Privacy setShow={setShow} setSliderShow={setSliderShow}/>} />
         <Route path="/payment" element={<Payment setShow={setShow} setSliderShow={setSliderShow}/>} />
+        <Route path="/faq" element={<Faqpage setShow={setShow} setSliderShow={setSliderShow}/>} />
+
       </Routes>
       {show && <FooterComponent />}
       <ToastContainer

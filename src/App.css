@@ -74,3 +74,23 @@
    overflow: hidden;
 }
 
+.answerLine {
+   border: 1px solid green;
+}
+
+.faq {
+   width: 75%;
+}
+
+.answer {
+   max-height: 0;
+   overflow: hidden;
+   transition: all 0.3s ease-in-out;
+}
+
+.answer.show {
+   height: auto;
+   max-height: 999px;
+   transition: all 0.3s ease-in-out;
+
+}

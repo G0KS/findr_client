@@ -1,6 +1,6 @@
 import Row from 'react-bootstrap/row';
 import Col from 'react-bootstrap/Col';
-import hero from '../../assets/hero.svg';
+  import hero from '../../assets/hero.svg';
 
 function Home({ setShow,setSliderShow }) {
   setShow(true)
