@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../../assets/logo3.png';
+
 
 function Privacy({setShow}) {
   setShow (false)
@@ -7,7 +9,9 @@ function Privacy({setShow}) {
     <div className='mt-5 mb-5' >
       <div className="container d-flex justify-content-start shadow rounded" style={{marginTrim:"500px"}}>
         <div className="p-4 ">
-          <h2 style={{ marginTop: '100px' }}>Privacy Policy</h2>
+        <img className=' mt-4 ' style={{width:"120px"}} src={Logo} alt="" />
+
+          <h2 style={{ marginTop: '30px' }}>Privacy Policy</h2>
           <p className=" " style={{ fontSize: '13px' }}>
             Last updated on Aug 18 2024
           </p>

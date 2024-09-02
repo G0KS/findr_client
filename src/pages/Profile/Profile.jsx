@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import edit from '../../assets/Edit.svg';
+import save from '../../assets/Save.svg';
+
 
 function Profile({ setShow, setSliderShow }) {
   setShow(true);
@@ -6,10 +9,26 @@ function Profile({ setShow, setSliderShow }) {
   const [inputData, setInputData] = useState({});
   const [editable, setEditable] = useState(true);
 
-  const getInputData = (e) => {
-    const { name, value } = e.target;
-    setInputData({ ...inputData, [name]: value });
-  };
+  // const [editable, setEditable] = useState(true);
+
+  // const getInputData = (e) => {
+  //   const { name, value } = e.target;
+  //   setInputData({ ...inputData, [name]: value });
+  // };
+
+  // const handleEdit = () => {
+  //   setEditable(!editable);
+  //   if (editable == false) {
+  //     updateDoc("Student", data.name, userData)
+  //       .then(() => {
+  //         toast.success("Edited successfully");
+  //         mutate();
+  //       })
+  //       .catch(() => {
+  //         toast.warning("No changes made");
+  //       });
+  //   }
+  // };
 
   return (
     <div
@@ -19,6 +38,41 @@ function Profile({ setShow, setSliderShow }) {
       <h2 className="" style={{}}>
         Personal Details
       </h2>
+     <div className='d-grid gap-2 d-md-flex justify-content-md-end'>
+     {editable ? (
+              <button
+                className="ms-auto py-2  px-3 shadow border "
+                style={{
+                  backgroundColor: "#0F6990",
+                  borderRadius: "20px",
+                  textDecoration: "none",
+                  width: "7rem",
+                }}
+                onClick={() => handleEdit()}
+              >
+                <span className="p-2" style={{ color: "white" }}>
+                  Edit
+                </span>
+                <img src={edit} alt="" />
+              </button>
+            ) : (
+              <button
+                className="ms-auto py-2  px-3 shadow border "
+                style={{
+                  backgroundColor: "#0F6990",
+                  borderRadius: "20px",
+                  textDecoration: "none",
+                  width: "7rem",
+                }}
+                onClick={() => handleEdit()}
+              >
+                <span className="p-2" style={{ color: "white" }}>
+                  Save
+                </span>
+                <img src={save} alt="" height={20} />
+              </button>
+            )}
+     </div>
       <div className="d-flex p-4 row p-3 " style={{ backgroundColor: '' }}>
         <div className="col-md-6 col-lg-5">
           {/* input section */}
@@ -496,10 +550,12 @@ function Profile({ setShow, setSliderShow }) {
       <h4 className=" mt-4">
         <span style={{ color: '#0F6990' }}>Language </span>Details
       </h4>
-      <div className="d-flex p-2 row  " >
+      <div className="d-flex p-2 row  ">
         <div className="col-md-6 col-lg-4">
           <div className="form-group d-lg-flex   flex-column gap-3 p-2">
-            <label style={{ color: '#0F6990', fontSize: '17px' }}>Language</label>
+            <label style={{ color: '#0F6990', fontSize: '17px' }}>
+              Language
+            </label>
             <input
               className="inputBox shadow "
               type="text"
@@ -515,7 +571,9 @@ function Profile({ setShow, setSliderShow }) {
         {/* next section */}
         <div className="col-md-6 col-lg-4">
           <div className="form-group d-lg-flex   flex-column gap-3 p-2">
-            <label style={{ color: '#0F6990', fontSize: '17px' }}>Certificate</label>
+            <label style={{ color: '#0F6990', fontSize: '17px' }}>
+              Certificate
+            </label>
             <input
               className="inputBox shadow "
               type="text"
@@ -545,7 +603,7 @@ function Profile({ setShow, setSliderShow }) {
         </div>
       </div>
       <h2 className="mt-3 mb-4" style={{}}>
-      Work Experience
+        Work Experience
       </h2>
       <h4 className=" mt-4">
         <span style={{ color: '#0F6990' }}>Internship </span>Details
@@ -558,7 +616,7 @@ function Profile({ setShow, setSliderShow }) {
             {/* name */}
             <div className="form-group d-lg-flex align-items-center gap-3 p-2">
               <label style={{ color: '#0F6990', width: '100px' }}>
-              Position
+                Position
               </label>
               <input
                 className="inputBox shadow "
@@ -572,37 +630,37 @@ function Profile({ setShow, setSliderShow }) {
               />
             </div>
             <div className="form-group d-lg-flex align-items-center gap-3 p-2">
-            <label style={{ color: '#0F6990', width: '100px' }}>From</label>
-            <input
-              className="inputBox shadow "
-              type="date"
-              name=""
-              value={inputData.email || ''}
-              // disabled
-              onChange={(e) => getInputData(e)}
-              placeholder="Enter Email"
-              style={{ fontSize: '15px', border: 'none' }}
-            />
-          </div>
+              <label style={{ color: '#0F6990', width: '100px' }}>From</label>
+              <input
+                className="inputBox shadow "
+                type="date"
+                name=""
+                value={inputData.email || ''}
+                // disabled
+                onChange={(e) => getInputData(e)}
+                placeholder="Enter Email"
+                style={{ fontSize: '15px', border: 'none' }}
+              />
+            </div>
           </form>
         </div>
         {/* next section  */}
         <div className="col-md-6 col-lg-5">
-        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
-              <label style={{ color: '#0F6990', width: '100px' }}>
+          <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+            <label style={{ color: '#0F6990', width: '100px' }}>
               Company Name
-              </label>
-              <input
-                className="inputBox shadow "
-                type="text"
-                name="name1"
-                value={inputData.name1 || ''}
-                // disabled={editable}
-                onChange={(e) => getInputData(e)}
-                placeholder="Enter Full Name"
-                style={{ fontSize: '15px', border: 'none' }}
-              />
-            </div>
+            </label>
+            <input
+              className="inputBox shadow "
+              type="text"
+              name="name1"
+              value={inputData.name1 || ''}
+              // disabled={editable}
+              onChange={(e) => getInputData(e)}
+              placeholder="Enter Full Name"
+              style={{ fontSize: '15px', border: 'none' }}
+            />
+          </div>
           <div className="form-group d-lg-flex align-items-center gap-3 p-2">
             <label style={{ color: '#0F6990', width: '100px' }}>To</label>
             <input
@@ -630,7 +688,7 @@ function Profile({ setShow, setSliderShow }) {
             {/* name */}
             <div className="form-group d-lg-flex align-items-center gap-3 p-2">
               <label style={{ color: '#0F6990', width: '100px' }}>
-              Position
+                Position
               </label>
               <input
                 className="inputBox shadow "
@@ -644,37 +702,37 @@ function Profile({ setShow, setSliderShow }) {
               />
             </div>
             <div className="form-group d-lg-flex align-items-center gap-3 p-2">
-            <label style={{ color: '#0F6990', width: '100px' }}>From</label>
-            <input
-              className="inputBox shadow "
-              type="date"
-              name=""
-              value={inputData.email || ''}
-              // disabled
-              onChange={(e) => getInputData(e)}
-              placeholder=""
-              style={{ fontSize: '15px', border: 'none' }}
-            />
-          </div>
-          </form>
-        </div>
-        {/* next section  */}
-        <div className="col-md-6 col-lg-5">
-        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
-              <label style={{ color: '#0F6990', width: '100px' }}>
-              Company Name
-              </label>
+              <label style={{ color: '#0F6990', width: '100px' }}>From</label>
               <input
                 className="inputBox shadow "
-                type="text"
-                name="name1"
-                value={inputData.name1 || ''}
-                // disabled={editable}
+                type="date"
+                name=""
+                value={inputData.email || ''}
+                // disabled
                 onChange={(e) => getInputData(e)}
                 placeholder=""
                 style={{ fontSize: '15px', border: 'none' }}
               />
             </div>
+          </form>
+        </div>
+        {/* next section  */}
+        <div className="col-md-6 col-lg-5">
+          <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+            <label style={{ color: '#0F6990', width: '100px' }}>
+              Company Name
+            </label>
+            <input
+              className="inputBox shadow "
+              type="text"
+              name="name1"
+              value={inputData.name1 || ''}
+              // disabled={editable}
+              onChange={(e) => getInputData(e)}
+              placeholder=""
+              style={{ fontSize: '15px', border: 'none' }}
+            />
+          </div>
           <div className="form-group d-lg-flex align-items-center gap-3 p-2">
             <label style={{ color: '#0F6990', width: '100px' }}>To</label>
             <input
@@ -691,9 +749,9 @@ function Profile({ setShow, setSliderShow }) {
         </div>
       </div>
       <h2 className="" style={{}}>
-      Preferences
+        Preferences
       </h2>
-      
+
       <div className="d-flex p-4 row p-3 " style={{ backgroundColor: '' }}>
         <div className="col-md-6 col-lg-5">
           {/* input section */}
@@ -702,7 +760,7 @@ function Profile({ setShow, setSliderShow }) {
             {/* name */}
             <div className="form-group d-lg-flex align-items-center gap-3 p-2">
               <label style={{ color: '#0F6990', width: '100px' }}>
-              preferred course
+                preferred course
               </label>
               <input
                 className="inputBox shadow "
@@ -719,29 +777,29 @@ function Profile({ setShow, setSliderShow }) {
         </div>
         {/* next section  */}
         <div className="col-md-6 col-lg-5">
-        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
-              <label style={{ color: '#0F6990', width: '100px' }}>
+          <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+            <label style={{ color: '#0F6990', width: '100px' }}>
               preferred Country
-              </label>
-              <input
-                className="inputBox shadow "
-                type="text"
-                name="name1"
-                value={inputData.name1 || ''}
-                // disabled={editable}
-                onChange={(e) => getInputData(e)}
-                placeholder=""
-                style={{ fontSize: '15px', border: 'none' }}
-              />
-            </div>
+            </label>
+            <input
+              className="inputBox shadow "
+              type="text"
+              name="name1"
+              value={inputData.name1 || ''}
+              // disabled={editable}
+              onChange={(e) => getInputData(e)}
+              placeholder=""
+              style={{ fontSize: '15px', border: 'none' }}
+            />
+          </div>
         </div>
       </div>
 
       {/* additional Details */}
       <h2 className="mt-4" style={{}}>
-      Additional Details
+        Additional Details
       </h2>
-      
+
       <div className="d-flex p-4 row p-3 " style={{ backgroundColor: '' }}>
         <div className="col-md-6 col-lg-5">
           {/* input section */}
@@ -749,9 +807,7 @@ function Profile({ setShow, setSliderShow }) {
           <form action="">
             {/* name */}
             <div className="form-group d-lg-flex align-items-center gap-3 p-2">
-              <label style={{ color: '#0F6990', width: '100px' }}>
-              Intake
-              </label>
+              <label style={{ color: '#0F6990', width: '100px' }}>Intake</label>
               <input
                 className="inputBox shadow "
                 type="text"
@@ -767,21 +823,21 @@ function Profile({ setShow, setSliderShow }) {
         </div>
         {/* next section  */}
         <div className="col-md-6 col-lg-5">
-        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
-              <label style={{ color: '#0F6990', width: '100px' }}>
+          <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+            <label style={{ color: '#0F6990', width: '100px' }}>
               Year of study
-              </label>
-              <input
-                className="inputBox shadow "
-                type="text"
-                name="name1"
-                value={inputData.name1 || ''}
-                // disabled={editable}
-                onChange={(e) => getInputData(e)}
-                placeholder=""
-                style={{ fontSize: '15px', border: 'none' }}
-              />
-            </div>
+            </label>
+            <input
+              className="inputBox shadow "
+              type="text"
+              name="name1"
+              value={inputData.name1 || ''}
+              // disabled={editable}
+              onChange={(e) => getInputData(e)}
+              placeholder=""
+              style={{ fontSize: '15px', border: 'none' }}
+            />
+          </div>
         </div>
       </div>
     </div>

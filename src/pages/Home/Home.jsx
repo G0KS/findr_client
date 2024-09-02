@@ -1,7 +1,10 @@
 import Row from 'react-bootstrap/row';
 import Col from 'react-bootstrap/Col';
 import hero from '../../assets/hero.svg';
-import { Button } from 'react-bootstrap';
+import arrowright from '../../assets/arrow-right.svg';
+import chevronright from '../../assets/chevron-right.svg';
+
+import { Link } from 'react-router-dom';
 
 function Home({ setShow, setSliderShow }) {
   setShow(true);
@@ -12,29 +15,31 @@ function Home({ setShow, setSliderShow }) {
       <section className="container py-5">
         <div className="my-5 py-5">
           <Row>
-            <Col style={{ width: '50px' }}>
-              <img style={{ width: '100%' }} src={hero} alt="" />
+            <Col>
+              <img src={hero} alt="" />
             </Col>
-            <Col className="d-flex align-items-center justify-content-center">
+            <Col className="d-flex flex-column  justify-content-center ps-5 ">
               <h1 style={{ fontSize: '65px' }}>
                 Your Gateway to <br /> Global{' '}
                 <span style={{ color: '#0f6990' }}>Education</span>
               </h1>
               
-              <div className='' >
-                <Button
-                  className="btn text-light"
-                  style={{ backgroundColor: '#0F6990' }}
+              <div className='mt-2 ms-1'>
+                <Link
+                
+                  className="d-flex align-items-center fw-bold"
+                  style={{color:"#0F6990",width:"200px",height:'18px', textDecoration:"none",fontSize:"18px" }}
                 >
-                  Register
-                </Button>
+                  Get Started
+                  <img className='ms-1' style={{height:'100%'}} src={chevronright} alt="" />
+                </Link>
               </div>
             </Col>
           </Row>
         </div>
         {/* about us */}
         <div
-          className="text-center d-flex flex-lg-row flex-column justify-content-between align-items-center my-5 bg-body-tertiary rounded-3 p-4"
+          className=" d-flex flex-lg-row flex-column justify-content-between align-items-center my-5 bg-body-tertiary rounded-3 p-4 text-center"
           style={{
             backgroundImage:
               ' linear-gradient(270deg, #0f6990 0%, #80D0C7 100%)  ',
@@ -165,7 +170,7 @@ function Home({ setShow, setSliderShow }) {
             className="cardBody border p-4 shadow"
             style={{
               width: '19rem',
-              height: '26rem',
+              // height: '26rem',
               borderRadius: '16px',
               cursor: 'pointer',
             }}

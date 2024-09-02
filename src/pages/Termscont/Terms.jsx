@@ -1,11 +1,14 @@
 import React from 'react';
+import Logo from '../../assets/logo3.png';
+
 
 function Terms({setShow}) {
   setShow(false)
   return (
     <div className='mt-5 mb-5'>
       <section className=" container flex items-center justify-center py-20 shadow rounded  mt-5">
-        <div className="rounded w-full p-5 ">
+        <img className='p-2 mt-4 ms-4' style={{width:"150px"}} src={Logo} alt="" />
+        <div className="rounded w-full p-5">
           <div className="flex flex-col space-y-1.5 p-7 lg:p-10 mt-2 mb-5">
             <h3 className="font-quicksand font-bold tracking-tight text-2xl lg:text-3xl">
               Terms and Conditions
