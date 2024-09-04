@@ -20,6 +20,7 @@ import './App.css';
 import ScrollToTop from './components/ScrollToTop.jsx';
 import Courses from './pages/Courses/Courses.jsx';
 import Faqpage from './pages/FAQ/Faqpage.jsx';
+import PagenotFound from './pages/PagenotFound/PagenotFound.jsx';
 
 
 function App() {
@@ -43,6 +44,8 @@ function App() {
         <Route path="/privacy" element={<Privacy setShow={setShow} setSliderShow={setSliderShow}/>} />
         <Route path="/payment" element={<Payment setShow={setShow} setSliderShow={setSliderShow}/>} />
         <Route path="/faq" element={<Faqpage setShow={setShow} setSliderShow={setSliderShow}/>} />
+        <Route path="/*" element={<PagenotFound setShow={setShow} setSliderShow={setSliderShow}/>} />
+
 
       </Routes>
       <ToastContainer

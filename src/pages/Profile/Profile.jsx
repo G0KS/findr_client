@@ -46,56 +46,52 @@ function Profile({ setShow, setSliderShow }) {
       getUserData();
    }, []);
 
-   return (
-      <div
-         style={{ paddingBlock: "100px", paddingLeft: "200px" }}
-         className="container ms-auto"
-      >
-         <div className="d-flex justify-content-between">
-            <h2>Personal Details</h2>
-   
-            {/* Edit Button */}
-            <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-               {editable ? (
-                  <button
-                     className="ms-auto py-2  px-3 shadow border "
-                     style={{
-                        backgroundColor: "#0F6990",
-                        borderRadius: "20px",
-                        textDecoration: "none",
-                        width: "7rem",
-                     }}
-                     onClick={() => setEditable(!editable)}
-                  >
-                     <span className="p-2" style={{ color: "white" }}>
-                        Edit
-                     </span>
-                     <img src={edit} alt="" />
-                  </button>
-               ) : (
-                  <button
-                     className="ms-auto py-2  px-3 shadow border "
-                     style={{
-                        backgroundColor: "#0F6990",
-                        borderRadius: "20px",
-                        textDecoration: "none",
-                        width: "7rem",
-                     }}
-                     onClick={handleEdit}
-                  >
-                     <span className="p-2" style={{ color: "white" }}>
-                        Save
-                     </span>
-                     <img src={save} alt="" height={20} />
-                  </button>
-               )}
-            </div>
-         </div>
-
-         {/* Personal Details */}
-         <div className="d-flex p-4 row p-3 ">
-            <div className="col-md-6 col-lg-5">
-               {/* input section */}
+  return (
+    <div
+      style={{ paddingBlock: '100px', paddingLeft: '200px' }}
+      className="container ms-auto "
+    >
+      <h2 className="" style={{}}>
+        Personal Details
+      </h2>
+     <div className='d-grid gap-2 d-md-flex justify-content-md-end'>
+     {editable ? (
+              <button
+                className="ms-auto py-2  px-3 shadow border "
+                style={{
+                  backgroundColor: "#0F6990",
+                  borderRadius: "10px",
+                  textDecoration: "none",
+                  width: "6rem",
+                }}
+                onClick={() => handleEdit()}
+              >
+                <span className="p-2" style={{ color: "white" }}>
+                  Edit
+                </span>
+                <img src={edit} alt="" />
+              </button>
+            ) : (
+              <button
+                className="ms-auto py-2  px-3 shadow border "
+                style={{
+                  backgroundColor: "#0F6990",
+                  borderRadius: "20px",
+                  textDecoration: "none",
+                  width: "7rem",
+                }}
+                onClick={() => handleEdit()}
+              >
+                <span className="p-2" style={{ color: "white" }}>
+                  Save
+                </span>
+                <img src={save} alt="" height={20} />
+              </button>
+            )}
+     </div>
+      <div className="d-flex p-4 row p-3 " style={{ backgroundColor: '' }}>
+        <div className="col-md-6 col-lg-5">
+          {/* input section */}
 
                <form action="">
                   {/* name */}
