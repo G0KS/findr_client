@@ -1,14 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/f.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { getCandidate } from "../../api/allApi";
 
-function Login({ setShow,setSliderShow }) {
-  setShow(true);
-  setSliderShow(false)
-  const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
+function Login({ setShow, setSliderShow }) {
+   setShow(true);
+   setSliderShow(false);
+   const navigate = useNavigate();
+   const [showPassword, setShowPassword] = useState(false);
+
+   const email = JSON.parse(localStorage.getItem("findrData"))?.email;
+
+   useEffect(() => {
+      if (email) navigate("/profile");
+   }, [email]);
 
    const [inputData, setInputData] = useState({
       email: "",
@@ -28,8 +34,6 @@ function Login({ setShow,setSliderShow }) {
       } else {
          try {
             const response = await getCandidate(email);
-            console.log(response.data.data);
-
             if (response.data.data.password === password) {
                toast.success("Successfully logged in");
                localStorage.setItem("findrData", JSON.stringify({ email }));

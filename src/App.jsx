@@ -45,7 +45,6 @@ function App() {
         <Route path="/faq" element={<Faqpage setShow={setShow} setSliderShow={setSliderShow}/>} />
 
       </Routes>
-      {show && <FooterComponent />}
       <ToastContainer
         position="top-right"
         autoClose={3500}

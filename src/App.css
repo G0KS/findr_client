@@ -65,6 +65,7 @@
  }
 
  .inputBox {
+   font-weight: bold;
    width: 300px;
    padding: 5px 15px;
    height: 50px;
