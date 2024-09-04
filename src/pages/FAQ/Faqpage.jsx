@@ -93,14 +93,14 @@ function Faqpage() {
               key={i}
             >
               <div className="question">
-                <p className="d-flex justify-content-between align-items-center m-0">
+                <p className="d-flex justify-content-between align-items-center m-0 fw-bold">
                   {item.title}
                   <img src={downArrow} alt="down arrow" />
                 </p>
               </div>
               <div className={selected === i ? 'answer show' : 'answer'}>
                 <hr className="answerLine" />
-                <p className="px-3 " style={{color:"#0F6990"}}>{item.answer}</p>
+                <p className="px-3 fw-bold " style={{color:"#0F6990"}}>{item.answer}</p>
               </div>
             </div>
           ))}
