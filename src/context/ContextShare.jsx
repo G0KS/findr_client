@@ -7,7 +7,7 @@ export const updatedProfileContext = createContext();
 function ContextShare({ children }) {
    const [profileData, setProfileData] = useState();
    const [updatedData, setUpdatedData] = useState(userData);
-
+   
    return (
          <profileContext.Provider value={{ profileData, setProfileData }}>
             <updatedProfileContext.Provider

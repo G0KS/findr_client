@@ -3,9 +3,8 @@ import paymentimg from "../../assets/paymentimg.jpeg";
 import RazorpayButton from "../../components/RazorpayButton";
 import { getCandidate } from "../../api/allApi";
 
-function Payment({setShow,setSliderShow}) {
+function Payment({setShow}) {
    setShow(true)
-   setSliderShow(true)
    // const email = JSON.parse(localStorage.getItem("findrData")).email;
    // console.log(email);
 

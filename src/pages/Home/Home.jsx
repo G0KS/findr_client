@@ -7,14 +7,13 @@ import chevronright from "../../assets/chevron-right.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-function Home({ setShow, setSliderShow }) {
+function Home({ setShow }) {
   setShow(true);
-  setSliderShow(false);
   return (
     <>
       {/* hero section */}
       <section className="container py-5">
-        <div className="my-5 py-5">
+        <div className="my-5">
           <Row>
             <Col>
               <img src={hero} alt="" />

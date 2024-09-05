@@ -4,11 +4,10 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { getCandidate } from "../../api/allApi";
 
-function Login({ setShow, setSliderShow }) {
+function Login({ setShow }) {
    setShow(true);
-   setSliderShow(false);
    const navigate = useNavigate();
-   const [showPassword, setShowPassword] = useState(false);
+   const [showPassword, setShowPassword] = useState(false);z
 
    const email = JSON.parse(localStorage.getItem("findrData"))?.email;
 

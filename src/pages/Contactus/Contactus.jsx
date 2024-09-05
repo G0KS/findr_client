@@ -6,9 +6,8 @@ import Location from '../../assets/Location.svg';
 import Contactimg from '../../assets/Contactus.jpg';
 import { Link } from 'react-router-dom';
 
-function Contactus({ setShow, setSliderShow }) {
+function Contactus({ setShow }) {
   setShow(true);
-  setSliderShow(true);
   return (
     <div
       className="  d-flex justify-content-center align-items-center p-4  "
