@@ -1,80 +1,153 @@
 import React from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import chevronright from '../../assets/chevron-right.svg';
 
-import link from '../../assets/link.svg';
-
-function Courses({ setShow, setSliderShow }) {
+function Courses({ setShow }) {
   setShow(true);
-  setSliderShow(true);
+  // setSliderShow(true);
   return (
-    <div
-      style={{
-        paddingTop: '100px',
-        paddingLeft: '250px',
-        backgroundColor: 'lightblue',
-      }}
-    >
-      <Container>
+    <div className="container" style={{ paddingBlock: '150px',paddingLeft:'180px' }}>
+      <div className="shapeParent d-flex align-items-center mb-4">
+        <div className="shape "></div>
+        <h2 className='m-0 ms-3'>Courses</h2>
+      </div>
+      <div className="d-flex flex-wrap gap-3 justify-content-between p-3 ">
         <div
-          className="d-flex"
+          className="row shadow "
           style={{
-            marginBottom: '50px',
-            position: 'relative',
+            borderRadius: '10px',
+            height: '200px',
+            width: '550px',
           }}
         >
-          <div className="shape d-flex align-items-start mt-1"></div>
-          <h2 className="fs-2 p-2">Courses</h2>
+          <div
+            className="col-5 "
+            style={{
+              backgroundColor: '#0F6990',
+              borderRadius: '10px 0 0 10px',
+            }}
+          >
+            <div
+              className=" justify-content-center align-items-center mt-3"
+              style={{ height: '100%' }}
+            >
+              <p className="fs-3" style={{ color: 'white' }}>
+                Coures Name
+              </p>
+              <p className="fs-5" style={{ color: 'white' }}>
+                University
+              </p>
+            </div>
+          </div>
+          <div
+            className="col-7   justify-content-center align-items-center  "
+            style={{ height: '100%' }}
+          >
+            <div className="mt-3">
+              <p className="fw-bold" style={{ fontSize: '18px' }}>
+                Country
+              </p>
+              <p className="fw-bold" style={{ fontSize: '18px' }}>
+                Scholarship
+              </p>
+              <p className="fw-bold" style={{ fontSize: '18px', color: 'red' }}>
+                Deadine
+              </p>
+              <div
+                className="d-flex justify-content-end"
+                style={{ backgroundColor: '' }}
+              >
+                <Link
+                  to={'/signup'}
+                  className="d-flex align-items-center fw-bold"
+                  style={{
+                    color: '#0F6990',
+                    width: '140px',
+                    textDecoration: 'none',
+                    fontSize: '18px',
+                  }}
+                >
+                  Apply Now
+                  <img
+                    className="ms-1"
+                    style={{ height: '100%' }}
+                    src={chevronright}
+                    alt=""
+                  />
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
-        <Row className="gap-3 mb-5">
-          <Col className="d-flex justify-content-center align-items-center ">
-            <Card style={{ width: '35rem' }}>
-              <Card.Body className="p-4 d-flex align-items-center justify-content-center flex-column ">
-                <Card.Title>Course name </Card.Title>
-                <Card.Subtitle className="mb-2 text-muted mt-2  ">
-                  University
-                </Card.Subtitle>
-                <Card.Text className="">country</Card.Text>
-                <Card.Text className="">scholarship:</Card.Text>
-                <Card.Text>
-                  <Card.Text className="" style={{ color: 'red' }}>
-                    deadline
-                  </Card.Text>
-                </Card.Text>
-                <Button
-                  className="btn text-light "
-                  style={{ backgroundColor: '#0F6990' }}
+        <div
+          className="row shadow "
+          style={{
+            borderRadius: '10px',
+            height: '200px',
+            width: '550px',
+          }}
+        >
+          <div
+            className="col-5 "
+            style={{
+              backgroundColor: '#0F6990',
+              borderRadius: '10px 0 0 10px',
+            }}
+          >
+            <div
+              className=" justify-content-center align-items-center mt-3"
+              style={{ height: '100%' }}
+            >
+              <p className="fs-3" style={{ color: 'white' }}>
+                Coures Name
+              </p>
+              <p className="fs-5" style={{ color: 'white' }}>
+              University
+              </p>
+            </div>
+          </div>
+          <div
+            className="col-7   justify-content-center align-items-center  "
+            style={{ height: '100%' }}
+          >
+            <div className="mt-3">
+              <p className="fw-bold" style={{ fontSize: '18px' }}>
+                Country
+              </p>
+              <p className="fw-bold" style={{ fontSize: '18px' }}>
+                Scholarship
+              </p>
+              <p className="fw-bold" style={{ fontSize: '18px', color: 'red' }}>
+                Deadine
+              </p>
+
+              <div
+                className="d-flex justify-content-end"
+                style={{ backgroundColor: '' }}
+              >
+                <Link
+                  to={'/signup'}
+                  className="d-flex align-items-center fw-bold"
+                  style={{
+                    color: '#0F6990',
+                    width: '140px',
+                    textDecoration: 'none',
+                    fontSize: '18px',
+                  }}
                 >
-                  Course Link
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col className="d-flex justify-content-center align-items-center ">
-            <Card style={{ width: '35rem' }}>
-              <Card.Body className="p-4 d-flex align-items-center justify-content-center flex-column">
-                <Card.Title>Course name </Card.Title>
-                <Card.Subtitle className="mb-2 text-muted mt-2  ">
-                  University
-                </Card.Subtitle>
-                <Card.Text className="">country</Card.Text>
-                <Card.Text>
-                  <Card.Text className="">scholarship:</Card.Text>
-                </Card.Text>
-                <Card.Text className="" style={{ color: 'red' }}>
-                  deadline
-                </Card.Text>
-                <Button
-                  className="btn text-light "
-                  style={{ backgroundColor: '#0F6990' }}
-                >
-                  Course Link
-                  {/* <img className='ms-1' style={{width:"25px"}} src={link} alt="" /> */}
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+                  Apply Now
+                  <img
+                    className="ms-1"
+                    style={{ height: '100%' }}
+                    src={chevronright}
+                    alt=""
+                  />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -3,14 +3,15 @@ import pagenotfound from '../../assets/pagenotfound.gif';
 import { Link } from 'react-router-dom';
 
 function PagenotFound({ setShow }) {
-  setShow(false);
+  setShow(true);
+
   return (
     <section
       className="container d-flex align-items-center justify-content-center "
       style={{ height: '100vh' }}
     >
       <div
-        className="d-flex align-items-center justify-content-center flex-column"
+        className="d-flex align-items-center justify-content-center flex-colujmn"
         style={{ width: '100%' }}
       >
         <div style={{ maxWidth: '1000px',backgroundColor:'lightblue' }} className="">
