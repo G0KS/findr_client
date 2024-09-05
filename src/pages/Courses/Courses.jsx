@@ -1,155 +1,74 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import chevronright from '../../assets/chevron-right.svg';
+import React, { useEffect, useState } from "react";
+import { Container, Row, Col, Card } from "react-bootstrap";
 
-function Courses({ setShow }) {
-  setShow(true);
-  // setSliderShow(true);
-  return (
-    <div className="container" style={{ paddingBlock: '150px',paddingLeft:'180px' }}>
-      <div className="shapeParent d-flex align-items-center mb-4">
-        <div className="shape "></div>
-        <h2 className='m-0 ms-3'>Courses</h2>
-      </div>
-      <div className="d-flex flex-wrap gap-3 justify-content-between p-3 ">
-        <div
-          className="row shadow "
-          style={{
-            borderRadius: '10px',
-            height: '200px',
-            width: '550px',
-          }}
-        >
-          <div
-            className="col-5 "
-            style={{
-              backgroundColor: '#0F6990',
-              borderRadius: '10px 0 0 10px',
-            }}
-          >
-            <div
-              className=" justify-content-center align-items-center mt-3"
-              style={{ height: '100%' }}
-            >
-              <p className="fs-3" style={{ color: 'white' }}>
-                Coures Name
-              </p>
-              <p className="fs-5" style={{ color: 'white' }}>
-                University
-              </p>
-            </div>
-          </div>
-          <div
-            className="col-7   justify-content-center align-items-center  "
-            style={{ height: '100%' }}
-          >
-            <div className="mt-3">
-              <p className="fw-bold" style={{ fontSize: '18px' }}>
-                Country
-              </p>
-              <p className="fw-bold" style={{ fontSize: '18px' }}>
-                Scholarship
-              </p>
-              <p className="fw-bold" style={{ fontSize: '18px', color: 'red' }}>
-                Deadine
-              </p>
-              <div
-                className="d-flex justify-content-end"
-                style={{ backgroundColor: '' }}
-              >
-                <Link
-                  to={'/signup'}
-                  className="d-flex align-items-center fw-bold"
-                  style={{
-                    color: '#0F6990',
-                    width: '140px',
-                    textDecoration: 'none',
-                    fontSize: '18px',
-                  }}
-                >
-                  Apply Now
-                  <img
-                    className="ms-1"
-                    style={{ height: '100%' }}
-                    src={chevronright}
-                    alt=""
-                  />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="row shadow "
-          style={{
-            borderRadius: '10px',
-            height: '200px',
-            width: '550px',
-          }}
-        >
-          <div
-            className="col-5 "
-            style={{
-              backgroundColor: '#0F6990',
-              borderRadius: '10px 0 0 10px',
-            }}
-          >
-            <div
-              className=" justify-content-center align-items-center mt-3"
-              style={{ height: '100%' }}
-            >
-              <p className="fs-3" style={{ color: 'white' }}>
-                Coures Name
-              </p>
-              <p className="fs-5" style={{ color: 'white' }}>
-              University
-              </p>
-            </div>
-          </div>
-          <div
-            className="col-7   justify-content-center align-items-center  "
-            style={{ height: '100%' }}
-          >
-            <div className="mt-3">
-              <p className="fw-bold" style={{ fontSize: '18px' }}>
-                Country
-              </p>
-              <p className="fw-bold" style={{ fontSize: '18px' }}>
-                Scholarship
-              </p>
-              <p className="fw-bold" style={{ fontSize: '18px', color: 'red' }}>
-                Deadine
-              </p>
+import { getCandidate } from "../../api/allApi";
+import { Link, useNavigate } from "react-router-dom";
 
-              <div
-                className="d-flex justify-content-end"
-                style={{ backgroundColor: '' }}
-              >
-                <Link
-                  to={'/signup'}
-                  className="d-flex align-items-center fw-bold"
-                  style={{
-                    color: '#0F6990',
-                    width: '140px',
-                    textDecoration: 'none',
-                    fontSize: '18px',
-                  }}
-                >
-                  Apply Now
-                  <img
-                    className="ms-1"
-                    style={{ height: '100%' }}
-                    src={chevronright}
-                    alt=""
-                  />
-                </Link>
-              </div>
+function Courses({ setShow, setSliderShow }) {
+   setShow(true);
+   setSliderShow(true);
+   const [userData, setUserData] = useState({});
+   const navigate = useNavigate()
+
+   const name = JSON.parse(localStorage.getItem("findrData")).name;
+
+   const getUserData = async () => {
+      let data = await getCandidate(name);
+      setUserData(data.data.data);
+   };
+
+   useEffect(() => {
+      getUserData();
+   }, []);
+
+   return (
+      <div
+         style={{
+            paddingTop: "100px",
+            paddingLeft: "250px",
+            backgroundColor: "lightblue",
+         }}
+      >
+         <Container>
+            <div
+               className="d-flex"
+               style={{
+                  marginBottom: "50px",
+                  position: "relative",
+               }}
+            >
+               <div className="shape d-flex align-items-start mt-1"></div>
+               <h2 className="fs-2 p-2">Courses</h2>
             </div>
-          </div>
-        </div>
+            <Row className="gap-3 mb-5">
+               <Col className="d-flex flex-wrap justify-content-center align-items-center gap-3 ">
+                  {userData.course_list?.map((course) => (
+                     <Card style={{ width: "35rem" }}>
+                        <Card.Body className="p-4 d-flex align-items-center justify-content-center flex-column ">
+                           <Card.Title>Course: {course.course_name}</Card.Title>
+                           <Card.Subtitle className="mb-2 text-muted mt-2  ">
+                           University: {course.university}
+                           </Card.Subtitle>
+                           <Card.Text className="">Country: {course.country}</Card.Text>
+                           <Card.Text className="">Scholarship: {course.scholarship}</Card.Text>
+                           <Card.Text className="" style={{ color: "red" }}>Deadline: {course.deadline}</Card.Text>
+                           
+                           <Link
+                              className="btn text-light "
+                              style={{ backgroundColor: "#0F6990" }}
+                              to={course.course_link}
+                              target="blank"
+                           >
+                              Course Link
+                           </Link>
+                        </Card.Body>
+                     </Card>
+                  ))}
+               </Col>
+            </Row>
+         </Container>
       </div>
-    </div>
-  );
+   );
 }
 
 export default Courses;

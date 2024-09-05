@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
+import { Link } from "react-router-dom";
 
-import Home from '../../assets/Home.svg';
-import Profile from '../../assets/Profile.svg';
-import Payment from '../../assets/Payment.svg';
-import Document from '../../assets/Document.svg';
-import Logout from '../../assets/Logout.svg';
-import Calling from '../../assets/Calling.svg';
-import menu from '../../assets/menu.svg';
+import Home from "../../assets/Home.svg";
+import Profile from "../../assets/Profile.svg";
+import Payment from "../../assets/Payment.svg";
+import Document from "../../assets/Document.svg";
+import Logout from "../../assets/Logout.svg";
+import Calling from "../../assets/Calling.svg";
+import menu from "../../assets/menu.svg";
 
 function SliderComponent() {
   const [collapse, setCollapse] = useState(false);

@@ -1,10 +1,11 @@
-import Row from 'react-bootstrap/row';
-import Col from 'react-bootstrap/Col';
-import hero from '../../assets/hero.svg';
-import arrowright from '../../assets/arrow-right.svg';
-import chevronright from '../../assets/chevron-right.svg';
+import Row from "react-bootstrap/row";
+import Col from "react-bootstrap/Col";
+import hero from "../../assets/hero.svg";
+import arrowright from "../../assets/arrow-right.svg";
+import chevronright from "../../assets/chevron-right.svg";
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function Home({ setShow, setSliderShow }) {
   setShow(true);

@@ -48,7 +48,6 @@ function App() {
 
 
       </Routes>
-      {show && <FooterComponent />}
       <ToastContainer
         position="top-right"
         autoClose={3500}

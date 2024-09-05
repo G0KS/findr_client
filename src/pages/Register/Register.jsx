@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/f.png";
 import RegImg from "../../assets/login.svg";
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { candidateRegister } from "../../api/allApi";
 
@@ -9,7 +9,11 @@ function Register({ setShow }) {
    setShow(true);
    const navigate = useNavigate();
    const [showPassword, setShowPassword] = useState(false);
-   const [error, setError] = useState("");
+   const email = JSON.parse(localStorage.getItem("findrData"))?.email;
+
+   useEffect(() => {
+      if (email) navigate("/profile");
+   }, [email]);
 
    const [inputData, setInputData] = useState({
       first_name: "",
@@ -46,7 +50,7 @@ function Register({ setShow }) {
          !password ||
          !confirmPassword
       ) {
-         toast.warning("Fill the form");
+         toast.warning("Fill the form completely");
       } else if (password !== confirmPassword) {
          toast.warning("Passwords doesn't match");
       } else {
@@ -60,19 +64,23 @@ function Register({ setShow }) {
          };
          try {
             const response = await candidateRegister(body);
-            
-
-            // Handle successful login
             console.log(response);
-            toast.success("You have been logged in");
-            localStorage.setItem("findrData", JSON.stringify({ email }));
-            navigate("/profile");
-            // Redirect user or update state
+
+            if (response.status === 200) {
+               const name = response.data.data.name;
+               const email = response.data.data.email;
+               toast.success("Logged in successfully");
+               localStorage.setItem(
+                  "findrData",
+                  JSON.stringify({ name, email })
+               );
+               navigate("/profile/update");
+            } else if (response.response.status > 400) {
+               toast.error("User already exists. Try logging in.");
+            }
          } catch (err) {
-            // Handle error
-            setError("Login failed. Please check your credentials.");
-            toast.error(error);
-            console.error(err);
+            console.log(err);
+            toast.error("There have been some error. Please try again later");
          }
       }
    };

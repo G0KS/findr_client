@@ -17,49 +17,12 @@ export const userData = {
    english_skill: "",
    new_language: "",
    proficiency_in_language: "",
-   language_proficiency: [
-      {
-         parent: "",
-         parentfield: "language_proficiency",
-         parenttype: "Student",
-         language: "",
-         certificate: "",
-         level_of_proficiency: "",
-      },
-   ],
-   internship_details: [
-      {
-         parent: "",
-         parentfield: "internship_details",
-         parenttype: "Student",
-         internship_experience: 0,
-         intern_position: "",
-         intern_company_name: "",
-         intern_to: "",
-         intern_from: "",
-      },
-   ],
-   work_experience: [
-      {
-         parent: "",
-         parentfield: "work_experience",
-         parenttype: "Student",
-         work_position: "",
-         work_company_name: "",
-         work_to: "",
-         work_from: "",
-      },
-   ],
-   preferences: [
-      {
-         parent: "",
-         parentfield: "preferences",
-         parenttype: "Student",
-         preferred_course: "",
-         preferred_country: "",
-      },
-   ],
+   internship_details: [],
+   work_experience: [],
+   preferred_course: "",
+   preferred_country: "",
    budget: "",
+   availing_scholarship: "",
    religion: "",
    caste: "",
    nationality: "",
@@ -67,3 +30,4 @@ export const userData = {
    year_of_study: "",
    date_of_birth: "",
 };
+
