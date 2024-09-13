@@ -1,32 +1,38 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { candidateUpdate, makePaymentOrder } from "../api/allApi";
 
-function RazorpayButton({ amount }) {
+function RazorpayButton({ amount, payment }) {
    const navigate = useNavigate();
+
+   const name = JSON.parse(localStorage.getItem("findrData"))?.name;
+
+   const updatePayment = async () => {
+      try {
+         const body = {
+            [payment]: "1",
+         };
+         const res = await candidateUpdate(body, name);
+         console.log(res);
+      } catch (error) {
+         console.error(error);
+      }
+   };
 
    const handlePayment = async () => {
       try {
-         const response = await fetch(
-            "http://127.0.0.1:8000/api/method/findr.api.create_payment_order",
-            {
-               method: "POST",
-               headers: {
-                  "Content-Type": "application/json",
-               },
-               body: JSON.stringify({ amount }),
-            }
-         );
+         const response = await makePaymentOrder({ amount });
 
-         const orderData = await response.json();
+         const orderData = response.data.message;
 
          var options = {
             key: "rzp_test_feeHuamS6xqUwU",
-            amount: orderData.message.amount,
-            currency: orderData.message.currency,
+            amount: orderData.amount,
+            currency: orderData.currency,
             name: "Findr Study",
             description: "Test Transaction",
-            order_id: orderData.message.id,
+            order_id: orderData.id,
             handler: async function (response) {
                await fetch(
                   "http://127.0.0.1:8000/api/method/findr.api.verify_payment",
@@ -51,6 +57,7 @@ function RazorpayButton({ amount }) {
                               response.razorpay_payment_id
                         );
                         toast.success("Your courses will be updated soon");
+                        updatePayment();
                         navigate("/profile");
                      } else {
                         toast.warning(

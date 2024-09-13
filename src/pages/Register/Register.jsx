@@ -9,11 +9,12 @@ function Register({ setShow }) {
    setShow(true);
    const navigate = useNavigate();
    const [showPassword, setShowPassword] = useState(false);
-   const email = JSON.parse(localStorage.getItem("findrData"))?.email;
+
+   const findrData = JSON.parse(localStorage.getItem("findrData"));
 
    useEffect(() => {
-      if (email) navigate("/profile");
-   }, [email]);
+      if (findrData) navigate("/profile");
+   }, [findrData]);
 
    const [inputData, setInputData] = useState({
       first_name: "",
@@ -64,7 +65,6 @@ function Register({ setShow }) {
          };
          try {
             const response = await candidateRegister(body);
-            console.log(response);
 
             if (response.status === 200) {
                const name = response.data.data.name;
@@ -75,7 +75,7 @@ function Register({ setShow }) {
                   JSON.stringify({ name, email })
                );
                navigate("/profile/update");
-            } else if (response.response.status > 400) {
+            } else if (response.status > 400) {
                toast.error("User already exists. Try logging in.");
             }
          } catch (err) {

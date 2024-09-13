@@ -1,21 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import edit from "../../assets/Edit.svg";
 import save from "../../assets/Save.svg";
 import { candidateUpdate, getCandidate } from "../../api/allApi";
 import { toast } from "react-toastify";
 import SliderComponent from "../../components/SliderComponent/SliderComponent";
+import { userData } from "../../constants/global";
+import { updatedProfileContext } from "../../context/ContextShare";
 
 function Profile({ setShow }) {
    setShow(true);
-   const [inputData, setInputData] = useState({});
+   const [inputData, setInputData] = useState("");
    const [editable, setEditable] = useState(true);
-   const [userData, setUserData] = useState({});
+   const [profileData, setProfileData] = useState({});
+
+   const { updatedData } = useContext(updatedProfileContext);
+   console.log(userData);
+
 
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
+   
 
    const getUserData = async () => {
       let data = await getCandidate(name);
-      setUserData(data.data.data);
+      setProfileData(data.data.data);
    };
 
    const getInputData = (e) => {
@@ -24,35 +31,40 @@ function Profile({ setShow }) {
    };
 
    const handleEdit = async () => {
-      const body = {
-         name,
-         doctype: "Student",
-         ...inputData,
-      };
-      try {
-         const res = await candidateUpdate(body, name);
-         if (res.status === 200) {
-            toast.success("Contact details updated");
-            setEditable(!editable);
-         } else toast.warning("Update was not completed.");
-      } catch (err) {
-         console.log(err);
-         toast.error("There have been some technical error.");
-         toast.error("Please try again later.");
+      if (inputData == "") {
+         toast.warning("Nothing to save");
+      } else {
+         const body = {
+            name,
+            doctype: "Student",
+            ...inputData,
+         };
+         try {
+            const res = await candidateUpdate(body, name);
+            if (res.status === 200) {
+               toast.success("Contact details updated");
+               setInputData("");
+               setEditable(!editable);
+            } else toast.warning("Update was not completed.");
+         } catch (err) {
+            console.log(err);
+            toast.error("There have been some technical error.");
+            toast.error("Please try again later.");
+         }
       }
    };
 
    useEffect(() => {
       getUserData();
-   }, []);
+   }, [inputData]);
 
    return (
       <div className="d-lg-flex">
-         <SliderComponent />
-         <div className="container mx-5">
-            <h2 className="" style={{}}>
-               Personal Details
-            </h2>
+         <div className="d-none d-lg-block">
+            <SliderComponent />
+         </div>
+         <div className="container mx-5" style={{ paddingBlock: "80px" }}>
+            <h2>Personal Details</h2>
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
                {editable ? (
                   <button
@@ -61,9 +73,9 @@ function Profile({ setShow }) {
                         backgroundColor: "#0F6990",
                         borderRadius: "10px",
                         textDecoration: "none",
-                        width: "6rem",
+                        width: "7rem",
                      }}
-                     onClick={() => handleEdit()}
+                     onClick={() => setEditable(!editable)}
                   >
                      <span className="p-2" style={{ color: "white" }}>
                         Edit
@@ -75,7 +87,7 @@ function Profile({ setShow }) {
                      className="ms-auto py-2  px-3 shadow border "
                      style={{
                         backgroundColor: "#0F6990",
-                        borderRadius: "20px",
+                        borderRadius: "10px",
                         textDecoration: "none",
                         width: "7rem",
                      }}
@@ -105,7 +117,7 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="text"
                            name="name1"
-                           value={`${userData.first_name} ${userData.last_name}`}
+                           value={`${profileData.first_name} ${profileData.last_name}`}
                            disabled
                            style={{ fontSize: "15px", border: "none" }}
                         />
@@ -119,7 +131,7 @@ function Profile({ setShow }) {
                            type="number"
                            name="phone_number"
                            value={
-                              inputData.phone_number || userData.phone_number
+                              inputData.phone_number || profileData.phone_number
                            }
                            disabled={editable ? "disabled" : ""}
                            onChange={(e) => getInputData(e)}
@@ -135,7 +147,7 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="date"
                            name=""
-                           value={userData.date_of_birth || ""}
+                           value={profileData.date_of_birth || ""}
                            disabled
                            style={{ fontSize: "15px", border: "none" }}
                         />
@@ -152,7 +164,7 @@ function Profile({ setShow }) {
                         className="inputBox shadow "
                         type="text"
                         name="email"
-                        value={inputData.email || userData.email}
+                        value={inputData.email || profileData.email}
                         disabled={editable ? "disabled" : ""}
                         onChange={(e) => getInputData(e)}
                         placeholder="Enter Email"
@@ -167,7 +179,7 @@ function Profile({ setShow }) {
                         className="inputBox shadow "
                         type="textArea"
                         name=""
-                        value={userData.address || ""}
+                        value={profileData.address || ""}
                         disabled
                         style={{ fontSize: "15px", border: "none" }}
                      />
@@ -180,7 +192,7 @@ function Profile({ setShow }) {
                         className="inputBox shadow "
                         type="text"
                         name=""
-                        value={userData.nationality || ""}
+                        value={profileData.nationality || ""}
                         disabled
                         style={{ fontSize: "15px", border: "none" }}
                      />
@@ -209,7 +221,7 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="text"
                            name="tenth_institution"
-                           value={userData.tenth_institution || ""}
+                           value={profileData.tenth_institution || ""}
                            disabled
                            style={{ fontSize: "15px", border: "none" }}
                         />
@@ -223,7 +235,7 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="text"
                            name="tenth_marks"
-                           value={userData.tenth_marks || ""}
+                           value={profileData.tenth_marks || ""}
                            disabled
                            style={{ fontSize: "15px", border: "none" }}
                         />
@@ -240,7 +252,7 @@ function Profile({ setShow }) {
                         className="inputBox shadow "
                         type="text"
                         name="tenth_mode_of_study"
-                        value={userData.tenth_mode_of_study || ""}
+                        value={profileData.tenth_mode_of_study || ""}
                         disabled
                         style={{ fontSize: "15px", border: "none" }}
                      />
@@ -269,7 +281,7 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="text"
                            name="twelfth_institution"
-                           value={userData.twelfth_institution || ""}
+                           value={profileData.twelfth_institution || ""}
                            disabled
                            style={{ fontSize: "15px", border: "none" }}
                         />
@@ -283,7 +295,7 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="text"
                            name="twelfth_marks"
-                           value={userData.twelfth_marks || ""}
+                           value={profileData.twelfth_marks || ""}
                            disabled
                            placeholder="Enter Marks"
                            style={{ fontSize: "15px", border: "none" }}
@@ -301,7 +313,7 @@ function Profile({ setShow }) {
                         className="inputBox shadow "
                         type="text"
                         name="twelfth_mode_of_study"
-                        value={userData.twelfth_mode_of_study || ""}
+                        value={profileData.twelfth_mode_of_study || ""}
                         disable
                         placeholder="Enter Marks"
                         style={{ fontSize: "15px", border: "none" }}
@@ -332,7 +344,7 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="text"
                            name="undergraduate_institution"
-                           value={userData.undergraduate_institution || ""}
+                           value={profileData.undergraduate_institution || ""}
                            disabled
                            style={{ fontSize: "15px", border: "none" }}
                         />
@@ -346,7 +358,7 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="text"
                            name="undergraduate_marks"
-                           value={userData.undergraduate_marks || ""}
+                           value={profileData.undergraduate_marks || ""}
                            disabled
                            style={{ fontSize: "15px", border: "none" }}
                         />
@@ -363,7 +375,7 @@ function Profile({ setShow }) {
                         className="inputBox shadow "
                         type="text"
                         name="undergraduate_mode_of_study"
-                        value={userData.undergraduate_mode_of_study || ""}
+                        value={profileData.undergraduate_mode_of_study || ""}
                         disabled
                         style={{ fontSize: "15px", border: "none" }}
                      />
@@ -393,7 +405,7 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="text"
                            name="postgraduate_institution"
-                           value={userData.postgraduate_institution || ""}
+                           value={profileData.postgraduate_institution || ""}
                            disabled
                            style={{ fontSize: "15px", border: "none" }}
                         />
@@ -407,7 +419,7 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="text"
                            name="postgraduate_marks"
-                           value={userData.postgraduate_marks || ""}
+                           value={profileData.postgraduate_marks || ""}
                            disabled
                            style={{ fontSize: "15px", border: "none" }}
                         />
@@ -424,7 +436,7 @@ function Profile({ setShow }) {
                         className="inputBox shadow "
                         type="text"
                         name="postgraduate_mode_of_study"
-                        value={userData.postgraduate_mode_of_study || ""}
+                        value={profileData.postgraduate_mode_of_study || ""}
                         disabled
                         style={{ fontSize: "15px", border: "none" }}
                      />
@@ -453,7 +465,7 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="text"
                            name="phd_institution"
-                           value={userData.phd_institution || ""}
+                           value={profileData.phd_institution || ""}
                            disabled
                            style={{ fontSize: "15px", border: "none" }}
                         />
@@ -467,7 +479,7 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="text"
                            name="phd_marks"
-                           value={userData.phd_marks || ""}
+                           value={profileData.phd_marks || ""}
                            disabled
                            style={{ fontSize: "15px", border: "none" }}
                         />
@@ -484,7 +496,7 @@ function Profile({ setShow }) {
                         className="inputBox shadow "
                         type="text"
                         name="phd_mode_of_study"
-                        value={userData.phd_mode_of_study || ""}
+                        value={profileData.phd_mode_of_study || ""}
                         disabled
                         style={{ fontSize: "15px", border: "none" }}
                      />
@@ -511,7 +523,9 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="text"
                            name="english_skill"
-                           value={userData.english_skill === 1 ? "Yes" : "No"}
+                           value={
+                              profileData.english_skill === 1 ? "Yes" : "No"
+                           }
                            disabled
                            style={{ fontSize: "15px", border: "none" }}
                         />
@@ -526,7 +540,7 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="text"
                            name="new_language"
-                           value={userData.new_language === 1 ? "Yes" : "No"}
+                           value={profileData.new_language === 1 ? "Yes" : "No"}
                            disabled
                            style={{ fontSize: "15px", border: "none" }}
                         />
@@ -545,7 +559,9 @@ function Profile({ setShow }) {
                         type="text"
                         name="proficiency_in_language"
                         value={
-                           userData.proficiency_in_language === 1 ? "Yes" : "No"
+                           profileData.proficiency_in_language === 1
+                              ? "Yes"
+                              : "No"
                         }
                         disabled
                         style={{ fontSize: "15px", border: "none" }}
@@ -631,11 +647,8 @@ function Profile({ setShow }) {
             <h4 className=" mt-4">
                <span style={{ color: "#0F6990" }}>Internship </span>Details
             </h4>
-            {userData.internship_details?.map((intern) => (
-               <div
-                  className="d-flex p-4 row p-3 "
-                  style={{ backgroundColor: "" }}
-               >
+            {profileData.internship_details?.map((intern) => (
+               <div className="d-flex p-4 row p-3 " key={intern.id}>
                   <div className="col-md-6 col-lg-5">
                      {/* input section */}
 
@@ -705,7 +718,7 @@ function Profile({ setShow }) {
             <h4 className=" mt-4">
                <span style={{ color: "#0F6990" }}>Work </span>Details
             </h4>
-            {userData.work_experience?.map((work) => (
+            {profileData.work_experience?.map((work) => (
                <div
                   className="d-flex p-4 row p-3 "
                   style={{ backgroundColor: "" }}
@@ -796,7 +809,7 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="text"
                            name="preferred_course"
-                           value={userData.preferred_course || ""}
+                           value={profileData.preferred_course || ""}
                            disabled
                            style={{ fontSize: "15px", border: "none" }}
                         />
@@ -813,7 +826,7 @@ function Profile({ setShow }) {
                         className="inputBox shadow "
                         type="text"
                         name="preferred_country"
-                        value={userData.preferred_country || ""}
+                        value={profileData.preferred_country || ""}
                         disabled
                         style={{ fontSize: "15px", border: "none" }}
                      />
@@ -842,7 +855,7 @@ function Profile({ setShow }) {
                            className="inputBox shadow "
                            type="text"
                            name="intake"
-                           value={userData.intake || ""}
+                           value={profileData.intake || ""}
                            disabled
                            style={{ fontSize: "15px", border: "none" }}
                         />
@@ -859,7 +872,7 @@ function Profile({ setShow }) {
                         className="inputBox shadow "
                         type="text"
                         name="year_of_study"
-                        value={userData.year_of_study || ""}
+                        value={profileData.year_of_study || ""}
                         disabled
                         style={{ fontSize: "15px", border: "none" }}
                      />

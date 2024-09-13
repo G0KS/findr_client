@@ -2,13 +2,13 @@ import { baseURL } from "./baseUrl";
 
 import { commonRequest } from "./commonRequest";
 
-const api_key = import.meta.env.VITE_FRAPPE_STUDENT_KEY;
-const api_secret = import.meta.env.VITE_FRAPPE_STUDENT_SECRET;
-
 export const candidateRegister = async (body) => {
-   return await commonRequest("POST", `${baseURL}/api/resource/Student`, body, {
-      Authorization: `token ${api_key}:${api_secret}`,
-   });
+   return await commonRequest(
+      "POST",
+      `${baseURL}/api/resource/Student`,
+      body,
+      {}
+   );
 };
 
 export const getCandidate = async (name) => {
@@ -16,7 +16,7 @@ export const getCandidate = async (name) => {
       "GET",
       `${baseURL}/api/resource/Student/${name}`,
       {},
-      { Authorization: `token ${api_key}:${api_secret}` }
+      {}
    );
 };
 
@@ -25,6 +25,23 @@ export const candidateUpdate = async (body, name) => {
       "PUT",
       `${baseURL}/api/resource/Student/${name}`,
       body,
-      { Authorization: `token ${api_key}:${api_secret}` }
+      {}
+   );
+};
+
+export const makePaymentOrder = async (body) =>{
+   return await commonRequest("POST",`${baseURL}/api/method/findr.api.create_payment_order`,body)
+}
+
+export const verifyPayment = async (body) =>{
+   return await commonRequest("POST",`${baseURL}/api/method/findr.api.verify_payment`,body)
+}
+
+export const getStudent = async (params) => {
+   return await commonRequest(
+      "GET",
+      `${baseURL}/api/resource/Student`,
+      {},
+      params
    );
 };

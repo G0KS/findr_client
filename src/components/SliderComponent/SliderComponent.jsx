@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
 import { Link, useNavigate } from "react-router-dom";
 
-import Home from "../../assets/Home.svg";
 import Profile from "../../assets/Profile.svg";
 import Payment from "../../assets/Payment.svg";
 import Document from "../../assets/Document.svg";
 import Logout from "../../assets/Logout.svg";
 import Calling from "../../assets/Calling.svg";
-import menu from "../../assets/menu.svg";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import { toast } from "react-toastify";
 
 function SliderComponent() {
    const [collapse, setCollapse] = useState(false);
+
    const navigate = useNavigate();
 
    const handleLogout = () => {
@@ -40,17 +40,17 @@ function SliderComponent() {
       <Sidebar
          collapsed={collapse}
          collapsedWidth="0px"
-         backgroundColor="lightblue"
+         backgroundColor="white"
          onBackdropClick
          style={{
             position: "sticky",
             top: "80px",
             left: "0",
-            height: "100vh",
+            height: "90vh",
          }}
       >
-         <Menu className="">
-            <Link
+         <Menu className="" style={{ position: "relative", height: "100%" }}>
+            {/* <Link
                className="fw-bold"
                style={{ textDecoration: "none", color: "gray" }}
                to={"/"}
@@ -59,7 +59,7 @@ function SliderComponent() {
                   {" "}
                   <img className="p-2" src={Home} alt="" /> Home
                </MenuItem>
-            </Link>
+            </Link> */}
             <Link
                to={"/profile"}
                className="fw-bold"
@@ -107,6 +107,7 @@ function SliderComponent() {
                style={{
                   textDecoration: "none",
                   color: "gray",
+                  marginTop: "400px",
                }}
                onClick={handleLogout}
             >

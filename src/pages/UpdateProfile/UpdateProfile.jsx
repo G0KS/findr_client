@@ -13,12 +13,11 @@ import { updatedProfileContext } from "../../context/ContextShare";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-function UpdateProfile({ setShow, setSliderShow }) {
+function UpdateProfile({ setShow }) {
    setShow(true);
-   setSliderShow(true);
    const navigate = useNavigate();
-   const email = JSON.parse(localStorage.getItem("findrData")).email;
-   const name = JSON.parse(localStorage.getItem("findrData")).name;   
+   const email = JSON.parse(localStorage.getItem("findrData"))?.email;
+   const name = JSON.parse(localStorage.getItem("findrData"))?.name;   
 
    const cards = [
       {

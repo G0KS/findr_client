@@ -1,19 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/f.png";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { getCandidate } from "../../api/allApi";
+import { getCandidate, getStudent } from "../../api/allApi";
 
 function Login({ setShow }) {
    setShow(true);
    const navigate = useNavigate();
-   const [showPassword, setShowPassword] = useState(false);z
+   const [showPassword, setShowPassword] = useState(false);
 
-   const email = JSON.parse(localStorage.getItem("findrData"))?.email;
+   const findrData = JSON.parse(localStorage.getItem("findrData"));
 
    useEffect(() => {
-      if (email) navigate("/profile");
-   }, [email]);
+      if (findrData) navigate("/profile");
+   }, [findrData]);
 
    const [inputData, setInputData] = useState({
       email: "",
@@ -32,12 +32,29 @@ function Login({ setShow }) {
          toast.warning("Fill the form");
       } else {
          try {
-            const response = await getCandidate(email);
-            if (response.data.data.password === password) {
-               toast.success("Successfully logged in");
-               localStorage.setItem("findrData", JSON.stringify({ email }));
-               navigate("/profile");
-            } else toast.warning("Wrong Credentials");
+            const params = {
+               fields: '["name", "email", "password"]',
+               filters: `[["email", "=", "${email}"]]`,
+            };
+
+            const res = await getStudent(params);
+
+            if (res.status == 200) {
+               const resData = res.data.data[0];
+               if (resData.password === password) {
+                  toast.success("Successfully logged in");
+                  localStorage.setItem(
+                     "findrData",
+                     JSON.stringify({
+                        name: resData.name,
+                        email: resData.email,
+                     })
+                  );
+                  navigate("/profile");
+               } else toast.warning("Wrong Credentials");
+            } else {
+               console.error(res.message);
+            }
          } catch (err) {
             console.log(err);
             toast.error("Invalid Credentials");

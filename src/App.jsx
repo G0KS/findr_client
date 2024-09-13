@@ -1,5 +1,5 @@
-import { Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import { json, Route, Routes } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 
 import Home from "./pages/Home/Home.jsx";
@@ -23,7 +23,6 @@ import PagenotFound from "./pages/PagenotFound/PagenotFound.jsx";
 
 function App() {
    const [show, setShow] = useState(true);
-   const [sliderShow, setSliderShow] = useState(false);
 
    return (
       <>
