@@ -4,25 +4,28 @@ import save from "../../assets/Save.svg";
 import { candidateUpdate, getCandidate } from "../../api/allApi";
 import { toast } from "react-toastify";
 import SliderComponent from "../../components/SliderComponent/SliderComponent";
-import { userData } from "../../constants/global";
 import { updatedProfileContext } from "../../context/ContextShare";
+import { useNavigate } from "react-router-dom";
 
 function Profile({ setShow }) {
    setShow(true);
    const [inputData, setInputData] = useState("");
    const [editable, setEditable] = useState(true);
    const [profileData, setProfileData] = useState({});
+   const navigate = useNavigate();
 
    const { updatedData } = useContext(updatedProfileContext);
-   console.log(userData);
-
 
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
-   
 
    const getUserData = async () => {
-      let data = await getCandidate(name);
-      setProfileData(data.data.data);
+      const data = await getCandidate(name);
+      console.log(data);
+      if (data.data.data.tenth_institution) setProfileData(data.data.data);
+      else {
+         toast.warning("Complete your profile to continue");
+         navigate("/profile/update");
+      }
    };
 
    const getInputData = (e) => {
@@ -55,7 +58,11 @@ function Profile({ setShow }) {
    };
 
    useEffect(() => {
-      getUserData();
+      if (name) getUserData();
+      else {
+         toast.warning("Please login");
+         navigate("/login");
+      }
    }, [inputData]);
 
    return (

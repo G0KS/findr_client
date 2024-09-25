@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/f.png";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { getCandidate, getStudent } from "../../api/allApi";
+import { candidateLogin} from "../../api/allApi";
 
 function Login({ setShow }) {
    setShow(true);
@@ -37,7 +37,7 @@ function Login({ setShow }) {
                filters: `[["email", "=", "${email}"]]`,
             };
 
-            const res = await getStudent(params);
+            const res = await candidateLogin(params);
 
             if (res.status == 200) {
                const resData = res.data.data[0];

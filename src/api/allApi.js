@@ -20,6 +20,15 @@ export const getCandidate = async (name) => {
    );
 };
 
+export const candidateLogin = async (params) => {
+   return await commonRequest(
+      "GET",
+      `${baseURL}/api/resource/Student`,
+      {},
+      params
+   );
+};
+
 export const candidateUpdate = async (body, name) => {
    return await commonRequest(
       "PUT",
@@ -37,11 +46,3 @@ export const verifyPayment = async (body) =>{
    return await commonRequest("POST",`${baseURL}/api/method/findr.api.verify_payment`,body)
 }
 
-export const getStudent = async (params) => {
-   return await commonRequest(
-      "GET",
-      `${baseURL}/api/resource/Student`,
-      {},
-      params
-   );
-};

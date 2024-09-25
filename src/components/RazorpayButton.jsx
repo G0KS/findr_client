@@ -58,7 +58,6 @@ function RazorpayButton({ amount, payment }) {
                         );
                         toast.success("Your courses will be updated soon");
                         updatePayment();
-                        navigate("/profile");
                      } else {
                         toast.warning(
                            "Payment Verification Failed: " + data.message

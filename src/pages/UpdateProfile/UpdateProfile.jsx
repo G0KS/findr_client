@@ -17,7 +17,7 @@ function UpdateProfile({ setShow }) {
    setShow(true);
    const navigate = useNavigate();
    const email = JSON.parse(localStorage.getItem("findrData"))?.email;
-   const name = JSON.parse(localStorage.getItem("findrData"))?.name;   
+   const name = JSON.parse(localStorage.getItem("findrData"))?.name;
 
    const cards = [
       {
@@ -117,6 +117,13 @@ function UpdateProfile({ setShow }) {
       // Add more cards as needed
    ];
 
+   useEffect(() => {
+      if (!name) {
+         toast.warning("Please login");
+         navigate("/login");
+      }
+   }, []);
+
    const [currentIndex, setCurrentIndex] = useState(0);
 
    const Cards = ({ data }) => {
@@ -184,7 +191,7 @@ function UpdateProfile({ setShow }) {
          >
             <div className="d-flex justify-content-center align-items-center m-4">
                <img style={{ height: "40px" }} src={Logo} alt="" />
-               <h2 className=" fw-bold">
+               <h2 className=" fw-bold" style={{ marginBottom: "0px" }}>
                   Complete Your{" "}
                   <span style={{ color: "#0f6990" }}>Profile</span>
                </h2>
@@ -954,7 +961,7 @@ function UpdateProfile({ setShow }) {
             ...updatedData,
          };
          try {
-            const res = await candidateUpdate(body, name);           
+            const res = await candidateUpdate(body, name);
             toast.success("Updated");
             navigate("/profile");
          } catch (err) {

@@ -5,38 +5,47 @@
 import React, { useEffect, useState } from "react";
 import paymentimg from "../../assets/paymentimg.jpeg";
 import RazorpayButton from "../../components/RazorpayButton";
-import { getCandidate, getStudent } from "../../api/allApi";
+import { getCandidate } from "../../api/allApi";
 import SliderComponent from "../../components/SliderComponent/SliderComponent";
 
 function Payment({ setShow }) {
    setShow(true);
    const [fee, setFee] = useState();
    const [payment, setPayment] = useState();
+   const [paymentDesc, setPaymentDesc] = useState("");
 
-   const email = JSON.parse(localStorage.getItem("findrData"))?.email;
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
 
    const getUser = async () => {
-      const params = {
-         fields: '["name", "email", "course_fee", "registration_fee", "course_list"]',
-         filters: `[["email", "=", "${email}"]]`,
-      };
-
       try {
-         const res = await getStudent(params);
-         console.log(res);
-         
+         const res = await getCandidate(name);
+         console.log(res.data.data.course_list);
+
          if (
-            res.data.data[0].registration_fee == 1 &&
-            res.data.data[0].course_fee == 1
+            res.data.data.registration_fee == 1 &&
+            res.data.data.course_fee == 1
          ) {
             setPayment("full_paid");
-         } else if (res.data.data[0].registration_fee == 0) {
+            setPaymentDesc(
+               "Thanks for joining the findr.study community! Share your study abroad story and recommend us to friends who dare to dream."
+            );
+         } else if (res.data.data.registration_fee == 0) {
             setFee(2499);
             setPayment("registration_fee");
-         } else {
+            setPaymentDesc(
+               "Continue with payment to complete the registration"
+            );
+         } else if (res.data.data.course_list.length > 0) {
             setFee(5000);
             setPayment("course_fee");
+            setPaymentDesc(
+               "Unlock your course library - payment unlocks access!"
+            );
+         } else if (res.data.data.course_list.length == 0) {
+            setPayment("payment_done");
+            setPaymentDesc(
+               "Payment received. Registration completed. You can access your tailored course suggestions in courses tab in 1-2 weeks."
+            );
          }
       } catch (err) {
          console.error(err);
@@ -44,7 +53,11 @@ function Payment({ setShow }) {
    };
 
    useEffect(() => {
-      getUser();
+      if (name) getUser();
+      else {
+         toast.warning("Please login");
+         navigate("/login");
+      }
    }, []);
 
    return (
@@ -69,27 +82,66 @@ function Payment({ setShow }) {
                      width: "50rem",
                   }}
                >
-                  <div className="col d-flex align-items-center">
-                     <img src={paymentimg} alt="" style={{ width: "300px" }} />
-                  </div>
-                  <div className="col d-flex align-items-center">
-                     <div style={{ height: "70px", width: "70px" }}>
-                        <img src="" style={{ height: "100%" }} alt="" />
+                  {payment === "payment_done" || payment === "full_paid" ? (
+                     <div className="row">
+                        <div className="col d-flex align-items-center">
+                           <img
+                              src={paymentimg}
+                              alt=""
+                              style={{ width: "300px" }}
+                           />
+                        </div>
+                        <div className="col d-flex align-items-center">
+                           <div style={{ height: "70px", width: "70px" }}>
+                              <img src="" style={{ height: "100%" }} alt="" />
+                           </div>
+                           <div className="title">
+                              <h3
+                                 style={{ color: "#0F6990", fontSize: "40px" }}
+                              ></h3>
+                              <p
+                                 style={{
+                                    fontSize: "18px",
+                                 }}
+                              >
+                                 {paymentDesc}
+                              </p>
+                           </div>
+                        </div>
                      </div>
-                     <div className="title">
-                        <h3 style={{ color: "#0F6990", fontSize: "40px" }}>
-                           {fee == 2499 ? "Registration Fee" : "Course Fee"}
-                        </h3>
-                        <p>
-                           Loremsuscipit natus mollitia tempora. Libero rerum
-                           voluptate aliquam saepe, eius ipsum! Voluptas!
-                        </p>
-                        <h3 className="fw-bolder" style={{ color: "#0F6990" }}>
-                           {fee == 2499 ? "₹2499" : "₹5000"}
-                        </h3>
-                        <RazorpayButton amount={fee} payment={payment} />
+                  ) : (
+                     <div className="row">
+                        <div className="col d-flex align-items-center">
+                           <img
+                              src={paymentimg}
+                              alt=""
+                              style={{ width: "300px" }}
+                           />
+                        </div>
+                        <div className="col d-flex align-items-center">
+                           <div style={{ height: "70px", width: "70px" }}>
+                              <img src="" style={{ height: "100%" }} alt="" />
+                           </div>
+                           <div className="title">
+                              <h3
+                                 style={{ color: "#0F6990", fontSize: "40px" }}
+                              >
+                                 {fee == 2499
+                                    ? "Registration Fee"
+                                    : "Course Fee"}
+                              </h3>
+                              <p>{paymentDesc}</p>
+                              <h3
+                                 className="fw-bolder"
+                                 style={{ color: "#0F6990" }}
+                              >
+                                 {fee == 2499 ? "₹2499" : "₹5000"}
+                              </h3>
+                              <RazorpayButton amount={fee} payment={payment} />
+                           </div>
+                        </div>
                      </div>
-                  </div>
+                  )}
                </div>
             </section>
          </div>
