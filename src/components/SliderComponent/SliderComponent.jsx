@@ -48,7 +48,9 @@ function SliderComponent() {
             left: "0",
             height: "90vh",
          }}
+         
       >
+         
          <Menu className="" style={{ position: "relative", height: "100%" }}>
             {/* <Link
                className="fw-bold"
