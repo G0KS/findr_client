@@ -10,9 +10,12 @@ import Calling from "../../assets/Calling.svg";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { toast } from "react-toastify";
+import { sidebarContext } from "../../context/ContextShare";
 
 function SliderComponent() {
-   const [collapse, setCollapse] = useState(false);
+   // const [collapse, setCollapse] = useState(false);
+
+   const { sidebarCollapse } = useContext(sidebarContext);
 
    const navigate = useNavigate();
 
@@ -25,6 +28,7 @@ function SliderComponent() {
                label: "Logout",
                onClick: () => {
                   localStorage.removeItem("findrData");
+                  localStorage.removeItem("access");
                   navigate("/");
                   toast.success("You have been logged out!");
                },
@@ -38,30 +42,19 @@ function SliderComponent() {
    };
    return (
       <Sidebar
-         collapsed={collapse}
+         collapsed={sidebarCollapse}
          collapsedWidth="0px"
          backgroundColor="white"
          onBackdropClick
          style={{
-            position: "sticky",
+            position: "fixed",
             top: "80px",
             left: "0",
             height: "90vh",
+            zIndex: "999",
          }}
-         
       >
-         
          <Menu className="" style={{ position: "relative", height: "100%" }}>
-            {/* <Link
-               className="fw-bold"
-               style={{ textDecoration: "none", color: "gray" }}
-               to={"/"}
-            >
-               <MenuItem>
-                  {" "}
-                  <img className="p-2" src={Home} alt="" /> Home
-               </MenuItem>
-            </Link> */}
             <Link
                to={"/profile"}
                className="fw-bold"

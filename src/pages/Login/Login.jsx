@@ -1,13 +1,17 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Logo from "../../assets/f.png";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { candidateLogin} from "../../api/allApi";
+import { useFrappeGetDoc, useFrappeGetDocList } from "frappe-react-sdk";
+import axios from "axios";
 
-function Login({ setShow }) {
+function Login({ setShow, setSidebarShow }) {
    setShow(true);
+   setSidebarShow(false);
    const navigate = useNavigate();
    const [showPassword, setShowPassword] = useState(false);
+
+   const [searchParams] = useSearchParams();
 
    const findrData = JSON.parse(localStorage.getItem("findrData"));
 
@@ -25,6 +29,13 @@ function Login({ setShow }) {
       setInputData({ ...inputData, [name]: value });
    };
 
+   const [filters, setFilters] = useState("");
+
+   const { data, error } = useFrappeGetDocList("Student", {
+      fields: ["email", "first_name", "last_name", "password", "name"],
+      filters,
+   });
+
    const handleLogin = async (e) => {
       e.preventDefault();
       const { email, password } = inputData;
@@ -32,32 +43,20 @@ function Login({ setShow }) {
          toast.warning("Fill the form");
       } else {
          try {
-            const params = {
-               fields: '["name", "email", "password"]',
-               filters: `[["email", "=", "${email}"]]`,
-            };
-
-            const res = await candidateLogin(params);
-
-            if (res.status == 200) {
-               const resData = res.data.data[0];
-               if (resData.password === password) {
-                  toast.success("Successfully logged in");
-                  localStorage.setItem(
-                     "findrData",
-                     JSON.stringify({
-                        name: resData.name,
-                        email: resData.email,
-                     })
-                  );
-                  navigate("/profile");
-               } else toast.warning("Wrong Credentials");
-            } else {
-               console.error(res.message);
-            }
-         } catch (err) {
-            console.log(err);
-            toast.error("Invalid Credentials");
+            setFilters([["email", "=", email]]);
+            if (password === data[0].password) {
+               const c_id = data[0].name;
+               const name = data[0].first_name;
+               const email = data[0].email;
+               localStorage.setItem(
+                  "findrData",
+                  JSON.stringify({ c_id, name, email })
+               );
+               toast.success("Logged in");
+               navigate("/profile");
+            } else toast.warning("Invalid credentials");
+         } catch {
+            console.error(error);
          }
       }
    };

@@ -1,5 +1,5 @@
-import { json, Route, Routes } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { Route, Routes, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 
 import Home from "./pages/Home/Home.jsx";
@@ -20,48 +20,187 @@ import ScrollToTop from "./components/ScrollToTop.jsx";
 import Courses from "./pages/Courses/Courses.jsx";
 import Faqpage from "./pages/FAQ/Faqpage.jsx";
 import PagenotFound from "./pages/PagenotFound/PagenotFound.jsx";
+import { FrappeProvider } from "frappe-react-sdk";
+import axios from "axios";
+import SliderComponent from "./components/SliderComponent/SliderComponent.jsx";
 
 function App() {
    const [show, setShow] = useState(true);
+   const [sidebarShow, setSidebarShow] = useState(true);
+   const [token, setToken] = useState("");
+
+   const access = localStorage.getItem("access");
+
+   const [searchParams] = useSearchParams();
+
+   const getAccessToken = async () => {
+      if (access) {
+         setToken(access);
+      } else {
+         try {
+            await axios
+               .post(
+                  "https://findrstudy.frappe.cloud/api/method/frappe.integrations.oauth2.get_token",
+                  {
+                     grant_type: "authorization_code",
+                     code: searchParams.get("code"),
+                     client_id: "mmcsk8kp8q",
+                     redirect_uri: "http://localhost:5173/login/",
+                  },
+                  {
+                     headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                     },
+                  }
+               )
+               .then((res) => {
+                  if (res.status === 200) {
+                     console.log(res);
+
+                     setToken(res.data.access_token);
+                     localStorage.setItem("access", res.data.access_token);
+                  }
+               })
+               .catch((err) => console.error(err));
+         } catch (err) {
+            console.log(err);
+         }
+      }
+   };
+
+   useEffect(() => {
+      getAccessToken();
+   }, []);
 
    return (
       <>
-         {show && <NavbarComponent />}
-         <ScrollToTop />
-         <Routes>
-            <Route path="/" element={<Home setShow={setShow} />} />
-            <Route path="/login" element={<Login setShow={setShow} />} />
-            <Route path="/signup" element={<Register setShow={setShow} />} />
-            <Route
-               path="/profile/update"
-               element={<UpdateProfile setShow={setShow} />}
+         <FrappeProvider
+            url="https://findrstudy.frappe.cloud"
+            tokenParams={{
+               type: "Bearer",
+               token: () => token,
+               useToken: "true",
+            }}
+            enableSocket={false}
+         >
+            {show && <NavbarComponent />}
+            {sidebarShow && <SliderComponent />}
+            <ScrollToTop />
+            <Routes>
+               <Route
+                  path="/"
+                  element={
+                     <Home setShow={setShow} setSidebarShow={setSidebarShow} />
+                  }
+               />
+               <Route
+                  path="/login"
+                  element={
+                     <Login setShow={setShow} setSidebarShow={setSidebarShow} />
+                  }
+               />
+               <Route
+                  path="/signup"
+                  element={
+                     <Register
+                        setShow={setShow}
+                        setSidebarShow={setSidebarShow}
+                     />
+                  }
+               />
+               <Route
+                  path="/profile/update"
+                  element={
+                     <UpdateProfile
+                        setShow={setShow}
+                        setSidebarShow={setSidebarShow}
+                     />
+                  }
+               />
+               <Route
+                  path="/profile"
+                  element={
+                     <Profile
+                        setShow={setShow}
+                        setSidebarShow={setSidebarShow}
+                     />
+                  }
+               />
+               <Route
+                  path="/courses"
+                  element={
+                     <Courses
+                        setShow={setShow}
+                        setSidebarShow={setSidebarShow}
+                     />
+                  }
+               />
+               <Route
+                  path="/contactus"
+                  element={
+                     <Contactus
+                        setShow={setShow}
+                        setSidebarShow={setSidebarShow}
+                     />
+                  }
+               />
+               <Route
+                  path="/terms"
+                  element={
+                     <Terms setShow={setShow} setSidebarShow={setSidebarShow} />
+                  }
+               />
+               <Route
+                  path="/privacy"
+                  element={
+                     <Privacy
+                        setShow={setShow}
+                        setSidebarShow={setSidebarShow}
+                     />
+                  }
+               />
+               <Route
+                  path="/payment"
+                  element={
+                     <Payment
+                        setShow={setShow}
+                        setSidebarShow={setSidebarShow}
+                     />
+                  }
+               />
+               <Route
+                  path="/faq"
+                  element={
+                     <Faqpage
+                        setShow={setShow}
+                        setSidebarShow={setSidebarShow}
+                     />
+                  }
+               />
+               <Route
+                  path="/*"
+                  element={
+                     <PagenotFound
+                        setShow={setShow}
+                        setSidebarShow={setSidebarShow}
+                     />
+                  }
+               />
+            </Routes>
+            {show && <FooterComponent />}
+            <ToastContainer
+               position="top-right"
+               autoClose={3500}
+               hideProgressBar
+               newestOnTop={false}
+               closeOnClick
+               rtl={false}
+               pauseOnFocusLoss
+               draggable
+               pauseOnHover
+               theme="light"
             />
-            <Route path="/profile" element={<Profile setShow={setShow} />} />
-            <Route path="/courses" element={<Courses setShow={setShow} />} />
-            <Route
-               path="/contactus"
-               element={<Contactus setShow={setShow} />}
-            />
-            <Route path="/terms" element={<Terms setShow={setShow} />} />
-            <Route path="/privacy" element={<Privacy setShow={setShow} />} />
-            <Route path="/payment" element={<Payment setShow={setShow} />} />
-            <Route path="/faq" element={<Faqpage setShow={setShow} />} />
-            <Route path="/*" element={<PagenotFound setShow={setShow} />} />
-         </Routes>
-         {show && <FooterComponent />}
-
-         <ToastContainer
-            position="top-right"
-            autoClose={3500}
-            hideProgressBar
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-         />
+         </FrappeProvider>
       </>
    );
 }

@@ -1,20 +1,25 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { candidateUpdate, makePaymentOrder } from "../api/allApi";
+import axios from "axios";
+import { useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk";
 
 function RazorpayButton({ amount, payment }) {
-   const navigate = useNavigate();
 
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
+   const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
 
-   const updatePayment = async () => {
+   const { updateDoc } = useFrappeUpdateDoc();
+   const { mutate } = useFrappeGetDoc("Student", c_id);
+
+   const updatePayment = () => {
       try {
-         const body = {
-            [payment]: "1",
-         };
-         const res = await candidateUpdate(body, name);
-         console.log(res);
+         updateDoc("Student", c_id, { [payment]: "1" })
+            .then((res) => {
+               console.log(res);
+               mutate();
+            })
+            .catch((err) => console.log(err));
       } catch (error) {
          console.error(error);
       }
@@ -22,12 +27,14 @@ function RazorpayButton({ amount, payment }) {
 
    const handlePayment = async () => {
       try {
-         const response = await makePaymentOrder({ amount });
-
-         const orderData = response.data.message;
+         const { data } = await axios.post(
+            "https://findrstudy.frappe.cloud/api/method/findr.api.create_payment_order",
+            { amount }
+         );
+         const orderData = data.message;
 
          var options = {
-            key: "rzp_test_feeHuamS6xqUwU",
+            key: "rzp_test_lDvq7ADMCnmvcz",
             amount: orderData.amount,
             currency: orderData.currency,
             name: "Findr Study",
@@ -35,7 +42,7 @@ function RazorpayButton({ amount, payment }) {
             order_id: orderData.id,
             handler: async function (response) {
                await fetch(
-                  "http://127.0.0.1:8000/api/method/findr.api.verify_payment",
+                  "https://findrstudy.frappe.cloud/api/method/findr.api.verify_payment",
                   {
                      method: "POST",
                      headers: {
@@ -56,7 +63,6 @@ function RazorpayButton({ amount, payment }) {
                               "Payment ID:" +
                               response.razorpay_payment_id
                         );
-                        toast.success("Your courses will be updated soon");
                         updatePayment();
                      } else {
                         toast.warning(
@@ -87,7 +93,6 @@ function RazorpayButton({ amount, payment }) {
          className="btn text-light mt-4 rounded "
          style={{
             backgroundColor: "#0F6990",
-            // borderRadius: '20px',
             width: "100px",
             height: "40px",
          }}

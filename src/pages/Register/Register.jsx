@@ -3,10 +3,11 @@ import Logo from "../../assets/f.png";
 import RegImg from "../../assets/login.svg";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { candidateRegister } from "../../api/allApi";
+import { useFrappeCreateDoc } from "frappe-react-sdk";
 
-function Register({ setShow }) {
+function Register({ setShow, setSidebarShow }) {
    setShow(true);
+   setSidebarShow(false);
    const navigate = useNavigate();
    const [showPassword, setShowPassword] = useState(false);
 
@@ -30,6 +31,8 @@ function Register({ setShow }) {
       const { name, value } = e.target;
       setInputData({ ...inputData, [name]: value });
    };
+
+   const { createDoc } = useFrappeCreateDoc();
 
    const handleSignup = async (e) => {
       e.preventDefault();
@@ -63,23 +66,24 @@ function Register({ setShow }) {
             password,
             phone_number,
          };
-         try {
-            const response = await candidateRegister(body);
 
-            if (response.status === 200) {
-               const name = response.data.data.name;
-               const email = response.data.data.email;
-               toast.success("Logged in successfully");
-               localStorage.setItem(
-                  "findrData",
-                  JSON.stringify({ name, email })
-               );
-               navigate("/profile/update");
-            } else if (response.status > 400) {
-               toast.error("User already exists. Try logging in.");
-            }
+         try {
+            createDoc("Student", body)
+               .then((res) => {
+                  console.log(res);
+                  const c_id = res.name;
+                  const name = res.first_name;
+                  const email = res.email;
+                  toast.success("Logged in successfully");
+                  localStorage.setItem(
+                     "findrData",
+                     JSON.stringify({ c_id, name, email })
+                  );
+                  navigate("/profile/update");
+               })
+               .catch((err) => console.error(err));
          } catch (err) {
-            console.log(err);
+            console.error(err);
             toast.error("There have been some error. Please try again later");
          }
       }

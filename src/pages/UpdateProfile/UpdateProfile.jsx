@@ -6,18 +6,20 @@ import right from "../../assets/right.svg";
 import left from "../../assets/left.svg";
 import Logo from "../../assets/f.png";
 import submit from "../../assets/submit.svg";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { candidateUpdate, getCandidate } from "../../api/allApi";
 import { updatedProfileContext } from "../../context/ContextShare";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useFrappeUpdateDoc } from "frappe-react-sdk";
 
-function UpdateProfile({ setShow }) {
+function UpdateProfile({ setShow, setSidebarShow }) {
    setShow(true);
+   setSidebarShow(false);
    const navigate = useNavigate();
    const email = JSON.parse(localStorage.getItem("findrData"))?.email;
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
+   const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
 
    const cards = [
       {
@@ -937,6 +939,8 @@ function UpdateProfile({ setShow }) {
       );
    };
 
+   const { updateDoc } = useFrappeUpdateDoc();
+
    const handleSubmit = async (e, updatedData) => {
       e.preventDefault();
       const {
@@ -955,20 +959,16 @@ function UpdateProfile({ setShow }) {
       ) {
          toast.warning("Fill all details");
       } else {
-         const body = {
-            name,
-            doctype: "Student",
-            ...updatedData,
-         };
-         try {
-            const res = await candidateUpdate(body, name);
-            toast.success("Updated");
-            navigate("/profile");
-         } catch (err) {
-            console.log(err);
-            toast.error("There have been some technical error.");
-            toast.error("Please try again later.");
-         }
+         updateDoc("Student", c_id, { ...updatedData })
+            .then((res) => {
+               console.log(res);
+               toast.success("Updated");
+               navigate("/profile");
+            })
+            .catch((err) => {
+               console.log(err);
+               toast.warning("Some internal errors. Please try again later");
+            });
       }
    };
 

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import downArrow from "../../assets/down.svg";
 
-function Faqpage() {
+function Faqpage({ setShow, setSidebarShow }) {
+   setShow(true);
+   setSidebarShow(false);
    const [selected, setSelected] = useState(null);
 
    const toggle = (i) => {
@@ -99,7 +101,11 @@ function Faqpage() {
                            <img src={downArrow} alt="down arrow" />
                         </p>
                      </div>
-                     <div className={selected === item.id ? "answer show" : "answer"}>
+                     <div
+                        className={
+                           selected === item.id ? "answer show" : "answer"
+                        }
+                     >
                         <hr className="answerLine" />
                         <p
                            className="px-3 fw-bold "
