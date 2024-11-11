@@ -13,7 +13,7 @@ function NavbarComponent() {
 
    const { sidebarCollapse, setSidebarCollapse } = useContext(sidebarContext);
 
-   const authLink = import.meta.env.VITE_FRAPPE_AUTH_LINK;
+   // const authLink = import.meta.env.VITE_FRAPPE_AUTH_LINK;
    const findrData = JSON.parse(localStorage.getItem("findrData"));
 
    useEffect(() => {
@@ -67,8 +67,10 @@ function NavbarComponent() {
                </Button>
             ) : (
                <Button
-                  onClick={() => {
-                     location.href = authLink;
+                  onClick={(e) => {
+                     e.preventDefault();
+                     navigate("/login");
+                     // location.href = authLink;
                   }}
                   className="btn text-light"
                   style={{ backgroundColor: "#0F6990" }}

@@ -20,66 +20,90 @@ import ScrollToTop from "./components/ScrollToTop.jsx";
 import Courses from "./pages/Courses/Courses.jsx";
 import Faqpage from "./pages/FAQ/Faqpage.jsx";
 import PagenotFound from "./pages/PagenotFound/PagenotFound.jsx";
-import { FrappeProvider } from "frappe-react-sdk";
+import {
+   FrappeProvider,
+   useFrappeAuth,
+   useFrappeGetDoc,
+} from "frappe-react-sdk";
 import axios from "axios";
 import SliderComponent from "./components/SliderComponent/SliderComponent.jsx";
 
 function App() {
    const [show, setShow] = useState(true);
    const [sidebarShow, setSidebarShow] = useState(true);
-   const [token, setToken] = useState("");
 
-   const access = localStorage.getItem("access");
+   // const [token, setToken] = useState("");
 
-   const [searchParams] = useSearchParams();
+   // const access = localStorage.getItem("access");
 
-   const getAccessToken = async () => {
-      if (access) {
-         setToken(access);
-      } else {
-         try {
-            await axios
-               .post(
-                  "https://findrstudy.frappe.cloud/api/method/frappe.integrations.oauth2.get_token",
-                  {
-                     grant_type: "authorization_code",
-                     code: searchParams.get("code"),
-                     client_id: "mmcsk8kp8q",
-                     redirect_uri: "http://localhost:5173/login/",
-                  },
-                  {
-                     headers: {
-                        "Content-Type": "application/x-www-form-urlencoded",
-                     },
-                  }
-               )
-               .then((res) => {
-                  if (res.status === 200) {
-                     console.log(res);
+   // const [searchParams] = useSearchParams();
 
-                     setToken(res.data.access_token);
-                     localStorage.setItem("access", res.data.access_token);
-                  }
-               })
-               .catch((err) => console.error(err));
-         } catch (err) {
-            console.log(err);
-         }
-      }
-   };
+   // const getAccessToken = async () => {
+   //    if (access) {
+   //       setToken(access);
+   //    } else {
+   //       try {
+   //          await axios
+   //             .post(
+   //                "https://findrstudy.frappe.cloud/api/method/frappe.integrations.oauth2.get_token",
+   //                {
+   //                   grant_type: "authorization_code",
+   //                   code: searchParams.get("code"),
+   //                   client_id: "mmcsk8kp8q",
+   //                   redirect_uri: "https://findr-dev.netlify.app/login/",
+   //                },
+   //                {
+   //                   headers: {
+   //                      "Content-Type": "application/x-www-form-urlencoded",
+   //                   },
+   //                }
+   //             )
+   //             .then((res) => {
+   //                if (res.status === 200) {
+   //                   console.log(res);
 
-   useEffect(() => {
-      getAccessToken();
-   }, []);
+   //                   setToken(res.data.access_token);
+   //                   localStorage.setItem("access", res.data.access_token);
+   //                }
+   //             })
+   //             .catch((err) => console.error(err));
+   //       } catch (err) {
+   //          console.log(err);
+   //       }
+   //    }
+   // };
+
+   // useEffect(() => {
+   //    getAccessToken();
+   //    axios
+   //       .post(
+   //          "https://findrstudy.frappe.cloud/api/method/login",
+   //          {
+   //             usr: "student@findr.study",
+   //             pwd: "pswd4student@findr",
+   //          },
+   //          {
+   //             headers: {
+   //                "Content-Type": "application/x-www-form-urlencoded",
+   //             },
+   //          }
+   //       )
+   //       .then((res) => {
+   //          console.log(res);
+   //       });
+
+   // }, []);
+   const api_key = import.meta.env.VITE_FRAPPE_STUDENT_KEY;
+   const api_secret = import.meta.env.VITE_FRAPPE_STUDENT_SECRET;
 
    return (
       <>
          <FrappeProvider
             url="https://findrstudy.frappe.cloud"
             tokenParams={{
-               type: "Bearer",
-               token: () => token,
+               type: "token",
                useToken: "true",
+               token: () => `${api_key}:${api_secret}`,
             }}
             enableSocket={false}
          >

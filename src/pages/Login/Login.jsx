@@ -11,7 +11,6 @@ function Login({ setShow, setSidebarShow }) {
    const navigate = useNavigate();
    const [showPassword, setShowPassword] = useState(false);
 
-   const [searchParams] = useSearchParams();
 
    const findrData = JSON.parse(localStorage.getItem("findrData"));
 
@@ -43,6 +42,7 @@ function Login({ setShow, setSidebarShow }) {
          toast.warning("Fill the form");
       } else {
          try {
+            console.log("Try");
             setFilters([["email", "=", email]]);
             if (password === data[0].password) {
                const c_id = data[0].name;
@@ -56,6 +56,8 @@ function Login({ setShow, setSidebarShow }) {
                navigate("/profile");
             } else toast.warning("Invalid credentials");
          } catch {
+            console.log("Catch");
+
             console.error(error);
          }
       }
