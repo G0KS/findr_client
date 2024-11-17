@@ -1,996 +1,1036 @@
 //-------------------------------------
 // signup validation
 //-------------------------------------
-import world from "../../assets/world.svg";
-import right from "../../assets/right.svg";
-import left from "../../assets/left.svg";
-import Logo from "../../assets/f.png";
-import submit from "../../assets/submit.svg";
-import { useContext, useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import { updatedProfileContext } from "../../context/ContextShare";
-import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { useFrappeUpdateDoc } from "frappe-react-sdk";
+import background from '../../assets/background.svg';
+
+import { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import logo from '../../assets/F.png';
+import { useNavigate } from 'react-router-dom';
+import { useFrappeUpdateDoc } from 'frappe-react-sdk';
+import Button from 'react-bootstrap/esm/Button';
 
 function UpdateProfile({ setShow, setSidebarShow }) {
-   setShow(true);
-   setSidebarShow(false);
-   const navigate = useNavigate();
-   const email = JSON.parse(localStorage.getItem("findrData"))?.email;
-   const name = JSON.parse(localStorage.getItem("findrData"))?.name;
-   const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
+  setShow(true);
+  setSidebarShow(false);
+  const navigate = useNavigate();
+  const email = JSON.parse(localStorage.getItem('findrData'))?.email;
+  const name = JSON.parse(localStorage.getItem('findrData'))?.name;
+  const c_id = JSON.parse(localStorage.getItem('findrData'))?.c_id;
 
-   const cards = [
-      {
-         id: 1,
-         title: "Tenth Qualification",
-         institution: "tenth_institution",
-         marks: "tenth_marks",
-         mode: "tenth_mode_of_study",
-      },
-      {
-         id: 2,
-         title: "Twelfth Qualification",
-         institution: "twelfth_institution",
-         marks: "twelfth_marks",
-         mode: "twelfth_mode_of_study",
-      },
-      {
-         id: 3,
-         title: "Undergraduate Qualification",
-         institution: "undergraduate_institution",
-         marks: "undergraduate_marks",
-         mode: "undergraduate_mode_of_study",
-      },
-      {
-         id: 4,
-         title: "Postgraduate Qualification",
-         institution: "postgraduate_institution",
-         marks: "postgraduate_marks",
-         mode: "postgraduate_mode_of_study",
-      },
-      {
-         id: 5,
-         title: "PhD Qualification",
-         institution: "phd_institution",
-         marks: "phd_marks",
-         mode: "phd_mode_of_study",
-      },
-      {
-         id: 6,
-         title: "Language Proficiency",
-         english: "english_skill",
-         new_language: "new_language",
-         proficiency: "proficiency_in_language",
-         language_proficiency: "language_proficiency",
-         language: "language",
-         certificate: "certificate",
-         level_of_proficiency: "level_of_proficiency",
-      },
-      {
-         id: 7,
-         title: "Work Experience",
-         work: "Intern",
-         subtitle: "Internship Details",
-         position: "intern_position",
-         company_name: "intern_company_name",
-         to: "intern_to",
-         from: "intern_from",
-      },
-      {
-         id: 8,
-         title: "Work Experience",
-         work: "Work",
-         subtitle: "Work Details",
-         position: "work_position",
-         company_name: "work_company_name",
-         to: "work_to",
-         from: "work_from",
-      },
+  useEffect(() => {
+    if (!name) {
+      toast.warning('Please login');
+      navigate('/login');
+    }
+  }, []);
 
-      {
-         id: 9,
-         title: "Preferences",
-         preferred_course: "preferred_course",
-         preferred_country: "preferred_country",
-      },
-      {
-         id: 10,
-         title: "Budget",
-         budget: "budget",
-      },
-      {
-         id: 11,
-         title: "Scholarship Details",
-         availing_scholarship: "availing_scholarship",
-         religion: "religion",
-         caste: "caste",
-      },
-      {
-         id: 12,
-         title: "Additional Details",
-         additional_info: "Additional Info",
-         nationality: "nationality",
-         date_of_birth: "date_of_birth",
-         intake: "intake",
-         year_of_study: "year_of_study",
-      },
-      // Add more cards as needed
-   ];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [component, setComponent] = useState(<></>);
 
-   useEffect(() => {
-      if (!name) {
-         toast.warning("Please login");
-         navigate("/login");
-      }
-   }, []);
+  const { updateDoc } = useFrappeUpdateDoc();
 
-   const [currentIndex, setCurrentIndex] = useState(0);
+  const handleNext = () => {
+    setCurrentIndex(currentIndex + 1);
+  };
 
-   const Cards = ({ data }) => {
-      const { updatedData, setUpdatedData } = useContext(updatedProfileContext);
+  const handleBack = () => {
+    setCurrentIndex(currentIndex - 1);
+  };
 
-      const getInputData = (e) => {
-         const { name, value } = e.target;
-         setUpdatedData({ ...updatedData, [name]: value });
-      };
+  const handleSubmit = async (e, updatedData) => {
+    e.preventDefault();
+    const {
+      tenth_institution,
+      tenth_marks,
+      tenth_mode_of_study,
+      preferred_country,
+      preferred_course,
+    } = updatedData;
+    if (
+      !tenth_institution ||
+      !tenth_marks ||
+      !tenth_mode_of_study ||
+      !preferred_country ||
+      !preferred_course
+    ) {
+      toast.warning('Fill all details');
+    } else {
+      updateDoc('Student', c_id, { ...updatedData })
+        .then((res) => {
+          console.log(res);
+          toast.success('Updated');
+          navigate('/profile');
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.warning('Some internal errors. Please try again later');
+        });
+    }
+  };
 
-      const addLanguage = async () => {
-         const language_proficiency = [
-            {
-               parent: email,
-               parentfield: "language_proficiency",
-               parenttype: "Student",
-               language: updatedData.language,
-               certificate: updatedData.certificate,
-               level_of_proficiency: updatedData.level_of_proficiency,
-            },
-         ];
-         setUpdatedData({ ...updatedData, language_proficiency });
-      };
+  useEffect(() => {
+    if (currentIndex == 0) {
+      setComponent(<EducationForm />);
+      window.scrollTo(0, 0);
+    } else if (currentIndex == 1) {
+      setComponent(<LanguageForm />);
+      window.scrollTo(0, 0);
+    } else if (currentIndex == 2) {
+      setComponent(<PersonalForm />);
+      window.scrollTo(0, 0);
+    } else if (currentIndex == 3) {
+      setComponent(<PreferenceForm />);
+      window.scrollTo(0, 0);
+    } else {
+      setCurrentIndex(0);
+      window.scrollTo(0, 0);
+    }
+  }, [currentIndex]);
 
-      const [intern, setIntern] = useState({
-         parent: email,
-         parentfield: "internship_details",
-         parenttype: "Student",
-         internship_experience: 1,
-      });
-
-      const getIntern = (e) => {
-         const { name, value } = e.target;
-         setIntern({ ...intern, [name]: value });
-      };
-
-      const addInternship = () => {
-         updatedData.internship_details.push(intern);
-      };
-
-      const [work, setWork] = useState({
-         parent: email,
-         parentfield: "work_experience",
-         parenttype: "Student",
-         work_experience: 1,
-      });
-
-      const getWork = (e) => {
-         const { name, value } = e.target;
-         setWork({ ...work, [name]: value });
-      };
-
-      const addWork = async () => {
-         updatedData.work_experience.push(work);
-      };
-
-      return (
-         <div
-            className="card active shadow px-5 py-4 mx-auto my-4 rounded-4"
+  return (
+    <section>
+      <img
+        style={{
+          position: 'absolute',
+          width: '100%',
+          zIndex: '-10',
+        }}
+        src={background}
+        alt=""
+        className="d-none d-lg-block"
+      />
+      <div style={{ paddingBlock: '95px' }} className="container ms-auto">
+        <div className="d-flex justify-content-center align-items-center  ">
+          <div
             style={{
-               maxWidth: "700px",
-               height: "620px",
-               position: "relative",
+              width: '40px',
+              height: '40px',
             }}
-         >
-            <div className="d-flex justify-content-center align-items-center m-4">
-               <img style={{ height: "40px" }} src={Logo} alt="" />
-               <h2 className=" fw-bold" style={{ marginBottom: "0px" }}>
-                  Complete Your{" "}
-                  <span style={{ color: "#0f6990" }}>Profile</span>
-               </h2>
-            </div>
-            <h3 className="card-title ">{data.title}</h3>
-            <div className="card-body mt-4">
-               {data.institution && (
-                  <div>
-                     <div className="d-flex justify-content-between mb-3">
-                        <label
-                           htmlFor=""
-                           className="fw-bold"
-                           style={{ fontSize: "21px" }}
-                        >
-                           Instituiton
-                        </label>
-                        <input
-                           type="text"
-                           value={updatedData[data.institution]}
-                           placeholder="Institution Name"
-                           name={data.institution}
-                           onChange={(e) => getInputData(e)}
-                           className="shadow-sm border rounded-4 px-3 py-2 "
-                           style={{
-                              fontSize: "15px",
-                              border: "none",
-                              outline: "none",
-                              width: "300px",
-                           }}
-                        />
-                     </div>
-                     <div className="d-flex justify-content-between mb-3">
-                        <label
-                           htmlFor=""
-                           className="fw-bold"
-                           style={{ fontSize: "20px" }}
-                        >
-                           Marks
-                        </label>
-                        <input
-                           type="text"
-                           value={updatedData[data.marks]}
-                           placeholder="Marks"
-                           name={data.marks}
-                           onChange={(e) => getInputData(e)}
-                           className="shadow-sm border rounded-4 px-3 py-2 "
-                           style={{
-                              border: "none",
-                              outline: "none",
-                              width: "300px",
-                           }}
-                        />
-                     </div>
-                     <div className="d-flex justify-content-between mb-3">
-                        <label
-                           htmlFor=""
-                           className="fw-bold"
-                           style={{ fontSize: "20px" }}
-                        >
-                           Mode of Study
-                        </label>
-                        <select
-                           className="shadow-sm border rounded-4 px-3 py-2 "
-                           value={updatedData[data.mode]}
-                           name={data.mode}
-                           onChange={(e) => getInputData(e)}
-                           style={{
-                              border: "none",
-                              outline: "none",
-                              width: "300px",
-                           }}
-                        >
-                           <option defaultValue hidden>
-                              Mode of Study
-                           </option>
-                           <option value="Full Time">Full Time</option>
-                           <option value="Part Time">Part Time</option>
-                           <option value="Distance / Online">
-                              Distance / Online
-                           </option>
-                        </select>
-                     </div>
-                  </div>
-               )}
-               {data.english && (
-                  <div>
-                     <div className=" mb-3">
-                        <p className="fw-bold" style={{ fontSize: "17px" }}>
-                           Do you have good communication skill in English?
-                        </p>
-                        <div className="d-flex align-items-center gap-3">
-                           <div className="d-flex align-items-center gap-2">
-                              <label>Yes</label>
-                              <input
-                                 type="radio"
-                                 name={data.english}
-                                 value="1"
-                                 checked={
-                                    updatedData[data.english] == 1
-                                       ? "checked"
-                                       : ""
-                                 }
-                                 onChange={(e) => getInputData(e)}
-                                 style={{
-                                    border: "none",
-                                    outline: "none",
-                                    height: "16px",
-                                    width: "16px",
-                                 }}
-                              />
-                           </div>
-                           <div className="d-flex align-items-center gap-2">
-                              <label>No</label>
-                              <input
-                                 type="radio"
-                                 name={data.english}
-                                 value={0}
-                                 checked={
-                                    updatedData[data.english] == 0
-                                       ? "checked"
-                                       : ""
-                                 }
-                                 onChange={(e) => getInputData(e)}
-                                 style={{
-                                    border: "none",
-                                    outline: "none",
-                                    height: "16px",
-                                    width: "16px",
-                                 }}
-                              />
-                           </div>
-                        </div>
-                     </div>
-                     <div className=" mb-3">
-                        <p className="fw-bold" style={{ fontSize: "17px" }}>
-                           Are you comfortable spending few months in learning a
-                           new language?
-                        </p>
-                        <div className="d-flex align-items-center gap-3">
-                           <div className="d-flex align-items-center gap-2">
-                              <label>Yes</label>
-                              <input
-                                 type="radio"
-                                 name={data.new_language}
-                                 value={1}
-                                 checked={
-                                    updatedData[data.new_language] == 1
-                                       ? "checked"
-                                       : ""
-                                 }
-                                 onChange={(e) => getInputData(e)}
-                                 style={{
-                                    border: "none",
-                                    outline: "none",
-                                    height: "16px",
-                                    width: "16px",
-                                 }}
-                              />
-                           </div>
-                           <div className="d-flex align-items-center gap-2">
-                              <label>No</label>
-                              <input
-                                 type="radio"
-                                 name={data.new_language}
-                                 value={0}
-                                 checked={
-                                    updatedData[data.new_language] == 0
-                                       ? "checked"
-                                       : ""
-                                 }
-                                 onChange={(e) => getInputData(e)}
-                                 style={{
-                                    border: "none",
-                                    outline: "none",
-                                    height: "16px",
-                                    width: "16px",
-                                 }}
-                              />
-                           </div>
-                        </div>
-                     </div>
-                     <div className=" mb-3">
-                        <p className="fw-bold" style={{ fontSize: "17px" }}>
-                           Have you got any language proficiency?
-                        </p>
-                        <div className="d-flex align-items-center gap-3">
-                           <div className="d-flex align-items-center gap-2">
-                              <label>Yes</label>
-                              <input
-                                 type="radio"
-                                 name={data.proficiency}
-                                 value={1}
-                                 checked={
-                                    updatedData[data.proficiency] == 1
-                                       ? "checked"
-                                       : ""
-                                 }
-                                 onChange={(e) => getInputData(e)}
-                                 style={{
-                                    border: "none",
-                                    outline: "none",
-                                    height: "16px",
-                                    width: "16px",
-                                 }}
-                              />
-                           </div>
-                           <div className="d-flex align-items-center gap-2">
-                              <label>No</label>
-                              <input
-                                 type="radio"
-                                 name={data.proficiency}
-                                 value={0}
-                                 checked={
-                                    updatedData[data.proficiency] == 0
-                                       ? "checked"
-                                       : ""
-                                 }
-                                 onChange={(e) => getInputData(e)}
-                                 style={{
-                                    border: "none",
-                                    outline: "none",
-                                    height: "16px",
-                                    width: "16px",
-                                 }}
-                              />
-                           </div>
-                        </div>
-                     </div>
-                     {/* <div className="d-flex flex-wrap gap-2 justify-content-center align-items-center mb-3">
-                <input
-                  type="text"
-                  placeholder="Language"
-                  name={data.language}
-                  onChange={(e) => getInputData(e)}
-                  className="shadow-sm border rounded-4 px-3 py-2 "
-                  style={{
-                    border: 'none',
-                    outline: 'none',
-                    width: '180px',
-                  }}
-                />
-                <input
-                  type="text"
-                  placeholder="Certificate"
-                  name={data.certificate}
-                  onChange={(e) => getInputData(e)}
-                  className="shadow-sm border rounded-4 px-3 py-2 "
-                  style={{
-                    border: 'none',
-                    outline: 'none',
-                    width: '180px',
-                  }}
-                />
-                <input
-                  type="text"
-                  placeholder="Level of Proficiency"
-                  name={data.level_of_proficiency}
-                  onChange={(e) => getInputData(e)}
-                  className="shadow-sm border rounded-4 px-3 py-2 "
-                  style={{
-                    border: 'none',
-                    outline: 'none',
-                    width: '180px',
-                  }}
-                />
-
-                <Link>
-                  {' '}
-                  <img src={check} alt="" />
-                </Link>
-                <Link>
-                  <img src={cancel} alt="" />
-                </Link>
-                <input
-                  className="d-none"
-                  type="checkbox"
-                  name=""
-                  id="addLangauge"
-                  onClick={addLanguage}
-                />
-              </div> */}
-                  </div>
-               )}
-               {data.work && (
-                  <div className="d-flex flex-wrap gap-3 justify-content-center align-items-center mb-3">
-                     <h5 style={{ color: "#0F6990" }}>{data.subtitle}</h5>
-                     <br />
-                     <div className="d-flex align-items-center justify-content-between  gap-3">
-                        <div className="d-flex flex-column">
-                           <label className="fw-bolder p-1" htmlFor="">
-                              Position
-                           </label>
-                           <input
-                              type="text"
-                              placeholder="Position (Job Role)"
-                              name={data.position}
-                              value={updatedData[data.position]}
-                              onChange={
-                                 data.work === "Intern"
-                                    ? (e) => {
-                                         getIntern(e);
-                                      }
-                                    : (e) => {
-                                         getWork(e);
-                                      }
-                              }
-                              className="shadow-sm border rounded-4 px-3 py-2 "
-                              style={{
-                                 border: "none",
-                                 outline: "none",
-                                 width: "220px",
-                              }}
-                           />
-                        </div>
-                        <div className="d-flex flex-column">
-                           <label className="fw-bolder p-1" htmlFor="">
-                              Company Name{" "}
-                           </label>
-                           <input
-                              type="text"
-                              placeholder="Company Name"
-                              name={data.company_name}
-                              value={updatedData[data.company_name]}
-                              onChange={
-                                 data.work === "Intern"
-                                    ? (e) => {
-                                         getIntern(e);
-                                      }
-                                    : (e) => {
-                                         getWork(e);
-                                      }
-                              }
-                              className="shadow-sm border rounded-4 px-3 py-2 "
-                              style={{
-                                 border: "none",
-                                 outline: "none",
-                                 width: "220px",
-                              }}
-                           />
-                        </div>
-                     </div>
-                     <div className="d-flex align-items-center gap-3">
-                        <div className=" d-flex flex-column">
-                           <label className="fw-bolder p-1" htmlFor="">
-                              From
-                           </label>
-                           <input
-                              type="date"
-                              placeholder="From"
-                              name={data.from}
-                              value={updatedData[data.from]}
-                              onChange={
-                                 data.work === "Intern"
-                                    ? (e) => {
-                                         getIntern(e);
-                                      }
-                                    : (e) => {
-                                         getWork(e);
-                                      }
-                              }
-                              className="shadow-sm border rounded-4 px-3 py-2 "
-                              style={{
-                                 border: "none",
-                                 outline: "none",
-                                 width: "220px",
-                              }}
-                           />
-                        </div>
-                        <div className="d-flex flex-column">
-                           <label className="fw-bolder p-1" htmlFor="">
-                              To
-                           </label>
-                           <input
-                              type="date"
-                              placeholder="To"
-                              name={data.to}
-                              value={updatedData[data.to]}
-                              onChange={
-                                 data.work === "Intern"
-                                    ? (e) => {
-                                         getIntern(e);
-                                      }
-                                    : (e) => {
-                                         getWork(e);
-                                      }
-                              }
-                              className="shadow-sm border rounded-4 px-3 py-2 "
-                              style={{
-                                 border: "none",
-                                 outline: "none",
-                                 width: "220px",
-                              }}
-                           />
-                        </div>
-                     </div>
-
-                     {data.work === "Intern" ? (
-                        <div>
-                           <div className="d-flex justify-content-center align-items-center p-3">
-                              <Button
-                                 className="btn ext-light d-flex justify-content-center align-items-center"
-                                 style={{ backgroundColor: "#0F6990" }}
-                                 onClick={addInternship}
-                              >
-                                 Save & add more
-                              </Button>
-                           </div>
-                        </div>
-                     ) : (
-                        <div>
-                           <div className="d-flex justify-content-center align-items-center p-3">
-                              <Button
-                                 className="btn ext-light d-flex justify-content-center align-items-center"
-                                 style={{ backgroundColor: "#0F6990" }}
-                                 onClick={addWork}
-                              >
-                                 Save & add more
-                              </Button>
-                           </div>
-                        </div>
-                     )}
-                  </div>
-               )}
-               {data.preferred_course && (
-                  <div>
-                     <div className="d-flex justify-content-between mb-3">
-                        <label
-                           htmlFor=""
-                           className="fw-bold"
-                           style={{ fontSize: "21px" }}
-                        >
-                           Preferred course
-                        </label>
-                        <input
-                           type="text"
-                           placeholder="Course Name"
-                           name={data.preferred_course}
-                           value={updatedData[data.preferred_course]}
-                           onChange={(e) => getInputData(e)}
-                           className="shadow-sm border rounded-4 px-3 py-2 "
-                           style={{
-                              fontSize: "15px",
-                              border: "none",
-                              outline: "none",
-                              width: "300px",
-                           }}
-                        />
-                     </div>
-                     <div className="d-flex justify-content-between mb-3">
-                        <label
-                           htmlFor=""
-                           className="fw-bold"
-                           style={{ fontSize: "20px" }}
-                        >
-                           Preferred Country
-                        </label>
-                        <input
-                           type="text"
-                           placeholder="Country Name"
-                           name={data.preferred_country}
-                           value={updatedData[data.preferred_country]}
-                           onChange={(e) => getInputData(e)}
-                           className="shadow-sm border rounded-4 px-3 py-2 "
-                           style={{
-                              border: "none",
-                              outline: "none",
-                              width: "300px",
-                           }}
-                        />
-                     </div>
-                  </div>
-               )}
-               {data.budget && (
-                  <div>
-                     <div className="d-flex justify-content-between mb-3">
-                        <label
-                           htmlFor=""
-                           className="fw-bold"
-                           style={{ fontSize: "21px" }}
-                        >
-                           Budget
-                        </label>
-                        <input
-                           type="text"
-                           value={updatedData[data.budget]}
-                           placeholder="Enter Budget"
-                           name={data.budget}
-                           onChange={(e) => getInputData(e)}
-                           className="shadow-sm border rounded-4 px-3 py-2 "
-                           style={{
-                              fontSize: "15px",
-                              border: "none",
-                              outline: "none",
-                              width: "300px",
-                           }}
-                        />
-                     </div>
-                  </div>
-               )}
-               {data.availing_scholarship && (
-                  <div className=" mb-3">
-                     <p className="fw-bold" style={{ fontSize: "19px" }}>
-                        Do you wish to Avail Scholarship?
-                     </p>
-                     <div className="d-flex align-items-center gap-3 mb-3">
-                        <div className="d-flex align-items-center gap-2">
-                           <label>Yes</label>
-                           <input
-                              type="radio"
-                              name={data.availing_scholarship}
-                              value={1}
-                              checked={
-                                 updatedData[data.availing_scholarship] == 1
-                                    ? "checked"
-                                    : ""
-                              }
-                              onChange={(e) => getInputData(e)}
-                              style={{
-                                 border: "none",
-                                 outline: "none",
-                                 height: "16px",
-                                 width: "16px",
-                              }}
-                           />
-                        </div>
-                        <div className="d-flex align-items-center gap-2">
-                           <label>No</label>
-                           <input
-                              type="radio"
-                              name={data.availing_scholarship}
-                              value={0}
-                              checked={
-                                 updatedData[data.availing_scholarship] == 0
-                                    ? "checked"
-                                    : ""
-                              }
-                              onChange={(e) => getInputData(e)}
-                              style={{
-                                 border: "none",
-                                 outline: "none",
-                                 height: "16px",
-                                 width: "16px",
-                              }}
-                           />
-                        </div>
-                     </div>
-                     <div className="d-flex mb-2 align-items-center">
-                        <label
-                           htmlFor=""
-                           className="fw-bold"
-                           style={{ fontSize: "20px", width: "200px" }}
-                        >
-                           Religion
-                        </label>
-                        <input
-                           type="text"
-                           value={updatedData[data.religion]}
-                           placeholder="Religion"
-                           name={data.religion}
-                           onChange={(e) => getInputData(e)}
-                           className="shadow-sm border rounded-4 px-3 py-2 "
-                           style={{
-                              border: "none",
-                              outline: "none",
-                              width: "300px",
-                           }}
-                        />
-                     </div>
-                     <p style={{ color: "gray" }}>
-                        Due to Reservation and Scholarships{" "}
-                     </p>
-                     <div className="d-flex align-items-center  mb-2">
-                        <label
-                           htmlFor=""
-                           className="fw-bold"
-                           style={{ fontSize: "20px", width: "200px" }}
-                        >
-                           Caste
-                        </label>
-                        <input
-                           type="text"
-                           value={updatedData[data.caste]}
-                           placeholder="Caste"
-                           name={data.caste}
-                           onChange={(e) => getInputData(e)}
-                           className="shadow-sm border rounded-4 px-3 py-2 "
-                           style={{
-                              border: "none",
-                              outline: "none",
-                              width: "300px",
-                           }}
-                        />
-                     </div>
-                     <p style={{ color: "gray" }}>
-                        Due to Reservation and Scholarships{" "}
-                     </p>
-                  </div>
-               )}
-               {data.additional_info && (
-                  <div>
-                     <div className="d-flex align-items-center  mb-3">
-                        <label
-                           htmlFor=""
-                           className="fw-bold"
-                           style={{ fontSize: "20px", width: "200px" }}
-                        >
-                           Nationality
-                        </label>
-                        <input
-                           type="text"
-                           value={updatedData[data.nationality]}
-                           placeholder="Enter Nationality"
-                           name={data.nationality}
-                           onChange={(e) => getInputData(e)}
-                           className="shadow-sm border rounded-4 px-3 py-2 "
-                           style={{
-                              border: "none",
-                              outline: "none",
-                              width: "300px",
-                           }}
-                        />
-                     </div>
-                     <div className="d-flex align-items-center  mb-3">
-                        <label
-                           htmlFor=""
-                           className="fw-bold"
-                           style={{ fontSize: "20px", width: "200px" }}
-                        >
-                           Date Of Birth
-                        </label>
-                        <input
-                           type="date"
-                           value={updatedData[data.date_of_birth]}
-                           placeholder="Enter Date Of Birth"
-                           name={data.date_of_birth}
-                           onChange={(e) => getInputData(e)}
-                           className="shadow-sm border rounded-4 px-3 py-2 "
-                           style={{
-                              border: "none",
-                              outline: "none",
-                              width: "300px",
-                           }}
-                        />
-                     </div>
-                     <div className="d-flex align-items-center  mb-3">
-                        <label
-                           htmlFor=""
-                           className="fw-bold"
-                           style={{ fontSize: "20px", width: "200px" }}
-                        >
-                           Intake
-                        </label>
-                        <input
-                           type="text"
-                           value={updatedData[data.intake]}
-                           placeholder="Enter Intake"
-                           name={data.intake}
-                           onChange={(e) => getInputData(e)}
-                           className="shadow-sm border rounded-4 px-3 py-2 "
-                           style={{
-                              border: "none",
-                              outline: "none",
-                              width: "300px",
-                           }}
-                        />
-                     </div>
-                     <div className="d-flex align-items-center  mb-3">
-                        <label
-                           htmlFor=""
-                           className="fw-bold"
-                           style={{ fontSize: "20px", width: "200px" }}
-                        >
-                           Year Of Study
-                        </label>
-                        <input
-                           type="text"
-                           value={updatedData[data.year_of_study]}
-                           placeholder="Enter Year Of Study "
-                           name={data.year_of_study}
-                           onChange={(e) => getInputData(e)}
-                           className="shadow-sm border rounded-4 px-3 py-2 "
-                           style={{
-                              border: "none",
-                              outline: "none",
-                              width: "300px",
-                           }}
-                        />
-                     </div>
-                  </div>
-               )}
-               <div
-                  className="d-flex justify-content-end"
-                  style={{
-                     position: "absolute",
-                     bottom: "40px",
-                     right: "40px",
-                  }}
-               >
-                  {currentIndex > 0 && (
-                     <button
-                        className="btn text-light rounded-5 me-2"
-                        style={{ backgroundColor: "#0F6990" }}
-                        onClick={handlePrevious}
-                     >
-                        <img style={{ width: "26px" }} src={left} alt="" />
-                     </button>
-                  )}
-
-                  {currentIndex > cards.length - 2 ? (
-                     <button
-                        className="btn btn-success rounded-4"
-                        onClick={(e) => handleSubmit(e, updatedData)}
-                     >
-                        Submit
-                        <img
-                           style={{ maxWidth: "20px", marginLeft: "5px" }}
-                           src={submit}
-                           alt=""
-                        />
-                     </button>
-                  ) : (
-                     <button
-                        className="btn text-light rounded-5"
-                        style={{ backgroundColor: "#0F6990" }}
-                        onClick={handleNext}
-                     >
-                        <img style={{ width: "26px" }} src={right} alt="" />
-                     </button>
-                  )}
-               </div>
-            </div>
-         </div>
-      );
-   };
-
-   const handleNext = () => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
-   };
-
-   const handlePrevious = () => {
-      setCurrentIndex(
-         (prevIndex) => (prevIndex - 1 + cards.length) % cards.length
-      );
-   };
-
-   const { updateDoc } = useFrappeUpdateDoc();
-
-   const handleSubmit = async (e, updatedData) => {
-      e.preventDefault();
-      const {
-         tenth_institution,
-         tenth_marks,
-         tenth_mode_of_study,
-         preferred_country,
-         preferred_course,
-      } = updatedData;
-      if (
-         !tenth_institution ||
-         !tenth_marks ||
-         !tenth_mode_of_study ||
-         !preferred_country ||
-         !preferred_course
-      ) {
-         toast.warning("Fill all details");
-      } else {
-         updateDoc("Student", c_id, { ...updatedData })
-            .then((res) => {
-               console.log(res);
-               toast.success("Updated");
-               navigate("/profile");
-            })
-            .catch((err) => {
-               console.log(err);
-               toast.warning("Some internal errors. Please try again later");
-            });
-      }
-   };
-
-   return (
-      <section>
-         <img
+            className="image"
+          >
+            <img style={{ height: '100%' }} src={logo} alt="" />
+          </div>
+          <h2 className="" style={{ marginBottom: '0' }}>
+            Complete Your Profile{' '}
+          </h2>
+        </div>
+        <div
+          className="formContainer"
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <div
+            className="form shadow rounded mt-4 p-4 "
             style={{
-               position: "absolute",
-               width: "100%",
-               zIndex: "-10",
+              width: '60rem',
+              backgroundColor: '#fafafa',
             }}
-            src={world}
-            alt=""
-            className="d-none d-lg-block"
-         />
-         <div style={{ paddingBlock: "65px" }} className="container ms-auto">
-            <div className="cardContainer">
-               <Cards index={currentIndex} data={cards[currentIndex]} />
-            </div>
-         </div>
-      </section>
-   );
+          >
+            <div className=" my-5">{component}</div>
+          </div>
+        </div>
+        <div className="formButtons d-flex justify-content-center p-5">
+          <Button className="me-3" variant="outline-dark" onClick={handleBack}>
+            Back
+          </Button>
+          <Button style={{ backgroundColor: '#0f6990' }} onClick={handleNext}>
+            Next Page
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default UpdateProfile;
+
+function EducationForm() {
+  return (
+    <div className="educationContainer">
+      <h3
+        className="d-flex justify-content-center"
+        style={{ color: '#0f6990' }}
+      >
+        Education Info
+      </h3>
+      <div className="Tenth">
+        <h4 className="p-4">
+          <span style={{ color: '#0f6990' }}>Tenth </span>
+          Qualification
+        </h4>
+
+        <div className="row p-4 d-flex">
+          <div className="col ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2 "
+              style={{ fontSize: '17px' }}
+            >
+              Institution
+            </label>
+            <input className="profileInputBox " type="text" />
+          </div>
+          <div className="col ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Marks
+            </label>
+            <input className="profileInputBox " type="text" />
+          </div>
+          <div className="col mt-5 ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Year
+            </label>
+            <input className="profileInputBox " type="text" />
+          </div>
+          <div className="col mt-5  ">
+            <label
+              htmlFor=""
+              className="fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Mode Of Study
+            </label>
+            <div className="fw-bolder d-flex mt-2">
+              <div className="">
+                <input type="radio" id="fulltime" name="modOfstudy" checked />
+                <label>Full time</label>
+              </div>
+
+              <div className="ms-5">
+                <input name="modOfstudy" type="radio" id="parttime" />
+                <label>Part time</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="Twelfth">
+        <h4 className="p-4">
+          <span style={{ color: '#0f6990' }}>Twelfth </span>
+          Qualification
+        </h4>
+
+        <div className="row p-4 d-flex">
+          <div className="col ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Institution
+            </label>
+            <input className="profileInputBox " type="text" />
+          </div>
+          <div className="col ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Marks
+            </label>
+            <input className="profileInputBox " type="text" />
+          </div>
+          <div className="col mt-5 ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Year
+            </label>
+            <input className="profileInputBox " type="text" />
+          </div>
+          <div className="col mt-5  ">
+            <label
+              htmlFor=""
+              className="fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Mode Of Study
+            </label>
+            <div className="fw-bolder d-flex mt-2">
+              <div className="">
+                <input type="radio" id="fulltime" name="modOfstudy" checked />
+                <label>Full time</label>
+              </div>
+
+              <div className="ms-5">
+                <input name="modOfstudy" type="radio" id="parttime" />
+                <label>Part time</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="Undergraduate">
+        <h4 className="p-4">
+          <span style={{ color: '#0f6990' }}>Undergraduate </span>
+          Qualification
+        </h4>
+
+        <div className="row p-4 d-flex">
+          <div className="col ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Institution
+            </label>
+            <input className="profileInputBox " type="text" />
+          </div>
+          <div className="col ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Marks
+            </label>
+            <input className="profileInputBox " type="text" />
+          </div>
+          <div className="col mt-5 ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Year
+            </label>
+            <input className="profileInputBox " type="text" />
+          </div>
+          <div className="col mt-5  ">
+            <label
+              htmlFor=""
+              className="fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Mode Of Study
+            </label>
+            <div className="fw-bolder d-flex mt-2">
+              <div className="">
+                <input type="radio" id="fulltime" name="modOfstudy" checked />
+                <label>Full time</label>
+              </div>
+
+              <div className="ms-5">
+                <input name="modOfstudy" type="radio" id="parttime" />
+                <label>Part time</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="Postgraduate ">
+        <h4 className="p-4">
+          <span style={{ color: '#0f6990' }}>Postgraduate </span>
+          Qualification
+        </h4>
+
+        <div className="row p-4 d-flex">
+          <div className="col ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Institution
+            </label>
+            <input className="profileInputBox " type="text" />
+          </div>
+          <div className="col ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Marks
+            </label>
+            <input className="profileInputBox " type="text" />
+          </div>
+          <div className="col mt-5 ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Year
+            </label>
+            <input className="profileInputBox " type="text" />
+          </div>
+          <div className="col mt-5  ">
+            <label
+              htmlFor=""
+              className="fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Mode Of Study
+            </label>
+            <div className="fw-bolder d-flex mt-2">
+              <div className="">
+                <input type="radio" id="fulltime" name="modOfstudy" checked />
+                <label>Full time</label>
+              </div>
+
+              <div className="ms-5">
+                <input name="modOfstudy" type="radio" id="parttime" />
+                <label>Part time</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="Phd">
+        <h4 className="p-4">
+          <span style={{ color: '#0f6990' }}>PhD</span>Qualification
+        </h4>
+
+        <div className="row p-4 d-flex">
+          <div className="col ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Institution
+            </label>
+            <input className="profileInputBox " type="text" />
+          </div>
+          <div className="col ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Marks
+            </label>
+            <input className="profileInputBox " type="text" />
+          </div>
+          <div className="col mt-5 ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Year
+            </label>
+            <input className="profileInputBox " type="text" />
+          </div>
+          <div className="col mt-5  ">
+            <label
+              htmlFor=""
+              className="fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Mode Of Study
+            </label>
+            <div className="fw-bolder d-flex mt-2">
+              <div className="">
+                <input type="radio" id="fulltime" name="modOfstudy" checked />
+                <label>Full time</label>
+              </div>
+
+              <div className="ms-5">
+                <input name="modOfstudy" type="radio" id="parttime" />
+                <label>Part time</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function LanguageForm() {
+  return (
+    <div>
+      <h3
+        className="d-flex justify-content-center"
+        style={{ color: '#0f6990' }}
+      >
+        Language Proficiency
+      </h3>
+      <div className="p-5 fw-bolder ">
+        <div>
+          <p style={{ fontSize: '17px' }}>
+            Do you have good communication skill in English?
+          </p>
+          <div className="fw-bolder d-flex mt-2">
+            <div className="">
+              <input type="radio" id="fulltime" name="modOfstudy" checked />
+              <label className="ms-2">Yes</label>
+            </div>
+
+            <div className="ms-5">
+              <input name="modOfstudy" type="radio" id="parttime" />
+              <label className="ms-2">No</label>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-4">
+          <p style={{ fontSize: '17px' }}>
+            Are you comfortable spending few months in learning a new language?
+          </p>
+          <div className="fw-bolder d-flex mt-2">
+            <div className="">
+              <input type="radio" id="fulltime" name="modOfstudy" checked />
+              <label className="ms-2">Yes</label>
+            </div>
+
+            <div className="ms-5">
+              <input name="modOfstudy" type="radio" id="parttime" />
+              <label className="ms-2">No</label>
+            </div>
+          </div>
+        </div>
+        <div className="mt-4">
+          <p style={{ fontSize: '17px' }}>
+            Have you got any language proficiency?
+          </p>
+          <div className="fw-bolder d-flex mt-2">
+            <div className="">
+              <input type="radio" id="fulltime" name="modOfstudy" checked />
+              <label className="ms-2">Yes</label>
+            </div>
+
+            <div className="ms-5">
+              <input name="modOfstudy" type="radio" id="parttime" />
+              <label className="ms-2">No</label>
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col mt-5 ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Which language?
+
+            </label>
+            <input
+              className="profileInputBox "
+              placeholder="Enter Language"
+              type="text"
+            />
+           
+          </div>
+          <div className="col mt-5  ">
+            <label
+              htmlFor=""
+              className="fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Which certificate?
+
+            </label>
+            
+            <input
+              className="profileInputBox  "
+              placeholder="Certificate Name"
+              type="text"
+            />
+             <p className="mt-2 " style={{ color: 'gray' }}>
+            Level of proficiency
+
+            </p>
+          </div>
+        </div>
+
+
+      </div>
+      <div className="PreferenceForm p-5">
+        <h3
+          className="d-flex justify-content-center fw-bolder mb-5"
+          style={{ color: '#0f6990' }}
+        >
+          Preferences
+        </h3>
+        <div className="row">
+          <div className="col ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Preferred course
+            </label>
+            <input
+              className="profileInputBox "
+              placeholder="Course Name"
+              type="text"
+            />
+          </div>
+          <div className="col">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Preferred Country
+            </label>
+            <input
+              className="profileInputBox "
+              placeholder="Country Name"
+              type="text"
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col mt-5 ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+            What is your budget including the flight ticket?
+            </label>
+            <input
+              className="profileInputBox "
+              placeholder="Enter Budget"
+              type="text"
+            />
+          </div>
+          <div className="col mt-5  ">
+            <label
+              htmlFor=""
+              className="fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Do you wish to Avail Scholarship?
+            </label>
+            <div className="fw-bolder d-flex mt-2">
+              <div className="">
+                <input type="radio" id="fulltime" name="modOfstudy" checked />
+                <label className='ms-2'>Yes</label>
+              </div>
+
+              <div className="ms-5">
+                <input name="modOfstudy" type="radio" id="parttime" />
+                <label className='ms-2' >No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col mt-5 ">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Religion
+            </label>
+            <input
+              className="profileInputBox "
+              placeholder="Enter Religion"
+              type="text"
+            />
+            <p className="mt-2 " style={{ color: 'gray' }}>
+              Due to Reservation and Scholarships
+            </p>
+          </div>
+          <div className="col mt-5  ">
+            <label
+              htmlFor=""
+              className="fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Do you wish to Avail Scholarship?
+            </label>
+            <input
+              className="profileInputBox  "
+              placeholder="Enter Cast"
+              type="text"
+            />
+            <p className="mt-2 " style={{ color: 'gray' }}>
+              Due to Reservation and Scholarships
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PersonalForm() {
+  return (
+    <div>
+      <h3
+        className="d-flex justify-content-center fw-bolder mb-5"
+        style={{ color: '#0f6990' }}
+      >
+        Work Experience
+      </h3>
+      <h4 className="ms-4">
+        <p style={{ color: '#0f6990' }}>Internship Details</p>
+      </h4>
+      <div className="row p-4 d-flex">
+        <div className="col ">
+          <label htmlFor="" className="d-block fw-bolder mb-2">
+            Position
+          </label>
+          <input
+            className="profileInputBox "
+            placeholder="Position(Job Role)"
+            type="text"
+          />
+        </div>
+        <div className="col ">
+          <label htmlFor="" className="d-block fw-bolder mb-2">
+            Company Name
+          </label>
+          <input className="profileInputBox " type="text" />
+        </div>
+        <div className="col mt-5 ">
+          <label htmlFor="" className="d-block fw-bolder mb-2">
+            From
+          </label>
+          <input className="profileInputBox " type="date" />
+        </div>
+        <div className="col mt-5  ">
+          <label htmlFor="" className="d-block fw-bolder mb-2">
+            To
+          </label>
+          <input className="profileInputBox " type="date" />
+        </div>
+      </div>
+      <h4 className="ms-4 mt-3 ">
+        <p style={{ color: '#0f6990' }}>Work Details</p>
+      </h4>
+      <div className="row p-4 d-flex">
+        <div className="col ">
+          <label
+            htmlFor=""
+            className="d-block fw-bolder mb-2"
+            style={{ fontSize: '17px' }}
+          >
+            Position
+          </label>
+          <input
+            className="profileInputBox "
+            placeholder="Position(Job Role)"
+            type="text"
+          />
+        </div>
+        <div className="col ">
+          <label
+            htmlFor=""
+            className="d-block fw-bolder mb-2"
+            style={{ fontSize: '17px' }}
+          >
+            Company Name
+          </label>
+          <input className="profileInputBox " type="text" />
+        </div>
+        <div className="col mt-5 ">
+          <label
+            htmlFor=""
+            className="d-block fw-bolder mb-2"
+            style={{ fontSize: '17px' }}
+          >
+            From
+          </label>
+          <input className="profileInputBox " type="date" />
+        </div>
+        <div className="col mt-5  ">
+          <label
+            htmlFor=""
+            className="d-block fw-bolder mb-2"
+            style={{ fontSize: '17px' }}
+          >
+            To
+          </label>
+          <input className="profileInputBox " type="date" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PreferenceForm() {
+  return (
+    <div className="PreferenceForm p-4">
+      <h3
+        className="d-flex justify-content-center fw-bolder"
+        style={{ color: '#0f6990' }}
+      >
+        Additional Details
+      </h3>
+
+
+      <div className="row">
+        <div className="col mt-5 ">
+          <label
+            htmlFor=""
+            className="d-block fw-bolder mb-2"
+            style={{ fontSize: '17px' }}
+          >
+            Full Name
+          </label>
+          <input
+            className="profileInputBox "
+            placeholder="Enter Full Name"
+            type="text"
+          />
+        </div>
+
+        <div className="col mt-5  ">
+          <label
+            htmlFor=""
+            className="fw-bolder mb-2 d-block "
+            style={{ fontSize: '17px' }}
+          >
+            Phone
+
+          </label>
+          <input
+            className="profileInputBox  "
+            placeholder="Enter Phone Number"
+            type="number"
+          />
+        </div>
+      </div>
+
+
+
+      <div className="row">
+        <div className="col mt-5 ">
+          <label
+            htmlFor=""
+            className="d-block fw-bolder mb-2"
+            style={{ fontSize: '17px' }}
+          >
+            Email
+          </label>
+          <input
+            className="profileInputBox "
+            placeholder="Enter Email"
+            type="text"
+          />
+        </div>
+
+        <div className="col mt-5  ">
+          <label
+            htmlFor=""
+            className="fw-bolder mb-2 d-block "
+            style={{ fontSize: '17px' }}
+          >
+            Address
+
+          </label>
+          <input
+            className="profileInputBox  "
+            placeholder="Enter Address"
+            type="text"
+          />
+        </div>
+      </div>
+      
+
+      
+
+      <div className="row">
+        <div className="col mt-5 ">
+          <label
+            htmlFor=""
+            className="d-block fw-bolder mb-2"
+            style={{ fontSize: '17px' }}
+          >
+            Nationality
+          </label>
+          <input
+            className="profileInputBox "
+            placeholder="Enter Nationality"
+            type="text"
+          />
+        </div>
+
+        <div className="col mt-5  ">
+          <label
+            htmlFor=""
+            className="fw-bolder mb-2 d-block "
+            style={{ fontSize: '17px' }}
+          >
+            Date Of Birth
+          </label>
+          <input
+            className="profileInputBox  "
+            placeholder="Enter Date Of Birth"
+            type="date"
+          />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col mt-5 ">
+          <label
+            htmlFor=""
+            className="d-block fw-bolder mb-2"
+            style={{ fontSize: '17px' }}
+          >
+            Intake
+          </label>
+          <input
+            className="profileInputBox "
+            placeholder="Enter Intake"
+            type="text"
+          />
+        </div>
+        <div className="col mt-5  ">
+          <label
+            htmlFor=""
+            className="fw-bolder mb-2 d-block"
+            style={{ fontSize: '17px' }}
+          >
+            Year Of Study
+          </label>
+          <input
+            className="profileInputBox  "
+            placeholder="Enter Year Of Study"
+            type="text"
+          />
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col mt-5 ">
+          <label
+            htmlFor=""
+            className="d-block fw-bolder mb-2"
+            style={{ fontSize: '17px' }}
+          >
+            Gender
+          </label>
+          <div className="fw-bolder d-flex mt-2">
+            <div className="">
+              <input
+                type="radio"
+                className=""
+                id="fulltime"
+                name="modOfstudy"
+                checked
+              />
+              <label className="ms-2">Male</label>
+            </div>
+
+            <div className="ms-5">
+              <input name="modOfstudy" type="radio" id="parttime" />
+              <label className="ms-2">Female</label>
+            </div>
+            <div className="ms-5">
+              <input name="modOfstudy" type="radio" id="parttime" />
+              <label className="ms-2">Other</label>
+            </div>
+          </div>
+        </div>
+
+        <div className="col mt-5  ">
+          <label
+            htmlFor=""
+            className="fw-bolder mb-2 d-block "
+            style={{ fontSize: '17px' }}
+          >
+            Marital status
+          </label>
+          <div className="fw-bolder d-flex mt-2">
+            <div className="">
+              <input
+                type="radio"
+                className=""
+                id="fulltime"
+                name="modOfstudy"
+                checked
+              />
+              <label className="ms-2">Married</label>
+            </div>
+
+            <div className="ms-5">
+              <input name="modOfstudy" type="radio" id="parttime" />
+              <label className="ms-2">Single</label>
+            </div>
+            <div className="ms-5">
+              <input name="modOfstudy" type="radio" id="parttime" />
+              <label className="ms-2">Divorced</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Marital status */}
+      
+
+      <div className="row">
+        <div className="col mt-5 ">
+          <label
+            htmlFor=""
+            className="d-block fw-bolder mb-2"
+            style={{ fontSize: '17px' }}
+          >
+            Do you wish to Apply for a spouse visa ?
+          </label>
+          <div className="fw-bolder d-flex mt-2">
+            <div className="">
+              <input
+                type="radio"
+                className=""
+                id="fulltime"
+                name="modOfstudy"
+                checked
+              />
+              <label className="ms-2">Yes</label>
+            </div>
+
+            <div className="ms-5">
+              <input name="modOfstudy" type="radio" id="parttime" />
+              <label className="ms-2">No</label>
+            </div>
+          </div>
+        </div>
+
+        <div className="col mt-5  ">
+          <label
+            htmlFor=""
+            className="fw-bolder mb-2 d-block "
+            style={{ fontSize: '17px' }}
+          >
+            Do you have kids?
+          </label>
+          <div className="fw-bolder d-flex mt-2">
+            <div className="">
+              <input
+                type="radio"
+                className=""
+                id="fulltime"
+                name="modOfstudy"
+                checked
+              />
+              <label className="ms-2">Yes</label>
+            </div>
+
+            <div className="ms-5">
+              <input name="modOfstudy" type="radio" id="parttime" />
+              <label className="ms-2">No</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

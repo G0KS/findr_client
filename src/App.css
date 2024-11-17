@@ -76,6 +76,19 @@
    overflow: hidden;
 }
 
+.profileInputBox{
+   
+   font-weight: bold;
+   border: 0px;
+   border-bottom: 2px solid black ;
+   background-color:#fafafa;
+   color: #0F6990;
+   outline: none;
+   height: 30px; 
+   width: 350px;
+}
+
+
 .answerLine {
    border: 1px solid green;
 }
