@@ -50,7 +50,7 @@ function SliderComponent() {
             position: "fixed",
             top: "80px",
             left: "0",
-            height: "90vh",
+            height: "92vh",
             zIndex: "999",
          }}
       >

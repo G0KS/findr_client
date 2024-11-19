@@ -15,7 +15,7 @@ function Home({ setShow, setSidebarShow }) {
          <section className="container py-5">
             <div className="my-5">
                <Row>
-                  <Col>
+                  <Col className="d-none d-lg-block">
                      <img src={hero} alt="Hero Image" />
                   </Col>
                   <Col className="d-flex flex-column  justify-content-center ps-5 ">

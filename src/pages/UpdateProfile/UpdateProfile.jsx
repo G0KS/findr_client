@@ -1,7 +1,13 @@
 //-------------------------------------
 // signup validation
 //-------------------------------------
-import background from '../../assets/background.svg';
+// import background from '../../assets/background.svg';
+import bg1 from '../../assets/bg-1.svg';
+import bg2 from '../../assets/bg-2.svg';
+import next from '../../assets/chevron-double-right.svg';
+import add from '../../assets/add.svg';
+import remove from '../../assets/Delete.svg';
+import check from '../../assets/check.svg';
 
 import { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -77,7 +83,7 @@ function UpdateProfile({ setShow, setSidebarShow }) {
       setComponent(<LanguageForm />);
       window.scrollTo(0, 0);
     } else if (currentIndex == 2) {
-      setComponent(<PersonalForm />);
+      setComponent(<WorkForm />);
       window.scrollTo(0, 0);
     } else if (currentIndex == 3) {
       setComponent(<PreferenceForm />);
@@ -89,15 +95,27 @@ function UpdateProfile({ setShow, setSidebarShow }) {
   }, [currentIndex]);
 
   return (
-    <section>
+    <section style={{ position: 'relative' }}>
       <img
         style={{
           position: 'absolute',
-          width: '100%',
+          width: '80%',
           zIndex: '-10',
         }}
-        src={background}
-        alt=""
+        src={bg1}
+        alt="bg1"
+        className="d-none d-lg-block"
+      />
+      <img
+        src={bg2}
+        alt="bg2"
+        style={{
+          position: 'absolute',
+          bottom: '0',
+          right: '0',
+          width: '60%',
+          zIndex: '-10',
+        }}
         className="d-none d-lg-block"
       />
       <div style={{ paddingBlock: '95px' }} className="container ms-auto">
@@ -124,22 +142,40 @@ function UpdateProfile({ setShow, setSidebarShow }) {
           }}
         >
           <div
-            className="form shadow rounded mt-4 p-4 "
+            className="shadow rounded mt-4"
             style={{
-              width: '60rem',
+              width: '960px',
               backgroundColor: '#fafafa',
             }}
           >
-            <div className=" my-5">{component}</div>
+            <div className="my-5">{component}</div>
           </div>
         </div>
         <div className="formButtons d-flex justify-content-center p-5">
           <Button className="me-3" variant="outline-dark" onClick={handleBack}>
             Back
           </Button>
-          <Button style={{ backgroundColor: '#0f6990' }} onClick={handleNext}>
-            Next Page
-          </Button>
+          {currentIndex < 3 ? (
+            <Button style={{ backgroundColor: '#0f6990' }} onClick={handleNext}>
+              Next
+              <img
+                className="ms-1"
+                style={{ width: '15px' }}
+                src={next}
+                alt=""
+              />
+            </Button>
+          ) : (
+            <Button style={{ backgroundColor: '#2e7d32' }} onClick={handleNext}>
+              Submit
+              <img
+                className="ms-1"
+                style={{ width: '15px' }}
+                src={check}
+                alt=""
+              />
+            </Button>
+          )}
         </div>
       </div>
     </section>
@@ -150,21 +186,20 @@ export default UpdateProfile;
 
 function EducationForm() {
   return (
-    <div className="educationContainer">
+    <div className="educationContainer p-lg-5">
       <h3
-        className="d-flex justify-content-center"
+        className="d-flex justify-content-center fw-bold"
         style={{ color: '#0f6990' }}
       >
         Education Info
       </h3>
-      <div className="Tenth">
-        <h4 className="p-4">
+      <div className="tenth">
+        <h4 className="p-4 pb-0">
           <span style={{ color: '#0f6990' }}>Tenth </span>
           Qualification
         </h4>
-
         <div className="row p-4 d-flex">
-          <div className="col ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2 "
@@ -172,9 +207,13 @@ function EducationForm() {
             >
               Institution
             </label>
-            <input className="profileInputBox " type="text" />
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="Enter Institution"
+            />
           </div>
-          <div className="col ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -182,9 +221,13 @@ function EducationForm() {
             >
               Marks
             </label>
-            <input className="profileInputBox " type="text" />
+            <input
+              className="profileInputBox "
+              placeholder="CGPA/Percentage "
+              type="text"
+            />
           </div>
-          <div className="col mt-5 ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -192,9 +235,13 @@ function EducationForm() {
             >
               Year
             </label>
-            <input className="profileInputBox " type="text" />
+            <input
+              className="profileInputBox "
+              placeholder="Enter Year"
+              type="text"
+            />
           </div>
-          <div className="col mt-5  ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="fw-bolder mb-2"
@@ -204,26 +251,52 @@ function EducationForm() {
             </label>
             <div className="fw-bolder d-flex mt-2">
               <div className="">
-                <input type="radio" id="fulltime" name="modOfstudy" checked />
-                <label>Full time</label>
+                <input
+                  className="cursor "
+                  type="radio"
+                  id="fulltime"
+                  name="tenthOption"
+                />
+                <label className="ps-2 cursor" htmlFor="fulltime">
+                  Full time
+                </label>
               </div>
 
               <div className="ms-5">
-                <input name="modOfstudy" type="radio" id="parttime" />
-                <label>Part time</label>
+                <input
+                  className="cursor"
+                  name="tenthOption"
+                  type="radio"
+                  id="parttime"
+                />
+                <label className="ps-2 cursor" htmlFor="parttime">
+                  Part time
+                </label>
+              </div>
+              <div className="ms-5">
+                <input
+                  className="cursor"
+                  name="tenthOption"
+                  type="radio"
+                  id="tenthDistance"
+                  style={{ height: '15px', width: '15px' }}
+                />
+                <label className="ps-2 cursor" htmlFor="tenthDistance">
+                  Distance
+                </label>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="Twelfth">
-        <h4 className="p-4">
+      <div className="twelfth">
+        <h4 className="p-4 pb-0">
           <span style={{ color: '#0f6990' }}>Twelfth </span>
           Qualification
         </h4>
 
         <div className="row p-4 d-flex">
-          <div className="col ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -231,9 +304,13 @@ function EducationForm() {
             >
               Institution
             </label>
-            <input className="profileInputBox " type="text" />
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="Enter Institution"
+            />
           </div>
-          <div className="col ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -241,9 +318,13 @@ function EducationForm() {
             >
               Marks
             </label>
-            <input className="profileInputBox " type="text" />
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="CGPA / Percentage "
+            />
           </div>
-          <div className="col mt-5 ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -251,9 +332,13 @@ function EducationForm() {
             >
               Year
             </label>
-            <input className="profileInputBox " type="text" />
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="Enter Year"
+            />
           </div>
-          <div className="col mt-5  ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="fw-bolder mb-2"
@@ -263,26 +348,51 @@ function EducationForm() {
             </label>
             <div className="fw-bolder d-flex mt-2">
               <div className="">
-                <input type="radio" id="fulltime" name="modOfstudy" checked />
-                <label>Full time</label>
+                <input
+                  className="cursor"
+                  type="radio"
+                  id="twelfthFulltime"
+                  name="twelfth"
+                />
+                <label className="ps-2 cursor" htmlFor="twelfthFulltime">
+                  Full time
+                </label>
               </div>
 
               <div className="ms-5">
-                <input name="modOfstudy" type="radio" id="parttime" />
-                <label>Part time</label>
+                <input
+                  className="cursor"
+                  name="twelfth"
+                  type="radio"
+                  id="twelfthParttime"
+                />
+                <label className="ps-2 cursor" htmlFor="twelfthParttime">
+                  Part time
+                </label>
+              </div>
+              <div className="ms-5">
+                <input
+                  className="cursor"
+                  name="twelfth"
+                  type="radio"
+                  id="twelfthDistance"
+                />
+                <label className="ps-2 cursor" htmlFor="twelfthDistance">
+                  Distance
+                </label>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="Undergraduate">
-        <h4 className="p-4">
+      <div className="undergraduate">
+        <h4 className="p-4 pb-0">
           <span style={{ color: '#0f6990' }}>Undergraduate </span>
           Qualification
         </h4>
 
         <div className="row p-4 d-flex">
-          <div className="col ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -290,9 +400,13 @@ function EducationForm() {
             >
               Institution
             </label>
-            <input className="profileInputBox " type="text" />
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="Enter Institution"
+            />
           </div>
-          <div className="col ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -300,9 +414,13 @@ function EducationForm() {
             >
               Marks
             </label>
-            <input className="profileInputBox " type="text" />
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="CGPA / Percentage "
+            />
           </div>
-          <div className="col mt-5 ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -310,9 +428,13 @@ function EducationForm() {
             >
               Year
             </label>
-            <input className="profileInputBox " type="text" />
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="Enter Year"
+            />
           </div>
-          <div className="col mt-5  ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="fw-bolder mb-2"
@@ -322,26 +444,51 @@ function EducationForm() {
             </label>
             <div className="fw-bolder d-flex mt-2">
               <div className="">
-                <input type="radio" id="fulltime" name="modOfstudy" checked />
-                <label>Full time</label>
+                <input
+                  className="cursor"
+                  type="radio"
+                  id="ugFulltime"
+                  name="undergraduate"
+                />
+                <label className="ps-2 cursor" htmlFor="ugFulltime">
+                  Full time
+                </label>
               </div>
 
               <div className="ms-5">
-                <input name="modOfstudy" type="radio" id="parttime" />
-                <label>Part time</label>
+                <input
+                  className="cursor"
+                  name="undergraduate"
+                  type="radio"
+                  id="ugPartTime"
+                />
+                <label className="ps-2 cursor" htmlFor="ugPartTime">
+                  Part time
+                </label>
+              </div>
+              <div className="ms-5">
+                <input
+                  className="cursor"
+                  name="undergraduate"
+                  type="radio"
+                  id="ugDistance"
+                />
+                <label className="ps-2 cursor" htmlFor="ugDistance">
+                  Distance
+                </label>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="Postgraduate ">
-        <h4 className="p-4">
+      <div className="postgraduate ">
+        <h4 className="p-4 pb-0">
           <span style={{ color: '#0f6990' }}>Postgraduate </span>
           Qualification
         </h4>
 
         <div className="row p-4 d-flex">
-          <div className="col ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -349,9 +496,13 @@ function EducationForm() {
             >
               Institution
             </label>
-            <input className="profileInputBox " type="text" />
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="Enter Institution "
+            />
           </div>
-          <div className="col ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -359,9 +510,13 @@ function EducationForm() {
             >
               Marks
             </label>
-            <input className="profileInputBox " type="text" />
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="CGPA / Percentage"
+            />
           </div>
-          <div className="col mt-5 ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -369,9 +524,13 @@ function EducationForm() {
             >
               Year
             </label>
-            <input className="profileInputBox " type="text" />
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="Enter Year"
+            />
           </div>
-          <div className="col mt-5  ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="fw-bolder mb-2"
@@ -381,25 +540,49 @@ function EducationForm() {
             </label>
             <div className="fw-bolder d-flex mt-2">
               <div className="">
-                <input type="radio" id="fulltime" name="modOfstudy" checked />
-                <label>Full time</label>
+                <input
+                  className="cursor"
+                  type="radio"
+                  id="pgFulltime"
+                  name="postgraduate"
+                />
+                <label className="ps-2 cursor" htmlFor="pgFulltime">
+                  Full time
+                </label>
               </div>
 
               <div className="ms-5">
-                <input name="modOfstudy" type="radio" id="parttime" />
-                <label>Part time</label>
+                <input
+                  className="cursor"
+                  name="postgraduate"
+                  type="radio"
+                  id="pgParttime"
+                />
+                <label className="ps-2 cursor" htmlFor="pgParttime">
+                  Part time
+                </label>
+              </div>
+              <div className="ms-5">
+                <input
+                  className="cursor"
+                  name="postgraduate"
+                  type="radio"
+                  id="pgDistance"
+                />
+                <label className="ps-2 cursor" htmlFor="pgDistance">
+                  Distance
+                </label>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="Phd">
-        <h4 className="p-4">
-          <span style={{ color: '#0f6990' }}>PhD</span>Qualification
+      <div className="phd">
+        <h4 className="p-4 pb-0">
+          <span style={{ color: '#0f6990' }}>PhD </span>Qualification
         </h4>
-
         <div className="row p-4 d-flex">
-          <div className="col ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -407,9 +590,13 @@ function EducationForm() {
             >
               Institution
             </label>
-            <input className="profileInputBox " type="text" />
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="Enter Institution"
+            />
           </div>
-          <div className="col ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -417,9 +604,13 @@ function EducationForm() {
             >
               Marks
             </label>
-            <input className="profileInputBox " type="text" />
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="CGPA / Percentage "
+            />
           </div>
-          <div className="col mt-5 ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -427,9 +618,13 @@ function EducationForm() {
             >
               Year
             </label>
-            <input className="profileInputBox " type="text" />
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="Enter Year"
+            />
           </div>
-          <div className="col mt-5  ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="fw-bolder mb-2"
@@ -439,13 +634,38 @@ function EducationForm() {
             </label>
             <div className="fw-bolder d-flex mt-2">
               <div className="">
-                <input type="radio" id="fulltime" name="modOfstudy" checked />
-                <label>Full time</label>
+                <input
+                  className="cursor"
+                  type="radio"
+                  id="phdFulltime"
+                  name="phd"
+                />
+                <label className="ps-2 cursor" htmlFor="phdFulltime">
+                  Full time
+                </label>
               </div>
 
               <div className="ms-5">
-                <input name="modOfstudy" type="radio" id="parttime" />
-                <label>Part time</label>
+                <input
+                  className="cursor"
+                  name="phd"
+                  type="radio"
+                  id="phdParttime"
+                />
+                <label className="ps-2 cursor" htmlFor="phdParttime">
+                  Part time
+                </label>
+              </div>
+              <div className="ms-5">
+                <input
+                  className="cursor"
+                  name="phd"
+                  type="radio"
+                  id="phdDistance"
+                />
+                <label className="ps-2 cursor" htmlFor="phdDistance">
+                  Distance
+                </label>
               </div>
             </div>
           </div>
@@ -457,27 +677,41 @@ function EducationForm() {
 
 function LanguageForm() {
   return (
-    <div>
+    <div className="languageContainer p-4 p-lg-5">
       <h3
-        className="d-flex justify-content-center"
+        className="d-flex justify-content-center fw-bold"
         style={{ color: '#0f6990' }}
       >
         Language Proficiency
       </h3>
-      <div className="p-5 fw-bolder ">
+      <div className=" fw-bolder ">
         <div>
           <p style={{ fontSize: '17px' }}>
             Do you have good communication skill in English?
           </p>
           <div className="fw-bolder d-flex mt-2">
             <div className="">
-              <input type="radio" id="fulltime" name="modOfstudy" checked />
-              <label className="ms-2">Yes</label>
+              <input
+                className="cursor"
+                type="radio"
+                id="languageQ1Y"
+                name="languageQ1"
+              />
+              <label className="ps-2 cursor" htmlFor="languageQ1Y">
+                Yes
+              </label>
             </div>
 
             <div className="ms-5">
-              <input name="modOfstudy" type="radio" id="parttime" />
-              <label className="ms-2">No</label>
+              <input
+                className="cursor"
+                name="languageQ1"
+                type="radio"
+                id="languageQ1N"
+              />
+              <label className="ps-2 cursor" htmlFor="languageQ1N">
+                No
+              </label>
             </div>
           </div>
         </div>
@@ -488,13 +722,27 @@ function LanguageForm() {
           </p>
           <div className="fw-bolder d-flex mt-2">
             <div className="">
-              <input type="radio" id="fulltime" name="modOfstudy" checked />
-              <label className="ms-2">Yes</label>
+              <input
+                className="cursor"
+                type="radio"
+                id="languageQ2Y"
+                name="languageQ2"
+              />
+              <label className="ps-2 cursor" htmlFor="languageQ2Y">
+                Yes
+              </label>
             </div>
 
             <div className="ms-5">
-              <input name="modOfstudy" type="radio" id="parttime" />
-              <label className="ms-2">No</label>
+              <input
+                name="languageQ2"
+                className="cursor"
+                type="radio"
+                id="languageQ2N"
+              />
+              <label className="ps-2 cursor" htmlFor="languageQ2N">
+                No
+              </label>
             </div>
           </div>
         </div>
@@ -504,13 +752,27 @@ function LanguageForm() {
           </p>
           <div className="fw-bolder d-flex mt-2">
             <div className="">
-              <input type="radio" id="fulltime" name="modOfstudy" checked />
-              <label className="ms-2">Yes</label>
+              <input
+                className="cursor"
+                type="radio"
+                id="languageQ3Y"
+                name="languageQ3"
+              />
+              <label className="ps-2 cursor" htmlFor="languageQ3Y">
+                Yes
+              </label>
             </div>
 
             <div className="ms-5">
-              <input name="modOfstudy" type="radio" id="parttime" />
-              <label className="ms-2">No</label>
+              <input
+                className="cursor"
+                name="languageQ3"
+                type="radio"
+                id="languageQ3N"
+              />
+              <label className="ps-2 cursor" htmlFor="languageQ3N">
+                No
+              </label>
             </div>
           </div>
         </div>
@@ -523,14 +785,12 @@ function LanguageForm() {
               style={{ fontSize: '17px' }}
             >
               Which language?
-
             </label>
             <input
               className="profileInputBox "
               placeholder="Enter Language"
               type="text"
             />
-           
           </div>
           <div className="col mt-5  ">
             <label
@@ -539,32 +799,44 @@ function LanguageForm() {
               style={{ fontSize: '17px' }}
             >
               Which certificate?
-
             </label>
-            
+
             <input
               className="profileInputBox  "
-              placeholder="Certificate Name"
+              placeholder="Certificate Name ( Level of proficiency )"
               type="text"
             />
-             <p className="mt-2 " style={{ color: 'gray' }}>
-            Level of proficiency
-
+          </div>
+        </div>
+      </div>
+      <div className="formButtons d-flex justify-content-center my-5">
+        <Button style={{ backgroundColor: '#0f6990' }}>
+          Add more <img style={{ width: '16px' }} src={add} alt="" />
+        </Button>
+      </div>
+      
+      {/* Added Language */}
+      <div className="row my-4">
+        <div className="col-lg-5 col-10 pt-3">
+          <div className="shadow rounded p-3">
+            <p className="mb-0" style={{ color: '#0f6990' }}>
+              language
             </p>
           </div>
         </div>
-
-
+        <div className="col-1 my-auto ms-lg-0 ms-2 pt-3">
+          <img src={remove} alt="" />
+        </div>
       </div>
-      <div className="PreferenceForm p-5">
+      <div className="preferenceForm ">
         <h3
-          className="d-flex justify-content-center fw-bolder mb-5"
+          className="d-flex justify-content-center fw-bolder"
           style={{ color: '#0f6990' }}
         >
           Preferences
         </h3>
         <div className="row">
-          <div className="col ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -578,7 +850,7 @@ function LanguageForm() {
               type="text"
             />
           </div>
-          <div className="col">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="d-block fw-bolder mb-2"
@@ -600,7 +872,7 @@ function LanguageForm() {
               className="d-block fw-bolder mb-2"
               style={{ fontSize: '17px' }}
             >
-            What is your budget including the flight ticket?
+              What is your budget including the flight ticket?
             </label>
             <input
               className="profileInputBox "
@@ -618,13 +890,27 @@ function LanguageForm() {
             </label>
             <div className="fw-bolder d-flex mt-2">
               <div className="">
-                <input type="radio" id="fulltime" name="modOfstudy" checked />
-                <label className='ms-2'>Yes</label>
+                <input
+                  className="cursor"
+                  type="radio"
+                  id="scholarshipY"
+                  name="scholarship"
+                />
+                <label className="ps-2 cursor" htmlFor="scholarshipY">
+                  Yes
+                </label>
               </div>
 
               <div className="ms-5">
-                <input name="modOfstudy" type="radio" id="parttime" />
-                <label className='ms-2' >No</label>
+                <input
+                  className="cursor"
+                  name="scholarship"
+                  type="radio"
+                  id="scholarshipN"
+                />
+                <label className="ps-2 cursor " htmlFor="scholarshipN">
+                  No
+                </label>
               </div>
             </div>
           </div>
@@ -643,11 +929,11 @@ function LanguageForm() {
               placeholder="Enter Religion"
               type="text"
             />
-            <p className="mt-2 " style={{ color: 'gray' }}>
-              Due to Reservation and Scholarships
+            <p className="mt-2 " style={{ color: 'gray', fontSize: '14px' }}>
+              *Due to Reservation and Scholarships
             </p>
           </div>
-          <div className="col mt-5  ">
+          <div className="col mt-5">
             <label
               htmlFor=""
               className="fw-bolder mb-2"
@@ -660,8 +946,8 @@ function LanguageForm() {
               placeholder="Enter Cast"
               type="text"
             />
-            <p className="mt-2 " style={{ color: 'gray' }}>
-              Due to Reservation and Scholarships
+            <p className="mt-2 " style={{ color: 'gray', fontSize: '14px' }}>
+              *Due to Reservation and Scholarships
             </p>
           </div>
         </div>
@@ -670,20 +956,21 @@ function LanguageForm() {
   );
 }
 
-function PersonalForm() {
+function WorkForm() {
   return (
-    <div>
+    <div className="p-lg-5">
       <h3
         className="d-flex justify-content-center fw-bolder mb-5"
         style={{ color: '#0f6990' }}
       >
         Work Experience
       </h3>
+
       <h4 className="ms-4">
         <p style={{ color: '#0f6990' }}>Internship Details</p>
       </h4>
-      <div className="row p-4 d-flex">
-        <div className="col ">
+      <div className="row p-4">
+        <div className="col mt-5">
           <label htmlFor="" className="d-block fw-bolder mb-2">
             Position
           </label>
@@ -693,30 +980,58 @@ function PersonalForm() {
             type="text"
           />
         </div>
-        <div className="col ">
+        <div className="col mt-5">
           <label htmlFor="" className="d-block fw-bolder mb-2">
             Company Name
           </label>
-          <input className="profileInputBox " type="text" />
+          <input
+            className="profileInputBox "
+            type="text"
+            placeholder="Company Name"
+          />
         </div>
-        <div className="col mt-5 ">
+        <div className="col mt-5">
           <label htmlFor="" className="d-block fw-bolder mb-2">
             From
           </label>
           <input className="profileInputBox " type="date" />
         </div>
-        <div className="col mt-5  ">
+        <div className="col mt-5">
           <label htmlFor="" className="d-block fw-bolder mb-2">
             To
           </label>
           <input className="profileInputBox " type="date" />
         </div>
       </div>
-      <h4 className="ms-4 mt-3 ">
+
+      <div className="formButtons d-flex justify-content-center p-4">
+        <Button style={{ backgroundColor: '#0f6990' }}>
+          Add more <img style={{ width: '16px' }} src={add} alt="" />
+        </Button>
+      </div>
+
+      {/* Added Internship */}
+      <div className="px-4">
+        <div className="row my-4">
+          <div className="col-lg-5 col-10">
+            <div className="shadow rounded p-3">
+              <p className="mb-0" style={{ color: '#0f6990' }}>
+                sample job
+              </p>
+              <p className="mb-0">company</p>
+            </div>
+          </div>
+          <div className="col-1 my-auto ms-lg-0 ms-2">
+            <img src={remove} alt="" />
+          </div>
+        </div>
+      </div>
+
+      <h4 className="ms-4">
         <p style={{ color: '#0f6990' }}>Work Details</p>
       </h4>
       <div className="row p-4 d-flex">
-        <div className="col ">
+        <div className="col mt-5">
           <label
             htmlFor=""
             className="d-block fw-bolder mb-2"
@@ -730,7 +1045,7 @@ function PersonalForm() {
             type="text"
           />
         </div>
-        <div className="col ">
+        <div className="col mt-5">
           <label
             htmlFor=""
             className="d-block fw-bolder mb-2"
@@ -738,9 +1053,13 @@ function PersonalForm() {
           >
             Company Name
           </label>
-          <input className="profileInputBox " type="text" />
+          <input
+            className="profileInputBox "
+            type="text"
+            placeholder="Company Name"
+          />
         </div>
-        <div className="col mt-5 ">
+        <div className="col mt-5">
           <label
             htmlFor=""
             className="d-block fw-bolder mb-2"
@@ -750,7 +1069,7 @@ function PersonalForm() {
           </label>
           <input className="profileInputBox " type="date" />
         </div>
-        <div className="col mt-5  ">
+        <div className="col mt-5">
           <label
             htmlFor=""
             className="d-block fw-bolder mb-2"
@@ -759,6 +1078,28 @@ function PersonalForm() {
             To
           </label>
           <input className="profileInputBox " type="date" />
+        </div>
+      </div>
+      <div className="formButtons d-flex justify-content-center p-4">
+        <Button style={{ backgroundColor: '#0f6990' }}>
+          Add more <img style={{ width: '16px' }} src={add} alt="" />
+        </Button>
+      </div>
+
+      {/* Added Work */}
+      <div className="px-4">
+        <div className="row my-4">
+          <div className="col-lg-5 col-10">
+            <div className="shadow rounded p-3">
+              <p className="mb-0" style={{ color: '#0f6990' }}>
+                sample job
+              </p>
+              <p className="mb-0">company</p>
+            </div>
+          </div>
+          <div className="col-1 my-auto ms-lg-0 ms-2">
+            <img src={remove} alt="" />
+          </div>
         </div>
       </div>
     </div>
@@ -767,85 +1108,13 @@ function PersonalForm() {
 
 function PreferenceForm() {
   return (
-    <div className="PreferenceForm p-4">
+    <div className="preferenceForm p-4 p-lg-5">
       <h3
         className="d-flex justify-content-center fw-bolder"
         style={{ color: '#0f6990' }}
       >
         Additional Details
       </h3>
-
-
-      <div className="row">
-        <div className="col mt-5 ">
-          <label
-            htmlFor=""
-            className="d-block fw-bolder mb-2"
-            style={{ fontSize: '17px' }}
-          >
-            Full Name
-          </label>
-          <input
-            className="profileInputBox "
-            placeholder="Enter Full Name"
-            type="text"
-          />
-        </div>
-
-        <div className="col mt-5  ">
-          <label
-            htmlFor=""
-            className="fw-bolder mb-2 d-block "
-            style={{ fontSize: '17px' }}
-          >
-            Phone
-
-          </label>
-          <input
-            className="profileInputBox  "
-            placeholder="Enter Phone Number"
-            type="number"
-          />
-        </div>
-      </div>
-
-
-
-      <div className="row">
-        <div className="col mt-5 ">
-          <label
-            htmlFor=""
-            className="d-block fw-bolder mb-2"
-            style={{ fontSize: '17px' }}
-          >
-            Email
-          </label>
-          <input
-            className="profileInputBox "
-            placeholder="Enter Email"
-            type="text"
-          />
-        </div>
-
-        <div className="col mt-5  ">
-          <label
-            htmlFor=""
-            className="fw-bolder mb-2 d-block "
-            style={{ fontSize: '17px' }}
-          >
-            Address
-
-          </label>
-          <input
-            className="profileInputBox  "
-            placeholder="Enter Address"
-            type="text"
-          />
-        </div>
-      </div>
-      
-
-      
 
       <div className="row">
         <div className="col mt-5 ">
@@ -918,25 +1187,40 @@ function PreferenceForm() {
           >
             Gender
           </label>
-          <div className="fw-bolder d-flex mt-2">
+          <div className="fw-bolder d-flex mt-2 ">
             <div className="">
               <input
                 type="radio"
-                className=""
-                id="fulltime"
-                name="modOfstudy"
-                checked
+                className="cursor"
+                id="gender1"
+                name="gender"
               />
-              <label className="ms-2">Male</label>
+              <label className="ps-2 cursor" htmlFor="gender1">
+                Male
+              </label>
             </div>
 
-            <div className="ms-5">
-              <input name="modOfstudy" type="radio" id="parttime" />
-              <label className="ms-2">Female</label>
+            <div className="ms-5 ">
+              <input
+                name="gender"
+                className="cursor"
+                type="radio"
+                id="gender2"
+              />
+              <label className="ps-2 cursor" htmlFor="gender2">
+                Female
+              </label>
             </div>
             <div className="ms-5">
-              <input name="modOfstudy" type="radio" id="parttime" />
-              <label className="ms-2">Other</label>
+              <input
+                name="gender"
+                className="cursor"
+                type="radio"
+                id="gender3"
+              />
+              <label className="ps-2 cursor" htmlFor="gender3">
+                Other
+              </label>
             </div>
           </div>
         </div>
@@ -944,7 +1228,7 @@ function PreferenceForm() {
         <div className="col mt-5  ">
           <label
             htmlFor=""
-            className="fw-bolder mb-2 d-block "
+            className="fw-bolder mb-2 d-block  "
             style={{ fontSize: '17px' }}
           >
             Marital status
@@ -953,31 +1237,45 @@ function PreferenceForm() {
             <div className="">
               <input
                 type="radio"
-                className=""
-                id="fulltime"
-                name="modOfstudy"
-                checked
+                className="cursor"
+                id="mStatus1"
+                name="maritalStatus"
               />
-              <label className="ms-2">Married</label>
+              <label className="ms-2 cursor" htmlFor="mStatus1">
+                Married
+              </label>
             </div>
 
             <div className="ms-5">
-              <input name="modOfstudy" type="radio" id="parttime" />
-              <label className="ms-2">Single</label>
+              <input
+                name="maritalStatus"
+                className="cursor"
+                type="radio"
+                id="mStatus2"
+              />
+              <label className="ps-2 cursor" htmlFor="mStatus2">
+                Single
+              </label>
             </div>
             <div className="ms-5">
-              <input name="modOfstudy" type="radio" id="parttime" />
-              <label className="ms-2">Divorced</label>
+              <input
+                name="maritalStatus"
+                className="cursor"
+                type="radio"
+                id="mStatus3"
+              />
+              <label className="ps-2 cursor" htmlFor="mStatus3">
+                Divorced
+              </label>
             </div>
           </div>
         </div>
       </div>
 
       {/* Marital status */}
-      
 
       <div className="row">
-        <div className="col mt-5 ">
+        <div className="col-lg-6 col-12 mt-5">
           <label
             htmlFor=""
             className="d-block fw-bolder mb-2"
@@ -989,22 +1287,29 @@ function PreferenceForm() {
             <div className="">
               <input
                 type="radio"
-                className=""
-                id="fulltime"
-                name="modOfstudy"
-                checked
+                className="cursor"
+                id="spouseY"
+                name="spouseVisa"
               />
-              <label className="ms-2">Yes</label>
+              <label className="ms-2 cursor" htmlFor="spouseY">
+                Yes
+              </label>
             </div>
 
             <div className="ms-5">
-              <input name="modOfstudy" type="radio" id="parttime" />
-              <label className="ms-2">No</label>
+              <input
+                name="spouseVisa"
+                type="radio"
+                id="spouseN"
+                className="cursor"
+              />
+              <label className="ps-2 cursor" htmlFor="spouseN">
+                No
+              </label>
             </div>
           </div>
         </div>
-
-        <div className="col mt-5  ">
+        <div className="col-lg-6 col-12 mt-5  ">
           <label
             htmlFor=""
             className="fw-bolder mb-2 d-block "
@@ -1014,19 +1319,17 @@ function PreferenceForm() {
           </label>
           <div className="fw-bolder d-flex mt-2">
             <div className="">
-              <input
-                type="radio"
-                className=""
-                id="fulltime"
-                name="modOfstudy"
-                checked
-              />
-              <label className="ms-2">Yes</label>
+              <input type="radio" className="cursor" id="kidsY" name="kids" />
+              <label className="ps-2 cursor" htmlFor="kidsY">
+                Yes
+              </label>
             </div>
 
             <div className="ms-5">
-              <input name="modOfstudy" type="radio" id="parttime" />
-              <label className="ms-2">No</label>
+              <input name="kids" type="radio" id="kidsN" className="cursor" />
+              <label className="ps-2 cursor" htmlFor="kidsN">
+                No
+              </label>
             </div>
           </div>
         </div>

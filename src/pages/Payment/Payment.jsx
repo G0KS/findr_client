@@ -68,7 +68,7 @@ function Payment({ setShow, setSidebarShow }) {
             <div className="col">
                <div style={{ width: "100%" }}>
                   <section
-                     className="d-flex justify-content-center align-items-center "
+                     className="d-flex justify-content-center align-items-center p-4"
                      style={{
                         height: "100vh",
                         backgroundColor: "#0f6990",
@@ -77,29 +77,24 @@ function Payment({ setShow, setSidebarShow }) {
                      }}
                   >
                      <div
-                        className="loginCard rounded-4 p-4 bg-white shadow-lg row"
+                        className="loginCard rounded-4 p-4 bg-white shadow-lg"
                         style={{
-                           width: "50rem",
+                           minWidth: "24rem",
+                           maxWidth:'50rem'
                         }}
                      >
                         {payment === "payment_done" ||
                         payment === "full_paid" ? (
                            <div className="row">
-                              <div className="col d-flex align-items-center">
+                              <div className="col d-flex align-items-center justify-content-center">
                                  <img
                                     src={paymentimg}
                                     alt=""
-                                    style={{ width: "300px" }}
+                                    style={{ maxWidth: "300px" }}
                                  />
                               </div>
                               <div className="col d-flex align-items-center">
-                                 <div style={{ height: "70px", width: "70px" }}>
-                                    <img
-                                       src=""
-                                       style={{ height: "100%" }}
-                                       alt=""
-                                    />
-                                 </div>
+                                 
                                  <div className="title">
                                     <h3
                                        style={{
@@ -110,6 +105,7 @@ function Payment({ setShow, setSidebarShow }) {
                                     <p
                                        style={{
                                           fontSize: "18px",
+                                          marginBottom:'0px'
                                        }}
                                     >
                                        {paymentDesc}
@@ -119,7 +115,7 @@ function Payment({ setShow, setSidebarShow }) {
                            </div>
                         ) : (
                            <div className="row">
-                              <div className="col d-flex align-items-center">
+                              <div className="col d-flex align-items-center justify-content-center">
                                  <img
                                     src={paymentimg}
                                     alt=""
@@ -127,13 +123,7 @@ function Payment({ setShow, setSidebarShow }) {
                                  />
                               </div>
                               <div className="col d-flex align-items-center">
-                                 <div style={{ height: "70px", width: "70px" }}>
-                                    <img
-                                       src=""
-                                       style={{ height: "100%" }}
-                                       alt=""
-                                    />
-                                 </div>
+                               
                                  <div className="title">
                                     <h3
                                        style={{
@@ -145,7 +135,10 @@ function Payment({ setShow, setSidebarShow }) {
                                           ? "Registration Fee"
                                           : "Course Fee"}
                                     </h3>
-                                    <p>{paymentDesc}</p>
+                                    <p  style={{
+                                          fontSize: "18px",
+                                          marginBottom:'0px'
+                                       }}>{paymentDesc}</p>
                                     <h3
                                        className="fw-bolder"
                                        style={{ color: "#0F6990" }}
