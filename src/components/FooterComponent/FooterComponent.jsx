@@ -82,7 +82,7 @@ function FooterComponent() {
                   </Link>
                   <Link to="" target="blank" className={style.socialIcon}>
                      <i
-                        className="fa-brands fa-twitter"
+                        className="fa-brands fa-x-twitter"
                         style={{ color: "#0f6990" }}
                      ></i>
                   </Link>
