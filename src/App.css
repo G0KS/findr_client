@@ -1,131 +1,143 @@
 .loginSection {
-  background: linear-gradient(-45deg, #ffffff, #0f699083, #ffffff, #ffffff);
-  background-size: 400% 400%;
-  animation: gradient 6s ease infinite;
+   background: linear-gradient(-45deg, #ffffff, #0f699083, #ffffff, #ffffff);
+   background-size: 400% 400%;
+   animation: gradient 6s ease infinite;
 }
 
 @keyframes gradient {
-  0% {
-    background-position: 0% 25%;
-  }
-  50% {
-    background-position: 60%;
-  }
-  100% {
-    background-position: 25% 0%;
-  }
+   0% {
+      background-position: 0% 25%;
+   }
+   50% {
+      background-position: 60%;
+   }
+   100% {
+      background-position: 25% 0%;
+   }
 }
 
 .cardBody {
-  position: relative;
+   position: relative;
 }
 
 .cardBody::before,
 .cardBody::after {
-  content: '';
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-  border-radius: inherit;
+   content: "";
+   display: block;
+   position: absolute;
+   left: 0;
+   top: 0;
+   bottom: 0;
+   right: 0;
+   z-index: -1;
+   border-radius: inherit;
 }
 
 .cardBody::after {
-  opacity: 0;
-  background-image: linear-gradient(338deg, #0f6990 64%, #66d1cf 100%);
-  transition: opacity.3s ease-in-out;
+   opacity: 0;
+   background-image: linear-gradient(338deg, #0f6990 64%, #66d1cf 100%);
+   transition: opacity.3s ease-in-out;
 }
 
 .cardBody:hover {
-  color: #ffffff;
+   color: #ffffff;
 }
 
 .cardBody:hover::after {
-  opacity: 1;
+   opacity: 1;
 }
 
 .active {
-  display: block;
+   display: block;
 }
 
 .shapeParent {
-  position: relative;
+   position: relative;
 }
 
 .shape {
-  position: absolute;
-  left: 0;
-  background-color: #0f6990;
-  height: 30px;
-  width: 8px;
-  border-radius: 2px;
+   position: absolute;
+   left: 0;
+   background-color: #0f6990;
+   height: 30px;
+   width: 8px;
+   border-radius: 2px;
 }
 
 .inputBox {
-  font-weight: bold;
-  min-width: 270px;
-  max-width: 300px;
-  padding: 5px 15px;
-  height: 50px;
-  border: 1px solid #067bc2;
-  outline: none;
-  border-radius: 10px;
-  overflow: hidden;
+   font-weight: bold;
+   min-width: 270px;
+   max-width: 300px;
+   padding: 5px 15px;
+   height: 50px;
+   border: 1px solid #067bc2;
+   outline: none;
+   border-radius: 10px;
+   overflow: hidden;
 }
 
 .profileInputBox {
-  font-weight: bold;
-  border: 0px;
-  border-bottom: 2px solid black;
-  background-color: #fafafa;
-  color: #0f6990;
-  outline: none;
-  height: 30px;
-  width: 350px;
+   font-weight: bold;
+   border: 0px;
+   border-bottom: 2px solid black;
+   background-color: #fafafa;
+   color: #0f6990;
+   outline: none;
+   height: 30px;
+   width: 350px;
 }
 
 .answerLine {
-  border: 1px solid green;
+   border: 1px solid green;
 }
 
 .faq {
-  width: 75%;
+   width: 75%;
 }
 
 .answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: all 0.3s ease-in-out;
+   max-height: 0;
+   overflow: hidden;
+   transition: all 0.3s ease-in-out;
 }
 
 .answer.show {
-  height: auto;
-  max-height: 999px;
-  transition: all 0.3s ease-in-out;
+   height: auto;
+   max-height: 999px;
+   transition: all 0.3s ease-in-out;
+}
+
+.hide {
+   display: none;
 }
 
 .cursor {
-  cursor: pointer;
+   cursor: pointer;
+}
+
+.addFormCard {
+   width: 48%;
 }
 
 .courseCard {
-  width: 950px;
+   width: 950px;
 }
 
 .courseCardP1 {
-  border-radius: 10px 0 0 10px;
-  background-color: #0f6990;
+   border-radius: 10px 0 0 10px;
+   background-color: #0f6990;
 }
 
 @media only screen and (max-width: 600px) {
-  .courseCard {
-    width: 380px;
-  }
+   .courseCard {
+      width: 380px;
+   }
 
-  .courseCardP1 {
-    border-radius: 10px 10px 0 0;
-  }
+   .courseCardP1 {
+      border-radius: 10px 10px 0 0;
+   }
+
+   .addFormCard {
+      width: 100%;
+   }
 }

@@ -19,18 +19,16 @@ function Profile({ setShow, setSidebarShow }) {
    const email = JSON.parse(localStorage.getItem("findrData"))?.email;
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
 
-   const { data, isLoading } = useFrappeGetDoc("Student", c_id);
-   console.log(data);
+   const { data } = useFrappeGetDoc("Student", c_id);
 
    const getUserData = () => {
       if (data !== undefined) {
-         if (data.tenth_institution) setProfileData(data);
-         else {
+         if (data.tenth_institution) {
+            setProfileData(data);
+         } else {
             toast.warning("Complete your profile to continue");
             navigate("/profile/update");
          }
-      } else {
-         console.log("Ivde vannayrnnu");
       }
    };
 
