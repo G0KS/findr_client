@@ -330,7 +330,7 @@ function EducationForm() {
                            checked={
                               updatedData.tenth_mode_of_study === "Distance"
                            }
-                           value="Distance"
+                           value="Distance / Online"
                            onChange={(e) => getFormData(e)}
                         />
                         <label className="ps-2 cursor" htmlFor="tenthDistance">
@@ -454,9 +454,10 @@ function EducationForm() {
                            id="twelfthDistance"
                            name="twelfth_mode_of_study"
                            checked={
-                              updatedData.twelfth_mode_of_study === "Distance"
+                              updatedData.twelfth_mode_of_study ===
+                              "Distance / Online"
                            }
-                           value="Distance"
+                           value="Distance / Online"
                            onChange={(e) => getFormData(e)}
                         />
                         <label
@@ -580,9 +581,9 @@ function EducationForm() {
                            name="undergraduate_mode_of_study"
                            checked={
                               updatedData.undergraduate_mode_of_study ===
-                              "Distance"
+                              "Distance / Online"
                            }
-                           value="Distance"
+                           value="Distance / Online"
                            onChange={(e) => getFormData(e)}
                         />
                         <label className="ps-2 cursor" htmlFor="ugDistance">
@@ -709,9 +710,9 @@ function EducationForm() {
                            name="postgraduate_mode_of_study"
                            checked={
                               updatedData.postgraduate_mode_of_study ===
-                              "Distance"
+                              "Distance / Online"
                            }
-                           value="Distance"
+                           value="Distance / Online"
                            onChange={(e) => getFormData(e)}
                         />
                         <label className="ps-2 cursor" htmlFor="pgDistance">
@@ -830,9 +831,10 @@ function EducationForm() {
                            id="phdDistance"
                            name="phd_mode_of_study"
                            checked={
-                              updatedData.phd_mode_of_study === "Distance"
+                              updatedData.phd_mode_of_study ===
+                              "Distance / Online"
                            }
-                           value="Distance"
+                           value="Distance / Online"
                            onChange={(e) => getFormData(e)}
                         />
                         <label className="ps-2 cursor" htmlFor="phdDistance">
@@ -1045,13 +1047,14 @@ function LanguageForm() {
                         </div>
                      </div>
                      <div className="formButtons d-flex justify-content-center my-5">
-                        <Button
+                        <button
+                           className="btn text-light"
                            style={{ backgroundColor: "#0f6990" }}
                            onClick={addLanguage}
                         >
                            Add{" "}
                            <img style={{ width: "16px" }} src={add} alt="" />
-                        </Button>
+                        </button>
                      </div>
                   </div>
                )}
@@ -1095,28 +1098,27 @@ function LanguageForm() {
                         <input
                            className="cursor"
                            type="radio"
-                           id="languageQ1Y"
-                           name="english_skill"
+                           id="findrChooseY"
+                           name="findr_choose"
                            value="1"
-                           checked={updatedData.english_skill === "1"}
+                           checked={updatedData.findr_choose === "1"}
                            onChange={(e) => getFormData(e)}
                         />
-                        <label className="ps-2 cursor" htmlFor="languageQ1Y">
+                        <label className="ps-2 cursor" htmlFor="findrChoose">
                            Yes
                         </label>
                      </div>
-
                      <div className="ms-5">
                         <input
                            className="cursor"
                            type="radio"
-                           id="languageQ1N"
-                           name="english_skill"
+                           id="findrChooseN"
+                           name="findr_choose"
                            value="0"
-                           checked={updatedData.english_skill === "0"}
+                           checked={updatedData.findr_choose === "0"}
                            onChange={(e) => getFormData(e)}
                         />
-                        <label className="ps-2 cursor" htmlFor="languageQ1N">
+                        <label className="ps-2 cursor" htmlFor="findrChooseN">
                            No
                         </label>
                      </div>
@@ -1459,12 +1461,13 @@ function WorkForm() {
          </div>
 
          <div className="formButtons d-flex justify-content-center p-4">
-            <Button
+            <button
+               className="btn text-light"
                style={{ backgroundColor: "#0f6990" }}
                onClick={() => addIntern()}
             >
                Add <img style={{ width: "16px" }} src={add} alt="" />
-            </Button>
+            </button>
          </div>
 
          {/* Added Internship */}
@@ -1558,12 +1561,13 @@ function WorkForm() {
          </div>
 
          <div className="formButtons d-flex justify-content-center p-4">
-            <Button
+            <button
+               className="btn text-light"
                style={{ backgroundColor: "#0f6990" }}
                onClick={() => addWork()}
             >
                Add <img style={{ width: "16px" }} src={add} alt="" />
-            </Button>
+            </button>
          </div>
 
          {/* Added Work */}
