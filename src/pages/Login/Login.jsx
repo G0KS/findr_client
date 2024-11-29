@@ -11,7 +11,6 @@ function Login({ setShow, setSidebarShow }) {
    const navigate = useNavigate();
    const [showPassword, setShowPassword] = useState(false);
 
-
    const findrData = JSON.parse(localStorage.getItem("findrData"));
 
    useEffect(() => {
@@ -28,12 +27,13 @@ function Login({ setShow, setSidebarShow }) {
       setInputData({ ...inputData, [name]: value });
    };
 
-   const [filters, setFilters] = useState("");
-
    const { data, error } = useFrappeGetDocList("Student", {
       fields: ["email", "first_name", "last_name", "password", "name"],
-      filters,
+      filters: [["email", "=", inputData.email]],
    });
+
+   console.log(data);
+   
 
    const handleLogin = async (e) => {
       e.preventDefault();
@@ -42,8 +42,6 @@ function Login({ setShow, setSidebarShow }) {
          toast.warning("Fill the form");
       } else {
          try {
-            console.log("Try");
-            setFilters([["email", "=", email]]);
             if (password === data[0].password) {
                const c_id = data[0].name;
                const name = data[0].first_name;
@@ -53,11 +51,10 @@ function Login({ setShow, setSidebarShow }) {
                   JSON.stringify({ c_id, name, email })
                );
                toast.success("Logged in");
-               navigate("/profile");
+               navigate("/courses");
             } else toast.warning("Invalid credentials");
          } catch {
-            console.log("Catch");
-
+            toast.error("Some internal error! Please try again later");
             console.error(error);
          }
       }

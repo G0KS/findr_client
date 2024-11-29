@@ -75,15 +75,12 @@ function Profile({ setShow, setSidebarShow }) {
          <div className="col-md-2"></div>
          <div className="col">
             {" "}
-            <div
-               className="container my-4 px-5"
-               style={{ paddingBlock: "80px" }}
-            >
+            <div className="container my-4" style={{ paddingBlock: "80px" }}>
                <div className="d-flex justify-content-between">
                   <h2>Personal Details</h2>
                   {editable ? (
                      <button
-                        className="ms-auto py-2  px-3 shadow border "
+                        className="py-2  px-3 shadow border "
                         style={{
                            backgroundColor: "#0F6990",
                            borderRadius: "10px",
@@ -124,7 +121,7 @@ function Profile({ setShow, setSidebarShow }) {
 
                      <form action="">
                         {/* name */}
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2 ">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               Full Name
                            </label>
@@ -137,7 +134,7 @@ function Profile({ setShow, setSidebarShow }) {
                               style={{ fontSize: "15px", border: "none" }}
                            />
                         </div>
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               Phone No.
                            </label>
@@ -155,7 +152,7 @@ function Profile({ setShow, setSidebarShow }) {
                               style={{ fontSize: "15px", border: "none" }}
                            />
                         </div>
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               DOB
                            </label>
@@ -172,7 +169,7 @@ function Profile({ setShow, setSidebarShow }) {
                   </div>
                   {/* next section  */}
                   <div className="col-md-6 col-lg-5">
-                     <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                     <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                         <label style={{ color: "#0F6990", width: "100px" }}>
                            Email
                         </label>
@@ -187,7 +184,7 @@ function Profile({ setShow, setSidebarShow }) {
                            style={{ fontSize: "15px", border: "none" }}
                         />
                      </div>
-                     <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                     <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                         <label style={{ color: "#0F6990", width: "100px" }}>
                            Address
                         </label>
@@ -200,7 +197,7 @@ function Profile({ setShow, setSidebarShow }) {
                            style={{ fontSize: "15px", border: "none" }}
                         />
                      </div>
-                     <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                     <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                         <label style={{ color: "#0F6990", width: "100px" }}>
                            Nationality
                         </label>
@@ -229,7 +226,7 @@ function Profile({ setShow, setSidebarShow }) {
 
                      <form action="">
                         {/* name */}
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               Instituiton
                            </label>
@@ -243,7 +240,7 @@ function Profile({ setShow, setSidebarShow }) {
                            />
                         </div>
 
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               Marks
                            </label>
@@ -260,7 +257,7 @@ function Profile({ setShow, setSidebarShow }) {
                   </div>
                   {/* next section  */}
                   <div className="col-md-6 col-lg-5">
-                     <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                     <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                         <label style={{ color: "#0F6990" }}>
                            Mode of Study
                         </label>
@@ -290,7 +287,7 @@ function Profile({ setShow, setSidebarShow }) {
 
                      <form action="">
                         {/* name */}
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               Instituiton
                            </label>
@@ -304,7 +301,7 @@ function Profile({ setShow, setSidebarShow }) {
                            />
                         </div>
 
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               Marks
                            </label>
@@ -322,7 +319,7 @@ function Profile({ setShow, setSidebarShow }) {
                   </div>
                   {/* next section  */}
                   <div className="col-md-6 col-lg-5">
-                     <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                     <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                         <label style={{ color: "#0F6990", width: "100px" }}>
                            Mode of Study
                         </label>
@@ -353,7 +350,7 @@ function Profile({ setShow, setSidebarShow }) {
 
                      <form action="">
                         {/* name */}
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               Instituiton
                            </label>
@@ -369,7 +366,7 @@ function Profile({ setShow, setSidebarShow }) {
                            />
                         </div>
 
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               Marks
                            </label>
@@ -386,7 +383,7 @@ function Profile({ setShow, setSidebarShow }) {
                   </div>
                   {/* next section  */}
                   <div className="col-md-6 col-lg-5">
-                     <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                     <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                         <label style={{ color: "#0F6990", width: "100px" }}>
                            Mode of Study
                         </label>
@@ -416,7 +413,7 @@ function Profile({ setShow, setSidebarShow }) {
 
                      <form action="">
                         {/* name */}
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               Instituiton
                            </label>
@@ -430,7 +427,7 @@ function Profile({ setShow, setSidebarShow }) {
                            />
                         </div>
 
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               Marks
                            </label>
@@ -447,7 +444,7 @@ function Profile({ setShow, setSidebarShow }) {
                   </div>
                   {/* next section  */}
                   <div className="col-md-6 col-lg-5">
-                     <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                     <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                         <label style={{ color: "#0F6990", width: "100px" }}>
                            Mode of Study
                         </label>
@@ -476,7 +473,7 @@ function Profile({ setShow, setSidebarShow }) {
 
                      <form action="">
                         {/* name */}
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               Instituiton
                            </label>
@@ -490,7 +487,7 @@ function Profile({ setShow, setSidebarShow }) {
                            />
                         </div>
 
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               Marks
                            </label>
@@ -507,7 +504,7 @@ function Profile({ setShow, setSidebarShow }) {
                   </div>
                   {/* next section  */}
                   <div className="col-md-6 col-lg-5">
-                     <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                     <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                         <label style={{ color: "#0F6990", width: "100px" }}>
                            Mode of Study
                         </label>
@@ -534,7 +531,7 @@ function Profile({ setShow, setSidebarShow }) {
 
                      <form action="">
                         {/* name */}
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990" }}>
                               Do you have good communication skill in English?
                            </label>
@@ -550,7 +547,7 @@ function Profile({ setShow, setSidebarShow }) {
                            />
                         </div>
 
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990" }}>
                               Are you comfortable spending few months in
                               learning a new language?
@@ -571,7 +568,7 @@ function Profile({ setShow, setSidebarShow }) {
 
                   {/* next section  */}
                   <div className="col-md-6 col-lg-5">
-                     <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                     <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                         <label style={{ color: "#0F6990" }}>
                            Have you got any language proficiency?
                         </label>
@@ -595,69 +592,55 @@ function Profile({ setShow, setSidebarShow }) {
                <h4 className=" mt-4">
                   <span style={{ color: "#0F6990" }}>Language </span>Details
                </h4>
-               <div className="d-flex p-2 row  ">
-                  <div className="col-md-6 col-lg-4">
-                     <div className="form-group d-lg-flex   flex-column gap-3 p-2">
-                        <label style={{ color: "#0F6990", fontSize: "17px" }}>
-                           Language
-                        </label>
-                        <input
-                           className="inputBox shadow "
-                           type="text"
-                           name="name1"
-                           value={inputData.name1 || ""}
-                           // disabled={editable
-                           placeholder=""
-                           style={{
-                              fontSize: "15px",
-                              border: "none",
-                              width: "300px",
-                           }}
-                        />
+               {profileData.language_proficiency?.map((language) => (
+                  <div className="d-flex p-2 row" key={language.id}>
+                     <div className="col-md-6 col-lg-6">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                           <label
+                              style={{ color: "#0F6990", fontSize: "17px" }}
+                           >
+                              Language
+                           </label>
+                           <input
+                              className="inputBox shadow "
+                              type="text"
+                              name="name1"
+                              disabled
+                              value={language.language}
+                              placeholder=""
+                              style={{
+                                 fontSize: "15px",
+                                 border: "none",
+                                 width: "300px",
+                              }}
+                           />
+                        </div>
+                     </div>
+                     {/* next section */}
+                     <div className="col-md-6 col-lg-6">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                           <label
+                              style={{ color: "#0F6990", fontSize: "17px" }}
+                           >
+                              Certificate
+                           </label>
+                           <input
+                              className="inputBox shadow "
+                              type="text"
+                              name="name1"
+                              value={language.certificate}
+                              disabled
+                              placeholder=""
+                              style={{
+                                 fontSize: "15px",
+                                 border: "none",
+                                 width: "300px",
+                              }}
+                           />
+                        </div>
                      </div>
                   </div>
-                  {/* next section */}
-                  <div className="col-md-6 col-lg-4">
-                     <div className="form-group d-lg-flex   flex-column gap-3 p-2">
-                        <label style={{ color: "#0F6990", fontSize: "17px" }}>
-                           Certificate
-                        </label>
-                        <input
-                           className="inputBox shadow "
-                           type="text"
-                           name="name1"
-                           value={inputData.name1 || ""}
-                           // disabled={editable
-                           placeholder=""
-                           style={{
-                              fontSize: "15px",
-                              border: "none",
-                              width: "300px",
-                           }}
-                        />
-                     </div>
-                  </div>
-                  <div className="col-md-6 col-lg-4">
-                     <div className="form-group d-lg-flex   flex-column gap-3 p-2">
-                        <label style={{ color: "#0F6990", fontSize: "17px" }}>
-                           Level
-                        </label>
-                        <input
-                           className="inputBox shadow "
-                           type="text"
-                           name="name1"
-                           value={inputData.name1 || ""}
-                           // disabled={editable
-                           placeholder=""
-                           style={{
-                              fontSize: "15px",
-                              border: "none",
-                              width: "300px",
-                           }}
-                        />
-                     </div>
-                  </div>
-               </div>
+               ))}
 
                {/* Work Experience */}
                <h2 className="mt-3 mb-4" style={{}}>
@@ -675,7 +658,7 @@ function Profile({ setShow, setSidebarShow }) {
 
                         <form action="">
                            {/* name */}
-                           <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                           <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                               <label
                                  style={{ color: "#0F6990", width: "100px" }}
                               >
@@ -690,7 +673,7 @@ function Profile({ setShow, setSidebarShow }) {
                                  style={{ fontSize: "15px", border: "none" }}
                               />
                            </div>
-                           <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                           <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                               <label
                                  style={{ color: "#0F6990", width: "100px" }}
                               >
@@ -709,7 +692,7 @@ function Profile({ setShow, setSidebarShow }) {
                      </div>
                      {/* next section  */}
                      <div className="col-md-6 col-lg-5">
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               Company Name
                            </label>
@@ -722,7 +705,7 @@ function Profile({ setShow, setSidebarShow }) {
                               style={{ fontSize: "15px", border: "none" }}
                            />
                         </div>
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               To
                            </label>
@@ -750,7 +733,7 @@ function Profile({ setShow, setSidebarShow }) {
 
                         <form action="">
                            {/* name */}
-                           <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                           <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                               <label
                                  style={{ color: "#0F6990", width: "100px" }}
                               >
@@ -765,7 +748,7 @@ function Profile({ setShow, setSidebarShow }) {
                                  style={{ fontSize: "15px", border: "none" }}
                               />
                            </div>
-                           <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                           <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                               <label
                                  style={{ color: "#0F6990", width: "100px" }}
                               >
@@ -784,7 +767,7 @@ function Profile({ setShow, setSidebarShow }) {
                      </div>
                      {/* next section  */}
                      <div className="col-md-6 col-lg-5">
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               Company Name
                            </label>
@@ -797,7 +780,7 @@ function Profile({ setShow, setSidebarShow }) {
                               style={{ fontSize: "15px", border: "none" }}
                            />
                         </div>
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               To
                            </label>
@@ -827,7 +810,7 @@ function Profile({ setShow, setSidebarShow }) {
 
                      <form action="">
                         {/* name */}
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
                               Preferred course
                            </label>
@@ -844,7 +827,7 @@ function Profile({ setShow, setSidebarShow }) {
                   </div>
                   {/* next section  */}
                   <div className="col-md-6 col-lg-5">
-                     <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                     <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                         <label style={{ color: "#0F6990", width: "100px" }}>
                            preferred Country
                         </label>
@@ -858,39 +841,25 @@ function Profile({ setShow, setSidebarShow }) {
                         />
                      </div>
                   </div>
-               </div>
 
-               {/* Additional Details */}
-               <h2 className="mt-4" style={{}}>
-                  Additional Details
-               </h2>
-               <div
-                  className="d-flex p-4 row p-3 "
-                  style={{ backgroundColor: "" }}
-               >
                   <div className="col-md-6 col-lg-5">
-                     {/* input section */}
-
-                     <form action="">
-                        {/* name */}
-                        <div className="form-group d-lg-flex align-items-center gap-3 p-2">
-                           <label style={{ color: "#0F6990", width: "100px" }}>
-                              Intake
-                           </label>
-                           <input
-                              className="inputBox shadow "
-                              type="text"
-                              name="intake"
-                              value={profileData.intake || ""}
-                              disabled
-                              style={{ fontSize: "15px", border: "none" }}
-                           />
-                        </div>
-                     </form>
+                     <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                        <label style={{ color: "#0F6990", width: "100px" }}>
+                           Intake
+                        </label>
+                        <input
+                           className="inputBox shadow "
+                           type="text"
+                           name="intake"
+                           value={profileData.intake || ""}
+                           disabled
+                           style={{ fontSize: "15px", border: "none" }}
+                        />
+                     </div>
                   </div>
-                  {/* next section  */}
+
                   <div className="col-md-6 col-lg-5">
-                     <div className="form-group d-lg-flex align-items-center gap-3 p-2">
+                     <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                         <label style={{ color: "#0F6990", width: "100px" }}>
                            Year of study
                         </label>

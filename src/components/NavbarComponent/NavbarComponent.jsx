@@ -13,7 +13,6 @@ function NavbarComponent() {
 
    const { sidebarCollapse, setSidebarCollapse } = useContext(sidebarContext);
 
-   // const authLink = import.meta.env.VITE_FRAPPE_AUTH_LINK;
    const findrData = JSON.parse(localStorage.getItem("findrData"));
 
    useEffect(() => {
@@ -24,23 +23,24 @@ function NavbarComponent() {
    return (
       <>
          <Navbar
-            className="d-flex justify-content-between px-5"
+            className="d-flex justify-content-between px-5 navBar"
             style={{
                position: "fixed",
                top: "0",
                width: "100%",
                height: "80px",
-               backdropFilter: "blur(5px)",
                zIndex: "9999",
             }}
          >
-            <button
-               className="position-absolute btn d-md-none"
-               style={{ left: "10px", color: "#0F6990" }}
-               onClick={() => setSidebarCollapse(!sidebarCollapse)}
-            >
-               &#9776;
-            </button>
+            {isLogged && (
+               <button
+                  className="position-absolute btn d-md-none"
+                  style={{ left: "10px", color: "#0F6990" }}
+                  onClick={() => setSidebarCollapse(!sidebarCollapse)}
+               >
+                  &#9776;
+               </button>
+            )}
             <Navbar.Brand>
                <img
                   src={Logo}
@@ -48,7 +48,8 @@ function NavbarComponent() {
                   alt="Findr logo"
                   onClick={(e) => {
                      e.preventDefault();
-                     navigate("/");
+                     if (isLogged) navigate("/profile");
+                     else navigate("/");
                   }}
                   role="button"
                />

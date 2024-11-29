@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
+import React, { useContext, useEffect, useState } from "react";
+import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link, useNavigate } from "react-router-dom";
 
 import Profile from "../../assets/Profile.svg";
@@ -13,9 +13,12 @@ import { toast } from "react-toastify";
 import { sidebarContext } from "../../context/ContextShare";
 
 function SliderComponent() {
-   // const [collapse, setCollapse] = useState(false);
+   const { sidebarCollapse, setSidebarCollapse } = useContext(sidebarContext);
 
-   const { sidebarCollapse } = useContext(sidebarContext);
+   useEffect(() => {
+      const screenWidth = document.documentElement.clientWidth;
+      if (screenWidth < 600) setSidebarCollapse(true);
+   }, []);
 
    const navigate = useNavigate();
 
@@ -57,6 +60,7 @@ function SliderComponent() {
          <Menu className="" style={{ position: "relative", height: "100%" }}>
             <Link
                to={"/profile"}
+               onClick={() => setSidebarCollapse(!sidebarCollapse)}
                className="fw-bold"
                style={{ textDecoration: "none", color: "gray" }}
             >
@@ -68,6 +72,7 @@ function SliderComponent() {
             </Link>
             <Link
                to={"/payment"}
+               onClick={() => setSidebarCollapse(!sidebarCollapse)}
                className="fw-bold"
                style={{ textDecoration: "none", color: "gray" }}
             >
@@ -79,6 +84,7 @@ function SliderComponent() {
             </Link>
             <Link
                to={"/courses"}
+               onClick={() => setSidebarCollapse(!sidebarCollapse)}
                className="fw-bold"
                style={{ textDecoration: "none", color: "gray" }}
             >
@@ -89,6 +95,7 @@ function SliderComponent() {
             </Link>
             <Link
                to={"/contactus"}
+               onClick={() => setSidebarCollapse(!sidebarCollapse)}
                className="fw-bold"
                style={{ textDecoration: "none", color: "gray" }}
             >

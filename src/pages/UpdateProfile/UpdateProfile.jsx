@@ -58,7 +58,7 @@ function UpdateProfile({ setShow, setSidebarShow }) {
          setComponent(<WorkForm />);
          window.scrollTo(0, 0);
       } else if (currentIndex == 3) {
-         setComponent(<PreferenceForm />);
+         setComponent(<AdditionalForm />);
          window.scrollTo(0, 0);
       } else {
          setCurrentIndex(0);
@@ -89,8 +89,8 @@ function UpdateProfile({ setShow, setSidebarShow }) {
          updateDoc("Student", c_id, { ...updatedData })
             .then((res) => {
                console.log(res);
-               toast.success("Updated");
-               navigate("/profile");
+               toast.success("Profile details updated");
+               navigate("/payment");
             })
             .catch((err) => {
                console.log(err);
@@ -864,13 +864,17 @@ function LanguageForm() {
    };
 
    const addLanguage = () => {
-      const languageArray = updatedData.language_proficiency;
-
-      languageArray.push(languageData);
-      setUpdatedData({
-         ...updatedData,
-         language_proficiency: languageArray,
-      });
+      if (!languageData.certificate || !languageData.language) {
+         toast.warning("Please fill language details properly");
+      } else {
+         const languageArray = updatedData.language_proficiency;
+         languageArray.push(languageData);
+         setUpdatedData({
+            ...updatedData,
+            language_proficiency: languageArray,
+         });
+         setLanguageData({ language: "", certificate: "" });
+      }
    };
 
    const remvoveLanguage = (i) => {
@@ -1017,6 +1021,7 @@ function LanguageForm() {
                               type="text"
                               name="language"
                               onChange={(e) => getLanguage(e)}
+                              value={languageData.language}
                            />
                         </div>
                         <div className="col mt-5  ">
@@ -1034,6 +1039,7 @@ function LanguageForm() {
                               type="text"
                               name="certificate"
                               onChange={(e) => getLanguage(e)}
+                              value={languageData.certificate}
                            />
                         </div>
                      </div>
@@ -1113,6 +1119,44 @@ function LanguageForm() {
                   />
                </div>
             </div>
+
+            <div className="row">
+               <div className="col mt-5 ">
+                  <label
+                     htmlFor=""
+                     className="d-block fw-bolder mb-2"
+                     style={{ fontSize: "17px" }}
+                  >
+                     Intake
+                  </label>
+                  <input
+                     className="profileInputBox "
+                     placeholder="Enter Intake"
+                     type="text"
+                     name="intake"
+                     value={updatedData.intake}
+                     onChange={(e) => getFormData(e)}
+                  />
+               </div>
+               <div className="col mt-5  ">
+                  <label
+                     htmlFor=""
+                     className="fw-bolder mb-2 d-block"
+                     style={{ fontSize: "17px" }}
+                  >
+                     Year Of Study
+                  </label>
+                  <input
+                     className="profileInputBox  "
+                     placeholder="Enter Year Of Study"
+                     type="text"
+                     name="year_of_study"
+                     value={updatedData.year_of_study}
+                     onChange={(e) => getFormData(e)}
+                  />
+               </div>
+            </div>
+
             <div className="row">
                <div className="col mt-5 ">
                   <label
@@ -1172,6 +1216,7 @@ function LanguageForm() {
                   </div>
                </div>
             </div>
+
             {updatedData.availing_scholarship == "1" && (
                <div className="row">
                   <div className="col mt-5 ">
@@ -1229,9 +1274,18 @@ function LanguageForm() {
 
 function WorkForm() {
    const { updatedData, setUpdatedData } = useContext(updatedProfileContext);
-   const [internData, setInternData] = useState({});
-   const [workData, setWorkData] = useState({});
-   console.log(internData);
+   const [internData, setInternData] = useState({
+      intern_position: "",
+      intern_company_name: "",
+      intern_to: "",
+      intern_from: "",
+   });
+   const [workData, setWorkData] = useState({
+      work_position: "",
+      work_company_name: "",
+      work_to: "",
+      work_from: "",
+   });
 
    const getInternData = (e) => {
       const { name, value } = e.target;
@@ -1239,9 +1293,25 @@ function WorkForm() {
    };
 
    const addIntern = () => {
-      const internArray = updatedData.internship_details;
-      internArray.push(internData);
-      setUpdatedData({ ...updatedData, internship_details: internArray });
+      console.log(internData);
+      if (
+         !internData.intern_position ||
+         !internData.intern_company_name ||
+         !internData.intern_from ||
+         !internData.intern_to
+      ) {
+         toast.warning("Add Intern details properly");
+      } else {
+         const internArray = updatedData.internship_details;
+         internArray.push(internData);
+         setUpdatedData({ ...updatedData, internship_details: internArray });
+         setInternData({
+            intern_position: "",
+            intern_company_name: "",
+            intern_to: "",
+            intern_from: "",
+         });
+      }
    };
 
    const removeIntern = (i) => {
@@ -1256,9 +1326,24 @@ function WorkForm() {
    };
 
    const addWork = () => {
-      const workArray = updatedData.work_experience;
-      workArray.push(workData);
-      setUpdatedData({ ...updatedData, work_experience: workArray });
+      if (
+         !workData.work_position ||
+         !workData.work_company_name ||
+         !workData.work_from ||
+         !workData.work_to
+      ) {
+         toast.warning("Add Work details properly");
+      } else {
+         const workArray = updatedData.work_experience;
+         workArray.push(workData);
+         setUpdatedData({ ...updatedData, work_experience: workArray });
+         setWorkData({
+            work_position: "",
+            work_company_name: "",
+            work_to: "",
+            work_from: "",
+         });
+      }
    };
 
    const removeWork = (i) => {
@@ -1279,6 +1364,7 @@ function WorkForm() {
          <h4 className="ms-4">
             <p style={{ color: "#0f6990" }}>Internship Details</p>
          </h4>
+
          <div className="row p-4">
             <div className="col mt-5">
                <label htmlFor="" className="d-block fw-bolder mb-2">
@@ -1290,6 +1376,7 @@ function WorkForm() {
                   type="text"
                   name="intern_position"
                   onChange={(e) => getInternData(e)}
+                  value={internData.intern_position}
                />
             </div>
             <div className="col mt-5">
@@ -1302,6 +1389,7 @@ function WorkForm() {
                   placeholder="Company Name"
                   name="intern_company_name"
                   onChange={(e) => getInternData(e)}
+                  value={internData.intern_company_name}
                />
             </div>
             <div className="col mt-5">
@@ -1313,6 +1401,7 @@ function WorkForm() {
                   type="date"
                   name="intern_from"
                   onChange={(e) => getInternData(e)}
+                  value={internData.intern_from}
                />
             </div>
             <div className="col mt-5">
@@ -1324,6 +1413,7 @@ function WorkForm() {
                   type="date"
                   name="intern_to"
                   onChange={(e) => getInternData(e)}
+                  value={internData.intern_to}
                />
             </div>
          </div>
@@ -1357,6 +1447,7 @@ function WorkForm() {
          <h4 className="ms-4">
             <p style={{ color: "#0f6990" }}>Work Details</p>
          </h4>
+
          <div className="row p-4 d-flex">
             <div className="col mt-5">
                <label
@@ -1372,6 +1463,7 @@ function WorkForm() {
                   type="text"
                   name="work_position"
                   onChange={(e) => getWorkData(e)}
+                  value={workData.work_position}
                />
             </div>
             <div className="col mt-5">
@@ -1388,6 +1480,7 @@ function WorkForm() {
                   placeholder="Company Name"
                   name="work_company_name"
                   onChange={(e) => getWorkData(e)}
+                  value={workData.work_company_name}
                />
             </div>
             <div className="col mt-5">
@@ -1403,6 +1496,7 @@ function WorkForm() {
                   type="date"
                   name="work_from"
                   onChange={(e) => getWorkData(e)}
+                  value={workData.work_from}
                />
             </div>
             <div className="col mt-5">
@@ -1418,9 +1512,11 @@ function WorkForm() {
                   type="date"
                   name="work_to"
                   onChange={(e) => getWorkData(e)}
+                  value={workData.work_to}
                />
             </div>
          </div>
+
          <div className="formButtons d-flex justify-content-center p-4">
             <Button
                style={{ backgroundColor: "#0f6990" }}
@@ -1450,7 +1546,7 @@ function WorkForm() {
    );
 }
 
-function PreferenceForm() {
+function AdditionalForm() {
    const { updatedData, setUpdatedData } = useContext(updatedProfileContext);
 
    const getFormData = (e) => {
@@ -1459,7 +1555,7 @@ function PreferenceForm() {
    };
 
    return (
-      <div className="preferenceForm p-4 p-lg-5">
+      <div className="additionalForm p-4 p-lg-5">
          <h3
             className="d-flex justify-content-center fw-bolder"
             style={{ color: "#0f6990" }}
@@ -1500,43 +1596,6 @@ function PreferenceForm() {
                   type="date"
                   name="date_of_birth"
                   value={updatedData.date_of_birth}
-                  onChange={(e) => getFormData(e)}
-               />
-            </div>
-         </div>
-
-         <div className="row">
-            <div className="col mt-5 ">
-               <label
-                  htmlFor=""
-                  className="d-block fw-bolder mb-2"
-                  style={{ fontSize: "17px" }}
-               >
-                  Intake
-               </label>
-               <input
-                  className="profileInputBox "
-                  placeholder="Enter Intake"
-                  type="text"
-                  name="intake"
-                  value={updatedData.intake}
-                  onChange={(e) => getFormData(e)}
-               />
-            </div>
-            <div className="col mt-5  ">
-               <label
-                  htmlFor=""
-                  className="fw-bolder mb-2 d-block"
-                  style={{ fontSize: "17px" }}
-               >
-                  Year Of Study
-               </label>
-               <input
-                  className="profileInputBox  "
-                  placeholder="Enter Year Of Study"
-                  type="text"
-                  name="year_of_study"
-                  value={updatedData.year_of_study}
                   onChange={(e) => getFormData(e)}
                />
             </div>

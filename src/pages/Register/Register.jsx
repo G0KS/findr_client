@@ -81,10 +81,15 @@ function Register({ setShow, setSidebarShow }) {
                   );
                   navigate("/profile/update");
                })
-               .catch((err) => console.error(err));
+               .catch((err) => {
+                  console.error(err);
+                  toast.error(
+                     `${first_name} ${last_name} already has an existing account. Please login`
+                  );
+               });
          } catch (err) {
             console.error(err);
-            toast.error("There have been some error. Please try again later");
+            toast.error("There have been some internal error. Please try again later");
          }
       }
    };

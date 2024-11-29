@@ -68,7 +68,7 @@ function Payment({ setShow, setSidebarShow }) {
             <div className="col">
                <div style={{ width: "100%" }}>
                   <section
-                     className="d-flex justify-content-center align-items-center p-4"
+                     className="d-flex justify-content-center align-items-center p-2"
                      style={{
                         height: "100vh",
                         backgroundColor: "#0f6990",
@@ -76,13 +76,7 @@ function Payment({ setShow, setSidebarShow }) {
                            "linear-gradient(315deg, #0f6990  1%, #ffffff  45%)",
                      }}
                   >
-                     <div
-                        className="loginCard rounded-4 p-4 bg-white shadow-lg"
-                        style={{
-                           minWidth: "24rem",
-                           maxWidth:'50rem'
-                        }}
-                     >
+                     <div className="paymentCard rounded-4 p-4 bg-white shadow-lg">
                         {payment === "payment_done" ||
                         payment === "full_paid" ? (
                            <div className="row">
@@ -94,7 +88,6 @@ function Payment({ setShow, setSidebarShow }) {
                                  />
                               </div>
                               <div className="col d-flex align-items-center">
-                                 
                                  <div className="title">
                                     <h3
                                        style={{
@@ -105,7 +98,7 @@ function Payment({ setShow, setSidebarShow }) {
                                     <p
                                        style={{
                                           fontSize: "18px",
-                                          marginBottom:'0px'
+                                          marginBottom: "0px",
                                        }}
                                     >
                                        {paymentDesc}
@@ -123,7 +116,6 @@ function Payment({ setShow, setSidebarShow }) {
                                  />
                               </div>
                               <div className="col d-flex align-items-center">
-                               
                                  <div className="title">
                                     <h3
                                        style={{
@@ -135,10 +127,14 @@ function Payment({ setShow, setSidebarShow }) {
                                           ? "Registration Fee"
                                           : "Course Fee"}
                                     </h3>
-                                    <p  style={{
+                                    <p
+                                       style={{
                                           fontSize: "18px",
-                                          marginBottom:'0px'
-                                       }}>{paymentDesc}</p>
+                                          marginBottom: "0px",
+                                       }}
+                                    >
+                                       {paymentDesc}
+                                    </p>
                                     <h3
                                        className="fw-bolder"
                                        style={{ color: "#0F6990" }}

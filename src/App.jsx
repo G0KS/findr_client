@@ -31,68 +31,6 @@ import SliderComponent from "./components/SliderComponent/SliderComponent.jsx";
 function App() {
    const [show, setShow] = useState(true);
    const [sidebarShow, setSidebarShow] = useState(true);
-
-   // const [token, setToken] = useState("");
-
-   // const access = localStorage.getItem("access");
-
-   // const [searchParams] = useSearchParams();
-
-   // const getAccessToken = async () => {
-   //    if (access) {
-   //       setToken(access);
-   //    } else {
-   //       try {
-   //          await axios
-   //             .post(
-   //                "https://findrstudy.frappe.cloud/api/method/frappe.integrations.oauth2.get_token",
-   //                {
-   //                   grant_type: "authorization_code",
-   //                   code: searchParams.get("code"),
-   //                   client_id: "mmcsk8kp8q",
-   //                   redirect_uri: "https://findr-dev.netlify.app/login/",
-   //                },
-   //                {
-   //                   headers: {
-   //                      "Content-Type": "application/x-www-form-urlencoded",
-   //                   },
-   //                }
-   //             )
-   //             .then((res) => {
-   //                if (res.status === 200) {
-   //                   console.log(res);
-
-   //                   setToken(res.data.access_token);
-   //                   localStorage.setItem("access", res.data.access_token);
-   //                }
-   //             })
-   //             .catch((err) => console.error(err));
-   //       } catch (err) {
-   //          console.log(err);
-   //       }
-   //    }
-   // };
-
-   // useEffect(() => {
-   //    getAccessToken();
-   //    axios
-   //       .post(
-   //          "https://findrstudy.frappe.cloud/api/method/login",
-   //          {
-   //             usr: "student@findr.study",
-   //             pwd: "pswd4student@findr",
-   //          },
-   //          {
-   //             headers: {
-   //                "Content-Type": "application/x-www-form-urlencoded",
-   //             },
-   //          }
-   //       )
-   //       .then((res) => {
-   //          console.log(res);
-   //       });
-
-   // }, []);
    const api_key = import.meta.env.VITE_FRAPPE_STUDENT_KEY;
    const api_secret = import.meta.env.VITE_FRAPPE_STUDENT_SECRET;
 

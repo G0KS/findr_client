@@ -1,3 +1,8 @@
+.navBar {
+   -webkit-backdrop-filter: blur(5px);
+   backdrop-filter: blur(5px);
+}
+
 .loginSection {
    background: linear-gradient(-45deg, #ffffff, #0f699083, #ffffff, #ffffff);
    background-size: 400% 400%;
@@ -115,6 +120,10 @@
    cursor: pointer;
 }
 
+.paymentCard {
+   width: 45rem;
+}
+
 .addFormCard {
    width: 48%;
 }
@@ -138,6 +147,10 @@
    }
 
    .addFormCard {
+      width: 100%;
+   }
+
+   .paymentCard {
       width: 100%;
    }
 }
