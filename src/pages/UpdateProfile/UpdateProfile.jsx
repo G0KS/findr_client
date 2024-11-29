@@ -1048,7 +1048,7 @@ function LanguageForm() {
                            style={{ backgroundColor: "#0f6990" }}
                            onClick={addLanguage}
                         >
-                           Add more{" "}
+                           Add{" "}
                            <img style={{ width: "16px" }} src={add} alt="" />
                         </Button>
                      </div>
@@ -1076,13 +1076,51 @@ function LanguageForm() {
                ))}
             </div>
          </div>
-         <div className="preferenceForm px-4">
+         <div className="preferenceForm px-2">
             <h3
                className="d-flex justify-content-center fw-bolder"
                style={{ color: "#0f6990" }}
             >
                Preferences
             </h3>
+            <div className="fw-bolder borderStyle mt-4">
+            <div className="p-3">
+                  <p  style={{ fontSize: "17px" }}>
+                     Let Findr choose best for you?<span style={{ color: "red" }}>*</span>
+                  </p>
+                  <div className=" d-flex mt-2">
+                     <div className="">
+                        <input
+                           className="cursor"
+                           type="radio"
+                           id="languageQ1Y"
+                           name="english_skill"
+                           value="1"
+                           checked={updatedData.english_skill === "1"}
+                           onChange={(e) => getFormData(e)}
+                        />
+                        <label className="ps-2 cursor" htmlFor="languageQ1Y">
+                           Yes
+                        </label>
+                     </div>
+
+                     <div className="ms-5">
+                        <input
+                           className="cursor"
+                           type="radio"
+                           id="languageQ1N"
+                           name="english_skill"
+                           value="0"
+                           checked={updatedData.english_skill === "0"}
+                           onChange={(e) => getFormData(e)}
+                        />
+                        <label className="ps-2 cursor" htmlFor="languageQ1N">
+                           No
+                        </label>
+                     </div>
+                  </div>
+               </div>
+            </div>
             <div className="row">
                <div className="col mt-5">
                   <label
@@ -1423,7 +1461,7 @@ function WorkForm() {
                style={{ backgroundColor: "#0f6990" }}
                onClick={() => addIntern()}
             >
-               Add more <img style={{ width: "16px" }} src={add} alt="" />
+               Add <img style={{ width: "16px" }} src={add} alt="" />
             </Button>
          </div>
 
@@ -1522,7 +1560,7 @@ function WorkForm() {
                style={{ backgroundColor: "#0f6990" }}
                onClick={() => addWork()}
             >
-               Add more <img style={{ width: "16px" }} src={add} alt="" />
+               Add <img style={{ width: "16px" }} src={add} alt="" />
             </Button>
          </div>
 

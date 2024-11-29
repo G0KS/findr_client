@@ -92,6 +92,12 @@
    width: 350px;
 }
 
+.borderStyle{
+   border: 2px solid #067bc2;
+   border-radius: 10px;
+   
+}
+
 .answerLine {
    border: 1px solid green;
 }
