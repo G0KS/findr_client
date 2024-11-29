@@ -35,7 +35,7 @@ function Courses({ setShow, setSidebarShow }) {
          <div className="col-md-2"></div>
          <div className="col">
             <div className="container" style={{ paddingBlock: "80px" }}>
-               <div className="shapeParent d-flex align-items-center">
+               <div className="shapeParent d-flex align-items-center mb-5">
                   <div className="shape "></div>
                   <h2 className="m-0 ms-3">Courses</h2>
                </div>

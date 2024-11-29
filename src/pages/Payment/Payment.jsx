@@ -9,6 +9,7 @@ import SliderComponent from "../../components/SliderComponent/SliderComponent";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useFrappeGetDoc } from "frappe-react-sdk";
+import Auth from "../../auth/Auth";
 
 function Payment({ setShow, setSidebarShow }) {
    setShow(true);
@@ -57,6 +58,8 @@ function Payment({ setShow, setSidebarShow }) {
          if (!data.tenth_institution) {
             toast.warning("Complete your profile to continue");
             navigate("/profile/update");
+         } else {
+            getPaymentDetails();
          }
       }
    };
@@ -68,15 +71,7 @@ function Payment({ setShow, setSidebarShow }) {
          toast.warning("Please login");
          navigate("/login");
       }
-      if (name) {
-         getPaymentDetails();
-      } else {
-         toast.warning("Please login");
-         navigate("/login");
-      }
    }, [data]);
-
-   useEffect(() => {}, [data]);
 
    return (
       <>

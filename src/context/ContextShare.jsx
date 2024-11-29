@@ -4,8 +4,10 @@ import { templeteData } from "../constants/global";
 export const profileContext = createContext();
 export const updatedProfileContext = createContext();
 export const sidebarContext = createContext();
+export const logContext = createContext();
 
 function ContextShare({ children }) {
+   const [isLoggedIn, setIsLoggedIn] = useState(false);
    const [profileData, setProfileData] = useState();
    const [updatedData, setUpdatedData] = useState(templeteData);
    const [sidebarCollapse, setSidebarCollapse] = useState(false);
@@ -17,7 +19,9 @@ function ContextShare({ children }) {
             <sidebarContext.Provider
                value={{ sidebarCollapse, setSidebarCollapse }}
             >
-               {children}
+               <logContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+                  {children}
+               </logContext.Provider>
             </sidebarContext.Provider>
          </updatedProfileContext.Provider>
       </profileContext.Provider>

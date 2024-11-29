@@ -8,17 +8,14 @@ function PagenotFound({ setShow, setSidebarShow }) {
 
    return (
       <section
-         className="container d-flex align-items-center justify-content-center "
+         className="container d-flex  align-items-center justify-content-center "
          style={{ height: "100vh" }}
       >
          <div
-            className="d-flex align-items-center justify-content-center flex-colujmn"
+            className="d-flex align-items-center justify-content-center flex-column"
             style={{ width: "100%" }}
          >
-            <div
-               style={{ maxWidth: "1000px", backgroundColor: "lightblue" }}
-               className=""
-            >
+            <div style={{ width: "60%" }}>
                {" "}
                <img style={{ width: "100%" }} src={pagenotfound} alt="" />
             </div>

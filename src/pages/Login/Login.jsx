@@ -33,7 +33,6 @@ function Login({ setShow, setSidebarShow }) {
    });
 
    console.log(data);
-   
 
    const handleLogin = async (e) => {
       e.preventDefault();
@@ -95,8 +94,10 @@ function Login({ setShow, setSidebarShow }) {
                   <div className="input-group input-group-sm mb-3">
                      <input
                         id="email"
-                        type="text"
+                        type="email"
                         name="email"
+                        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                        title="Must be a valid email id"
                         onChange={(e) => getInputData(e)}
                         className="form-control"
                         aria-label="Sizing example input"
@@ -115,6 +116,8 @@ function Login({ setShow, setSidebarShow }) {
                         id="password"
                         type={showPassword ? "text" : "password"}
                         name="password"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
                         onChange={(e) => getInputData(e)}
                         className="form-control"
                         aria-label="Sizing example input"
