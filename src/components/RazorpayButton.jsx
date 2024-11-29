@@ -5,7 +5,6 @@ import axios from "axios";
 import { useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk";
 
 function RazorpayButton({ amount, payment }) {
-
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
 
@@ -90,15 +89,10 @@ function RazorpayButton({ amount, payment }) {
    };
    return (
       <button
-         className="btn text-light mt-4 rounded "
-         style={{
-            backgroundColor: "#0F6990",
-            width: "100px",
-            height: "40px",
-         }}
+         className="text-light mt-4 rounded paymentBtn"
          onClick={handlePayment}
       >
-         Paynow
+         Pay Now
       </button>
    );
 }

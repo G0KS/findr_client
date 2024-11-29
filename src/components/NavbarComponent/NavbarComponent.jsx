@@ -56,7 +56,7 @@ function NavbarComponent() {
             </Navbar.Brand>
 
             {isLogged ? (
-               <Button
+               <button
                   onClick={(e) => {
                      e.preventDefault();
                      navigate("/profile");
@@ -65,9 +65,9 @@ function NavbarComponent() {
                   style={{ backgroundColor: "#0F6990" }}
                >
                   Profile
-               </Button>
+               </button>
             ) : (
-               <Button
+               <button
                   onClick={(e) => {
                      e.preventDefault();
                      navigate("/login");
@@ -78,7 +78,7 @@ function NavbarComponent() {
                >
                   <img className="me-2" src={login} alt="" />
                   Sign In{" "}
-               </Button>
+               </button>
             )}
          </Navbar>
       </>

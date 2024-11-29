@@ -89,16 +89,15 @@ function Register({ setShow, setSidebarShow }) {
                });
          } catch (err) {
             console.error(err);
-            toast.error("There have been some internal error. Please try again later");
+            toast.error(
+               "There have been some internal error. Please try again later"
+            );
          }
       }
    };
 
    return (
-      <section
-         className="d-flex justify-content-center align-items-center loginSection"
-         style={{ height: "100vh" }}
-      >
+      <section className="d-flex justify-content-center align-items-center loginSection py-5">
          <div className="d-flex justify-content-center align-items-center rounded-4 mt-5 p-4 shadow-lg bg-white mx-4">
             <div className="signupCard row" style={{ maxWidth: "40rem" }}>
                <div className="col-lg-6">

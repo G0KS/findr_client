@@ -157,16 +157,16 @@ function UpdateProfile({ setShow, setSidebarShow }) {
                </div>
             </div>
             <div className="formButtons d-flex justify-content-center p-5">
-               <Button
-                  className="me-3"
-                  variant="outline-dark"
+               <button
+                  className="me-3 btn btn-outline-dark"
                   onClick={handleBack}
                   disabled={currentIndex == 0}
                >
                   Back
-               </Button>
+               </button>
                {currentIndex < 3 ? (
-                  <Button
+                  <button
+                     className="btn text-light"
                      style={{ backgroundColor: "#0f6990" }}
                      onClick={handleNext}
                   >
@@ -177,9 +177,10 @@ function UpdateProfile({ setShow, setSidebarShow }) {
                         src={next}
                         alt=""
                      />
-                  </Button>
+                  </button>
                ) : (
-                  <Button
+                  <button
+                     className="btn text-light"
                      style={{ backgroundColor: "#2e7d32" }}
                      onClick={(e) => handleSubmit(e, updatedData)}
                   >
@@ -190,7 +191,7 @@ function UpdateProfile({ setShow, setSidebarShow }) {
                         src={check}
                         alt=""
                      />
-                  </Button>
+                  </button>
                )}
             </div>
          </div>
@@ -1084,9 +1085,10 @@ function LanguageForm() {
                Preferences
             </h3>
             <div className="fw-bolder borderStyle mt-4">
-            <div className="p-3">
-                  <p  style={{ fontSize: "17px" }}>
-                     Let Findr choose best for you?<span style={{ color: "red" }}>*</span>
+               <div className="p-3">
+                  <p style={{ fontSize: "17px" }}>
+                     Let Findr choose best for you?
+                     <span style={{ color: "red" }}>*</span>
                   </p>
                   <div className=" d-flex mt-2">
                      <div className="">

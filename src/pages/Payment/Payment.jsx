@@ -52,7 +52,22 @@ function Payment({ setShow, setSidebarShow }) {
       }
    };
 
+   const getUserData = () => {
+      if (data !== undefined) {
+         if (!data.tenth_institution) {
+            toast.warning("Complete your profile to continue");
+            navigate("/profile/update");
+         }
+      }
+   };
+
    useEffect(() => {
+      if (name) {
+         getUserData();
+      } else {
+         toast.warning("Please login");
+         navigate("/login");
+      }
       if (name) {
          getPaymentDetails();
       } else {
@@ -60,6 +75,8 @@ function Payment({ setShow, setSidebarShow }) {
          navigate("/login");
       }
    }, [data]);
+
+   useEffect(() => {}, [data]);
 
    return (
       <>
@@ -87,14 +104,8 @@ function Payment({ setShow, setSidebarShow }) {
                                     style={{ maxWidth: "300px" }}
                                  />
                               </div>
-                              <div className="col d-flex align-items-center">
+                              <div className="col d-flex align-items-center my-4">
                                  <div className="title">
-                                    <h3
-                                       style={{
-                                          color: "#0F6990",
-                                          fontSize: "40px",
-                                       }}
-                                    ></h3>
                                     <p
                                        style={{
                                           fontSize: "18px",
@@ -103,6 +114,14 @@ function Payment({ setShow, setSidebarShow }) {
                                     >
                                        {paymentDesc}
                                     </p>
+                                    {payment === "full_paid" && (
+                                       <button
+                                          className="text-light mt-4 rounded w-100 paymentBtn"
+                                          onClick={() => navigate("/courses")}
+                                       >
+                                          Go to Courses
+                                       </button>
+                                    )}
                                  </div>
                               </div>
                            </div>
@@ -111,11 +130,11 @@ function Payment({ setShow, setSidebarShow }) {
                               <div className="col d-flex align-items-center justify-content-center">
                                  <img
                                     src={paymentimg}
-                                    alt=""
+                                    alt="Payment image"
                                     style={{ width: "300px" }}
                                  />
                               </div>
-                              <div className="col d-flex align-items-center">
+                              <div className="col d-flex align-items-center my-4">
                                  <div className="title">
                                     <h3
                                        style={{
@@ -136,8 +155,12 @@ function Payment({ setShow, setSidebarShow }) {
                                        {paymentDesc}
                                     </p>
                                     <h3
-                                       className="fw-bolder"
-                                       style={{ color: "#0F6990" }}
+                                       className="fw-bolder text-center text-lg-start pt-2"
+                                       style={{
+                                          color: "#0F6990",
+                                          fontSize: "28px",
+                                          fontFamily: "Arial",
+                                       }}
                                     >
                                        {fee == 2499 ? "₹2499" : "₹5000"}
                                     </h3>

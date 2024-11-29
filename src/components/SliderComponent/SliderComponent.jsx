@@ -14,10 +14,11 @@ import { sidebarContext } from "../../context/ContextShare";
 
 function SliderComponent() {
    const { sidebarCollapse, setSidebarCollapse } = useContext(sidebarContext);
+   const [isSmallDevice, setIsSmallDevice] = useState(false);
 
    useEffect(() => {
       const screenWidth = document.documentElement.clientWidth;
-      if (screenWidth < 600) setSidebarCollapse(true);
+      if (screenWidth < 600) setIsSmallDevice(true);
    }, []);
 
    const navigate = useNavigate();
@@ -48,68 +49,82 @@ function SliderComponent() {
          collapsed={sidebarCollapse}
          collapsedWidth="0px"
          backgroundColor="white"
-         onBackdropClick
+         onBackdropClick={() => {}}
          style={{
             position: "fixed",
-            top: "80px",
             left: "0",
-            height: "92vh",
             zIndex: "999",
          }}
       >
-         <Menu className="" style={{ position: "relative", height: "100%" }}>
-            <Link
-               to={"/profile"}
-               onClick={() => setSidebarCollapse(!sidebarCollapse)}
-               className="fw-bold"
-               style={{ textDecoration: "none", color: "gray" }}
-            >
-               <MenuItem>
-                  {" "}
-                  <img className="p-2" src={Profile} alt="" />
-                  Profile
-               </MenuItem>
-            </Link>
-            <Link
-               to={"/payment"}
-               onClick={() => setSidebarCollapse(!sidebarCollapse)}
-               className="fw-bold"
-               style={{ textDecoration: "none", color: "gray" }}
-            >
-               <MenuItem>
-                  {" "}
-                  <img className="p-2" src={Payment} alt="" />
-                  Payment
-               </MenuItem>
-            </Link>
-            <Link
-               to={"/courses"}
-               onClick={() => setSidebarCollapse(!sidebarCollapse)}
-               className="fw-bold"
-               style={{ textDecoration: "none", color: "gray" }}
-            >
-               <MenuItem>
-                  <img className="p-2" src={Document} alt="" />
-                  Courses
-               </MenuItem>
-            </Link>
-            <Link
-               to={"/contactus"}
-               onClick={() => setSidebarCollapse(!sidebarCollapse)}
-               className="fw-bold"
-               style={{ textDecoration: "none", color: "gray" }}
-            >
-               <MenuItem>
-                  <img className="p-2" src={Calling} alt="" />
-                  Contact us
-               </MenuItem>
-            </Link>
+         <Menu
+            className=""
+            style={{
+               position: "relative",
+               height: "100vh",
+               paddingTop: "80px",
+            }}
+         >
+            <>
+               <Link
+                  to={"/profile"}
+                  onClick={() => {
+                     if (isSmallDevice) setSidebarCollapse(!sidebarCollapse);
+                  }}
+                  className="fw-bold"
+                  style={{ textDecoration: "none", color: "gray" }}
+               >
+                  <MenuItem>
+                     {" "}
+                     <img className="p-2" src={Profile} alt="" />
+                     Profile
+                  </MenuItem>
+               </Link>
+               <Link
+                  to={"/payment"}
+                  onClick={() => {
+                     if (isSmallDevice) setSidebarCollapse(!sidebarCollapse);
+                  }}
+                  className="fw-bold"
+                  style={{ textDecoration: "none", color: "gray" }}
+               >
+                  <MenuItem>
+                     {" "}
+                     <img className="p-2" src={Payment} alt="" />
+                     Payment
+                  </MenuItem>
+               </Link>
+               <Link
+                  to={"/courses"}
+                  onClick={() => {
+                     if (isSmallDevice) setSidebarCollapse(!sidebarCollapse);
+                  }}
+                  className="fw-bold"
+                  style={{ textDecoration: "none", color: "gray" }}
+               >
+                  <MenuItem>
+                     <img className="p-2" src={Document} alt="" />
+                     Courses
+                  </MenuItem>
+               </Link>
+               <Link
+                  to={"/contactus"}
+                  onClick={() => {
+                     if (isSmallDevice) setSidebarCollapse(!sidebarCollapse);
+                  }}
+                  className="fw-bold"
+                  style={{ textDecoration: "none", color: "gray" }}
+               >
+                  <MenuItem>
+                     <img className="p-2" src={Calling} alt="" />
+                     Contact us
+                  </MenuItem>
+               </Link>
+            </>
             <MenuItem
                className="fw-bold"
                style={{
                   textDecoration: "none",
                   color: "gray",
-                  marginTop: "400px",
                }}
                onClick={handleLogout}
             >
