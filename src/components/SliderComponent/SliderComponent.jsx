@@ -18,7 +18,10 @@ function SliderComponent() {
 
    useEffect(() => {
       const screenWidth = document.documentElement.clientWidth;
-      if (screenWidth < 600) setIsSmallDevice(true);
+      if (screenWidth < 600) {
+         setIsSmallDevice(true);
+         setSidebarCollapse(true);
+      }
    }, []);
 
    const navigate = useNavigate();
@@ -49,7 +52,6 @@ function SliderComponent() {
          collapsed={sidebarCollapse}
          collapsedWidth="0px"
          backgroundColor="white"
-         onBackdropClick={() => {}}
          style={{
             position: "fixed",
             left: "0",

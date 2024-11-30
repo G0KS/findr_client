@@ -74,18 +74,12 @@ function UpdateProfile({ setShow, setSidebarShow }) {
          tenth_institution,
          tenth_marks,
          tenth_mode_of_study,
+         findr_choose,
          preferred_country,
          preferred_course,
       } = updatedData;
-      if (
-         !tenth_institution ||
-         !tenth_marks ||
-         !tenth_mode_of_study ||
-         !preferred_country ||
-         !preferred_course
-      ) {
-         toast.warning("Fill all details");
-      } else {
+
+      const updateProfile = () => {
          updateDoc("Student", c_id, { ...updatedData })
             .then((res) => {
                console.log(res);
@@ -96,6 +90,28 @@ function UpdateProfile({ setShow, setSidebarShow }) {
                console.log(err);
                toast.warning("Some internal errors. Please try again later");
             });
+      };
+
+      if (findr_choose === "0") {
+         if (
+            !tenth_institution ||
+            !tenth_marks ||
+            !tenth_mode_of_study ||
+            !preferred_country ||
+            !preferred_course
+         ) {
+            toast.warning("Fill all mandatory details");
+         } else {
+            updateProfile();
+         }
+      } else if (findr_choose === "1") {
+         if (!tenth_institution || !tenth_marks || !tenth_mode_of_study) {
+            toast.warning("Fill all mandatory details");
+         } else {
+            updateProfile();
+         }
+      } else {
+         toast.warning("Fill all mandatory details");
       }
    };
 
@@ -1104,7 +1120,7 @@ function LanguageForm() {
                            checked={updatedData.findr_choose === "1"}
                            onChange={(e) => getFormData(e)}
                         />
-                        <label className="ps-2 cursor" htmlFor="findrChoose">
+                        <label className="ps-2 cursor" htmlFor="findrChooseY">
                            Yes
                         </label>
                      </div>
@@ -1125,42 +1141,44 @@ function LanguageForm() {
                   </div>
                </div>
             </div>
-            <div className="row">
-               <div className="col mt-5">
-                  <label
-                     htmlFor=""
-                     className="d-block fw-bolder mb-2"
-                     style={{ fontSize: "17px" }}
-                  >
-                     Preferred course<span style={{ color: "red" }}>*</span>
-                  </label>
-                  <input
-                     className="profileInputBox "
-                     placeholder="Course Name"
-                     type="text"
-                     name="preferred_course"
-                     value={updatedData.preferred_course}
-                     onChange={(e) => getFormData(e)}
-                  />
+            {updatedData.findr_choose === "0" && (
+               <div className="row">
+                  <div className="col mt-5">
+                     <label
+                        htmlFor=""
+                        className="d-block fw-bolder mb-2"
+                        style={{ fontSize: "17px" }}
+                     >
+                        Preferred course<span style={{ color: "red" }}>*</span>
+                     </label>
+                     <input
+                        className="profileInputBox "
+                        placeholder="Course Name"
+                        type="text"
+                        name="preferred_course"
+                        value={updatedData.preferred_course}
+                        onChange={(e) => getFormData(e)}
+                     />
+                  </div>
+                  <div className="col mt-5">
+                     <label
+                        htmlFor=""
+                        className="d-block fw-bolder mb-2"
+                        style={{ fontSize: "17px" }}
+                     >
+                        Preferred Country<span style={{ color: "red" }}>*</span>
+                     </label>
+                     <input
+                        className="profileInputBox "
+                        placeholder="Country Name"
+                        type="text"
+                        name="preferred_country"
+                        value={updatedData.preferred_country}
+                        onChange={(e) => getFormData(e)}
+                     />
+                  </div>
                </div>
-               <div className="col mt-5">
-                  <label
-                     htmlFor=""
-                     className="d-block fw-bolder mb-2"
-                     style={{ fontSize: "17px" }}
-                  >
-                     Preferred Country<span style={{ color: "red" }}>*</span>
-                  </label>
-                  <input
-                     className="profileInputBox "
-                     placeholder="Country Name"
-                     type="text"
-                     name="preferred_country"
-                     value={updatedData.preferred_country}
-                     onChange={(e) => getFormData(e)}
-                  />
-               </div>
-            </div>
+            )}
 
             <div className="row">
                <div className="col mt-5 ">

@@ -71,7 +71,6 @@ function NavbarComponent() {
                   onClick={(e) => {
                      e.preventDefault();
                      navigate("/login");
-                     // location.href = authLink;
                   }}
                   className="btn text-light"
                   style={{ backgroundColor: "#0F6990" }}
