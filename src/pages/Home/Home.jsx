@@ -3,11 +3,19 @@ import Col from "react-bootstrap/Col";
 import hero from "../../assets/hero.svg";
 import chevronright from "../../assets/chevron-right.svg";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function Home({ setShow, setSidebarShow }) {
    setShow(true);
    setSidebarShow(false);
+   const navigate = useNavigate();
+
+   const name = JSON.parse(localStorage.getItem("findrData"))?.name;
+
+   useEffect(() => {
+      if (name) navigate("/courses");
+   }, [name]);
 
    return (
       <>
