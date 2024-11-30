@@ -55,17 +55,19 @@ function NavbarComponent() {
                />
             </Navbar.Brand>
 
-            <button
-               onClick={(e) => {
-                  e.preventDefault();
-                  navigate("/login");
-               }}
-               className="btn text-light"
-               style={{ backgroundColor: "#0F6990" }}
-            >
-               <img className="me-2" src={login} alt="" />
-               Sign In{" "}
-            </button>
+            {!isLogged && (
+               <button
+                  onClick={(e) => {
+                     e.preventDefault();
+                     navigate("/login");
+                  }}
+                  className="btn text-light"
+                  style={{ backgroundColor: "#0F6990" }}
+               >
+                  <img className="me-2" src={login} alt="" />
+                  Sign In{" "}
+               </button>
+            )}
          </Navbar>
       </>
    );
