@@ -141,15 +141,6 @@ function UpdateProfile({ setShow, setSidebarShow }) {
          />
          <div style={{ paddingBlock: "95px" }} className="container ms-auto">
             <div className="d-flex justify-content-center align-items-center  ">
-               <div
-                  style={{
-                     width: "40px",
-                     height: "40px",
-                  }}
-                  className="image"
-               >
-                  <img style={{ height: "100%" }} src={logo} alt="" />
-               </div>
                <h2 className="" style={{ marginBottom: "0" }}>
                   Complete Your Profile{" "}
                </h2>
@@ -1069,7 +1060,6 @@ function LanguageForm() {
                            onClick={addLanguage}
                         >
                            Add{" "}
-                           <img style={{ width: "16px" }} src={add} alt="" />
                         </button>
                      </div>
                   </div>
@@ -1106,7 +1096,7 @@ function LanguageForm() {
             <div className="fw-bolder borderStyle mt-4">
                <div className="p-3">
                   <p style={{ fontSize: "17px" }}>
-                     Let Findr choose best for you?
+                     Let Findr choose the best for you?
                      <span style={{ color: "red" }}>*</span>
                   </p>
                   <div className=" d-flex mt-2">
@@ -1204,7 +1194,7 @@ function LanguageForm() {
                      className="fw-bolder mb-2 d-block"
                      style={{ fontSize: "17px" }}
                   >
-                     Year Of Study
+                     Preferred year of study
                   </label>
                   <input
                      className="profileInputBox  "
@@ -1305,7 +1295,7 @@ function LanguageForm() {
                   <div className="col mt-5">
                      <label
                         htmlFor=""
-                        className="fw-bolder mb-2"
+                        className="d-block fw-bolder mb-2"
                         style={{ fontSize: "17px" }}
                      >
                         Caste
@@ -1484,7 +1474,7 @@ function WorkForm() {
                style={{ backgroundColor: "#0f6990" }}
                onClick={() => addIntern()}
             >
-               Add <img style={{ width: "16px" }} src={add} alt="" />
+               Add
             </button>
          </div>
 
@@ -1584,7 +1574,7 @@ function WorkForm() {
                style={{ backgroundColor: "#0f6990" }}
                onClick={() => addWork()}
             >
-               Add <img style={{ width: "16px" }} src={add} alt="" />
+               Add
             </button>
          </div>
 

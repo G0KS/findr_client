@@ -136,6 +136,12 @@ function Courses({ setShow, setSidebarShow }) {
                                     to access.
                                  </p>
                               </div>
+                              <button
+                                 className="text-light mt-4 rounded paymentBtn"
+                                 onClick={() => navigate("/payment")}
+                              >
+                                 Go to Payment
+                              </button>
                            </div>
                         ) : (
                            <div className="d-flex flex-column align-items-center">
@@ -193,6 +199,12 @@ function Courses({ setShow, setSidebarShow }) {
                                  Study Abroad Adventure
                               </p>
                            </div>
+                           <button
+                              className="text-light mt-4 rounded paymentBtn"
+                              onClick={() => navigate("/payment")}
+                           >
+                              Go to Payment
+                           </button>
                         </div>
                      )}
                   </div>

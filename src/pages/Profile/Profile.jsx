@@ -75,7 +75,7 @@ function Profile({ setShow, setSidebarShow }) {
          <div className="col-md-2"></div>
          <div className="col">
             {" "}
-            <div className="container my-4" style={{ paddingBlock: "80px" }}>
+            <div className="container my-4" style={{ paddingBlock: "90px" }}>
                <div className="d-flex justify-content-between">
                   <h2>Personal Details</h2>
                   {editable ? (

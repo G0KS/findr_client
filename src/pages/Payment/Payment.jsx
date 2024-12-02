@@ -109,14 +109,12 @@ function Payment({ setShow, setSidebarShow }) {
                                     >
                                        {paymentDesc}
                                     </p>
-                                    {payment === "full_paid" && (
-                                       <button
-                                          className="text-light mt-4 rounded w-100 paymentBtn"
-                                          onClick={() => navigate("/courses")}
-                                       >
-                                          Go to Courses
-                                       </button>
-                                    )}
+                                    <button
+                                       className="text-light mt-4 rounded w-100 paymentBtn"
+                                       onClick={() => navigate("/courses")}
+                                    >
+                                       Go to Courses
+                                    </button>
                                  </div>
                               </div>
                            </div>

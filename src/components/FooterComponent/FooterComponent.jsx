@@ -61,7 +61,7 @@ function FooterComponent() {
                      className="fa-solid fa-message fs-3"
                      style={{ color: "#0f6990" }}
                   ></i>
-                  <span>findrstudy@gmail.com</span>
+                  <span>support@findr.study</span>
                </Link>
                <div className="d-flex justify-content-sm-between">
                   <Link to="" target="blank" className={style.socialIcon}>
