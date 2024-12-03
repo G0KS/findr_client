@@ -208,11 +208,11 @@
 
 @media only screen and (max-width: 600px) {
   .profileInputBox {
-    width: 300px;
+    width: 100%;
   }
 
   .courseCard {
-    width: 380px;
+    width: 100%;
   }
 
   .courseCardP1 {

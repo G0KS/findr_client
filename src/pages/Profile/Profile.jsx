@@ -159,7 +159,7 @@ function Profile({ setShow, setSidebarShow }) {
                         </label>
                         <input
                            className="inputBox shadow "
-                           type="date"
+                           type="text"
                            name=""
                            value={profileData.date_of_birth || ""}
                            disabled
