@@ -77,7 +77,7 @@ function Profile({ setShow, setSidebarShow }) {
             {" "}
             <div className="container my-4" style={{ paddingBlock: "90px" }}>
                <div className="d-flex justify-content-between">
-                  <h2>Personal Details</h2>
+                  <h2 className="ms-2">Personal Details</h2>
                   {editable ? (
                      <button
                         className="py-2  px-3 shadow border "
@@ -96,7 +96,7 @@ function Profile({ setShow, setSidebarShow }) {
                      </button>
                   ) : (
                      <button
-                        className="ms-auto py-2  px-3 shadow border "
+                        className="ms-auto py-2  px-3 me-3 shadow border "
                         style={{
                            backgroundColor: "#0F6990",
                            borderRadius: "10px",
@@ -214,7 +214,7 @@ function Profile({ setShow, setSidebarShow }) {
                </div>
 
                {/* Tenth Qualification */}
-               <h4 className=" mt-4">
+               <h4 className=" mt-4 ms-3">
                   <span style={{ color: "#0F6990" }}>Tenth</span> Qualification
                </h4>
                <div
@@ -274,7 +274,7 @@ function Profile({ setShow, setSidebarShow }) {
                </div>
 
                {/* Twelfth Qualification */}
-               <h4 className=" mt-4">
+               <h4 className=" mt-4 ms-3">
                   <span style={{ color: "#0F6990" }}>Twelfth</span>{" "}
                   Qualification
                </h4>
@@ -337,7 +337,7 @@ function Profile({ setShow, setSidebarShow }) {
                </div>
 
                {/* UG Qualification */}
-               <h4 className=" mt-4">
+               <h4 className=" mt-4 ms-3">
                   <span style={{ color: "#0F6990" }}>Undergraduate </span>{" "}
                   Qualification
                </h4>
@@ -400,7 +400,7 @@ function Profile({ setShow, setSidebarShow }) {
                </div>
 
                {/* Postgraduate Qualification */}
-               <h4 className=" mt-4">
+               <h4 className=" mt-4 ms-3">
                   <span style={{ color: "#0F6990" }}>Postgraduate </span>{" "}
                   Qualification
                </h4>
@@ -461,7 +461,7 @@ function Profile({ setShow, setSidebarShow }) {
                </div>
 
                {/* PhD Qualification */}
-               <h4 className=" mt-4">
+               <h4 className=" mt-4 ms-3">
                   <span style={{ color: "#0F6990" }}>PhD </span> Qualification
                </h4>
                <div
@@ -521,7 +521,7 @@ function Profile({ setShow, setSidebarShow }) {
                </div>
 
                {/* Language Proficiency */}
-               <h4 className=" mt-4">Language Proficiency</h4>
+               <h4 className=" mt-4 ms-3">Language Proficiency</h4>
                <div
                   className="d-flex p-4 row p-3 "
                   style={{ backgroundColor: "" }}
@@ -589,7 +589,7 @@ function Profile({ setShow, setSidebarShow }) {
                </div>
 
                {/* Language Details */}
-               <h4 className=" mt-4">
+               <h4 className=" mt-4 ms-3">
                   <span style={{ color: "#0F6990" }}>Language </span>Details
                </h4>
                {profileData.language_proficiency?.map((language) => (
@@ -643,12 +643,12 @@ function Profile({ setShow, setSidebarShow }) {
                ))}
 
                {/* Work Experience */}
-               <h2 className="mt-3 mb-4" style={{}}>
+               <h2 className="mt-3 mb-4 ms-3" style={{}}>
                   Work Experience
                </h2>
 
                {/* Internship Details */}
-               <h4 className=" mt-4">
+               <h4 className=" mt-4 ms-3  ">
                   <span style={{ color: "#0F6990" }}>Internship </span>Details
                </h4>
                {profileData.internship_details?.map((intern) => (
@@ -723,7 +723,7 @@ function Profile({ setShow, setSidebarShow }) {
                ))}
 
                {/* Work Details */}
-               <h4 className=" mt-4">
+               <h4 className=" mt-4 ms-3">
                   <span style={{ color: "#0F6990" }}>Work </span>Details
                </h4>
                {profileData.work_experience?.map((work) => (
@@ -798,7 +798,7 @@ function Profile({ setShow, setSidebarShow }) {
                ))}
 
                {/* Preferences */}
-               <h2 className="" style={{}}>
+               <h2 className="ms-3" style={{}}>
                   Preferences
                </h2>
                <div
