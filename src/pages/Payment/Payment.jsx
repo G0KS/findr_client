@@ -76,7 +76,7 @@ function Payment({ setShow, setSidebarShow }) {
    return (
       <>
          <div className="d-flex">
-            <div className="col-md-2"></div>
+         <div className="d-none d-lg-block ms-5"></div>
             <div className="col">
                <div style={{ width: "100%" }}>
                   <section

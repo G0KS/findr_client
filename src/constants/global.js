@@ -25,6 +25,7 @@ export const templeteData = {
    internship_details: [],
    work_experience: [],
    language_proficiency: [],
+   findr_choose: "1",
    preferred_course: "",
    preferred_country: "",
    budget: "",

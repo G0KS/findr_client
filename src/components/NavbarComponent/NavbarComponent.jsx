@@ -48,8 +48,7 @@ function NavbarComponent() {
                   alt="Findr logo"
                   onClick={(e) => {
                      e.preventDefault();
-                     if (isLogged) navigate("/profile");
-                     else navigate("/");
+                     if (!isLogged) navigate("/");
                   }}
                   role="button"
                />
