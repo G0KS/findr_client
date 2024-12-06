@@ -1,15 +1,9 @@
-//
-//    Paid Card
-//
-
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import paymentimg from "../../assets/paymentimg.jpeg";
 import RazorpayButton from "../../components/RazorpayButton";
-import SliderComponent from "../../components/SliderComponent/SliderComponent";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useFrappeGetDoc } from "frappe-react-sdk";
-import Auth from "../../auth/Auth";
 
 function Payment({ setShow, setSidebarShow }) {
    setShow(true);
@@ -23,7 +17,6 @@ function Payment({ setShow, setSidebarShow }) {
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
 
    const { data } = useFrappeGetDoc("Student", c_id);
-   console.log(data);
 
    const getPaymentDetails = () => {
       if (data !== undefined) {
@@ -76,7 +69,7 @@ function Payment({ setShow, setSidebarShow }) {
    return (
       <>
          <div className="d-flex">
-         <div className="d-none d-lg-block ms-5"></div>
+            <div className="d-none d-lg-block ms-5"></div>
             <div className="col">
                <div style={{ width: "100%" }}>
                   <section

@@ -1,7 +1,3 @@
-//-------------------------------------
-// signup validation
-//-------------------------------------
-// import background from '../../assets/background.svg';
 import bg1 from "../../assets/bg-1.svg";
 import bg2 from "../../assets/bg-2.svg";
 import next from "../../assets/chevron-double-right.svg";
@@ -11,9 +7,8 @@ import downArrow from "../../assets/down.svg";
 
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import logo from "../../assets/F.png";
 import { useNavigate } from "react-router-dom";
-import { useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk";
+import { useFrappeUpdateDoc } from "frappe-react-sdk";
 
 import { updatedProfileContext } from "../../context/ContextShare";
 
@@ -253,7 +248,7 @@ function EducationForm() {
                      className="d-block fw-bolder mb-2 "
                      style={{ fontSize: "17px" }}
                   >
-                     Institution<span style={{ color: "red" }}>*</span>
+                     Institution<span className="text-danger">*</span>
                   </label>
                   <input
                      className="profileInputBox"
@@ -270,7 +265,7 @@ function EducationForm() {
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     Marks<span style={{ color: "red" }}>*</span>
+                     Marks<span className="text-danger">*</span>
                   </label>
                   <input
                      className="profileInputBox "
@@ -287,7 +282,7 @@ function EducationForm() {
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     Year<span style={{ color: "red" }}>*</span>
+                     Year<span className="text-danger">*</span>
                   </label>
                   <input
                      className="profileInputBox "
@@ -304,7 +299,7 @@ function EducationForm() {
                      className="fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     Mode Of Study<span style={{ color: "red" }}>*</span>
+                     Mode Of Study<span className="text-danger">*</span>
                   </label>
                   <div className="fw-bolder d-flex mt-2">
                      <div className="">
@@ -373,7 +368,42 @@ function EducationForm() {
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     Institution<span style={{ color: "red" }}>*</span>
+                     Course name<span className="text-danger">*</span>
+                  </label>
+                  <input
+                     className="profileInputBox "
+                     type="text"
+                     placeholder="Enter Course name"
+                     name="twelfth_course"
+                     value={updatedData.twelfth_course}
+                     onChange={(e) => getFormData(e)}
+                  />
+               </div>
+               <div className="col mt-5">
+                  <label
+                     htmlFor=""
+                     className="d-block fw-bolder mb-2"
+                     style={{ fontSize: "17px" }}
+                  >
+                     Marks<span className="text-danger">*</span>
+                  </label>
+                  <input
+                     className="profileInputBox "
+                     type="text"
+                     placeholder="CGPA / Percentage"
+                     name="twelfth_marks"
+                     value={updatedData.twelfth_marks}
+                     onChange={(e) => getFormData(e)}
+                  />
+               </div>
+
+               <div className="col mt-5">
+                  <label
+                     htmlFor=""
+                     className="d-block fw-bolder mb-2"
+                     style={{ fontSize: "17px" }}
+                  >
+                     Institution<span className="text-danger">*</span>
                   </label>
                   <input
                      className="profileInputBox "
@@ -387,27 +417,57 @@ function EducationForm() {
                <div className="col mt-5">
                   <label
                      htmlFor=""
-                     className="d-block fw-bolder mb-2"
+                     className="fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     Marks<span style={{ color: "red" }}>*</span>
+                     Currently studying?<span className="text-danger">*</span>
                   </label>
-                  <input
-                     className="profileInputBox "
-                     type="text"
-                     placeholder="CGPA / Percentage"
-                     name="twelfth_marks"
-                     value={updatedData.twelfth_marks}
-                     onChange={(e) => getFormData(e)}
-                  />
+                  <div className="fw-bolder d-flex mt-2">
+                     <div className="">
+                        <input
+                           className="cursor"
+                           type="radio"
+                           id="twelfthPursuingY"
+                           name="twelfth_pursuing"
+                           value={1}
+                           checked={updatedData.twelfth_pursuing === "1"}
+                           onChange={(e) => getFormData(e)}
+                        />
+                        <label
+                           className="ps-2 cursor"
+                           htmlFor="twelfthPursuingY"
+                        >
+                           Yes
+                        </label>
+                     </div>
+
+                     <div className="ms-5">
+                        <input
+                           className="cursor"
+                           type="radio"
+                           id="twelfthPursuingN"
+                           name="twelfth_pursuing"
+                           value={0}
+                           checked={updatedData.twelfth_pursuing === "0"}
+                           onChange={(e) => getFormData(e)}
+                        />
+                        <label
+                           className="ps-2 cursor"
+                           htmlFor="twelfthPursuingN"
+                        >
+                           No
+                        </label>
+                     </div>
+                  </div>
                </div>
+
                <div className="col mt-5">
                   <label
                      htmlFor=""
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     Year<span style={{ color: "red" }}>*</span>
+                     Year<span className="text-danger">*</span>
                   </label>
                   <input
                      className="profileInputBox "
@@ -424,7 +484,7 @@ function EducationForm() {
                      className="fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     Mode Of Study<span style={{ color: "red" }}>*</span>
+                     Mode Of Study<span className="text-danger">*</span>
                   </label>
                   <div className="fw-bolder d-flex mt-2">
                      <div className="">
@@ -1290,7 +1350,7 @@ function LanguageForm() {
                <div className="p-3">
                   <p style={{ fontSize: "17px" }}>
                      Let Findr choose the best for you?
-                     <span style={{ color: "red" }}>*</span>
+                     <span className="text-danger">*</span>
                   </p>
                   <div className=" d-flex mt-2">
                      <div className="">
@@ -1332,7 +1392,7 @@ function LanguageForm() {
                         className="d-block fw-bolder mb-2"
                         style={{ fontSize: "17px" }}
                      >
-                        Preferred course<span style={{ color: "red" }}>*</span>
+                        Preferred course<span className="text-danger">*</span>
                      </label>
                      <input
                         className="profileInputBox "
@@ -1349,7 +1409,7 @@ function LanguageForm() {
                         className="d-block fw-bolder mb-2"
                         style={{ fontSize: "17px" }}
                      >
-                        Preferred Country<span style={{ color: "red" }}>*</span>
+                        Preferred Country<span className="text-danger">*</span>
                      </label>
                      <input
                         className="profileInputBox "
@@ -1370,7 +1430,7 @@ function LanguageForm() {
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     Intake<span style={{ color: "red" }}>*</span>
+                     Intake<span className="text-danger">*</span>
                   </label>
                   <input
                      className="profileInputBox "
@@ -1388,7 +1448,7 @@ function LanguageForm() {
                      style={{ fontSize: "17px" }}
                   >
                      Preferred year of study
-                     <span style={{ color: "red" }}>*</span>
+                     <span className="text-danger">*</span>
                   </label>
                   <input
                      className="profileInputBox  "
@@ -1816,7 +1876,7 @@ function AdditionalForm() {
                   className="d-block fw-bolder mb-2"
                   style={{ fontSize: "17px" }}
                >
-                  Nationality<span style={{ color: "red" }}>*</span>
+                  Nationality<span className="text-danger">*</span>
                </label>
                <input
                   className="profileInputBox "
@@ -1834,7 +1894,7 @@ function AdditionalForm() {
                   className="fw-bolder mb-2 d-block "
                   style={{ fontSize: "17px" }}
                >
-                  Date Of Birth<span style={{ color: "red" }}>*</span>
+                  Date Of Birth<span className="text-danger">*</span>
                </label>
                <input
                   className="profileInputBox  "
@@ -1854,7 +1914,7 @@ function AdditionalForm() {
                   className="d-block fw-bolder mb-2"
                   style={{ fontSize: "17px" }}
                >
-                  Gender<span style={{ color: "red" }}>*</span>
+                  Gender<span className="text-danger">*</span>
                </label>
                <div className="fw-bolder d-flex mt-2 ">
                   <div className="">
@@ -1909,7 +1969,7 @@ function AdditionalForm() {
                   className="fw-bolder mb-2 d-block  "
                   style={{ fontSize: "17px" }}
                >
-                  Marital status<span style={{ color: "red" }}>*</span>
+                  Marital status<span className="text-danger">*</span>
                </label>
                <div className="fw-bolder d-flex mt-2">
                   <div className="">

@@ -1,4 +1,3 @@
-import React from "react";
 import pagenotfound from "../../assets/pagenotfound.gif";
 import { Link } from "react-router-dom";
 

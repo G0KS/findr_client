@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import downArrow from "../../assets/down.svg";
 
 function Faqpage({ setShow, setSidebarShow }) {

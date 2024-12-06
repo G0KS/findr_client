@@ -7,6 +7,7 @@ import { useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk";
 function RazorpayButton({ amount, payment }) {
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
+   const razory_key_id = import.meta.env.VITE_RAZORPAY_KEY_ID;
 
    const { updateDoc } = useFrappeUpdateDoc();
    const { mutate } = useFrappeGetDoc("Student", c_id);
@@ -33,7 +34,7 @@ function RazorpayButton({ amount, payment }) {
          const orderData = data.message;
 
          var options = {
-            key: "rzp_test_lDvq7ADMCnmvcz",
+            key: razory_key_id,
             amount: orderData.amount,
             currency: orderData.currency,
             name: "Findr Study",

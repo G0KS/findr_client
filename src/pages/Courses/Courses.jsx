@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import LogoS from "../../assets/F2.png";
 
-import chevronright from "../../assets/chevron-right.svg";
 import coursebg from "../../assets/coursebg.svg";
-import { Link, useNavigate } from "react-router-dom";
-import SliderComponent from "../../components/SliderComponent/SliderComponent";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useFrappeGetDoc } from "frappe-react-sdk";
 
@@ -17,9 +15,7 @@ function Courses({ setShow, setSidebarShow }) {
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
 
-   const { data, isLoading } = useFrappeGetDoc("Student", c_id);
-
-   console.log(!name);
+   const { data } = useFrappeGetDoc("Student", c_id);
 
    const getUserData = () => {
       setUserData(data);

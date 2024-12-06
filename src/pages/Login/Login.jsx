@@ -1,9 +1,8 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/f.png";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useFrappeGetDoc, useFrappeGetDocList } from "frappe-react-sdk";
-import axios from "axios";
+import { useFrappeGetDocList } from "frappe-react-sdk";
 
 function Login({ setShow, setSidebarShow }) {
    setShow(true);
@@ -31,8 +30,6 @@ function Login({ setShow, setSidebarShow }) {
       fields: ["email", "first_name", "last_name", "password", "name"],
       filters: [["email", "=", inputData.email]],
    });
-
-   console.log(data);
 
    const handleLogin = async (e) => {
       e.preventDefault();

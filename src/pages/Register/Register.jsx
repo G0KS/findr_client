@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/f.png";
-import RegImg from "../../assets/login.svg";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useFrappeCreateDoc } from "frappe-react-sdk";
@@ -140,9 +139,6 @@ function Register({ setShow, setSidebarShow }) {
                            Privacy Policy
                         </a>
                      </p>
-                  </div>
-                  <div className="regImg d-none d-lg-block">
-                     <img src={RegImg} alt="regImg" />
                   </div>
                </div>
                <div className="col-lg-6">

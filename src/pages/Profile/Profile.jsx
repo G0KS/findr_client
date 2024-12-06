@@ -1,9 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import edit from "../../assets/Edit.svg";
 import save from "../../assets/Save.svg";
 import { toast } from "react-toastify";
-import SliderComponent from "../../components/SliderComponent/SliderComponent";
-import { updatedProfileContext } from "../../context/ContextShare";
 import { useNavigate } from "react-router-dom";
 import { useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk";
 
@@ -20,7 +18,6 @@ function Profile({ setShow, setSidebarShow }) {
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
 
    const { data } = useFrappeGetDoc("Student", c_id);
-   console.log(data);
 
    const getUserData = () => {
       if (data !== undefined) {
@@ -56,7 +53,7 @@ function Profile({ setShow, setSidebarShow }) {
                setEditable(!editable);
             })
             .catch((err) => {
-               console.log(err);
+               console.error(err);
                toast.warning("Some internal errors. Please try again later");
             });
       }

@@ -1,5 +1,5 @@
-import { Route, Routes, useSearchParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 
 import Home from "./pages/Home/Home.jsx";
@@ -20,12 +20,7 @@ import ScrollToTop from "./components/ScrollToTop.jsx";
 import Courses from "./pages/Courses/Courses.jsx";
 import Faqpage from "./pages/FAQ/Faqpage.jsx";
 import PagenotFound from "./pages/PagenotFound/PagenotFound.jsx";
-import {
-   FrappeProvider,
-   useFrappeAuth,
-   useFrappeGetDoc,
-} from "frappe-react-sdk";
-import axios from "axios";
+import { FrappeProvider } from "frappe-react-sdk";
 import SliderComponent from "./components/SliderComponent/SliderComponent.jsx";
 
 function App() {
