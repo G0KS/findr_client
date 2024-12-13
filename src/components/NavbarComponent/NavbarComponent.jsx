@@ -2,7 +2,6 @@ import Navbar from "react-bootstrap/Navbar";
 import Logo from "../../assets/logo3.png";
 import login from "../../assets/login.svg";
 
-import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { sidebarContext } from "../../context/ContextShare";
