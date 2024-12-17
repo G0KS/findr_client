@@ -86,10 +86,11 @@ function FooterComponent() {
                         style={{ color: "#0f6990" }}
                      ></i>
                   </Link>
-                  <Link className={style.socialIcon}>
+                  <Link to="https://wa.link/wk3s7u" target="blank" className={style.socialIcon}>
                      <i
                         className="fa-brands fa-whatsapp"
                         style={{ color: "#0f6990" }}
+                        
                      ></i>
                   </Link>
                </div>

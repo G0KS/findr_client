@@ -368,12 +368,12 @@ function EducationForm() {
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     Course name<span className="text-danger">*</span>
+                     Stream name<span className="text-danger">*</span>
                   </label>
                   <input
                      className="profileInputBox "
                      type="text"
-                     placeholder="Enter Course name"
+                     placeholder="Enter Stream name"
                      name="twelfth_course"
                      value={updatedData.twelfth_course}
                      onChange={(e) => getFormData(e)}
@@ -1232,7 +1232,7 @@ function LanguageForm() {
                </div>
                <div className="mt-4">
                   <p style={{ fontSize: "17px" }}>
-                     Have you got any language proficiency?
+                     Have you got any language Certifications?
                   </p>
                   <div className="fw-bolder d-flex mt-2">
                      <div className="">

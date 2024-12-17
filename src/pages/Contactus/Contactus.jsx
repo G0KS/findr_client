@@ -52,7 +52,7 @@ function Contactus({ setShow, setSidebarShow }) {
                   >
                      <div className="p-2 ">
                         <img src={call} alt="" />
-                        <span className="ms-2">+36 70551 1141</span>
+                        <span className="ms-2">+91 62822 55880</span>
                      </div>
                   </Link>
                   <Link

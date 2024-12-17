@@ -1,7 +1,11 @@
-* {
+/* * {
    font-family: "Quicksand", sans-serif;
    scroll-behavior: smooth;
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+} */
+*{
+   font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
 }
