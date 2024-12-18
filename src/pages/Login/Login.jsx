@@ -129,7 +129,7 @@ function Login({ setShow, setSidebarShow }) {
                         className="me-2 btn"
                         onClick={() => setShowPassword(!showPassword)}
                      />
-                     <label style={{ fontSize: "12px" }}>Show Password</label>
+                     <label htmlFor="showPassword"  style={{ fontSize: "12px", cursor:"pointer" }}>Show Password</label>
                   </div>
 
                   <button

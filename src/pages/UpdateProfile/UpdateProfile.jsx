@@ -1351,13 +1351,46 @@ function LanguageForm() {
             What type of course are you interested in? Please select from the
             following options
           </p>
-          <select className='profileInputBox mt-4 mb-4' name="cars" id="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
+          
+          <div className="row p-2">
+          <div className="col   mt-5  ">
+          <select className='profileInputBox' name="preferredCourses" id="cars">
+            <option value="empty"></option>
+            <option value="ug">Bachelor's Degree</option>
+            <option value="pg">Master's Degree</option>
+            <option value="Diploma">Diploma</option>
+            <option value="vocationaltraining">Vocational Training</option>
+            <option value="doctoraldegree">Doctoral Degree</option>
+            <option value="otherPrefrence ">Other</option>
+            
+
           </select>
+          </div>
+          <div className="col p-3">
+            <label
+              htmlFor=""
+              className="mb-2 d-block"
+              style={{ fontSize: '17px' }}
+            >
+              Others 
+              <span className="text-danger">*</span>
+            </label>
+            <input
+              className="profileInputBox "
+              placeholder="Enter other Preferred courses"
+              type="text"
+              name=""
+
+              
+            />
+          </div>
         </div>
+          
+        </div>
+
+        {/* That qustion answers */}
+
+        
 
         <div className="fw-bolder borderStyle mt-4">
           <div className="p-3">

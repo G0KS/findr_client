@@ -233,7 +233,11 @@ function Courses({ setShow, setSidebarShow }) {
                       </button>
                     </div>
                   </div>
+                    
                 </>
+
+                
+                
               ) : (
                 <div className="d-flex flex-column align-items-center">
                   <div
