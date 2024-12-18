@@ -17,11 +17,13 @@ function Home({ setShow, setSidebarShow }) {
       if (name) navigate("/courses");
    }, [name]);
 
+
+
    return (
       <>
          {/* hero section */}
-         <section className="container py-5">
-            <div className="my-5">
+         <section className="container  py-5">
+            <div className=" my-5">
                <Row>
                   <Col className="d-none d-lg-block">
                      <img src={hero} alt="Hero Image" />
@@ -77,11 +79,11 @@ function Home({ setShow, setSidebarShow }) {
                </p>
             </div>
             {/* services section */}
-            <div>
-               <h1 className="text-center">
+            <div className="">
+               <h1 className="text-center block">
                   Our <span style={{ color: "#0f6990" }}>Services</span>
                </h1>
-               <div className="p-5">
+               <div className="p-5  cardBodyshow ">
                   <p className="mb-0 text-center">
                      At Findr, we specialize in providing expert consultation to
                      students aspiring to study abroad. Our team of experienced
@@ -91,9 +93,9 @@ function Home({ setShow, setSidebarShow }) {
                   </p>
                </div>
             </div>
-            <div className="cardContainer my-3 mx-5 mx-lg-1 d-flex justify-content-between align-items-center flex-wrap row-gap-3 ">
+            <div className="cardContainer  my-3 mx-5 mx-lg-1 d-flex justify-content-between align-items-center flex-wrap row-gap-3 ">
                <div
-                  className="cardBody border p-4 shadow "
+                  className="cardBody cardBodyshow border p-4 shadow "
                   style={{
                      width: "19rem",
                      height: "26rem",
@@ -125,7 +127,7 @@ function Home({ setShow, setSidebarShow }) {
                   </p>
                </div>
                <div
-                  className="cardBody border p-4 shadow"
+                  className="cardBody cardBodyshow border p-4 shadow"
                   style={{
                      width: "19rem",
                      height: "26rem",
@@ -157,7 +159,7 @@ function Home({ setShow, setSidebarShow }) {
                   </p>
                </div>
                <div
-                  className="cardBody border p-4 shadow"
+                  className="cardBody cardBodyshow border p-4 shadow"
                   style={{
                      width: "19rem",
                      height: "26rem",
@@ -190,7 +192,7 @@ function Home({ setShow, setSidebarShow }) {
                   </p>
                </div>
                <div
-                  className="cardBody border p-4 shadow"
+                  className="cardBody cardBodyshow border p-4 shadow"
                   style={{
                      width: "19rem",
                      // height: '26rem',
