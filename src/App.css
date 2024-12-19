@@ -48,6 +48,8 @@
 .block{
   animation: appear  linear;
   animation-timeline: view();
+  -webkit-animation-direction: view();
+  -webkit-animation-delay: entry 0% cover 50%;
   animation-range: entry 0% cover 50% ; 
 }
 

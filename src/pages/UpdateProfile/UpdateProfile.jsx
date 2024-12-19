@@ -592,18 +592,17 @@ function EducationForm() {
               className="d-block fw-bolder mb-2"
               style={{ fontSize: '17px' }}
             >
-              Marks
+              University
             </label>
             <input
               className="profileInputBox "
               type="text"
-              placeholder="CGPA / Percentage"
-              name="undergraduate_marks"
-              value={updatedData.undergraduate_marks}
+              placeholder="Enter university name"
+              name="undergraduate_university"
+              value={updatedData.undergraduate_university}
               onChange={(e) => getFormData(e)}
             />
           </div>
-
           <div className="col mt-5">
             <label
               htmlFor=""
@@ -618,6 +617,42 @@ function EducationForm() {
               placeholder="Enter Institution"
               name="undergraduate_institution"
               value={updatedData.undergraduate_institution}
+              onChange={(e) => getFormData(e)}
+            />
+          </div>
+          <div className="col mt-5">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              State
+            </label>
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="Enter State"
+              name="undergraduate_state"
+              value={updatedData.undergraduate_course}
+              onChange={(e) => getFormData(e)}
+            />
+          </div>
+          
+
+          <div className="col mt-5">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Marks
+            </label>
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="CGPA / Percentage"
+              name="undergraduate_marks"
+              value={updatedData.undergraduate_marks}
               onChange={(e) => getFormData(e)}
             />
           </div>
@@ -776,17 +811,18 @@ function EducationForm() {
               className="d-block fw-bolder mb-2"
               style={{ fontSize: '17px' }}
             >
-              Marks
+              University
             </label>
             <input
               className="profileInputBox "
               type="text"
-              placeholder="CGPA / Percentage"
-              name="postgraduate_marks"
-              value={updatedData.postgraduate_marks}
+              placeholder="Enter university name"
+              name="postgraduate_university"
+              value={updatedData.postgraduate_university}
               onChange={(e) => getFormData(e)}
             />
           </div>
+          
           <div className="col mt-5">
             <label
               htmlFor=""
@@ -801,6 +837,41 @@ function EducationForm() {
               placeholder="Enter Institution "
               name="postgraduate_institution"
               value={updatedData.postgraduate_institution}
+              onChange={(e) => getFormData(e)}
+            />
+          </div>
+          <div className="col mt-5">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              State
+            </label>
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="Enter State"
+              name="postgraduate_state"
+              value={updatedData.postgraduate_course}
+              onChange={(e) => getFormData(e)}
+            />
+          </div>
+
+          <div className="col mt-5">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              Marks
+            </label>
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="CGPA / Percentage"
+              name="postgraduate_marks"
+              value={updatedData.postgraduate_marks}
               onChange={(e) => getFormData(e)}
             />
           </div>
@@ -947,8 +1018,8 @@ function EducationForm() {
               className="profileInputBox "
               type="text"
               placeholder="Enter Course name"
-              name="postgraduate_course"
-              value={updatedData.undergraduate_course}
+              name="phd_course"
+              value={updatedData.phd_course}
               onChange={(e) => getFormData(e)}
             />
           </div>
@@ -970,6 +1041,24 @@ function EducationForm() {
               onChange={(e) => getFormData(e)}
             />
           </div>
+
+          <div className="col mt-5">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              University
+            </label>
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="Enter university name"
+              name="phd_university"
+              value={updatedData.phd_university}
+              onChange={(e) => getFormData(e)}
+            />
+          </div>
           <div className="col mt-5">
             <label
               htmlFor=""
@@ -984,6 +1073,24 @@ function EducationForm() {
               placeholder="Enter Institution"
               name="phd_institution"
               value={updatedData.phd_institution}
+              onChange={(e) => getFormData(e)}
+            />
+          </div>
+
+          <div className="col mt-5">
+            <label
+              htmlFor=""
+              className="d-block fw-bolder mb-2"
+              style={{ fontSize: '17px' }}
+            >
+              State
+            </label>
+            <input
+              className="profileInputBox "
+              type="text"
+              placeholder="Enter State"
+              name="phd_state"
+              value={updatedData.phd_course}
               onChange={(e) => getFormData(e)}
             />
           </div>
@@ -1117,9 +1224,12 @@ function LanguageForm() {
 
   const getFormData = (e) => {
     const { name, value } = e.target;
+    
     setUpdatedData({ ...updatedData, [name]: value });
   };
 
+  console.log(updatedData);
+  
   const getLanguage = (e) => {
     const { name, value } = e.target;
     setLanguageData({ ...languageData, [name]: value });
@@ -1351,46 +1461,50 @@ function LanguageForm() {
             What type of course are you interested in? Please select from the
             following options
           </p>
-          
+
           <div className="row p-2">
-          <div className="col   mt-5  ">
-          <select className='profileInputBox' name="preferredCourses" id="cars">
-            <option value="empty"></option>
-            <option value="ug">Bachelor's Degree</option>
-            <option value="pg">Master's Degree</option>
-            <option value="Diploma">Diploma</option>
-            <option value="vocationaltraining">Vocational Training</option>
-            <option value="doctoraldegree">Doctoral Degree</option>
-            <option value="otherPrefrence ">Other</option>
-            
-
-          </select>
+            <div className="col" style={{marginTop:"33px"}}>
+              <select
+                className="profileInputBox"
+                name="intrestedCourse"
+                id="cars"
+                onChange={(e)=>getFormData(e)}
+              >
+                <option selected hidden>
+                  Choose your course
+                </option>
+                <option value="ug">Bachelor's Degree</option>
+                <option value="pg">Master's Degree</option>
+                <option value="Diploma">Diploma</option>
+                <option value="vocationaltraining">Vocational Training</option>
+                <option value="doctoraldegree">Doctoral Degree</option>
+                <option value="otherPrefrence">Other</option>
+              </select>
+            </div>
+            {updatedData.intrestedCourse == 'otherPrefrence' ? (
+              <div className="col">
+                <label
+                  htmlFor=""
+                  className="mb-2 d-block"
+                  style={{ fontSize: '17px' }}
+                >
+                  Other
+                  <span className="text-danger">*</span>
+                </label>
+                <input
+                  className="profileInputBox "
+                  placeholder="Enter other Intrested courses"
+                  type="text"
+                  name=""
+                />
+              </div>
+            ) : (
+              ''
+            )}
           </div>
-          <div className="col p-3">
-            <label
-              htmlFor=""
-              className="mb-2 d-block"
-              style={{ fontSize: '17px' }}
-            >
-              Others 
-              <span className="text-danger">*</span>
-            </label>
-            <input
-              className="profileInputBox "
-              placeholder="Enter other Preferred courses"
-              type="text"
-              name=""
-
-              
-            />
-          </div>
-        </div>
-          
         </div>
 
         {/* That qustion answers */}
-
-        
 
         <div className="fw-bolder borderStyle mt-4">
           <div className="p-3">
@@ -1461,7 +1575,7 @@ function LanguageForm() {
                 className="profileInputBox "
                 placeholder="Country Name"
                 type="text"
-                name="preferred_country"
+                name="preferred_country"  
                 value={updatedData.preferred_country}
                 onChange={(e) => getFormData(e)}
               />
