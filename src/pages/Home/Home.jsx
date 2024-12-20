@@ -99,10 +99,10 @@ function Home({ setShow, setSidebarShow }) {
         </div>
         <div
           className="cardContainer   my-3 mx-5 mx-lg-1 d-flex justify-content-between align-items-center flex-wrap row-gap-3 "
-          data-aos="zoom-out-right"
+          
         >
           <div
-            className="cardBody cardBodyshow border p-4 shadow"
+            className="cardBody cardBodyshow border p-4 shadow"data-aos="zoom-out-right"
             style={{
               width: '19rem',
               height: '26rem',
@@ -133,7 +133,7 @@ function Home({ setShow, setSidebarShow }) {
             </p>
           </div>
           <div
-            className="cardBody cardBodyshow border p-4 shadow"
+            className="cardBody cardBodyshow border p-4 shadow" data-aos="zoom-out-right"
             style={{
               width: '19rem',
               height: '26rem',
@@ -165,7 +165,7 @@ function Home({ setShow, setSidebarShow }) {
             </p>
           </div>
           <div
-            className="cardBody cardBodyshow border p-4 shadow"
+            className="cardBody cardBodyshow border p-4 shadow" data-aos="zoom-out-right"
             style={{
               width: '19rem',
               height: '26rem',
@@ -197,7 +197,7 @@ function Home({ setShow, setSidebarShow }) {
             </p>
           </div>
           <div
-            className="cardBody cardBodyshow border p-4 shadow"
+            className="cardBody cardBodyshow border p-4 shadow" data-aos="zoom-out-right"
             style={{
               width: '19rem',
               // height: '26rem',
