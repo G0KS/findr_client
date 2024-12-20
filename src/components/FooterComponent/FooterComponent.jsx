@@ -80,7 +80,7 @@ function FooterComponent() {
                         style={{ color: "#0f6990" }}
                      ></i>
                   </Link>
-                  <Link to="" target="blank" className={style.socialIcon}>
+                  <Link to="https://x.com/i/flow/login?redirect_after_login=%2Ffindrstudy" target="blank" className={style.socialIcon}>
                      <i
                         className="fa-brands fa-x-twitter"
                         style={{ color: "#0f6990" }}

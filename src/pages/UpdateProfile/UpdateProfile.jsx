@@ -1552,7 +1552,7 @@ function LanguageForm() {
                 className="d-block fw-bolder mb-2"
                 style={{ fontSize: '17px' }}
               >
-                Preferred course<span className="text-danger">*</span>
+                Preferred Course/field<span className="text-danger">*</span>
               </label>
               <input
                 className="profileInputBox "
