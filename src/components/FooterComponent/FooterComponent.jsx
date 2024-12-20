@@ -64,7 +64,7 @@ function FooterComponent() {
                   <span>contact.findr.study@gmail.com</span>
                </Link>
                <div className="d-flex justify-content-sm-between">
-                  <Link to="" target="blank" className={style.socialIcon}>
+                  <Link to="https://www.facebook.com/people/FinderStudy/61570457473882/" target="blank" className={style.socialIcon}>
                      <i
                         className="fa-brands fa-facebook"
                         style={{ color: "#0f6990" }}

@@ -33,7 +33,19 @@
   
 }
 
-@keyframes show{
+/* @keyframes exampleAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+} 
+
+ @keyframes show{
   from{
     opacity: 0;
     transform: translateX(-100px);
@@ -43,15 +55,18 @@
     transform: translateX(0px);
   }
   
-}
+} */
 
-.block{
+/* .block{
   animation: appear  linear;
   animation-timeline: view();
-  -webkit-animation-direction: view();
-  -webkit-animation-delay: entry 0% cover 50%;
+   
+
+
   animation-range: entry 0% cover 50% ; 
-}
+} */
+
+
 
 .cardBodyshow {
   animation: show  linear;
