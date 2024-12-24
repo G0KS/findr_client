@@ -16,11 +16,11 @@ function Payment({ setShow, setSidebarShow }) {
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
 
-   const { data } = useFrappeGetDoc("Student", c_id);
+   const { data, isLoading } = useFrappeGetDoc("Student", c_id);
 
    const getPaymentDetails = () => {
       if (data !== undefined) {
-         if (data.registration_fee == 1 && data.course_fee == 1) {
+         if (data.registration_fee == 1 && data.course_fee == 1 ) {
             setPayment("full_paid");
             setPaymentDesc(
                "Thanks for joining the findr.study community! Share your study abroad story and recommend us to friends who dare to dream."
@@ -81,84 +81,92 @@ function Payment({ setShow, setSidebarShow }) {
                            "linear-gradient(315deg, #0f6990  1%, #ffffff  45%)",
                      }}
                   >
-                     <div className="paymentCard rounded-4 p-4 bg-white shadow-lg">
-                        {payment === "payment_done" ||
-                        payment === "full_paid" ? (
-                           <div className="row">
-                              <div className="col d-flex align-items-center justify-content-center">
-                                 <img
-                                    src={paymentimg}
-                                    alt=""
-                                    style={{ maxWidth: "300px" }}
-                                 />
-                              </div>
-                              <div className="col d-flex align-items-center my-4">
-                                 <div className="title">
-                                    <p
-                                       style={{
-                                          fontSize: "18px",
-                                          marginBottom: "0px",
-                                       }}
-                                    >
-                                       {paymentDesc}
-                                    </p>
-                                    <button
-                                       className="text-light mt-4 rounded w-100 paymentBtn"
-                                       onClick={() => navigate("/courses")}
-                                    >
-                                       Go to Courses
-                                    </button>
+                     {isLoading ? (
+                        "Loading"
+                     ) : (
+                        <>
+                           <div className="paymentCard rounded-4 p-4 bg-white shadow-lg">
+                              {payment === "payment_done" ||
+                              payment === "full_paid" ? (
+                                 <div className="row">
+                                    <div className="col d-flex align-items-center justify-content-center">
+                                       <img
+                                          src={paymentimg}
+                                          alt=""
+                                          style={{ maxWidth: "300px" }}
+                                       />
+                                    </div>
+                                    <div className="col d-flex align-items-center my-4">
+                                       <div className="title">
+                                          <p
+                                             style={{
+                                                fontSize: "18px",
+                                                marginBottom: "0px",
+                                             }}
+                                          >
+                                             {paymentDesc}
+                                          </p>
+                                          <button
+                                             className="text-light mt-4 rounded w-100 paymentBtn"
+                                             onClick={() =>
+                                                navigate("/courses")
+                                             }
+                                          >
+                                             Go to Courses
+                                          </button>
+                                       </div>
+                                    </div>
                                  </div>
-                              </div>
-                           </div>
-                        ) : (
-                           <div className="row">
-                              <div className="col d-flex align-items-center justify-content-center">
-                                 <img
-                                    src={paymentimg}
-                                    alt="Payment image"
-                                    style={{ width: "300px" }}
-                                 />
-                              </div>
-                              <div className="col d-flex align-items-center my-4">
-                                 <div className="title">
-                                    <h3
-                                       style={{
-                                          color: "#0F6990",
-                                          fontSize: "40px",
-                                       }}
-                                    >
-                                       {fee == 2499
-                                          ? "Registration Fee"
-                                          : "Course Fee"}
-                                    </h3>
-                                    <p
-                                       style={{
-                                          fontSize: "18px",
-                                          marginBottom: "0px",
-                                       }}
-                                    >
-                                       {paymentDesc}
-                                    </p>
-                                    <h3
-                                       className="fw-bolder text-center text-lg-start pt-2"
-                                       style={{
-                                          color: "#0F6990",
-                                          fontSize: "28px",
-                                          fontFamily: "Arial",
-                                       }}
-                                    >
-                                       {fee == 2499 ? "₹2499" : "₹5000"}
-                                    </h3>
-                                    <RazorpayButton
-                                       amount={fee}
-                                       payment={payment}
-                                    />
+                              ) : (
+                                 <div className="row">
+                                    <div className="col d-flex align-items-center justify-content-center">
+                                       <img
+                                          src={paymentimg}
+                                          alt="Payment image"
+                                          style={{ width: "300px" }}
+                                       />
+                                    </div>
+                                    <div className="col d-flex align-items-center my-4">
+                                       <div className="title">
+                                          <h3
+                                             style={{
+                                                color: "#0F6990",
+                                                fontSize: "40px",
+                                             }}
+                                          >
+                                             {fee == 2499
+                                                ? "Registration Fee"
+                                                : "Course Fee"}
+                                          </h3>
+                                          <p
+                                             style={{
+                                                fontSize: "18px",
+                                                marginBottom: "0px",
+                                             }}
+                                          >
+                                             {paymentDesc}
+                                          </p>
+                                          <h3
+                                             className="fw-bolder text-center text-lg-start pt-2"
+                                             style={{
+                                                color: "#0F6990",
+                                                fontSize: "28px",
+                                                fontFamily: "Arial",
+                                             }}
+                                          >
+                                             {fee == 2499 ? "₹2499" : "₹5000"}
+                                          </h3>
+                                          <RazorpayButton
+                                             amount={fee}
+                                             payment={payment}
+                                          />
+                                       </div>
+                                    </div>
                                  </div>
-                              </div>
+                              )}
                            </div>
-                        )}
-                     </div>
+                        </>
+                     )}
                   </section>
                </div>
             </div>

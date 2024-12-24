@@ -260,7 +260,7 @@
   height: 0%;
 }
 
-.paymentCard{
+.courseDetailCard{
   background-color: #fafafa;
   width: 370px;
   position: relative;
@@ -268,11 +268,13 @@
   overflow: hidden;
   border-radius: 8px;
 }
+
 .paymentImg{
   border-radius:10px;
   height: 100%;
   width: 100%;
 }
+
 .checkImg{
   width: 5%;
   height: 100%;
