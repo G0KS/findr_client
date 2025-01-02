@@ -166,7 +166,7 @@ function Courses({ setShow, setSidebarShow }) {
                            ))}
                         </div>
                      ) : (
-                        <div className="d-flex flex-wrap justify-content-evenly gap-4">
+                        <div className="d-flex flex-wrap justify-content-center column-gap-5">
                            {data.registration_fee === 1 ? (
                               data.course_list?.length > 0 ? (
                                  <>
@@ -264,9 +264,15 @@ function Courses({ setShow, setSidebarShow }) {
                                                          data-bs-toggle="modal"
                                                          data-bs-target="#exampleModal"
                                                       >
-                                                         Click here
+                                                         Proceed
                                                       </button>
                                                    </div>
+                                                </div>
+
+                                                <div className="d-flex align-items-center p-4">
+                                                  <p className="fw-bolder" style={{fontSize:"22px",color:"#0f6990"}}>
+                                                    or
+                                                  </p>
                                                 </div>
                                                 <div className="courseDetailCard shadow">
                                                    <div className="paymentImgContainer p-3">
@@ -392,6 +398,11 @@ function Courses({ setShow, setSidebarShow }) {
                                                          Submit
                                                       </button>
                                                    </div>
+                                                </div>
+                                                <div className="d-flex align-items-center p-4">
+                                                  <p className="fw-bolder" style={{fontSize:"22px",color:"#0f6990"}}>
+                                                    or
+                                                  </p>
                                                 </div>
                                                 <div className="courseDetailCard shadow">
                                                    <div className="paymentImgContainer p-3">
