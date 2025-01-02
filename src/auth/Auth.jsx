@@ -1,5 +1,5 @@
 import { useFrappeGetDoc } from "frappe-react-sdk";
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { logContext } from "../context/ContextShare";

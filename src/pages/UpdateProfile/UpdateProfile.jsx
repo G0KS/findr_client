@@ -17,6 +17,7 @@ function UpdateProfile({ setShow, setSidebarShow }) {
    const email = JSON.parse(localStorage.getItem("findrData"))?.email;
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
+   const { updatedData, setUpdatedData } = useContext(updatedProfileContext);
 
    useEffect(() => {
       setShow(true);
@@ -59,8 +60,6 @@ function UpdateProfile({ setShow, setSidebarShow }) {
       }
    }, [currentIndex]);
 
-   const { updatedData } = useContext(updatedProfileContext);
-
    const handleSubmit = async (e, updatedData) => {
       e.preventDefault();
       const {
@@ -77,6 +76,8 @@ function UpdateProfile({ setShow, setSidebarShow }) {
          twelfth_pursuing,
          twelfth_mode_of_study,
          findr_choose,
+         education_program,
+         other_program,
          preferred_country,
          preferred_course,
          date_of_birth,
@@ -97,44 +98,48 @@ function UpdateProfile({ setShow, setSidebarShow }) {
 
       if (findr_choose === "0") {
          if (
-            !tenth_institution ||
-            !tenth_marks ||
-            !tenth_state ||
-            !tenth_year||
-            !tenth_board_of_study ||
-            !tenth_mode_of_study ||
-            !twelfth_course||
-            !twelfth_institution ||
-            !twelfth_marks ||
-            !twelfth_mode_of_study ||
-            !twelfth_pursuing||
-            !twelfth_year||
-            !date_of_birth||
-            !preferred_country ||
-            !preferred_course
+            tenth_institution == "" ||
+            tenth_marks == "" ||
+            tenth_state == "" ||
+            tenth_year == "" ||
+            tenth_board_of_study == "" ||
+            tenth_mode_of_study == "" ||
+            twelfth_course == "" ||
+            twelfth_institution == "" ||
+            twelfth_marks == "" ||
+            twelfth_mode_of_study == "" ||
+            twelfth_pursuing == "" ||
+            twelfth_year == "" ||
+            date_of_birth == "" ||
+            preferred_country == "" ||
+            preferred_course == "" ||
+            education_program == ""
          ) {
             toast.warning("Fill all mandatory details");
          } else {
+            updatedData.education_program = other_program;
             updateProfile();
          }
       } else {
          if (
-            !tenth_institution ||
-            !tenth_marks ||
-            !tenth_state ||
-            !tenth_year||
-            !tenth_board_of_study ||
-            !tenth_mode_of_study ||
-            !twelfth_course||
-            !twelfth_institution ||
-            !twelfth_marks ||
-            !twelfth_mode_of_study ||
-            !twelfth_pursuing||
-            !twelfth_year||
-            !date_of_birth
+            tenth_institution == "" ||
+            tenth_marks == "" ||
+            tenth_state == "" ||
+            tenth_year == "" ||
+            tenth_board_of_study == "" ||
+            tenth_mode_of_study == "" ||
+            twelfth_course == "" ||
+            twelfth_institution == "" ||
+            twelfth_marks == "" ||
+            twelfth_mode_of_study == "" ||
+            twelfth_pursuing == "" ||
+            twelfth_year == "" ||
+            date_of_birth == "" ||
+            education_program == ""
          ) {
             toast.warning("Fill all mandatory details");
          } else {
+            updatedData.education_program = other_program;
             updateProfile();
          }
       }
@@ -482,9 +487,9 @@ function EducationForm() {
                            className="cursor"
                            type="radio"
                            id="twelfthPursuingY"
-                           name="currently_studying"
+                           name="twelfth_pursuing"
                            value="1"
-                           checked={updatedData.currently_studying === "1"}
+                           checked={updatedData.twelfth_pursuing === "1"}
                            onChange={(e) => getFormData(e)}
                         />
                         <label
@@ -500,9 +505,9 @@ function EducationForm() {
                            className="cursor"
                            type="radio"
                            id="twelfthPursuingN"
-                           name="currently_studying"
+                           name="twelfth_pursuing"
                            value="0"
-                           checked={updatedData.currently_studying === "0"}
+                           checked={updatedData.twelfth_pursuing === "0"}
                            onChange={(e) => getFormData(e)}
                         />
                         <label
@@ -714,7 +719,10 @@ function EducationForm() {
                            id="ugPursuingY"
                            name="undergraduate_currently_studying"
                            value="1"
-                           checked={updatedData.undergraduate_currently_studying === "1"}
+                           checked={
+                              updatedData.undergraduate_currently_studying ===
+                              "1"
+                           }
                            onChange={(e) => getFormData(e)}
                         />
                         <label className="ps-2 cursor" htmlFor="ugPursuingY">
@@ -729,7 +737,10 @@ function EducationForm() {
                            id="ugPursuingN"
                            name="undergraduate_currently_studying"
                            value="0"
-                           checked={updatedData.undergraduate_currently_studying === "0"}
+                           checked={
+                              updatedData.undergraduate_currently_studying ===
+                              "0"
+                           }
                            onChange={(e) => getFormData(e)}
                         />
                         <label className="ps-2 cursor" htmlFor="ugPursuingN">
@@ -939,7 +950,10 @@ function EducationForm() {
                            id="pgPursuingY"
                            name="postgraduate_currently_studying"
                            value="1"
-                           checked={updatedData.postgraduate_currently_studying === "1"}
+                           checked={
+                              updatedData.postgraduate_currently_studying ===
+                              "1"
+                           }
                            onChange={(e) => getFormData(e)}
                         />
                         <label className="ps-2 cursor" htmlFor="pgPursuingY">
@@ -954,7 +968,10 @@ function EducationForm() {
                            id="pgPursuingN"
                            name="postgraduate_currently_studying"
                            value="0"
-                           checked={updatedData.postgraduate_currently_studying === "0"}
+                           checked={
+                              updatedData.postgraduate_currently_studying ===
+                              "0"
+                           }
                            onChange={(e) => getFormData(e)}
                         />
                         <label className="ps-2 cursor" htmlFor="pgPursuingN">
@@ -1305,7 +1322,6 @@ function LanguageForm() {
       const languageArray = updatedData.language_proficiency;
       setUpdatedData({ ...updatedData, language_proficiency: languageArray });
    };
-
    return (
       <div className="languageContainer p-4 p-lg-5">
          <div className="languageForm px-4">
@@ -1520,21 +1536,24 @@ function LanguageForm() {
                         name="education_program"
                         id="cars"
                         onChange={(e) => getFormData(e)}
+                        value={updatedData.education_program}
                      >
                         <option selected hidden>
                            Choose your course
                         </option>
-                        <option value="ug">Bachelor's Degree</option>
-                        <option value="pg">Master's Degree</option>
+                        <option value="Bachelor's Degree">
+                           Bachelor's Degree
+                        </option>
+                        <option value="Master's Degree">Master's Degree</option>
                         <option value="Diploma">Diploma</option>
-                        <option value="vocationaltraining">
+                        <option value="Vocational Training">
                            Vocational Training
                         </option>
-                        <option value="doctoraldegree">Doctoral Degree</option>
-                        <option value="otherPrefrence">Other</option>
+                        <option value="Doctoral Degree">Doctoral Degree</option>
+                        <option value="Other">Other</option>
                      </select>
                   </div>
-                  {updatedData.education_program == "otherPrefrence" ? (
+                  {updatedData.education_program == "Other" ? (
                      <div className="col">
                         <label
                            htmlFor=""
@@ -1545,10 +1564,11 @@ function LanguageForm() {
                            <span className="text-danger">*</span>
                         </label>
                         <input
-                           className="profileInputBox "
+                           className="profileInputBox"
                            placeholder="Enter other Intrested courses"
                            type="text"
-                           name="education_program"
+                           name="other_program"
+                           onChange={(e) => getFormData(e)}
                         />
                      </div>
                   ) : (
