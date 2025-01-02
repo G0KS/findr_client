@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { useFrappeGetDocList } from "frappe-react-sdk";
 
 function Login({ setShow, setSidebarShow }) {
+   document.title = "Log In | Findr";
+
    setShow(true);
    setSidebarShow(false);
    const navigate = useNavigate();

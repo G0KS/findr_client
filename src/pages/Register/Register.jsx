@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { useFrappeCreateDoc } from "frappe-react-sdk";
 
 function Register({ setShow, setSidebarShow }) {
+   document.title = "Sign Up | Findr";
+
    setShow(true);
    setSidebarShow(false);
    const navigate = useNavigate();

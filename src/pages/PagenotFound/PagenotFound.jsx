@@ -2,6 +2,8 @@ import pagenotfound from "../../assets/pagenotfound.gif";
 import { Link } from "react-router-dom";
 
 function PagenotFound({ setShow, setSidebarShow }) {
+   document.title = "Oops wrong page | Findr ";
+
    setShow(true);
    setSidebarShow(false);
 

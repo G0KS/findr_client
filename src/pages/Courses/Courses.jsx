@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 import { useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk";
 
 function Courses({ setShow, setSidebarShow }) {
+   document.title = "Courses | Findr";
    setShow(true);
    setSidebarShow(true);
    const [userData, setUserData] = useState({});
@@ -29,11 +30,26 @@ function Courses({ setShow, setSidebarShow }) {
    const { data, isLoading } = useFrappeGetDoc("Student", c_id);
    const { updateDoc } = useFrappeUpdateDoc();
 
+   const districts = [
+      "Alappuzha",
+      "Ernakulam",
+      "Idukki",
+      "Kannur",
+      "Kasaragod",
+      "Kollam",
+      "Kottayam",
+      "Kozhikode",
+      "Malappuram",
+      "Palakkad",
+      "Pathanamthitta",
+      "Thiruvananthapuram",
+      "Thrissur",
+      "Wayanad",
+   ];
+
    const getUserData = () => {
       setUserData(data);
       if (data?.consultancy_address || data?.preferred_location) {
-         console.log(data.consultancy_address, data.preferred_location);
-
          setConsultancyChoosed(true);
       }
    };
@@ -66,7 +82,10 @@ function Courses({ setShow, setSidebarShow }) {
             consultancy_name,
             consultancy_number,
          })
-            .then(() => toast.success("Your request has been recieved"))
+            .then(() => {
+               toast.success("Your request has been recieved");
+               setConsultancyChoosed(true);
+            })
             .catch((err) => {
                console.error(err);
                toast.warn("Some internal error. Please try later");
@@ -82,9 +101,6 @@ function Courses({ setShow, setSidebarShow }) {
          navigate("/login");
       }
    }, [data]);
-
-   console.log(consultancyChoosed);
-
    return (
       <>
          <div className="d-flex">
@@ -270,9 +286,15 @@ function Courses({ setShow, setSidebarShow }) {
                                                 </div>
 
                                                 <div className="d-flex align-items-center p-4">
-                                                  <p className="fw-bolder" style={{fontSize:"22px",color:"#0f6990"}}>
-                                                    or
-                                                  </p>
+                                                   <p
+                                                      className="fw-bolder"
+                                                      style={{
+                                                         fontSize: "22px",
+                                                         color: "#0f6990",
+                                                      }}
+                                                   >
+                                                      or
+                                                   </p>
                                                 </div>
                                                 <div className="courseDetailCard shadow">
                                                    <div className="paymentImgContainer p-3">
@@ -376,18 +398,36 @@ function Courses({ setShow, setSidebarShow }) {
                                                             htmlFor=""
                                                             className="d-block fw-bolder mb-2"
                                                          >
-                                                            {" "}
                                                             Location:
                                                          </label>
-                                                         <input
-                                                            className="profileInputBox"
-                                                            type="text"
+                                                         <select
+                                                            id="district"
                                                             name="preferred_location"
-                                                            placeholder="Enter location"
+                                                            className="profileInputBox"
                                                             onChange={(e) =>
                                                                getFormData(e)
                                                             }
-                                                         />
+                                                         >
+                                                            <option hidden>
+                                                               --Select your
+                                                               location--
+                                                            </option>
+                                                            {districts.map(
+                                                               (
+                                                                  district,
+                                                                  index
+                                                               ) => (
+                                                                  <option
+                                                                     key={index}
+                                                                     value={
+                                                                        district
+                                                                     }
+                                                                  >
+                                                                     {district}
+                                                                  </option>
+                                                               )
+                                                            )}
+                                                         </select>
                                                       </div>
                                                    </div>
                                                    <div className="pb-3 d-flex justify-content-center ">
@@ -400,9 +440,15 @@ function Courses({ setShow, setSidebarShow }) {
                                                    </div>
                                                 </div>
                                                 <div className="d-flex align-items-center p-4">
-                                                  <p className="fw-bolder" style={{fontSize:"22px",color:"#0f6990"}}>
-                                                    or
-                                                  </p>
+                                                   <p
+                                                      className="fw-bolder"
+                                                      style={{
+                                                         fontSize: "22px",
+                                                         color: "#0f6990",
+                                                      }}
+                                                   >
+                                                      or
+                                                   </p>
                                                 </div>
                                                 <div className="courseDetailCard shadow">
                                                    <div className="paymentImgContainer p-3">
@@ -577,7 +623,7 @@ function Courses({ setShow, setSidebarShow }) {
                <div className="modal-content">
                   <div className="modal-header">
                      <h1
-                        className="modal-title fs-5 fw-bold"
+                        className="modal-title fs-4 fw-bold"
                         id="exampleModalLabel"
                      >
                         Kindly confirm your request
@@ -589,13 +635,17 @@ function Courses({ setShow, setSidebarShow }) {
                         aria-label="Close"
                      ></button>
                   </div>
-                  <div className="modal-body">
-                     This service is currently limited to locations in Kerala.
+                  <div className="modal-body text-center">
+                     <span className="fw-bold">
+                        This service is currently limited to locations in Kerala
+                     </span>
+                     .
+                     <p className="text-secondary">Coming to your city soon!</p>
                   </div>
-                  <div className="modal-footer">
+                  <div className="modal-footer justify-content-center">
                      <button
                         type="button"
-                        className="btn btn-outline-danger"
+                        className="btn btn-outline-secondary"
                         data-bs-dismiss="modal"
                      >
                         Close

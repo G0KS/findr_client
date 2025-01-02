@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useFrappeGetDoc } from "frappe-react-sdk";
 
 function Payment({ setShow, setSidebarShow }) {
+   document.title = "Payments | Findr";
    setShow(true);
    setSidebarShow(true);
    const [fee, setFee] = useState();
@@ -20,13 +21,13 @@ function Payment({ setShow, setSidebarShow }) {
 
    const getPaymentDetails = () => {
       if (data !== undefined) {
-         if (data.registration_fee == 1 && data.course_fee == 1 ) {
+         if (data.registration_fee == 1 && data.course_fee == 1) {
             setPayment("full_paid");
             setPaymentDesc(
                "Thanks for joining the findr.study community! Share your study abroad story and recommend us to friends who dare to dream."
             );
          } else if (data.registration_fee == 0) {
-            setFee(2499);
+            setFee(100);
             setPayment("registration_fee");
             setPaymentDesc(
                "Continue with payment to complete the registration"
@@ -134,7 +135,7 @@ function Payment({ setShow, setSidebarShow }) {
                                                 fontSize: "40px",
                                              }}
                                           >
-                                             {fee == 2499
+                                             {fee == 100
                                                 ? "Registration Fee"
                                                 : "Course Fee"}
                                           </h3>
@@ -154,7 +155,7 @@ function Payment({ setShow, setSidebarShow }) {
                                                 fontFamily: "Arial",
                                              }}
                                           >
-                                             {fee == 2499 ? "₹2499" : "₹5000"}
+                                             {fee == 100 ? "₹100" : "₹5000"}
                                           </h3>
                                           <RazorpayButton
                                              amount={fee}

@@ -2,6 +2,8 @@ import { useState } from "react";
 import downArrow from "../../assets/down.svg";
 
 function Faqpage({ setShow, setSidebarShow }) {
+   document.title = "FAQ | Findr";
+
    setShow(true);
    setSidebarShow(false);
    const [selected, setSelected] = useState(null);

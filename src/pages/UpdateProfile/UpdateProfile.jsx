@@ -9,15 +9,15 @@ import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useFrappeUpdateDoc } from "frappe-react-sdk";
-
 import { updatedProfileContext } from "../../context/ContextShare";
 
 function UpdateProfile({ setShow, setSidebarShow }) {
+   document.title = "Profile update | Findr";
    const navigate = useNavigate();
    const email = JSON.parse(localStorage.getItem("findrData"))?.email;
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
-   const { updatedData, setUpdatedData } = useContext(updatedProfileContext);
+   const { updatedData } = useContext(updatedProfileContext);
 
    useEffect(() => {
       setShow(true);
@@ -85,8 +85,7 @@ function UpdateProfile({ setShow, setSidebarShow }) {
 
       const updateProfile = () => {
          updateDoc("Student", c_id, { ...updatedData })
-            .then((res) => {
-               console.log(res);
+            .then(() => {
                toast.success("Profile details updated");
                navigate("/payment");
             })
@@ -1542,9 +1541,9 @@ function LanguageForm() {
                            Choose your course
                         </option>
                         <option value="Bachelor's Degree">
-                           Bachelor's Degree
+                           Bachelor&apos;s Degree
                         </option>
-                        <option value="Master's Degree">Master's Degree</option>
+                        <option value="Master's Degree">Master&apos;s Degree</option>
                         <option value="Diploma">Diploma</option>
                         <option value="Vocational Training">
                            Vocational Training

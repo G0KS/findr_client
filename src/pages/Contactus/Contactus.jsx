@@ -7,6 +7,8 @@ import Contactimg from "../../assets/Contactus.jpg";
 import { Link } from "react-router-dom";
 
 function Contactus({ setShow, setSidebarShow }) {
+   document.title = "Contact Us | Findr";
+
    setShow(true);
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
 

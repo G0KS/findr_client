@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/logo3.png";
 
 function Privacy({ setShow, setSidebarShow }) {
+   document.title = "Privacy & Policy | Findr";
+
    setShow(false);
    setSidebarShow(false);
    return (

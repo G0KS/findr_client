@@ -1,6 +1,8 @@
 import Logo from '../../assets/logo3.png';
 
 function Terms({ setShow, setSidebarShow }) {
+  document.title = "Terms & Conditions | Findr";
+
   setShow(false);
   setSidebarShow(false);
   return (
