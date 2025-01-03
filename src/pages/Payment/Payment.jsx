@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import paymentimg from "../../assets/paymentimg.jpeg";
+import paymentimg from "../../assets/paymentc.jpg";
 import RazorpayButton from "../../components/RazorpayButton";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";

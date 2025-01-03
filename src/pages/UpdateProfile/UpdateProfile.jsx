@@ -339,11 +339,11 @@ function EducationForm() {
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     Year<span className="text-danger">*</span>
+                     Year of passing<span className="text-danger">*</span>
                   </label>
                   <input
                      className="profileInputBox "
-                     placeholder="Enter Year"
+                     placeholder="Enter Year of passing"
                      type="text"
                      name="tenth_year"
                      value={updatedData.tenth_year}
@@ -525,12 +525,12 @@ function EducationForm() {
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     Year<span className="text-danger">*</span>
+                     Year of passing<span className="text-danger">*</span>
                   </label>
                   <input
                      className="profileInputBox "
                      type="text"
-                     placeholder="Enter Year"
+                     placeholder="Enter Year of passing"
                      name="twelfth_year"
                      value={updatedData.twelfth_year}
                      onChange={(e) => getFormData(e)}
@@ -755,12 +755,12 @@ function EducationForm() {
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     Year
+                     Year of passing
                   </label>
                   <input
                      className="profileInputBox "
                      type="text"
-                     placeholder="Enter Year"
+                     placeholder="Enter Year of passing"
                      name="undergraduate_year"
                      value={updatedData.undergraduate_year}
                      onChange={(e) => getFormData(e)}
@@ -986,12 +986,12 @@ function EducationForm() {
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     Year
+                     Year of passing
                   </label>
                   <input
                      className="profileInputBox "
                      type="text"
-                     placeholder="Enter Year"
+                     placeholder="Enter Year of passing"
                      name="postgraduate_year"
                      value={updatedData.postgraduate_year}
                      onChange={(e) => getFormData(e)}
@@ -1207,12 +1207,12 @@ function EducationForm() {
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     Year
+                     Year of passing
                   </label>
                   <input
                      className="profileInputBox "
                      type="text"
-                     placeholder="Enter Year"
+                     placeholder="Enter Year of passing"
                      name="phd_year"
                      value={updatedData.phd_year}
                      onChange={(e) => getFormData(e)}

@@ -537,7 +537,7 @@ function Privacy({ setShow, setSidebarShow }) {
                </p>
                <ol>
                   <ul className="mt-4" style={{ display: "list-item" }}>
-                     Using email: <Link>support@findr.study</Link>
+                     Using email: <Link>contact.findr.study@gmail.com</Link>
                   </ul>
                   <ul className="mt-4" style={{ display: "list-item" }}>
                      Using phone number: <Link>+91 62822 55880</Link>

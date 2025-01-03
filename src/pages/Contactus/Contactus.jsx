@@ -65,7 +65,7 @@ function Contactus({ setShow, setSidebarShow }) {
                   >
                      <div className="p-2 ">
                         <img src={Message} alt="" />
-                        <span className="ms-2">support@findr.study</span>
+                        <span className="ms-2">contact.findr.study@gmail.com</span>
                      </div>
                   </Link>
                   <Link
