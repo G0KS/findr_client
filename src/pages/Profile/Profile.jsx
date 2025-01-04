@@ -23,7 +23,7 @@ function Profile({ setShow, setSidebarShow }) {
 
    const getUserData = () => {
       if (data !== undefined) {
-         if (data.tenth_institution) {
+         if (data.profile_updated == 1) {
             setProfileData(data);
          } else {
             toast.warning("Complete your profile to continue");

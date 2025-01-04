@@ -1,25 +1,21 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk";
+import { useFrappeUpdateDoc } from "frappe-react-sdk";
 
-function RazorpayButton({ amount, payment }) {
+function RazorpayButton({ amount, payment, paymentID }) {
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
    const razory_key_id = import.meta.env.VITE_RAZORPAY_KEY_ID;
 
    const { updateDoc } = useFrappeUpdateDoc();
-   const { mutate } = useFrappeGetDoc("Student", c_id);
 
-   const updatePayment = () => {
+   const updatePayment = (razorpay_payment_id) => {
       try {
-         updateDoc("Student", c_id, { [payment]: "1" })
-            .then((res) => {
-               console.log(res);
-               mutate();
-            })
-            .catch((err) => console.log(err));
+         updateDoc("Student", c_id, {
+            [payment]: "1",
+            [paymentID]: razorpay_payment_id,
+         }).catch((err) => console.log(err));
       } catch (error) {
          console.error(error);
       }
@@ -63,7 +59,7 @@ function RazorpayButton({ amount, payment }) {
                               "Payment ID:" +
                               response.razorpay_payment_id
                         );
-                        updatePayment();
+                        updatePayment(response.razorpay_payment_id);
                      } else {
                         toast.warning(
                            "Payment Verification Failed: " + data.message

@@ -1,4 +1,4 @@
-export const templeteData = {
+export const templateData = {
    tenth_institution: "",
    tenth_marks: "",
    tenth_mode_of_study: "",
@@ -40,4 +40,6 @@ export const templeteData = {
    gender: "",
    marital_status: "",
    availing_spouse_visa: "",
+   education_program: "",
+   other_program: "",
 };

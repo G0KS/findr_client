@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function Home({ setShow, setSidebarShow }) {
+   document.title = "Findr Study"
    setShow(true);
    setSidebarShow(false);
    const navigate = useNavigate();

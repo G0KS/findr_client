@@ -8,8 +8,9 @@ import downArrow from "../../assets/down.svg";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useFrappeUpdateDoc } from "frappe-react-sdk";
+import { useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk";
 import { updatedProfileContext } from "../../context/ContextShare";
+import { templateData } from "../../constants/global";
 
 function UpdateProfile({ setShow, setSidebarShow }) {
    document.title = "Profile update | Findr";
@@ -17,7 +18,9 @@ function UpdateProfile({ setShow, setSidebarShow }) {
    const email = JSON.parse(localStorage.getItem("findrData"))?.email;
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
-   const { updatedData } = useContext(updatedProfileContext);
+   const { updatedData, setUpdatedData } = useContext(updatedProfileContext);
+
+   const { data, isLoading } = useFrappeGetDoc("Student", c_id);
 
    useEffect(() => {
       setShow(true);
@@ -27,6 +30,10 @@ function UpdateProfile({ setShow, setSidebarShow }) {
          navigate("/login");
       }
    }, []);
+
+   // useEffect(() => {
+   //    if (!isLoading) if (data.profile_updated == 1) navigate("/payment");
+   // }, [isLoading]);
 
    const [currentIndex, setCurrentIndex] = useState(0);
    const [component, setComponent] = useState(<></>);
@@ -77,7 +84,6 @@ function UpdateProfile({ setShow, setSidebarShow }) {
          twelfth_mode_of_study,
          findr_choose,
          education_program,
-         other_program,
          preferred_country,
          preferred_course,
          date_of_birth,
@@ -87,6 +93,7 @@ function UpdateProfile({ setShow, setSidebarShow }) {
          updateDoc("Student", c_id, { ...updatedData })
             .then(() => {
                toast.success("Profile details updated");
+               setUpdatedData(templateData);
                navigate("/payment");
             })
             .catch((err) => {
@@ -97,48 +104,46 @@ function UpdateProfile({ setShow, setSidebarShow }) {
 
       if (findr_choose === "0") {
          if (
-            tenth_institution == "" ||
-            tenth_marks == "" ||
-            tenth_state == "" ||
-            tenth_year == "" ||
-            tenth_board_of_study == "" ||
-            tenth_mode_of_study == "" ||
-            twelfth_course == "" ||
-            twelfth_institution == "" ||
-            twelfth_marks == "" ||
-            twelfth_mode_of_study == "" ||
-            twelfth_pursuing == "" ||
-            twelfth_year == "" ||
-            date_of_birth == "" ||
-            preferred_country == "" ||
-            preferred_course == "" ||
-            education_program == ""
+            (tenth_institution == "") |
+            (tenth_marks == "") |
+            (tenth_state == "") |
+            (tenth_year == "") |
+            (tenth_board_of_study == "") |
+            (tenth_mode_of_study == "") |
+            (twelfth_course == "") |
+            (twelfth_institution == "") |
+            (twelfth_marks == "") |
+            (twelfth_mode_of_study == "") |
+            (twelfth_pursuing == "") |
+            (twelfth_year == "") |
+            (date_of_birth == "") |
+            (preferred_country == "") |
+            (preferred_course == "") |
+            (education_program == "")
          ) {
             toast.warning("Fill all mandatory details");
          } else {
-            updatedData.education_program = other_program;
             updateProfile();
          }
       } else {
          if (
-            tenth_institution == "" ||
-            tenth_marks == "" ||
-            tenth_state == "" ||
-            tenth_year == "" ||
-            tenth_board_of_study == "" ||
-            tenth_mode_of_study == "" ||
-            twelfth_course == "" ||
-            twelfth_institution == "" ||
-            twelfth_marks == "" ||
-            twelfth_mode_of_study == "" ||
-            twelfth_pursuing == "" ||
-            twelfth_year == "" ||
-            date_of_birth == "" ||
-            education_program == ""
+            (tenth_institution == "") |
+            (tenth_marks == "") |
+            (tenth_state == "") |
+            (tenth_year == "") |
+            (tenth_board_of_study == "") |
+            (tenth_mode_of_study == "") |
+            (twelfth_course == "") |
+            (twelfth_institution == "") |
+            (twelfth_marks == "") |
+            (twelfth_mode_of_study == "") |
+            (twelfth_pursuing == "") |
+            (twelfth_year == "") |
+            (date_of_birth == "") |
+            (education_program == "")
          ) {
             toast.warning("Fill all mandatory details");
          } else {
-            updatedData.education_program = other_program;
             updateProfile();
          }
       }
@@ -246,8 +251,10 @@ function EducationForm() {
    };
 
    const toggle = (elementId) => {
-      const check = document.getElementById(elementId);
-      check.classList.add("show");
+      const container = document.getElementById(elementId);
+      if (container.classList.contains("show"))
+         container.classList.remove("show");
+      else container.classList.add("show");
    };
 
    return (
@@ -258,6 +265,8 @@ function EducationForm() {
          >
             Education Info
          </h3>
+
+         {/* Tenth */}
          <div className="tenth">
             <h4 className="p-4 pb-0">
                <span style={{ color: "#0f6990" }}>Tenth </span>
@@ -413,6 +422,8 @@ function EducationForm() {
                </div>
             </div>
          </div>
+
+         {/* Twelfth */}
          <div className="twelfth">
             <h4 className="p-4 pb-0">
                <span style={{ color: "#0f6990" }}>Twelfth </span>
@@ -608,13 +619,20 @@ function EducationForm() {
                </div>
             </div>
          </div>
-         <div className="undergraduate">
-            <h4 className="p-4 pb-0">
-               <span style={{ color: "#0f6990" }}>Undergraduate </span>
-               Qualification
-            </h4>
 
-            <div className="row p-4 d-flex">
+         {/* UG */}
+         <div
+            className="undergraduate"
+            onClick={() => toggle("underGradContainer")}
+         >
+            <div className="d-flex justify-content-between align-items-center cursor">
+               <h4 className="p-4 pb-0">
+                  <span style={{ color: "#0f6990" }}>Undergraduate </span>
+                  Qualification
+               </h4>
+               <img src={downArrow} alt="" className="me-5" />
+            </div>
+            <div className="row p-4 d-flex answer" id="underGradContainer">
                <div className="col mt-5">
                   <label
                      htmlFor=""
@@ -831,19 +849,19 @@ function EducationForm() {
                </div>
             </div>
          </div>
-         {/* pg */}
+
+         {/* PG */}
          <div
             className="postgraduate"
             onClick={() => toggle("postGradContainer")}
          >
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-between align-items-center cursor">
                <h4 className="p-4 pb-0">
                   <span style={{ color: "#0f6990" }}>Postgraduate </span>
                   Qualification
                </h4>
                <img src={downArrow} alt="" className="me-5" />
             </div>
-
             <div className="row p-4 d-flex answer" id="postGradContainer">
                <div className="col mt-5">
                   <label
@@ -1063,8 +1081,10 @@ function EducationForm() {
                </div>
             </div>
          </div>
+
+         {/* PhD */}
          <div className="phd" onClick={() => toggle("phdContainer")}>
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-between align-items-center cursor">
                <h4 className="p-4 mb-0">
                   <span style={{ color: "#0f6990" }}>PhD </span>Qualification
                </h4>
@@ -1303,7 +1323,7 @@ function LanguageForm() {
    };
 
    const addLanguage = () => {
-      if (!languageData.certificate || !languageData.language) {
+      if (!languageData.certificate | !languageData.language) {
          toast.warning("Please fill language details properly");
       } else {
          const languageArray = updatedData.language_proficiency;
@@ -1535,7 +1555,7 @@ function LanguageForm() {
                         name="education_program"
                         id="cars"
                         onChange={(e) => getFormData(e)}
-                        value={updatedData.education_program}
+                        // value={updatedData.education_program}
                      >
                         <option selected hidden>
                            Choose your course
@@ -1543,7 +1563,9 @@ function LanguageForm() {
                         <option value="Bachelor's Degree">
                            Bachelor&apos;s Degree
                         </option>
-                        <option value="Master's Degree">Master&apos;s Degree</option>
+                        <option value="Master's Degree">
+                           Master&apos;s Degree
+                        </option>
                         <option value="Diploma">Diploma</option>
                         <option value="Vocational Training">
                            Vocational Training
@@ -2087,6 +2109,16 @@ function WorkForm() {
 
 function AdditionalForm() {
    const { updatedData, setUpdatedData } = useContext(updatedProfileContext);
+
+   useEffect(() => {
+      if (updatedData.other_program != "")
+         setUpdatedData({
+            ...updatedData,
+            education_program: updatedData.other_program,
+         });
+
+      setUpdatedData({ ...updatedData, profile_updated: "1" });
+   }, []);
 
    const getFormData = (e) => {
       const { name, value } = e.target;

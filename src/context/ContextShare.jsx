@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { templeteData } from "../constants/global";
+import { templateData } from "../constants/global";
 
 export const profileContext = createContext();
 export const updatedProfileContext = createContext();
@@ -9,7 +9,7 @@ export const logContext = createContext();
 function ContextShare({ children }) {
    const [isLoggedIn, setIsLoggedIn] = useState(false);
    const [profileData, setProfileData] = useState();
-   const [updatedData, setUpdatedData] = useState(templeteData);
+   const [updatedData, setUpdatedData] = useState(templateData);
    const [sidebarCollapse, setSidebarCollapse] = useState(false);
    return (
       <profileContext.Provider value={{ profileData, setProfileData }}>

@@ -48,15 +48,16 @@ function Courses({ setShow, setSidebarShow }) {
    ];
 
    const getUserData = () => {
-      setUserData(data);
-      if (data?.consultancy_address || data?.preferred_location) {
-         setConsultancyChoosed(true);
+      if (data !== undefined) {
+         setUserData(data);
+         if (data.consultancy_opted == 1) {
+            setConsultancyChoosed(true);
+         }
       }
    };
 
    const getFormData = (e) => {
       const { name, value } = e.target;
-      console.log(name, value);
       setConsultancyPreference({ ...consultancyPreference, [name]: value });
    };
 
@@ -69,10 +70,10 @@ function Courses({ setShow, setSidebarShow }) {
       } = consultancyPreference;
 
       if (
-         !consultancy_address &&
-         !preferred_location &&
-         !consultancy_name &&
-         !consultancy_number
+         (consultancy_address == "") |
+         (preferred_location == "") |
+         (consultancy_name == "") |
+         (consultancy_number == "")
       ) {
          toast.warn("Fill the required details");
       } else {
@@ -81,6 +82,7 @@ function Courses({ setShow, setSidebarShow }) {
             preferred_location,
             consultancy_name,
             consultancy_number,
+            consultancy_opted: 1,
          })
             .then(() => {
                toast.success("Your request has been recieved");
@@ -187,18 +189,19 @@ function Courses({ setShow, setSidebarShow }) {
                               data.course_list?.length > 0 ? (
                                  <>
                                     {/* 2nd card  */}
-                                    <div className="d-flex flex-column align-items-center w-100">
-                                       <div className="">
-                                          <p
-                                             className="fw-bold text-center"
-                                             style={{ fontSize: "25px" }}
-                                          >
-                                             Exciting News! Course List Updated.
-                                             Pay fees to access.
-                                          </p>
+                                    {!consultancyChoosed && (
+                                       <div className="d-flex flex-column align-items-center w-100">
+                                          <div className="">
+                                             <p
+                                                className="fw-bold text-center"
+                                                style={{ fontSize: "25px" }}
+                                             >
+                                                Exciting News! Your course list
+                                                has been updated.
+                                             </p>
+                                          </div>
                                        </div>
-                                    </div>
-
+                                    )}
                                     {consultancyChoosed ? (
                                        <div className="courseDetailCard shadow">
                                           <div className="paymentImgContainer p-3">

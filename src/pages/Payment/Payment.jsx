@@ -11,6 +11,7 @@ function Payment({ setShow, setSidebarShow }) {
    setSidebarShow(true);
    const [fee, setFee] = useState();
    const [payment, setPayment] = useState();
+   const [paymentID, setPaymentID] = useState();
    const [paymentDesc, setPaymentDesc] = useState("");
    const navigate = useNavigate();
 
@@ -19,26 +20,33 @@ function Payment({ setShow, setSidebarShow }) {
 
    const { data, isLoading } = useFrappeGetDoc("Student", c_id);
 
+   console.log(data);
+
    const getPaymentDetails = () => {
       if (data !== undefined) {
-         if (data.registration_fee == 1 && data.course_fee == 1) {
+         if (
+            (data.consultancy_opted == 1) |
+            ((data.registration_fee == 1) & (data.course_fee == 1))
+         ) {
             setPayment("full_paid");
             setPaymentDesc(
                "Thanks for joining the findr.study community! Share your study abroad story and recommend us to friends who dare to dream."
             );
          } else if (data.registration_fee == 0) {
-            setFee(100);
+            setFee(2499);
             setPayment("registration_fee");
+            setPaymentID("registration_fee_id");
             setPaymentDesc(
                "Continue with payment to complete the registration"
             );
-         } else if (data.course_list.length > 0) {
+         } else if (data.course_added == 1) {
             setFee(5000);
             setPayment("course_fee");
+            setPaymentID("course_fee_id");
             setPaymentDesc(
                "Unlock your course library - payment unlocks access!"
             );
-         } else if (data.course_list.length == 0) {
+         } else if (data.course_added == 0) {
             setPayment("payment_done");
             setPaymentDesc(
                "Payment received. Registration completed. You can access your tailored course suggestions in courses tab in 1-2 weeks."
@@ -49,7 +57,7 @@ function Payment({ setShow, setSidebarShow }) {
 
    const getUserData = () => {
       if (data !== undefined) {
-         if (!data.tenth_institution) {
+         if (data.profile_updated == 0) {
             toast.warning("Complete your profile to continue");
             navigate("/profile/update");
          } else {
@@ -87,8 +95,8 @@ function Payment({ setShow, setSidebarShow }) {
                      ) : (
                         <>
                            <div className="paymentCard rounded-4 p-4 bg-white shadow-lg">
-                              {payment === "payment_done" ||
-                              payment === "full_paid" ? (
+                              {(payment === "payment_done") |
+                              (payment === "full_paid") ? (
                                  <div className="row">
                                     <div className="col d-flex align-items-center justify-content-center">
                                        <img
@@ -135,7 +143,7 @@ function Payment({ setShow, setSidebarShow }) {
                                                 fontSize: "40px",
                                              }}
                                           >
-                                             {fee == 100
+                                             {fee == 2499
                                                 ? "Registration Fee"
                                                 : "Course Fee"}
                                           </h3>
@@ -155,11 +163,12 @@ function Payment({ setShow, setSidebarShow }) {
                                                 fontFamily: "Arial",
                                              }}
                                           >
-                                             {fee == 100 ? "₹100" : "₹5000"}
+                                             {fee == 2499 ? "₹2499" : "₹5000"}
                                           </h3>
                                           <RazorpayButton
                                              amount={fee}
                                              payment={payment}
+                                             paymentID={paymentID}
                                           />
                                        </div>
                                     </div>

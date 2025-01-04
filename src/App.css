@@ -161,13 +161,13 @@
 .answer {
   max-height: 0;
   overflow: hidden;
-  transition: all 0.7s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .answer.show {
   height: auto;
   max-height: 999px;
-  transition: all 1.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .hide {
