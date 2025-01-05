@@ -472,6 +472,41 @@ function EducationForm() {
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
+                     Board Of Study<span className="text-danger">*</span>
+                  </label>
+                  <input
+                     className="profileInputBox "
+                     placeholder="Enter Board Of Study"
+                     type="text"
+                     name="twelfth_board_of_study"
+                     value={updatedData.twelfth_board_of_study}
+                     onChange={(e) => getFormData(e)}
+                  />
+               </div>
+               <div className="col mt-5">
+                  <label
+                     htmlFor=""
+                     className="d-block fw-bolder mb-2"
+                     style={{ fontSize: "17px" }}
+                  >
+                     State<span className="text-danger">*</span>
+                  </label>
+                  <input
+                     className="profileInputBox "
+                     placeholder="Enter State"
+                     type="text"
+                     name="twelfth_state"
+                     value={updatedData.twelfth_state}
+                     onChange={(e) => getFormData(e)}
+                  />
+               </div>
+
+               <div className="col mt-5">
+                  <label
+                     htmlFor=""
+                     className="d-block fw-bolder mb-2"
+                     style={{ fontSize: "17px" }}
+                  >
                      Institution<span className="text-danger">*</span>
                   </label>
                   <input
@@ -621,10 +656,11 @@ function EducationForm() {
          </div>
 
          {/* UG */}
-         <div
-            className="undergraduate"
-         >
-            <div className="d-flex justify-content-between align-items-center cursor" onClick={() => toggle("underGradContainer")}>
+         <div className="undergraduate">
+            <div
+               className="d-flex justify-content-between align-items-center cursor"
+               onClick={() => toggle("underGradContainer")}
+            >
                <h4 className="p-4 pb-0">
                   <span style={{ color: "#0f6990" }}>Undergraduate </span>
                   Qualification
@@ -850,10 +886,11 @@ function EducationForm() {
          </div>
 
          {/* PG */}
-         <div
-            className="postgraduate"
-         >
-            <div className="d-flex justify-content-between align-items-center cursor" onClick={() => toggle("postGradContainer")}>
+         <div className="postgraduate">
+            <div
+               className="d-flex justify-content-between align-items-center cursor"
+               onClick={() => toggle("postGradContainer")}
+            >
                <h4 className="p-4 pb-0">
                   <span style={{ color: "#0f6990" }}>Postgraduate </span>
                   Qualification
@@ -1082,7 +1119,10 @@ function EducationForm() {
 
          {/* PhD */}
          <div className="phd">
-            <div className="d-flex justify-content-between align-items-center cursor"  onClick={() => toggle("phdContainer")}>
+            <div
+               className="d-flex justify-content-between align-items-center cursor"
+               onClick={() => toggle("phdContainer")}
+            >
                <h4 className="p-4 mb-0">
                   <span style={{ color: "#0f6990" }}>PhD </span>Qualification
                </h4>
