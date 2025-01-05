@@ -6,6 +6,7 @@ export const templateData = {
    twelfth_institution: "",
    twelfth_marks: "",
    twelfth_mode_of_study: "",
+   twelfth_currently_studying: "",
    twelfth_year: "",
    undergraduate_institution: "",
    undergraduate_marks: "",
@@ -25,7 +26,7 @@ export const templateData = {
    internship_details: [],
    work_experience: [],
    language_proficiency: [],
-   findr_choose: "1",
+   findr_choose: 1,
    preferred_course: "",
    preferred_country: "",
    budget: "",
@@ -42,4 +43,5 @@ export const templateData = {
    availing_spouse_visa: "",
    education_program: "",
    other_program: "",
+   profile_updated: 0,
 };

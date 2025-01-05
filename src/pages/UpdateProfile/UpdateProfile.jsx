@@ -31,9 +31,9 @@ function UpdateProfile({ setShow, setSidebarShow }) {
       }
    }, []);
 
-   // useEffect(() => {
-   //    if (!isLoading) if (data.profile_updated == 1) navigate("/payment");
-   // }, [isLoading]);
+   useEffect(() => {
+      if (!isLoading) if (data.profile_updated == 1) navigate("/payment");
+   }, [isLoading]);
 
    const [currentIndex, setCurrentIndex] = useState(0);
    const [component, setComponent] = useState(<></>);
@@ -623,9 +623,8 @@ function EducationForm() {
          {/* UG */}
          <div
             className="undergraduate"
-            onClick={() => toggle("underGradContainer")}
          >
-            <div className="d-flex justify-content-between align-items-center cursor">
+            <div className="d-flex justify-content-between align-items-center cursor" onClick={() => toggle("underGradContainer")}>
                <h4 className="p-4 pb-0">
                   <span style={{ color: "#0f6990" }}>Undergraduate </span>
                   Qualification
@@ -853,9 +852,8 @@ function EducationForm() {
          {/* PG */}
          <div
             className="postgraduate"
-            onClick={() => toggle("postGradContainer")}
          >
-            <div className="d-flex justify-content-between align-items-center cursor">
+            <div className="d-flex justify-content-between align-items-center cursor" onClick={() => toggle("postGradContainer")}>
                <h4 className="p-4 pb-0">
                   <span style={{ color: "#0f6990" }}>Postgraduate </span>
                   Qualification
@@ -1083,8 +1081,8 @@ function EducationForm() {
          </div>
 
          {/* PhD */}
-         <div className="phd" onClick={() => toggle("phdContainer")}>
-            <div className="d-flex justify-content-between align-items-center cursor">
+         <div className="phd">
+            <div className="d-flex justify-content-between align-items-center cursor"  onClick={() => toggle("phdContainer")}>
                <h4 className="p-4 mb-0">
                   <span style={{ color: "#0f6990" }}>PhD </span>Qualification
                </h4>
@@ -1614,7 +1612,7 @@ function LanguageForm() {
                            id="findrChooseY"
                            name="findr_choose"
                            value="1"
-                           checked={updatedData.findr_choose === "1"}
+                           checked={updatedData.findr_choose == "1"}
                            onChange={(e) => getFormData(e)}
                         />
                         <label className="ps-2 cursor" htmlFor="findrChooseY">
@@ -2117,8 +2115,10 @@ function AdditionalForm() {
             education_program: updatedData.other_program,
          });
 
-      setUpdatedData({ ...updatedData, profile_updated: "1" });
+      setUpdatedData({ ...updatedData, profile_updated: 1 });
    }, []);
+
+   console.log(updatedData);
 
    const getFormData = (e) => {
       const { name, value } = e.target;

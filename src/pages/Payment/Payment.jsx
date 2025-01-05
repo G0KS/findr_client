@@ -20,8 +20,6 @@ function Payment({ setShow, setSidebarShow }) {
 
    const { data, isLoading } = useFrappeGetDoc("Student", c_id);
 
-   console.log(data);
-
    const getPaymentDetails = () => {
       if (data !== undefined) {
          if (
@@ -55,6 +53,7 @@ function Payment({ setShow, setSidebarShow }) {
       }
    };
 
+   console.log(data);
    const getUserData = () => {
       if (data !== undefined) {
          if (data.profile_updated == 0) {
@@ -73,7 +72,7 @@ function Payment({ setShow, setSidebarShow }) {
          toast.warning("Please login");
          navigate("/login");
       }
-   }, [data]);
+   }, [isLoading]);
 
    return (
       <>
