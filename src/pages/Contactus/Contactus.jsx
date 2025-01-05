@@ -20,7 +20,7 @@ function Contactus({ setShow, setSidebarShow }) {
    return (
       <div className="container">
          <div
-            className="d-flex justify-content-center align-items-center p-4"
+            className="d-flex justify-content-center align-items-center"
             style={{
                height: "100vh",
             }}
@@ -29,7 +29,6 @@ function Contactus({ setShow, setSidebarShow }) {
                className=" shadow rounded-5  "
                style={{
                   width: "40rem",
-                  height: "20rem",
                   position: "relative",
                }}
             >
@@ -65,7 +64,9 @@ function Contactus({ setShow, setSidebarShow }) {
                   >
                      <div className="p-2 ">
                         <img src={Message} alt="" />
-                        <span className="ms-2">contact.findr.study@gmail.com</span>
+                        <span className="ms-2">
+                           contact.findr.study@gmail.com
+                        </span>
                      </div>
                   </Link>
                   <Link
@@ -76,8 +77,13 @@ function Contactus({ setShow, setSidebarShow }) {
                   >
                      <div className="p-2">
                         <img src={Location} alt="" />
-                        <span className="ms-2 ">
+                        {/* <span className="ms-2 ">
                            apest, Lövőház u. 27b-3. em. 1. ajtó, 1024 Hungary
+                        </span> */}
+                        <span className="ms-2">
+                           JK Apartments, Varghese Thittayil Road,
+                           Cheriyakadavanthra, Kadavanthra Part 1, Kochi,
+                           Ernakulam, Kerala
                         </span>
                      </div>
                   </Link>
