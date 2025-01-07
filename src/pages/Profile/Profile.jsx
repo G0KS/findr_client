@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk";
 
 function Profile({ setShow, setSidebarShow }) {
-   document.title = "Profile | Findr";
+   document.title = "Profile || Findr";
 
    setShow(true);
    setSidebarShow(true);
@@ -20,9 +20,10 @@ function Profile({ setShow, setSidebarShow }) {
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
 
    const { data, isLoading } = useFrappeGetDoc("Student", c_id);
+   console.log(data);
 
    const getUserData = () => {
-      if (data !== undefined) {
+      if (!isLoading) {
          if (data.profile_updated == 1) {
             setProfileData(data);
          } else {
@@ -158,7 +159,6 @@ function Profile({ setShow, setSidebarShow }) {
                                  }
                                  disabled={editable ? "disabled" : ""}
                                  onChange={(e) => getInputData(e)}
-                                 placeholder="Enter Phone Number"
                                  style={{ fontSize: "15px", border: "none" }}
                               />
                            </div>
@@ -192,7 +192,6 @@ function Profile({ setShow, setSidebarShow }) {
                               value={inputData.email || profileData.email}
                               disabled={editable ? "disabled" : ""}
                               onChange={(e) => getInputData(e)}
-                              placeholder="Enter Email"
                               style={{ fontSize: "15px", border: "none" }}
                            />
                         </div>
@@ -223,6 +222,26 @@ function Profile({ setShow, setSidebarShow }) {
                            />
                         </div>
                      </div>
+                     <div className="col-md-6 col-lg-5">
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                           <label
+                              style={{ color: "#0F6990", width: "100px" }}
+                              className=""
+                           >
+                              Course looking for
+                           </label>
+                           <input
+                              className="inputBox shadow"
+                              type="text"
+                              value={profileData.education_program || ""}
+                              disabled
+                              style={{
+                                 fontSize: "15px",
+                                 border: "none",
+                              }}
+                           />
+                        </div>
+                     </div>
                   </div>
 
                   {/* Tenth Qualification */}
@@ -235,42 +254,46 @@ function Profile({ setShow, setSidebarShow }) {
                      style={{ backgroundColor: "" }}
                   >
                      <div className="col-md-6 col-lg-5">
-                        {/* input section */}
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                           <label style={{ color: "#0F6990", width: "100px" }}>
+                              Instituiton
+                           </label>
+                           <input
+                              className="inputBox shadow "
+                              type="text"
+                              name="tenth_institution"
+                              value={profileData.tenth_institution || ""}
+                              disabled
+                              style={{ fontSize: "15px", border: "none" }}
+                           />
+                        </div>
 
-                        <form action="">
-                           {/* name */}
-                           <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
-                              <label
-                                 style={{ color: "#0F6990", width: "100px" }}
-                              >
-                                 Instituiton
-                              </label>
-                              <input
-                                 className="inputBox shadow "
-                                 type="text"
-                                 name="tenth_institution"
-                                 value={profileData.tenth_institution || ""}
-                                 disabled
-                                 style={{ fontSize: "15px", border: "none" }}
-                              />
-                           </div>
-
-                           <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
-                              <label
-                                 style={{ color: "#0F6990", width: "100px" }}
-                              >
-                                 Marks
-                              </label>
-                              <input
-                                 className="inputBox shadow "
-                                 type="text"
-                                 name="tenth_marks"
-                                 value={profileData.tenth_marks || ""}
-                                 disabled
-                                 style={{ fontSize: "15px", border: "none" }}
-                              />
-                           </div>
-                        </form>
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                           <label style={{ color: "#0F6990", width: "100px" }}>
+                              Marks
+                           </label>
+                           <input
+                              className="inputBox shadow "
+                              type="text"
+                              name="tenth_marks"
+                              value={profileData.tenth_marks || ""}
+                              disabled
+                              style={{ fontSize: "15px", border: "none" }}
+                           />
+                        </div>
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                           <label style={{ color: "#0F6990", width: "100px" }}>
+                              Board of Study
+                           </label>
+                           <input
+                              className="inputBox shadow "
+                              type="text"
+                              name="tenth_board_of_study"
+                              value={profileData.tenth_board_of_study || ""}
+                              disabled
+                              style={{ fontSize: "15px", border: "none" }}
+                           />
+                        </div>
                      </div>
                      {/* next section  */}
                      <div className="col-md-6 col-lg-5">
@@ -283,6 +306,32 @@ function Profile({ setShow, setSidebarShow }) {
                               type="text"
                               name="tenth_mode_of_study"
                               value={profileData.tenth_mode_of_study || ""}
+                              disabled
+                              style={{ fontSize: "15px", border: "none" }}
+                           />
+                        </div>
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                           <label style={{ color: "#0F6990" }}>
+                              Year of Study
+                           </label>
+                           <input
+                              className="inputBox shadow "
+                              type="text"
+                              name="tenth_year"
+                              value={profileData.tenth_year || ""}
+                              disabled
+                              style={{ fontSize: "15px", border: "none" }}
+                           />
+                        </div>
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                           <label style={{ color: "#0F6990", width: "100px" }}>
+                              State
+                           </label>
+                           <input
+                              className="inputBox shadow "
+                              type="text"
+                              name="tenth_state"
+                              value={profileData.tenth_state || ""}
                               disabled
                               style={{ fontSize: "15px", border: "none" }}
                            />
@@ -300,43 +349,46 @@ function Profile({ setShow, setSidebarShow }) {
                      style={{ backgroundColor: "" }}
                   >
                      <div className="col-md-6 col-lg-5">
-                        {/* input section */}
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                           <label style={{ color: "#0F6990", width: "100px" }}>
+                              Instituiton
+                           </label>
+                           <input
+                              className="inputBox shadow "
+                              type="text"
+                              name="twelfth_institution"
+                              value={profileData.twelfth_institution || ""}
+                              disabled
+                              style={{ fontSize: "15px", border: "none" }}
+                           />
+                        </div>
 
-                        <form action="">
-                           {/* name */}
-                           <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
-                              <label
-                                 style={{ color: "#0F6990", width: "100px" }}
-                              >
-                                 Instituiton
-                              </label>
-                              <input
-                                 className="inputBox shadow "
-                                 type="text"
-                                 name="twelfth_institution"
-                                 value={profileData.twelfth_institution || ""}
-                                 disabled
-                                 style={{ fontSize: "15px", border: "none" }}
-                              />
-                           </div>
-
-                           <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
-                              <label
-                                 style={{ color: "#0F6990", width: "100px" }}
-                              >
-                                 Marks
-                              </label>
-                              <input
-                                 className="inputBox shadow "
-                                 type="text"
-                                 name="twelfth_marks"
-                                 value={profileData.twelfth_marks || ""}
-                                 disabled
-                                 placeholder="Enter Marks"
-                                 style={{ fontSize: "15px", border: "none" }}
-                              />
-                           </div>
-                        </form>
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                           <label style={{ color: "#0F6990", width: "100px" }}>
+                              Marks
+                           </label>
+                           <input
+                              className="inputBox shadow "
+                              type="text"
+                              name="twelfth_marks"
+                              value={profileData.twelfth_marks || ""}
+                              disabled
+                              style={{ fontSize: "15px", border: "none" }}
+                           />
+                        </div>
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                           <label style={{ color: "#0F6990", width: "100px" }}>
+                              Board of Study
+                           </label>
+                           <input
+                              className="inputBox shadow "
+                              type="text"
+                              name="twelfth_board_of_study"
+                              value={profileData.twelfth_board_of_study || ""}
+                              disabled
+                              style={{ fontSize: "15px", border: "none" }}
+                           />
+                        </div>
                      </div>
                      {/* next section  */}
                      <div className="col-md-6 col-lg-5">
@@ -350,7 +402,32 @@ function Profile({ setShow, setSidebarShow }) {
                               name="twelfth_mode_of_study"
                               value={profileData.twelfth_mode_of_study || ""}
                               disabled
-                              placeholder="Enter Marks"
+                              style={{ fontSize: "15px", border: "none" }}
+                           />
+                        </div>
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                           <label style={{ color: "#0F6990", width: "100px" }}>
+                              Year of Study
+                           </label>
+                           <input
+                              className="inputBox shadow "
+                              type="text"
+                              name="twelfth_year"
+                              value={profileData.twelfth_year || ""}
+                              disabled
+                              style={{ fontSize: "15px", border: "none" }}
+                           />
+                        </div>
+                        <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                           <label style={{ color: "#0F6990", width: "100px" }}>
+                              State
+                           </label>
+                           <input
+                              className="inputBox shadow "
+                              type="text"
+                              name="twelfth_state"
+                              value={profileData.twelfth_state || ""}
+                              disabled
                               style={{ fontSize: "15px", border: "none" }}
                            />
                         </div>
@@ -371,62 +448,99 @@ function Profile({ setShow, setSidebarShow }) {
                            style={{ backgroundColor: "" }}
                         >
                            <div className="col-md-6 col-lg-5">
-                              {/* input section */}
+                              <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                 <label
+                                    style={{
+                                       color: "#0F6990",
+                                       width: "100px",
+                                    }}
+                                 >
+                                    Course
+                                 </label>
+                                 <input
+                                    className="inputBox shadow "
+                                    type="text"
+                                    name="undergraduate_course_name"
+                                    value={
+                                       profileData.undergraduate_course_name ||
+                                       ""
+                                    }
+                                    disabled
+                                    style={{
+                                       fontSize: "15px",
+                                       border: "none",
+                                    }}
+                                 />
+                              </div>
+                              <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                 <label
+                                    style={{
+                                       color: "#0F6990",
+                                       width: "100px",
+                                    }}
+                                 >
+                                    Instituiton
+                                 </label>
+                                 <input
+                                    className="inputBox shadow "
+                                    type="text"
+                                    name="undergraduate_institution"
+                                    value={
+                                       profileData.undergraduate_institution ||
+                                       ""
+                                    }
+                                    disabled
+                                    style={{
+                                       fontSize: "15px",
+                                       border: "none",
+                                    }}
+                                 />
+                              </div>
 
-                              <form action="">
-                                 {/* name */}
-                                 <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
-                                    <label
-                                       style={{
-                                          color: "#0F6990",
-                                          width: "100px",
-                                       }}
-                                    >
-                                       Instituiton
-                                    </label>
-                                    <input
-                                       className="inputBox shadow "
-                                       type="text"
-                                       name="undergraduate_institution"
-                                       value={
-                                          profileData.undergraduate_institution ||
-                                          ""
-                                       }
-                                       disabled
-                                       style={{
-                                          fontSize: "15px",
-                                          border: "none",
-                                       }}
-                                    />
-                                 </div>
-
-                                 <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
-                                    <label
-                                       style={{
-                                          color: "#0F6990",
-                                          width: "100px",
-                                       }}
-                                    >
-                                       Marks
-                                    </label>
-                                    <input
-                                       className="inputBox shadow "
-                                       type="text"
-                                       name="undergraduate_marks"
-                                       value={
-                                          profileData.undergraduate_marks || ""
-                                       }
-                                       disabled
-                                       style={{
-                                          fontSize: "15px",
-                                          border: "none",
-                                       }}
-                                    />
-                                 </div>
-                              </form>
+                              <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                 <label
+                                    style={{
+                                       color: "#0F6990",
+                                       width: "100px",
+                                    }}
+                                 >
+                                    Marks
+                                 </label>
+                                 <input
+                                    className="inputBox shadow "
+                                    type="text"
+                                    name="undergraduate_marks"
+                                    value={
+                                       profileData.undergraduate_marks || ""
+                                    }
+                                    disabled
+                                    style={{
+                                       fontSize: "15px",
+                                       border: "none",
+                                    }}
+                                 />
+                              </div>
                            </div>
                            {/* next section  */}
                            <div className="col-md-6 col-lg-5">
+                              <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                 <label
+                                    style={{ color: "#0F6990", width: "100px" }}
+                                 >
+                                    University
+                                 </label>
+                                 <input
+                                    className="inputBox shadow "
+                                    type="text"
+                                    name="undergraduate_university"
+                                    value={
+                                       profileData.undergraduate_university ||
+                                       ""
+                                    }
+                                    disabled
+                                    style={{ fontSize: "15px", border: "none" }}
+                                 />
+                              </div>
                               <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                                  <label
                                     style={{ color: "#0F6990", width: "100px" }}
@@ -441,6 +555,21 @@ function Profile({ setShow, setSidebarShow }) {
                                        profileData.undergraduate_mode_of_study ||
                                        ""
                                     }
+                                    disabled
+                                    style={{ fontSize: "15px", border: "none" }}
+                                 />
+                              </div>
+                              <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                 <label
+                                    style={{ color: "#0F6990", width: "100px" }}
+                                 >
+                                    Year of Study
+                                 </label>
+                                 <input
+                                    className="inputBox shadow "
+                                    type="text"
+                                    name="undergraduate_year"
+                                    value={profileData.undergraduate_year || ""}
                                     disabled
                                     style={{ fontSize: "15px", border: "none" }}
                                  />
@@ -464,62 +593,96 @@ function Profile({ setShow, setSidebarShow }) {
                            style={{ backgroundColor: "" }}
                         >
                            <div className="col-md-6 col-lg-5">
-                              {/* input section */}
+                              <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                 <label
+                                    style={{
+                                       color: "#0F6990",
+                                       width: "100px",
+                                    }}
+                                 >
+                                    Course Name
+                                 </label>
+                                 <input
+                                    className="inputBox shadow "
+                                    type="text"
+                                    name="postgraduate_course_name"
+                                    value={
+                                       profileData.postgraduate_course_name ||
+                                       ""
+                                    }
+                                    disabled
+                                    style={{
+                                       fontSize: "15px",
+                                       border: "none",
+                                    }}
+                                 />
+                              </div>
+                              <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                 <label
+                                    style={{
+                                       color: "#0F6990",
+                                       width: "100px",
+                                    }}
+                                 >
+                                    Instituiton
+                                 </label>
+                                 <input
+                                    className="inputBox shadow "
+                                    type="text"
+                                    name="postgraduate_institution"
+                                    value={
+                                       profileData.postgraduate_institution ||
+                                       ""
+                                    }
+                                    disabled
+                                    style={{
+                                       fontSize: "15px",
+                                       border: "none",
+                                    }}
+                                 />
+                              </div>
 
-                              <form action="">
-                                 {/* name */}
-                                 <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
-                                    <label
-                                       style={{
-                                          color: "#0F6990",
-                                          width: "100px",
-                                       }}
-                                    >
-                                       Instituiton
-                                    </label>
-                                    <input
-                                       className="inputBox shadow "
-                                       type="text"
-                                       name="postgraduate_institution"
-                                       value={
-                                          profileData.postgraduate_institution ||
-                                          ""
-                                       }
-                                       disabled
-                                       style={{
-                                          fontSize: "15px",
-                                          border: "none",
-                                       }}
-                                    />
-                                 </div>
-
-                                 <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
-                                    <label
-                                       style={{
-                                          color: "#0F6990",
-                                          width: "100px",
-                                       }}
-                                    >
-                                       Marks
-                                    </label>
-                                    <input
-                                       className="inputBox shadow "
-                                       type="text"
-                                       name="postgraduate_marks"
-                                       value={
-                                          profileData.postgraduate_marks || ""
-                                       }
-                                       disabled
-                                       style={{
-                                          fontSize: "15px",
-                                          border: "none",
-                                       }}
-                                    />
-                                 </div>
-                              </form>
+                              <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                 <label
+                                    style={{
+                                       color: "#0F6990",
+                                       width: "100px",
+                                    }}
+                                 >
+                                    Marks
+                                 </label>
+                                 <input
+                                    className="inputBox shadow "
+                                    type="text"
+                                    name="postgraduate_marks"
+                                    value={profileData.postgraduate_marks || ""}
+                                    disabled
+                                    style={{
+                                       fontSize: "15px",
+                                       border: "none",
+                                    }}
+                                 />
+                              </div>
                            </div>
                            {/* next section  */}
                            <div className="col-md-6 col-lg-5">
+                              <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                 <label
+                                    style={{ color: "#0F6990", width: "100px" }}
+                                 >
+                                    University
+                                 </label>
+                                 <input
+                                    className="inputBox shadow "
+                                    type="text"
+                                    name="postgraduate_university"
+                                    value={
+                                       profileData.postgraduate_university || ""
+                                    }
+                                    disabled
+                                    style={{ fontSize: "15px", border: "none" }}
+                                 />
+                              </div>
                               <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                                  <label
                                     style={{ color: "#0F6990", width: "100px" }}
@@ -534,6 +697,21 @@ function Profile({ setShow, setSidebarShow }) {
                                        profileData.postgraduate_mode_of_study ||
                                        ""
                                     }
+                                    disabled
+                                    style={{ fontSize: "15px", border: "none" }}
+                                 />
+                              </div>
+                              <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                 <label
+                                    style={{ color: "#0F6990", width: "100px" }}
+                                 >
+                                    Year of Study
+                                 </label>
+                                 <input
+                                    className="inputBox shadow "
+                                    type="text"
+                                    name="postgraduate_year"
+                                    value={profileData.postgraduate_year || ""}
                                     disabled
                                     style={{ fontSize: "15px", border: "none" }}
                                  />
@@ -555,57 +733,88 @@ function Profile({ setShow, setSidebarShow }) {
                            style={{ backgroundColor: "" }}
                         >
                            <div className="col-md-6 col-lg-5">
-                              {/* input section */}
+                              <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                 <label
+                                    style={{
+                                       color: "#0F6990",
+                                       width: "100px",
+                                    }}
+                                 >
+                                    Course Name
+                                 </label>
+                                 <input
+                                    className="inputBox shadow "
+                                    type="text"
+                                    name="phd_course"
+                                    value={profileData.phd_course || ""}
+                                    disabled
+                                    style={{
+                                       fontSize: "15px",
+                                       border: "none",
+                                    }}
+                                 />
+                              </div>
+                              <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                 <label
+                                    style={{
+                                       color: "#0F6990",
+                                       width: "100px",
+                                    }}
+                                 >
+                                    Instituiton
+                                 </label>
+                                 <input
+                                    className="inputBox shadow "
+                                    type="text"
+                                    name="phd_institution"
+                                    value={profileData.phd_institution || ""}
+                                    disabled
+                                    style={{
+                                       fontSize: "15px",
+                                       border: "none",
+                                    }}
+                                 />
+                              </div>
 
-                              <form action="">
-                                 {/* name */}
-                                 <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
-                                    <label
-                                       style={{
-                                          color: "#0F6990",
-                                          width: "100px",
-                                       }}
-                                    >
-                                       Instituiton
-                                    </label>
-                                    <input
-                                       className="inputBox shadow "
-                                       type="text"
-                                       name="phd_institution"
-                                       value={profileData.phd_institution || ""}
-                                       disabled
-                                       style={{
-                                          fontSize: "15px",
-                                          border: "none",
-                                       }}
-                                    />
-                                 </div>
-
-                                 <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
-                                    <label
-                                       style={{
-                                          color: "#0F6990",
-                                          width: "100px",
-                                       }}
-                                    >
-                                       Marks
-                                    </label>
-                                    <input
-                                       className="inputBox shadow "
-                                       type="text"
-                                       name="phd_marks"
-                                       value={profileData.phd_marks || ""}
-                                       disabled
-                                       style={{
-                                          fontSize: "15px",
-                                          border: "none",
-                                       }}
-                                    />
-                                 </div>
-                              </form>
+                              <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                 <label
+                                    style={{
+                                       color: "#0F6990",
+                                       width: "100px",
+                                    }}
+                                 >
+                                    Marks
+                                 </label>
+                                 <input
+                                    className="inputBox shadow "
+                                    type="text"
+                                    name="phd_marks"
+                                    value={profileData.phd_marks || ""}
+                                    disabled
+                                    style={{
+                                       fontSize: "15px",
+                                       border: "none",
+                                    }}
+                                 />
+                              </div>
                            </div>
                            {/* next section  */}
                            <div className="col-md-6 col-lg-5">
+                              <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                 <label
+                                    style={{ color: "#0F6990", width: "100px" }}
+                                 >
+                                    University
+                                 </label>
+                                 <input
+                                    className="inputBox shadow "
+                                    type="text"
+                                    name="phd_university"
+                                    value={profileData.phd_university || ""}
+                                    disabled
+                                    style={{ fontSize: "15px", border: "none" }}
+                                 />
+                              </div>
                               <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                                  <label
                                     style={{ color: "#0F6990", width: "100px" }}
@@ -617,6 +826,21 @@ function Profile({ setShow, setSidebarShow }) {
                                     type="text"
                                     name="phd_mode_of_study"
                                     value={profileData.phd_mode_of_study || ""}
+                                    disabled
+                                    style={{ fontSize: "15px", border: "none" }}
+                                 />
+                              </div>
+                              <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                 <label
+                                    style={{ color: "#0F6990", width: "100px" }}
+                                 >
+                                    Year of Study
+                                 </label>
+                                 <input
+                                    className="inputBox shadow "
+                                    type="text"
+                                    name="phd_year"
+                                    value={profileData.phd_year || ""}
                                     disabled
                                     style={{ fontSize: "15px", border: "none" }}
                                  />
@@ -646,7 +870,7 @@ function Profile({ setShow, setSidebarShow }) {
                                     type="text"
                                     name="english_skill"
                                     value={
-                                       profileData.english_skill === 1
+                                       profileData.english_skill == 1
                                           ? "Yes"
                                           : "No"
                                     }
@@ -665,7 +889,7 @@ function Profile({ setShow, setSidebarShow }) {
                                     type="text"
                                     name="new_language"
                                     value={
-                                       profileData.new_language === 1
+                                       profileData.new_language == 1
                                           ? "Yes"
                                           : "No"
                                     }
@@ -687,7 +911,7 @@ function Profile({ setShow, setSidebarShow }) {
                                  type="text"
                                  name="proficiency_in_language"
                                  value={
-                                    profileData.proficiency_in_language === 1
+                                    profileData.proficiency_in_language == 1
                                        ? "Yes"
                                        : "No"
                                  }
@@ -729,7 +953,6 @@ function Profile({ setShow, setSidebarShow }) {
                                              name="name1"
                                              disabled
                                              value={language.language}
-                                             placeholder=""
                                              style={{
                                                 fontSize: "15px",
                                                 border: "none",
@@ -755,7 +978,6 @@ function Profile({ setShow, setSidebarShow }) {
                                              name="name1"
                                              value={language.certificate}
                                              disabled
-                                             placeholder=""
                                              style={{
                                                 fontSize: "15px",
                                                 border: "none",
@@ -1062,7 +1284,7 @@ function Profile({ setShow, setSidebarShow }) {
                      <div className="col-md-6 col-lg-5">
                         <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                            <label style={{ color: "#0F6990", width: "100px" }}>
-                              Year of intake
+                              Intake
                            </label>
                            <input
                               className="inputBox shadow "

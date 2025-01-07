@@ -43,5 +43,5 @@ export const templateData = {
    availing_spouse_visa: "",
    education_program: "",
    other_program: "",
-   profile_updated: 0,
+   profile_updated: "",
 };

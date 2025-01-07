@@ -33,7 +33,7 @@ function UpdateProfile({ setShow, setSidebarShow }) {
 
    useEffect(() => {
       if (!isLoading) if (data.profile_updated == 1) navigate("/payment");
-   }, [isLoading]);
+   }, [data]);
 
    const [currentIndex, setCurrentIndex] = useState(0);
    const [component, setComponent] = useState(<></>);
@@ -102,7 +102,7 @@ function UpdateProfile({ setShow, setSidebarShow }) {
             });
       };
 
-      if (findr_choose === "0") {
+      if (findr_choose == "0") {
          if (
             (tenth_institution == "") |
             (tenth_marks == "") |
@@ -443,8 +443,8 @@ function EducationForm() {
                      className="profileInputBox "
                      type="text"
                      placeholder="Enter Stream name"
-                     name="twelfth_course"
-                     value={updatedData.twelfth_course}
+                     name="twelfth_stream"
+                     value={updatedData.twelfth_stream}
                      onChange={(e) => getFormData(e)}
                   />
                </div>
@@ -2157,8 +2157,6 @@ function AdditionalForm() {
 
       setUpdatedData({ ...updatedData, profile_updated: 1 });
    }, []);
-
-   console.log(updatedData);
 
    const getFormData = (e) => {
       const { name, value } = e.target;

@@ -71,7 +71,6 @@ function Register({ setShow, setSidebarShow }) {
          try {
             createDoc("Student", body)
                .then((res) => {
-                  console.log(res);
                   const c_id = res.name;
                   const name = res.first_name;
                   const email = res.email;

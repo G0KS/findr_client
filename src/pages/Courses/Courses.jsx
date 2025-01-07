@@ -48,10 +48,15 @@ function Courses({ setShow, setSidebarShow }) {
    ];
 
    const getUserData = () => {
-      if (data !== undefined) {
-         setUserData(data);
-         if (data.consultancy_opted == 1) {
-            setConsultancyChoosed(true);
+      if (!isLoading) {
+         if (data.profile_updated == 1) {
+            setUserData(data);
+            if (data.consultancy_opted == 1) {
+               setConsultancyChoosed(true);
+            }
+         } else {
+            toast.warning("Complete your profile to continue");
+            navigate("/profile/update");
          }
       }
    };

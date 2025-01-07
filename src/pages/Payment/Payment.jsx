@@ -53,13 +53,9 @@ function Payment({ setShow, setSidebarShow }) {
       }
    };
 
-   console.log(data);
    const getUserData = () => {
-      if (data !== undefined) {
-         if (data.profile_updated == 0) {
-            toast.warning("Complete your profile to continue");
-            navigate("/profile/update");
-         } else {
+      if (!isLoading) {
+         if (data.profile_updated == 1) {
             getPaymentDetails();
          }
       }
@@ -72,7 +68,7 @@ function Payment({ setShow, setSidebarShow }) {
          toast.warning("Please login");
          navigate("/login");
       }
-   }, [isLoading]);
+   }, [data]);
 
    return (
       <>
