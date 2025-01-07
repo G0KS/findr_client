@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useFrappeGetDoc, useFrappeUpdateDoc } from "frappe-react-sdk";
 
 function Profile({ setShow, setSidebarShow }) {
-   document.title = "Profile || Findr";
+   document.title = "Profile | Findr";
 
    setShow(true);
    setSidebarShow(true);
