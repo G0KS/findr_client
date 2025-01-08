@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useFrappeUpdateDoc } from "frappe-react-sdk";
 
-function RazorpayButton({ amount, payment, paymentID }) {
+function RazorpayButton({ amount, payment, paymentID, setRefresh }) {
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
    const razory_key_id = import.meta.env.VITE_RAZORPAY_KEY_ID;
@@ -15,7 +15,9 @@ function RazorpayButton({ amount, payment, paymentID }) {
          updateDoc("Student", c_id, {
             [payment]: "1",
             [paymentID]: razorpay_payment_id,
-         }).catch((err) => console.log(err));
+         })
+            .then(() => setRefresh(true))
+            .catch((err) => console.log(err));
       } catch (error) {
          console.error(error);
       }

@@ -13,12 +13,13 @@ function Payment({ setShow, setSidebarShow }) {
    const [payment, setPayment] = useState();
    const [paymentID, setPaymentID] = useState();
    const [paymentDesc, setPaymentDesc] = useState("");
+   const [refresh, setRefresh] = useState(false);
    const navigate = useNavigate();
 
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
 
-   const { data, isLoading } = useFrappeGetDoc("Student", c_id);
+   const { data, mutate, isLoading } = useFrappeGetDoc("Student", c_id);
 
    const getPaymentDetails = () => {
       if (data !== undefined) {
@@ -31,7 +32,7 @@ function Payment({ setShow, setSidebarShow }) {
                "Thanks for joining the findr.study community! Share your study abroad story and recommend us to friends who dare to dream."
             );
          } else if (data.registration_fee == 0) {
-            setFee(10);
+            setFee(2499);
             setPayment("registration_fee");
             setPaymentID("registration_fee_id");
             setPaymentDesc(
@@ -62,13 +63,14 @@ function Payment({ setShow, setSidebarShow }) {
    };
 
    useEffect(() => {
+      if (refresh) mutate();
       if (name) {
          getUserData();
       } else {
          toast.warning("Please login");
          navigate("/login");
       }
-   }, [data]);
+   }, [data, refresh]);
 
    return (
       <>
@@ -138,7 +140,7 @@ function Payment({ setShow, setSidebarShow }) {
                                                 fontSize: "40px",
                                              }}
                                           >
-                                             {fee == 10
+                                             {fee == 2499
                                                 ? "Registration Fee"
                                                 : "Course Fee"}
                                           </h3>
@@ -158,12 +160,13 @@ function Payment({ setShow, setSidebarShow }) {
                                                 fontFamily: "Arial",
                                              }}
                                           >
-                                             {fee == 10 ? "₹10" : "₹5000"}
+                                             {fee == 2499 ? "₹2499" : "₹5000"}
                                           </h3>
                                           <RazorpayButton
                                              amount={fee}
                                              payment={payment}
                                              paymentID={paymentID}
+                                             setRefresh={setRefresh}
                                           />
                                        </div>
                                     </div>
