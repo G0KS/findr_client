@@ -34,7 +34,7 @@ function RazorpayButton({ amount, payment, paymentID }) {
             amount: orderData.amount,
             currency: orderData.currency,
             name: "Findr Study",
-            description: "Test Transaction",
+            description: payment,
             order_id: orderData.id,
             handler: async function (response) {
                await fetch(
