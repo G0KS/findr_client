@@ -26,9 +26,6 @@ function Profile({ setShow, setSidebarShow }) {
       if (!isLoading) {
          if (data.profile_updated == 1) {
             setProfileData(data);
-         } else {
-            toast.warning("Complete your profile to continue");
-            navigate("/profile/update");
          }
       }
    };
@@ -460,9 +457,9 @@ function Profile({ setShow, setSidebarShow }) {
                                  <input
                                     className="inputBox shadow "
                                     type="text"
-                                    name="undergraduate_course_name"
+                                    name="undergraduate_course"
                                     value={
-                                       profileData.undergraduate_course_name ||
+                                       profileData.undergraduate_course ||
                                        ""
                                     }
                                     disabled
@@ -605,9 +602,9 @@ function Profile({ setShow, setSidebarShow }) {
                                  <input
                                     className="inputBox shadow "
                                     type="text"
-                                    name="postgraduate_course_name"
+                                    name="postgraduate_course"
                                     value={
-                                       profileData.postgraduate_course_name ||
+                                       profileData.postgraduate_course ||
                                        ""
                                     }
                                     disabled
