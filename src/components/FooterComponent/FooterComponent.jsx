@@ -56,12 +56,12 @@ function FooterComponent() {
                </li>
             </ul>
             <div className="socials text-light ms-3">
-               <Link to="mailto:contact.findr.study@gmail.com" target="blank" className={style.socialIcon}>
+               <Link to="mailto:support@findr.study" target="blank" className={style.socialIcon}>
                   <i
                      className="fa-solid fa-message fs-3"
                      style={{ color: "#0f6990" }}
                   ></i>
-                  <span>contact.findr.study@gmail.com</span>
+                  <span>support@findr.study</span>
                </Link>
                <div className="d-flex justify-content-sm-between">
                   <Link to="https://www.facebook.com/people/FinderStudy/61570457473882/" target="blank" className={style.socialIcon}>

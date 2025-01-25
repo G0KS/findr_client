@@ -236,7 +236,7 @@ function Courses({ setShow, setSidebarShow }) {
                                                 >
                                                    <li className="fw-bolder">
                                                       <Link
-                                                         to="mailto:contact.findr.study@gmail.com"
+                                                         to="mailto:support@findr.study"
                                                          className="text-center"
                                                          target="blank"
                                                          style={{
@@ -253,7 +253,7 @@ function Courses({ setShow, setSidebarShow }) {
                                                             }}
                                                          ></i>
                                                          <span>
-                                                            contact.findr.study@gmail.com
+                                                            support@findr.study
                                                          </span>
                                                       </Link>
                                                    </li>

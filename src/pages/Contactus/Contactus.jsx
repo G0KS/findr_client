@@ -65,7 +65,7 @@ function Contactus({ setShow, setSidebarShow }) {
                      <div className="p-2 ">
                         <img src={Message} alt="" />
                         <span className="ms-2">
-                           contact.findr.study@gmail.com
+                           support@findr.study
                         </span>
                      </div>
                   </Link>
@@ -77,13 +77,8 @@ function Contactus({ setShow, setSidebarShow }) {
                   >
                      <div className="p-2">
                         <img src={Location} alt="" />
-                        {/* <span className="ms-2 ">
+                        <span className="ms-2 ">
                            apest, Lövőház u. 27b-3. em. 1. ajtó, 1024 Hungary
-                        </span> */}
-                        <span className="ms-2">
-                           JK Apartments, Varghese Thittayil Road,
-                           Cheriyakadavanthra, Kadavanthra Part 1, Kochi,
-                           Ernakulam, Kerala
                         </span>
                      </div>
                   </Link>
