@@ -178,10 +178,26 @@ function Courses({ setShow, setSidebarShow }) {
                                           >
                                              Deadline :
                                           </span>{" "}
-                                          {course.deadline}
+                                          {course.course_deadline}
                                        </p>
+                                       {course.how_to && (
+                                          <a
+                                             href={course.how_to}
+                                             target="_blank"
+                                          >
+                                             How to apply?
+                                          </a>
+                                       )}
                                     </div>
-                                    <button className="btnNew btn2">
+                                    <button
+                                       className="btnNew btn2"
+                                       onClick={() =>
+                                          window.open(
+                                             course.course_link,
+                                             "_blank"
+                                          )
+                                       }
+                                    >
                                        Apply Now
                                     </button>
                                  </div>
