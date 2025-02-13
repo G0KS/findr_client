@@ -29,6 +29,8 @@ function Courses({ setShow, setSidebarShow }) {
 
    const { data, isLoading } = useFrappeGetDoc("Student", c_id);
    const { updateDoc } = useFrappeUpdateDoc();
+   console.log(data);
+   
 
    const districts = [
       "Alappuzha",
@@ -122,101 +124,101 @@ function Courses({ setShow, setSidebarShow }) {
                ) : (
                   <>
                      {data.course_fee == 1 ? (
-                        <div className="d-flex flex-wrap gap-4">
-                           {data.course_list?.map((course) => (
-                              <div
-                                 className="courseCard shadow"
-                                 key={course.name}
-                              >
-                                 <div className="courseImgContainer">
-                                    <img
-                                       className="courseLogo"
-                                       src={LogoS}
-                                       alt=""
-                                    />
-                                 </div>
-
-                                 <div className="p-3">
-                                    <h5
-                                       className="text-center p-1 fw-bolder"
-                                       style={{ color: "#0F6990" }}
-                                    >
-                                       {course.course_name.toUpperCase()}
-                                    </h5>
-                                    <div className="p-3">
-                                       <p>
-                                          <span
-                                             className="fw-bolder"
-                                             style={{ color: "#0f6990" }}
-                                          >
-                                             University :
-                                          </span>{" "}
-                                          {course.university}
-                                       </p>
-                                       <p>
-                                          <span
-                                             className="fw-bolder"
-                                             style={{ color: "#0f6990" }}
-                                          >
-                                             Country :
-                                          </span>{" "}
-                                          {course.country}
-                                       </p>
-                                       {course.scholarship && (
-                                          <p>
-                                             <span
-                                                className="fw-bolder"
-                                                style={{ color: "#0f6990" }}
-                                             >
-                                                Scholarship :
-                                             </span>{" "}
-                                             {course.scholarship}
-                                          </p>
-                                       )}
-                                       {course.scholarship_deadline && (
-                                          <p>
-                                             <span
-                                                className="fw-bolder"
-                                                style={{ color: "#0f6990" }}
-                                             >
-                                                Scholarship Deadline:
-                                             </span>{" "}
-                                             {course.scholarship_deadline}
-                                          </p>
-                                       )}
-                                       <p>
-                                          <span
-                                             className="fw-bolder"
-                                             style={{ color: "#0f6990" }}
-                                          >
-                                             Course Deadline :
-                                          </span>{" "}
-                                          {course.course_deadline}
-                                       </p>
-                                       {course.how_to && (
-                                          <a
-                                             href={course.how_to}
-                                             target="_blank"
-                                          >
-                                             How to apply?
-                                          </a>
-                                       )}
+                           <div className="d-flex flex-wrap gap-4">
+                              {data.course_list?.map((course) => (
+                                 <div
+                                    className="courseCard shadow"
+                                    key={course.name}
+                                 >
+                                    <div className="courseImgContainer">
+                                       <img
+                                          className="courseLogo"
+                                          src={LogoS}
+                                          alt=""
+                                       />
                                     </div>
-                                    <button
-                                       className="btnNew btn2"
-                                       onClick={() =>
-                                          window.open(
-                                             course.course_link,
-                                             "_blank"
-                                          )
-                                       }
-                                    >
-                                       Apply Now
-                                    </button>
+
+                                    <div className="p-3">
+                                       <h5
+                                          className="text-center p-1 fw-bolder"
+                                          style={{ color: "#0F6990" }}
+                                       >
+                                          {course.course_name.toUpperCase()}
+                                       </h5>
+                                       <div className="p-3">
+                                          <p>
+                                             <span
+                                                className="fw-bolder"
+                                                style={{ color: "#0f6990" }}
+                                             >
+                                                University :
+                                             </span>{" "}
+                                             {course.university}
+                                          </p>
+                                          <p>
+                                             <span
+                                                className="fw-bolder"
+                                                style={{ color: "#0f6990" }}
+                                             >
+                                                Country :
+                                             </span>{" "}
+                                             {course.country}
+                                          </p>
+                                          {course.scholarship && (
+                                             <p>
+                                                <span
+                                                   className="fw-bolder"
+                                                   style={{ color: "#0f6990" }}
+                                                >
+                                                   Scholarship :
+                                                </span>{" "}
+                                                {course.scholarship}
+                                             </p>
+                                          )}
+                                          {course.scholarship_deadline && (
+                                             <p>
+                                                <span
+                                                   className="fw-bolder"
+                                                   style={{ color: "#0f6990" }}
+                                                >
+                                                   Scholarship Deadline:
+                                                </span>{" "}
+                                                {course.scholarship_deadline}
+                                             </p>
+                                          )}
+                                          <p>
+                                             <span
+                                                className="fw-bolder"
+                                                style={{ color: "#0f6990" }}
+                                             >
+                                                Course Deadline :
+                                             </span>{" "}
+                                             {course.course_deadline}
+                                          </p>
+                                          {course.how_to && (
+                                             <a
+                                                href={String(course.how_to)}
+                                                target="_blank"
+                                             >
+                                                How to apply?
+                                             </a>
+                                          )}
+                                       </div>
+                                       <button
+                                          className="btnNew btn2"
+                                          onClick={() =>
+                                             window.open(
+                                                course.course_link,
+                                                "_blank"
+                                             )
+                                          }
+                                       >
+                                          Apply Now
+                                       </button>
+                                    </div>
                                  </div>
-                              </div>
-                           ))}
-                        </div>
+                              ))}
+                           </div>
                      ) : (
                         <div className="d-flex flex-wrap justify-content-center column-gap-5">
                            {data.registration_fee === 1 ? (
