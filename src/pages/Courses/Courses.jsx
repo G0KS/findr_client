@@ -28,9 +28,7 @@ function Courses({ setShow, setSidebarShow }) {
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
 
    const { data, isLoading } = useFrappeGetDoc("Student", c_id);
-   const { updateDoc } = useFrappeUpdateDoc();
-   console.log(data);
-   
+   const { updateDoc } = useFrappeUpdateDoc();   
 
    const districts = [
       "Alappuzha",
