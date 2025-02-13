@@ -162,21 +162,34 @@ function Courses({ setShow, setSidebarShow }) {
                                           </span>{" "}
                                           {course.country}
                                        </p>
+                                       {course.scholarship && (
+                                          <p>
+                                             <span
+                                                className="fw-bolder"
+                                                style={{ color: "#0f6990" }}
+                                             >
+                                                Scholarship :
+                                             </span>{" "}
+                                             {course.scholarship}
+                                          </p>
+                                       )}
+                                       {course.scholarship_deadline && (
+                                          <p>
+                                             <span
+                                                className="fw-bolder"
+                                                style={{ color: "#0f6990" }}
+                                             >
+                                                Scholarship Deadline:
+                                             </span>{" "}
+                                             {course.scholarship_deadline}
+                                          </p>
+                                       )}
                                        <p>
                                           <span
                                              className="fw-bolder"
                                              style={{ color: "#0f6990" }}
                                           >
-                                             Scholarship :
-                                          </span>{" "}
-                                          {course.scholarship}
-                                       </p>
-                                       <p>
-                                          <span
-                                             className="fw-bolder"
-                                             style={{ color: "#0f6990" }}
-                                          >
-                                             Deadline :
+                                             Course Deadline :
                                           </span>{" "}
                                           {course.course_deadline}
                                        </p>
