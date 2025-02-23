@@ -129,6 +129,21 @@ function Profile({ setShow, setSidebarShow }) {
                               <label
                                  style={{ color: "#0F6990", width: "100px" }}
                               >
+                                 Findr ID
+                              </label>
+                              <input
+                                 className="inputBox shadow"
+                                 type="text"
+                                 name="findrID"
+                                 value={`${profileData.name}`}
+                                 disabled
+                                 style={{ fontSize: "15px", border: "none" }}
+                              />
+                           </div>
+                           <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2 ">
+                              <label
+                                 style={{ color: "#0F6990", width: "100px" }}
+                              >
                                  Full Name
                               </label>
                               <input
@@ -162,16 +177,19 @@ function Profile({ setShow, setSidebarShow }) {
                            <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
                               <label
                                  style={{ color: "#0F6990", width: "100px" }}
+                                 className=""
                               >
-                                 DOB
+                                 Course looking for
                               </label>
                               <input
-                                 className="inputBox shadow "
+                                 className="inputBox shadow"
                                  type="text"
-                                 name=""
-                                 value={profileData.date_of_birth || ""}
+                                 value={profileData.education_program || ""}
                                  disabled
-                                 style={{ fontSize: "15px", border: "none" }}
+                                 style={{
+                                    fontSize: "15px",
+                                    border: "none",
+                                 }}
                               />
                            </div>
                         </form>
@@ -218,24 +236,17 @@ function Profile({ setShow, setSidebarShow }) {
                               style={{ fontSize: "15px", border: "none" }}
                            />
                         </div>
-                     </div>
-                     <div className="col-md-6 col-lg-5">
                         <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
-                           <label
-                              style={{ color: "#0F6990", width: "100px" }}
-                              className=""
-                           >
-                              Course looking for
+                           <label style={{ color: "#0F6990", width: "100px" }}>
+                              DOB
                            </label>
                            <input
-                              className="inputBox shadow"
+                              className="inputBox shadow "
                               type="text"
-                              value={profileData.education_program || ""}
+                              name=""
+                              value={profileData.date_of_birth || ""}
                               disabled
-                              style={{
-                                 fontSize: "15px",
-                                 border: "none",
-                              }}
+                              style={{ fontSize: "15px", border: "none" }}
                            />
                         </div>
                      </div>
@@ -459,8 +470,7 @@ function Profile({ setShow, setSidebarShow }) {
                                     type="text"
                                     name="undergraduate_course"
                                     value={
-                                       profileData.undergraduate_course ||
-                                       ""
+                                       profileData.undergraduate_course || ""
                                     }
                                     disabled
                                     style={{
@@ -604,8 +614,7 @@ function Profile({ setShow, setSidebarShow }) {
                                     type="text"
                                     name="postgraduate_course"
                                     value={
-                                       profileData.postgraduate_course ||
-                                       ""
+                                       profileData.postgraduate_course || ""
                                     }
                                     disabled
                                     style={{

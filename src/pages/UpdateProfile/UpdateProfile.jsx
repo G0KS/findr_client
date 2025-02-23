@@ -1641,7 +1641,7 @@ function LanguageForm() {
             <div className="fw-bolder borderStyle mt-4">
                <div className="p-3">
                   <p style={{ fontSize: "17px" }}>
-                     Let Findr choose the best for you?
+                     Let Findr choose the best course and country for you?
                      <span className="text-danger">*</span>
                   </p>
                   <div className=" d-flex mt-2">

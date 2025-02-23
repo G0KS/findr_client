@@ -5,12 +5,14 @@ import Message from "../../assets/Message.svg";
 import Location from "../../assets/Location.svg";
 import Contactimg from "../../assets/Contactus.jpg";
 import { Link } from "react-router-dom";
+import { useFrappeGetDoc } from "frappe-react-sdk";
 
 function Contactus({ setShow, setSidebarShow }) {
    document.title = "Contact Us | Findr";
 
    setShow(true);
    const name = JSON.parse(localStorage.getItem("findrData"))?.name;
+   const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
 
    useEffect(() => {
       if (name) setSidebarShow(true);
@@ -32,20 +34,35 @@ function Contactus({ setShow, setSidebarShow }) {
                   position: "relative",
                }}
             >
-               <img
-                  src={Contactimg}
-                  alt=""
-                  className="rounded-4"
-                  style={{
-                     position: "absolute",
-                     height: "100%",
-                     width: "100%",
-                     zIndex: "1",
-                  }}
-               />
+               <div style={{ width: "100%" }}>
+                  <img
+                     src={Contactimg}
+                     alt="contact image"
+                     className="rounded-4"
+                     style={{
+                        position: "absolute",
+                        height: "100%",
+                        width: "100%",
+                        zIndex: "1",
+                     }}
+                  />
+               </div>
                <Card.Body className="p-4" style={{ zIndex: "2" }}>
                   <h1 style={{ color: "#0F6990" }}>Contact us</h1>
                   <p style={{ fontSize: "15px" }}>Reach Out for Assistance</p>
+                  <p style={{ fontSize: "15px" }}>
+                     Your Findr ID is{" "}
+                     <span
+                        style={{
+                           color: "#0F6990",
+                           fontWeight: "800",
+                           backgroundColor: "#0f699036",
+                        }}
+                        className="px-2 py-1 rounded"
+                     >
+                        {c_id}
+                     </span>
+                  </p>
                   <Link
                      to=""
                      className="fw-bold"
@@ -64,9 +81,7 @@ function Contactus({ setShow, setSidebarShow }) {
                   >
                      <div className="p-2 ">
                         <img src={Message} alt="" />
-                        <span className="ms-2">
-                           support@findr.study
-                        </span>
+                        <span className="ms-2">support@findr.study</span>
                      </div>
                   </Link>
                   <Link

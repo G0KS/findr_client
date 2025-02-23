@@ -32,7 +32,7 @@ function Login({ setShow, setSidebarShow }) {
       fields: ["email", "first_name", "last_name", "password", "name"],
       filters: [["email", "=", inputData.email]],
    });
-   
+
    const handleLogin = async (e) => {
       e.preventDefault();
       const { email, password } = inputData;
@@ -115,7 +115,7 @@ function Login({ setShow, setSidebarShow }) {
                         id="password"
                         type={showPassword ? "text" : "password"}
                         name="password"
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                         title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
                         onChange={(e) => getInputData(e)}
                         className="form-control"
@@ -131,7 +131,12 @@ function Login({ setShow, setSidebarShow }) {
                         className="me-2 btn"
                         onClick={() => setShowPassword(!showPassword)}
                      />
-                     <label htmlFor="showPassword"  style={{ fontSize: "12px", cursor:"pointer" }}>Show Password</label>
+                     <label
+                        htmlFor="showPassword"
+                        style={{ fontSize: "12px", cursor: "pointer" }}
+                     >
+                        Show Password
+                     </label>
                   </div>
 
                   <button
@@ -141,7 +146,17 @@ function Login({ setShow, setSidebarShow }) {
                   >
                      Login
                   </button>
-                  <p className="text-center mt-5" style={{ fontSize: "12px" }}>
+                  <p className="text-center mt-4" style={{ fontSize: "12px" }}>
+                     <a
+                        role="button"
+                        onClick={() => navigate("/forgot-your-password")}
+                        style={{ color: "#0F6990" }}
+                        className="fw-bold"
+                     >
+                        Forgot your password?
+                     </a>
+                  </p>
+                  <p className="text-center" style={{ fontSize: "12px" }}>
                      Dont have an account?{" "}
                      <a
                         role="button"

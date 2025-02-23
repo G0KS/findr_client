@@ -22,6 +22,7 @@ import Faqpage from "./pages/FAQ/Faqpage.jsx";
 import PagenotFound from "./pages/PagenotFound/PagenotFound.jsx";
 import { FrappeProvider } from "frappe-react-sdk";
 import SliderComponent from "./components/SliderComponent/SliderComponent.jsx";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword.jsx";
 
 function App() {
    const [show, setShow] = useState(true);
@@ -129,6 +130,15 @@ function App() {
                   path="/faq"
                   element={
                      <Faqpage
+                        setShow={setShow}
+                        setSidebarShow={setSidebarShow}
+                     />
+                  }
+               />
+               <Route
+                  path="/forgot-your-password"
+                  element={
+                     <ForgotPassword
                         setShow={setShow}
                         setSidebarShow={setSidebarShow}
                      />
