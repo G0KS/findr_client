@@ -50,19 +50,21 @@ function Contactus({ setShow, setSidebarShow }) {
                <Card.Body className="p-4" style={{ zIndex: "2" }}>
                   <h1 style={{ color: "#0F6990" }}>Contact us</h1>
                   <p style={{ fontSize: "15px" }}>Reach Out for Assistance</p>
-                  <p style={{ fontSize: "15px" }}>
-                     Your Findr ID is{" "}
-                     <span
-                        style={{
-                           color: "#0F6990",
-                           fontWeight: "800",
-                           backgroundColor: "#0f699036",
-                        }}
-                        className="px-2 py-1 rounded"
-                     >
-                        {c_id}
-                     </span>
-                  </p>
+                  {c_id && (
+                     <p style={{ fontSize: "15px" }}>
+                        Your Findr ID is{" "}
+                        <span
+                           style={{
+                              color: "#0F6990",
+                              fontWeight: "800",
+                              backgroundColor: "#0f699036",
+                           }}
+                           className="px-2 py-1 rounded"
+                        >
+                           {c_id}
+                        </span>
+                     </p>
+                  )}
                   <Link
                      to=""
                      className="fw-bold"
