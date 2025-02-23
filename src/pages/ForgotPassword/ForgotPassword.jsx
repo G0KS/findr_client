@@ -157,7 +157,7 @@ function ForgotPassword({ setShow, setSidebarShow }) {
                                     name="password"
                                     placeholder="Password"
                                     disabled={isPasswordUpdated}
-                                    // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                     title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
                                     onChange={(e) => getInputData(e)}
                                     className="form-control"
@@ -182,7 +182,7 @@ function ForgotPassword({ setShow, setSidebarShow }) {
                                     name="confirmPassword"
                                     placeholder="Password"
                                     disabled={isPasswordUpdated}
-                                    // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                     title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
                                     onChange={(e) => getInputData(e)}
                                     className="form-control"
