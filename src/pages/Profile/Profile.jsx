@@ -20,7 +20,6 @@ function Profile({ setShow, setSidebarShow }) {
    const c_id = JSON.parse(localStorage.getItem("findrData"))?.c_id;
 
    const { data, isLoading } = useFrappeGetDoc("Student", c_id);
-   console.log(data);
 
    const getUserData = () => {
       if (!isLoading) {
