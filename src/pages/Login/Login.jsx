@@ -32,6 +32,8 @@ function Login({ setShow, setSidebarShow }) {
       fields: ["email", "first_name", "last_name", "password", "name"],
       filters: [["email", "=", inputData.email]],
    });
+   console.log(data);
+   
 
    const handleLogin = async (e) => {
       e.preventDefault();
