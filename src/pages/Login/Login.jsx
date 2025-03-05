@@ -33,6 +33,9 @@ function Login({ setShow, setSidebarShow }) {
       filters: [["email", "=", inputData.email]],
    });
 
+   console.log(data);
+   
+
    const handleLogin = async (e) => {
       e.preventDefault();
       const { email, password } = inputData;

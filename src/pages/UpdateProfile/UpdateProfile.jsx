@@ -282,7 +282,7 @@ function EducationForm() {
          mark: "",
          mode_of_study: "",
       });
-   };   
+   };
 
    const removeAddedCourse = (index) => {
       updatedData.additional_course.splice(index, 1);
@@ -497,7 +497,16 @@ function EducationForm() {
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     Marks<span className="text-danger">*</span>
+                     {updatedData.twelfth_pursuing === "0" ? (
+                        <>
+                           Marks<span className="text-danger">*</span>
+                        </>
+                     ) : (
+                        <>
+                           {" "}
+                           Expected Marks<span className="text-danger">*</span>
+                        </>
+                     )}
                   </label>
                   <input
                      className="profileInputBox "
@@ -781,23 +790,7 @@ function EducationForm() {
                   />
                </div>
 
-               <div className="col mt-5">
-                  <label
-                     htmlFor=""
-                     className="d-block fw-bolder mb-2"
-                     style={{ fontSize: "17px" }}
-                  >
-                     Marks
-                  </label>
-                  <input
-                     className="profileInputBox "
-                     type="text"
-                     placeholder="CGPA / Percentage"
-                     name="undergraduate_marks"
-                     value={updatedData.undergraduate_marks}
-                     onChange={(e) => getFormData(e)}
-                  />
-               </div>
+              
                <div className="col mt-5">
                   <label
                      htmlFor=""
@@ -843,6 +836,24 @@ function EducationForm() {
                         </label>
                      </div>
                   </div>
+               </div>
+
+               <div className="col mt-5">
+                  <label
+                     htmlFor=""
+                     className="d-block fw-bolder mb-2"
+                     style={{ fontSize: "17px" }}
+                  >
+                     {updatedData.undergraduate_currently_studying === "0" ? <>Marks</> : <>Expected marks</>}
+                  </label>
+                  <input
+                     className="profileInputBox "
+                     type="text"
+                     placeholder="CGPA / Percentage"
+                     name="undergraduate_marks"
+                     value={updatedData.undergraduate_marks}
+                     onChange={(e) => getFormData(e)}
+                  />
                </div>
 
                <div className="col mt-5">
@@ -1014,24 +1025,6 @@ function EducationForm() {
                <div className="col mt-5">
                   <label
                      htmlFor=""
-                     className="d-block fw-bolder mb-2"
-                     style={{ fontSize: "17px" }}
-                  >
-                     Marks
-                  </label>
-                  <input
-                     className="profileInputBox "
-                     type="text"
-                     placeholder="CGPA / Percentage"
-                     name="postgraduate_marks"
-                     value={updatedData.postgraduate_marks}
-                     onChange={(e) => getFormData(e)}
-                  />
-               </div>
-
-               <div className="col mt-5">
-                  <label
-                     htmlFor=""
                      className="fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
@@ -1074,6 +1067,24 @@ function EducationForm() {
                         </label>
                      </div>
                   </div>
+               </div>
+
+               <div className="col mt-5">
+                  <label
+                     htmlFor=""
+                     className="d-block fw-bolder mb-2"
+                     style={{ fontSize: "17px" }}
+                  >
+                     {updatedData.postgraduate_currently_studying === "0" ? <>Marks</> : <>Expected Marks</>}
+                  </label>
+                  <input
+                     className="profileInputBox "
+                     type="text"
+                     placeholder="CGPA / Percentage"
+                     name="postgraduate_marks"
+                     value={updatedData.postgraduate_marks}
+                     onChange={(e) => getFormData(e)}
+                  />
                </div>
 
                <div className="col mt-5">
@@ -1190,23 +1201,7 @@ function EducationForm() {
                   />
                </div>
 
-               <div className="col mt-5">
-                  <label
-                     htmlFor=""
-                     className="d-block fw-bolder mb-2"
-                     style={{ fontSize: "17px" }}
-                  >
-                     Marks
-                  </label>
-                  <input
-                     className="profileInputBox "
-                     type="text"
-                     placeholder="CGPA / Percentage "
-                     name="phd_marks"
-                     value={updatedData.phd_marks}
-                     onChange={(e) => getFormData(e)}
-                  />
-               </div>
+               
 
                <div className="col mt-5">
                   <label
@@ -1300,6 +1295,24 @@ function EducationForm() {
                         </label>
                      </div>
                   </div>
+               </div>
+
+               <div className="col mt-5">
+                  <label
+                     htmlFor=""
+                     className="d-block fw-bolder mb-2"
+                     style={{ fontSize: "17px" }}
+                  >
+                     {updatedData.phd_currently_studying === "0" ? <>Marks</> : <>Expected Marks</>}
+                     </label>
+                  <input
+                     className="profileInputBox "
+                     type="text"
+                     placeholder="CGPA / Percentage "
+                     name="phd_marks"
+                     value={updatedData.phd_marks}
+                     onChange={(e) => getFormData(e)}
+                  />
                </div>
 
                <div className="col mt-5">
@@ -1452,24 +1465,6 @@ function EducationForm() {
                         className="d-block fw-bolder mb-2"
                         style={{ fontSize: "17px" }}
                      >
-                        Marks
-                     </label>
-                     <input
-                        className="profileInputBox "
-                        type="text"
-                        placeholder="CGPA / Percentage "
-                        name="mark"
-                        value={additionalCourse.mark}
-                        onChange={(e) => getAdditionalCourse(e)}
-                     />
-                  </div>
-
-                  <div className="col mt-5">
-                     <label
-                        htmlFor=""
-                        className="d-block fw-bolder mb-2"
-                        style={{ fontSize: "17px" }}
-                     >
                         University
                      </label>
                      <input
@@ -1580,6 +1575,24 @@ function EducationForm() {
                            </label>
                         </div>
                      </div>
+                  </div>
+
+                  <div className="col mt-5">
+                     <label
+                        htmlFor=""
+                        className="d-block fw-bolder mb-2"
+                        style={{ fontSize: "17px" }}
+                     >
+                     {additionalCourse.currently_studying === "0" ? <>Marks</> : <>Expected Marks</>}
+                     </label>
+                     <input
+                        className="profileInputBox "
+                        type="text"
+                        placeholder="CGPA / Percentage "
+                        name="mark"
+                        value={additionalCourse.mark}
+                        onChange={(e) => getAdditionalCourse(e)}
+                     />
                   </div>
 
                   <div className="col mt-5">
