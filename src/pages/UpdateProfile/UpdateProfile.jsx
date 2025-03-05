@@ -244,10 +244,53 @@ export default UpdateProfile;
 
 function EducationForm() {
    const { updatedData, setUpdatedData } = useContext(updatedProfileContext);
+   const [additionalCourse, setAdditionalCourse] = useState({
+      currently_studying: "",
+      course: "",
+      level_of_study: "",
+      university: "",
+      institution: "",
+      year_of_passing: "",
+      mark: "",
+      mode_of_study: "",
+   });
 
    const getFormData = (e) => {
       const { name, value } = e.target;
       setUpdatedData({ ...updatedData, [name]: value });
+   };
+
+   const getAdditionalCourse = (e) => {
+      const { name, value } = e.target;
+      setAdditionalCourse({ ...additionalCourse, [name]: value });
+   };
+
+   const addAdditionalCourse = () => {
+      const additionalCourseArray = updatedData.additional_course;
+      additionalCourseArray.push(additionalCourse);
+      setUpdatedData({
+         ...updatedData,
+         additional_course: additionalCourseArray,
+      });
+      setAdditionalCourse({
+         currently_studying: "",
+         course: "",
+         level_of_study: "",
+         university: "",
+         institution: "",
+         year_of_passing: "",
+         mark: "",
+         mode_of_study: "",
+      });
+   };   
+
+   const removeAddedCourse = (index) => {
+      updatedData.additional_course.splice(index, 1);
+      const additionalCourseArray = updatedData.additional_course;
+      setUpdatedData({
+         ...updatedData,
+         additional_course: additionalCourseArray,
+      });
    };
 
    const toggle = (elementId) => {
@@ -1339,6 +1382,307 @@ function EducationForm() {
                </div>
             </div>
          </div>
+
+         {/* Additional Course*/}
+         <div className="additionalCourse">
+            <div
+               className="d-flex justify-content-between align-items-center cursor"
+               onClick={() => toggle("additionalContainer")}
+            >
+               <h4 className="p-4 mb-0">
+                  <span style={{ color: "#0f6990" }}>Additional </span>
+                  Qualification
+               </h4>
+               <img src={downArrow} alt="" className="me-5" />
+            </div>
+            <div className="answer" id="additionalContainer">
+               {updatedData.additional_course.length > 0 && (
+                  <div className="d-flex flex-wrap gap-4 px-4 py-5">
+                     {updatedData.additional_course.map(
+                        (addedCourse, index) => (
+                           <div
+                              className="d-flex gap-4 addFormCard"
+                              key={index}
+                           >
+                              <div className="shadow rounded p-3 w-100">
+                                 <p
+                                    className="mb-0"
+                                    style={{ color: "#0f6990" }}
+                                 >
+                                    {addedCourse.course}
+                                 </p>
+                                 <p className="mb-0">
+                                    {addedCourse.level_of_study}
+                                 </p>
+                              </div>
+                              <div className="my-auto cursor">
+                                 <img
+                                    src={remove}
+                                    alt=""
+                                    onClick={() => removeAddedCourse(index)}
+                                 />
+                              </div>
+                           </div>
+                        )
+                     )}
+                  </div>
+               )}
+               <div className="row p-4 d-flex">
+                  <div className="col mt-5">
+                     <label
+                        htmlFor=""
+                        className="d-block fw-bolder mb-2"
+                        style={{ fontSize: "17px" }}
+                     >
+                        Course name
+                     </label>
+                     <input
+                        className="profileInputBox "
+                        type="text"
+                        placeholder="Enter Course name"
+                        name="course"
+                        value={additionalCourse.course}
+                        onChange={(e) => getAdditionalCourse(e)}
+                     />
+                  </div>
+
+                  <div className="col mt-5">
+                     <label
+                        htmlFor=""
+                        className="d-block fw-bolder mb-2"
+                        style={{ fontSize: "17px" }}
+                     >
+                        Marks
+                     </label>
+                     <input
+                        className="profileInputBox "
+                        type="text"
+                        placeholder="CGPA / Percentage "
+                        name="mark"
+                        value={additionalCourse.mark}
+                        onChange={(e) => getAdditionalCourse(e)}
+                     />
+                  </div>
+
+                  <div className="col mt-5">
+                     <label
+                        htmlFor=""
+                        className="d-block fw-bolder mb-2"
+                        style={{ fontSize: "17px" }}
+                     >
+                        University
+                     </label>
+                     <input
+                        className="profileInputBox "
+                        type="text"
+                        placeholder="Enter university name"
+                        name="university"
+                        value={additionalCourse.university}
+                        onChange={(e) => getAdditionalCourse(e)}
+                     />
+                  </div>
+
+                  <div className="col mt-5">
+                     <label
+                        htmlFor=""
+                        className="d-block fw-bolder mb-2"
+                        style={{ fontSize: "17px" }}
+                     >
+                        Institution
+                     </label>
+                     <input
+                        className="profileInputBox "
+                        type="text"
+                        placeholder="Enter Institution"
+                        name="institution"
+                        value={additionalCourse.institution}
+                        onChange={(e) => getAdditionalCourse(e)}
+                     />
+                  </div>
+
+                  <div className="col mt-5">
+                     <label
+                        htmlFor=""
+                        className="d-block fw-bolder mb-2"
+                        style={{ fontSize: "17px" }}
+                     >
+                        Level of Study
+                     </label>
+                     <select
+                        className="profileInputBox"
+                        name="level_of_study"
+                        onChange={(e) => getAdditionalCourse(e)}
+                     >
+                        <option selected hidden>
+                           Choose level of Study
+                        </option>
+                        <option value="Bachelor's Degree">
+                           Bachelor&apos;s Degree
+                        </option>
+                        <option value="Master's Degree">
+                           Master&apos;s Degree
+                        </option>
+                        <option value="Diploma">Diploma</option>
+                        <option value="Vocational Training">
+                           Vocational Training
+                        </option>
+                        <option value="Doctoral Degree">Doctoral Degree</option>
+                        <option value="Other">Other</option>
+                     </select>
+                  </div>
+
+                  <div className="col mt-5">
+                     <label
+                        htmlFor=""
+                        className="fw-bolder mb-2"
+                        style={{ fontSize: "17px" }}
+                     >
+                        Currently studying?
+                     </label>
+                     <div className="fw-bolder d-flex mt-2">
+                        <div className="">
+                           <input
+                              className="cursor"
+                              type="radio"
+                              id="additionalPursuingY"
+                              name="currently_studying"
+                              value="1"
+                              checked={
+                                 additionalCourse.currently_studying === "1"
+                              }
+                              onChange={(e) => getAdditionalCourse(e)}
+                           />
+                           <label
+                              className="ps-2 cursor"
+                              htmlFor="additionalPursuingY"
+                           >
+                              Yes
+                           </label>
+                        </div>
+
+                        <div className="ms-5">
+                           <input
+                              className="cursor"
+                              type="radio"
+                              id="additionalPursuingN"
+                              name="currently_studying"
+                              value="0"
+                              checked={
+                                 additionalCourse.currently_studying === "0"
+                              }
+                              onChange={(e) => getAdditionalCourse(e)}
+                           />
+                           <label
+                              className="ps-2 cursor"
+                              htmlFor="additionalPursuingN"
+                           >
+                              No
+                           </label>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div className="col mt-5">
+                     <label
+                        htmlFor=""
+                        className="d-block fw-bolder mb-2"
+                        style={{ fontSize: "17px" }}
+                     >
+                        Year of passing
+                     </label>
+                     <input
+                        className="profileInputBox "
+                        type="text"
+                        placeholder="Enter Year of passing"
+                        name="year_of_passing"
+                        value={additionalCourse.year_of_passing}
+                        onChange={(e) => getAdditionalCourse(e)}
+                     />
+                  </div>
+
+                  <div className="col mt-5">
+                     <label
+                        htmlFor=""
+                        className="fw-bolder mb-2"
+                        style={{ fontSize: "17px" }}
+                     >
+                        Mode Of Study
+                     </label>
+                     <div className="fw-bolder d-flex mt-2">
+                        <div className="">
+                           <input
+                              className="cursor"
+                              type="radio"
+                              id="additionalFulltime"
+                              name="mode_of_study"
+                              checked={
+                                 additionalCourse.mode_of_study === "Full Time"
+                              }
+                              value="Full Time"
+                              onChange={(e) => getAdditionalCourse(e)}
+                           />
+                           <label
+                              className="ps-2 cursor"
+                              htmlFor="additionalFulltime"
+                           >
+                              Full time
+                           </label>
+                        </div>
+
+                        <div className="ms-5">
+                           <input
+                              className="cursor"
+                              type="radio"
+                              id="additionalParttime"
+                              name="mode_of_study"
+                              checked={
+                                 additionalCourse.mode_of_study === "Part Time"
+                              }
+                              value="Part Time"
+                              onChange={(e) => getAdditionalCourse(e)}
+                           />
+                           <label
+                              className="ps-2 cursor"
+                              htmlFor="additionalParttime"
+                           >
+                              Part time
+                           </label>
+                        </div>
+                        <div className="ms-5">
+                           <input
+                              className="cursor"
+                              type="radio"
+                              id="additionalDistance"
+                              name="mode_of_study"
+                              checked={
+                                 additionalCourse.mode_of_study ===
+                                 "Distance / Online"
+                              }
+                              value="Distance / Online"
+                              onChange={(e) => getAdditionalCourse(e)}
+                           />
+                           <label
+                              className="ps-2 cursor"
+                              htmlFor="additionalDistance"
+                           >
+                              Distance
+                           </label>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div className="formButtons d-flex justify-content-center p-4">
+                     <button
+                        className="btn text-light"
+                        style={{ backgroundColor: "#0f6990" }}
+                        onClick={() => addAdditionalCourse()}
+                     >
+                        Add
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
    );
 }
@@ -1593,7 +1937,6 @@ function LanguageForm() {
                         name="education_program"
                         id="cars"
                         onChange={(e) => getFormData(e)}
-                        // value={updatedData.education_program}
                      >
                         <option selected hidden>
                            Choose your course
@@ -1890,7 +2233,6 @@ function WorkForm() {
    };
 
    const addIntern = () => {
-      console.log(internData);
       if (
          !internData.intern_position ||
          !internData.intern_company_name ||

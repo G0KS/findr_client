@@ -136,7 +136,7 @@ a {
 
 .answer.show {
   height: auto;
-  max-height: 999px;
+  max-height: 9999px;
   transition: all 0.3s ease-in-out;
 }
 

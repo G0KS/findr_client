@@ -20,6 +20,7 @@ export const templateData = {
    phd_marks: "",
    phd_mode_of_study: "",
    phd_year: "",
+   additional_course: [],
    english_skill: "",
    new_language: "",
    proficiency_in_language: "",

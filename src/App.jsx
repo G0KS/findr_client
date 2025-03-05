@@ -33,7 +33,8 @@ function App() {
    return (
       <>
          <FrappeProvider
-            url="https://findrstudy.frappe.cloud"
+            // url="https://findrstudy.frappe.cloud"
+            url="http://127.0.0.1:8000"
             tokenParams={{
                type: "token",
                useToken: "true",
