@@ -491,32 +491,6 @@ function EducationForm() {
                      onChange={(e) => getFormData(e)}
                   />
                </div>
-               <div className="col mt-5">
-                  <label
-                     htmlFor=""
-                     className="d-block fw-bolder mb-2"
-                     style={{ fontSize: "17px" }}
-                  >
-                     {updatedData.twelfth_pursuing === "0" ? (
-                        <>
-                           Marks<span className="text-danger">*</span>
-                        </>
-                     ) : (
-                        <>
-                           {" "}
-                           Expected Marks<span className="text-danger">*</span>
-                        </>
-                     )}
-                  </label>
-                  <input
-                     className="profileInputBox "
-                     type="text"
-                     placeholder="CGPA / Percentage"
-                     name="twelfth_marks"
-                     value={updatedData.twelfth_marks}
-                     onChange={(e) => getFormData(e)}
-                  />
-               </div>
 
                <div className="col mt-5">
                   <label
@@ -615,6 +589,33 @@ function EducationForm() {
                         </label>
                      </div>
                   </div>
+               </div>
+
+               <div className="col mt-5">
+                  <label
+                     htmlFor=""
+                     className="d-block fw-bolder mb-2"
+                     style={{ fontSize: "17px" }}
+                  >
+                     {updatedData.twelfth_pursuing === "0" ? (
+                        <>
+                           Marks<span className="text-danger">*</span>
+                        </>
+                     ) : (
+                        <>
+                           {" "}
+                           Expected Marks<span className="text-danger">*</span>
+                        </>
+                     )}
+                  </label>
+                  <input
+                     className="profileInputBox "
+                     type="text"
+                     placeholder="CGPA / Percentage"
+                     name="twelfth_marks"
+                     value={updatedData.twelfth_marks}
+                     onChange={(e) => getFormData(e)}
+                  />
                </div>
 
                <div className="col mt-5">
@@ -1948,7 +1949,6 @@ function LanguageForm() {
                      <select
                         className="profileInputBox"
                         name="education_program"
-                        id="cars"
                         onChange={(e) => getFormData(e)}
                      >
                         <option selected hidden>
