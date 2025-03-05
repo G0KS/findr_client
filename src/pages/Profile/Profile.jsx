@@ -855,6 +855,159 @@ function Profile({ setShow, setSidebarShow }) {
                      </div>
                   )}
 
+                  {/* Additional Course */}
+
+                  {profileData.additional_course &&
+                     profileData.additional_course.map((addedCourse, index) => (
+                        <>
+                           <div id="addedContainer" key={index}>
+                              <h4 className=" mt-4 ms-3">
+                                 <span style={{ color: "#0F6990" }}>
+                                    Additional{" "}
+                                 </span>{" "}
+                                 Qualification
+                              </h4>
+                              <div
+                                 className="d-flex p-4 row p-3 "
+                                 style={{ backgroundColor: "" }}
+                              >
+                                 <div className="col-md-6 col-lg-5">
+                                    <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                       <label
+                                          style={{
+                                             color: "#0F6990",
+                                             width: "100px",
+                                          }}
+                                       >
+                                          Course Name
+                                       </label>
+                                       <input
+                                          className="inputBox shadow "
+                                          type="text"
+                                          name="addedCourse_course"
+                                          value={addedCourse.course}
+                                          disabled
+                                          style={{
+                                             fontSize: "15px",
+                                             border: "none",
+                                          }}
+                                       />
+                                    </div>
+                                    <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                       <label
+                                          style={{
+                                             color: "#0F6990",
+                                             width: "100px",
+                                          }}
+                                       >
+                                          Instituiton
+                                       </label>
+                                       <input
+                                          className="inputBox shadow "
+                                          type="text"
+                                          name="addedCourse_institution"
+                                          value={addedCourse.institution}
+                                          disabled
+                                          style={{
+                                             fontSize: "15px",
+                                             border: "none",
+                                          }}
+                                       />
+                                    </div>
+
+                                    <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                       <label
+                                          style={{
+                                             color: "#0F6990",
+                                             width: "100px",
+                                          }}
+                                       >
+                                          Marks
+                                       </label>
+                                       <input
+                                          className="inputBox shadow "
+                                          type="text"
+                                          name="addedCourse_marks"
+                                          value={addedCourse.mark}
+                                          disabled
+                                          style={{
+                                             fontSize: "15px",
+                                             border: "none",
+                                          }}
+                                       />
+                                    </div>
+                                 </div>
+                                 {/* next section  */}
+                                 <div className="col-md-6 col-lg-5">
+                                    <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                       <label
+                                          style={{
+                                             color: "#0F6990",
+                                             width: "100px",
+                                          }}
+                                       >
+                                          University
+                                       </label>
+                                       <input
+                                          className="inputBox shadow "
+                                          type="text"
+                                          name="addedCourse_university"
+                                          value={addedCourse.university}
+                                          disabled
+                                          style={{
+                                             fontSize: "15px",
+                                             border: "none",
+                                          }}
+                                       />
+                                    </div>
+                                    <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                       <label
+                                          style={{
+                                             color: "#0F6990",
+                                             width: "100px",
+                                          }}
+                                       >
+                                          Mode of Study
+                                       </label>
+                                       <input
+                                          className="inputBox shadow "
+                                          type="text"
+                                          name="addedCourse_mode_of_study"
+                                          value={addedCourse.mode_of_study}
+                                          disabled
+                                          style={{
+                                             fontSize: "15px",
+                                             border: "none",
+                                          }}
+                                       />
+                                    </div>
+                                    <div className="form-group d-flex flex-column flex-lg-row justify-content-center align-items-lg-center gap-3 p-2">
+                                       <label
+                                          style={{
+                                             color: "#0F6990",
+                                             width: "100px",
+                                          }}
+                                       >
+                                          Year of Passing
+                                       </label>
+                                       <input
+                                          className="inputBox shadow "
+                                          type="text"
+                                          name="addedCourse_year"
+                                          value={addedCourse.year_of_passing}
+                                          disabled
+                                          style={{
+                                             fontSize: "15px",
+                                             border: "none",
+                                          }}
+                                       />
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </>
+                     ))}
+
                   {/* Language Proficiency */}
 
                   <div id="languageContainer">
