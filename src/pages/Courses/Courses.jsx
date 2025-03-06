@@ -283,7 +283,7 @@ function Courses({ setShow, setSidebarShow }) {
                                                       );
                                                    }}
                                                 >
-                                                   Apply Now
+                                                   Direct Link
                                                 </button>
                                              </div>
                                              <div className="p-2">

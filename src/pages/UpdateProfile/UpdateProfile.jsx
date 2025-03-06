@@ -266,22 +266,38 @@ function EducationForm() {
    };
 
    const addAdditionalCourse = () => {
-      const additionalCourseArray = updatedData.additional_course;
-      additionalCourseArray.push(additionalCourse);
-      setUpdatedData({
-         ...updatedData,
-         additional_course: additionalCourseArray,
-      });
-      setAdditionalCourse({
-         currently_studying: "",
-         course: "",
-         level_of_study: "",
-         university: "",
-         institution: "",
-         year_of_passing: "",
-         mark: "",
-         mode_of_study: "",
-      });
+      if (
+         !additionalCourse.course ||
+         !additionalCourse.currently_studying ||
+         !additionalCourse.institution ||
+         !additionalCourse.level_of_study ||
+         !additionalCourse.mark ||
+         !additionalCourse.mark ||
+         !additionalCourse.mode_of_study ||
+         !additionalCourse.university ||
+         !additionalCourse.year_of_passing
+      ) {
+         toast.warning(
+            "Please fill all the details about additional qualification"
+         );
+      } else {
+         const additionalCourseArray = updatedData.additional_course;
+         additionalCourseArray.push(additionalCourse);
+         setUpdatedData({
+            ...updatedData,
+            additional_course: additionalCourseArray,
+         });
+         setAdditionalCourse({
+            currently_studying: "",
+            course: "",
+            level_of_study: "",
+            university: "",
+            institution: "",
+            year_of_passing: "",
+            mark: "",
+            mode_of_study: "",
+         });
+      }
    };
 
    const removeAddedCourse = (index) => {
@@ -791,7 +807,6 @@ function EducationForm() {
                   />
                </div>
 
-              
                <div className="col mt-5">
                   <label
                      htmlFor=""
@@ -845,7 +860,11 @@ function EducationForm() {
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     {updatedData.undergraduate_currently_studying === "0" ? <>Marks</> : <>Expected marks</>}
+                     {updatedData.undergraduate_currently_studying === "0" ? (
+                        <>Marks</>
+                     ) : (
+                        <>Expected marks</>
+                     )}
                   </label>
                   <input
                      className="profileInputBox "
@@ -1076,7 +1095,11 @@ function EducationForm() {
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     {updatedData.postgraduate_currently_studying === "0" ? <>Marks</> : <>Expected Marks</>}
+                     {updatedData.postgraduate_currently_studying === "0" ? (
+                        <>Marks</>
+                     ) : (
+                        <>Expected Marks</>
+                     )}
                   </label>
                   <input
                      className="profileInputBox "
@@ -1202,8 +1225,6 @@ function EducationForm() {
                   />
                </div>
 
-               
-
                <div className="col mt-5">
                   <label
                      htmlFor=""
@@ -1304,8 +1325,12 @@ function EducationForm() {
                      className="d-block fw-bolder mb-2"
                      style={{ fontSize: "17px" }}
                   >
-                     {updatedData.phd_currently_studying === "0" ? <>Marks</> : <>Expected Marks</>}
-                     </label>
+                     {updatedData.phd_currently_studying === "0" ? (
+                        <>Marks</>
+                     ) : (
+                        <>Expected Marks</>
+                     )}
+                  </label>
                   <input
                      className="profileInputBox "
                      type="text"
@@ -1410,37 +1435,6 @@ function EducationForm() {
                <img src={downArrow} alt="" className="me-5" />
             </div>
             <div className="answer" id="additionalContainer">
-               {updatedData.additional_course.length > 0 && (
-                  <div className="d-flex flex-wrap gap-4 px-4 py-5">
-                     {updatedData.additional_course.map(
-                        (addedCourse, index) => (
-                           <div
-                              className="d-flex gap-4 addFormCard"
-                              key={index}
-                           >
-                              <div className="shadow rounded p-3 w-100">
-                                 <p
-                                    className="mb-0"
-                                    style={{ color: "#0f6990" }}
-                                 >
-                                    {addedCourse.course}
-                                 </p>
-                                 <p className="mb-0">
-                                    {addedCourse.level_of_study}
-                                 </p>
-                              </div>
-                              <div className="my-auto cursor">
-                                 <img
-                                    src={remove}
-                                    alt=""
-                                    onClick={() => removeAddedCourse(index)}
-                                 />
-                              </div>
-                           </div>
-                        )
-                     )}
-                  </div>
-               )}
                <div className="row p-4 d-flex">
                   <div className="col mt-5">
                      <label
@@ -1508,6 +1502,7 @@ function EducationForm() {
                         className="profileInputBox"
                         name="level_of_study"
                         onChange={(e) => getAdditionalCourse(e)}
+                        value={additionalCourse.level_of_study}
                      >
                         <option selected hidden>
                            Choose level of Study
@@ -1584,7 +1579,11 @@ function EducationForm() {
                         className="d-block fw-bolder mb-2"
                         style={{ fontSize: "17px" }}
                      >
-                     {additionalCourse.currently_studying === "0" ? <>Marks</> : <>Expected Marks</>}
+                        {additionalCourse.currently_studying === "0" ? (
+                           <>Marks</>
+                        ) : (
+                           <>Expected Marks</>
+                        )}
                      </label>
                      <input
                         className="profileInputBox "
@@ -1694,6 +1693,38 @@ function EducationForm() {
                         Add
                      </button>
                   </div>
+
+                  {updatedData.additional_course.length > 0 && (
+                     <div className="d-flex flex-wrap gap-4 px-4 py-5">
+                        {updatedData.additional_course.map(
+                           (addedCourse, index) => (
+                              <div
+                                 className="d-flex gap-4 addFormCard"
+                                 key={index}
+                              >
+                                 <div className="shadow rounded p-3 w-100">
+                                    <p
+                                       className="mb-0"
+                                       style={{ color: "#0f6990" }}
+                                    >
+                                       {addedCourse.course}
+                                    </p>
+                                    <p className="mb-0">
+                                       {addedCourse.level_of_study}
+                                    </p>
+                                 </div>
+                                 <div className="my-auto cursor">
+                                    <img
+                                       src={remove}
+                                       alt=""
+                                       onClick={() => removeAddedCourse(index)}
+                                    />
+                                 </div>
+                              </div>
+                           )
+                        )}
+                     </div>
+                  )}
                </div>
             </div>
          </div>
