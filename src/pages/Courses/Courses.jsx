@@ -4,9 +4,6 @@ import paymemtImg from "../../assets/paymentimg.svg";
 import paymemtImg2 from "../../assets/paymentimg2.svg";
 import Consultant from "../../assets/Consultant.svg";
 import Consultantown from "../../assets/Consultantown.svg";
-import Submitimg from "../../assets/Submitmsg.svg";
-import link2 from "../../assets/link2.svg";
-import { Link } from "react-router-dom";
 
 import tick from "../../assets/tick.svg";
 
@@ -116,7 +113,7 @@ function Courses({ setShow, setSidebarShow }) {
    const handleFlip = (index) => {
       setFlipped((prevState) => (prevState === index ? null : index));
    };
-
+   
    return (
       <>
          <div className="d-flex">
@@ -130,7 +127,7 @@ function Courses({ setShow, setSidebarShow }) {
                   "Loading"
                ) : (
                   <>
-                     {data.course_fee == 1 ? (
+                     {data.consultancy_opted == 1 || data.course_fee == 1 ? (
                         <div className="d-flex flex-wrap gap-4">
                            {data.course_list?.map((course, index) => (
                               <>
@@ -232,22 +229,24 @@ function Courses({ setShow, setSidebarShow }) {
                                                 </p>
                                              </div>
                                           </div>
-                                          <div
-                                             style={{
-                                                position: "absolute",
-                                                right: "10px",
-                                                bottom: "10px",
-                                             }}
-                                          >
-                                             <button
-                                                className="btnNew btn2"
-                                                onClick={() =>
-                                                   handleFlip(index)
-                                                }
+                                          {data.course_fee == 1 && (
+                                             <div
+                                                style={{
+                                                   position: "absolute",
+                                                   right: "10px",
+                                                   bottom: "10px",
+                                                }}
                                              >
-                                                Apply Now
-                                             </button>
-                                          </div>
+                                                <button
+                                                   className="btnNew btn2"
+                                                   onClick={() =>
+                                                      handleFlip(index)
+                                                   }
+                                                >
+                                                   Apply Now
+                                                </button>
+                                             </div>
+                                          )}
                                        </div>
                                     </div>
 
@@ -405,344 +404,278 @@ function Courses({ setShow, setSidebarShow }) {
                                           </div>
                                        </div>
                                     )}
-                                    {consultancyChoosed ? (
-                                       <div className="courseDetailCard shadow">
-                                          <div className="paymentImgContainer p-3">
-                                             <img
-                                                className="paymentImg"
-                                                src={Submitimg}
-                                                alt=""
-                                             />
-                                          </div>
-                                          <div
-                                             className="paymentCardContent "
-                                             style={{ height: "340px" }}
-                                          >
+
+                                    {!showFindrCard && (
+                                       <>
+                                          <div className="courseDetailCard shadow">
+                                             <div className="paymentImgContainer p-3">
+                                                <img
+                                                   className="paymentImg"
+                                                   src={paymemtImg2}
+                                                   alt=""
+                                                />
+                                             </div>
                                              <h5
                                                 className="text-center pt-4 px-4 fw-bolder"
-                                                style={{ color: "#0F6990" }}
+                                                style={{
+                                                   color: "#0F6990",
+                                                }}
                                              >
                                                 {" "}
-                                                We have accepted your request
-                                                and our team will be in touch
-                                                with you soon.
+                                                Let Consultant Pay for You.
                                              </h5>
-                                             <div className="checkList mt-5">
-                                                <ul
-                                                   className="ms-3 mt-4"
-                                                   style={{ listStyle: "none" }}
+                                             <div className="pb-3 d-flex justify-content-center ">
+                                                <button
+                                                   className="btnNew btn2 w-50 text-center"
+                                                   data-bs-toggle="modal"
+                                                   data-bs-target="#exampleModal"
                                                 >
-                                                   <li className="fw-bolder">
-                                                      <Link
-                                                         to="mailto:support@findr.study"
-                                                         className="text-center"
-                                                         target="blank"
-                                                         style={{
-                                                            textDecoration:
-                                                               "none",
-                                                            color: "black",
-                                                            fontSize: "15px",
-                                                         }}
-                                                      >
-                                                         <i
-                                                            className="fa-solid fa-envelope px-2"
-                                                            style={{
-                                                               color: "#0F6990",
-                                                            }}
-                                                         ></i>
-                                                         <span>
-                                                            support@findr.study
-                                                         </span>
-                                                      </Link>
-                                                   </li>
-                                                </ul>
+                                                   Proceed
+                                                </button>
                                              </div>
                                           </div>
-                                       </div>
-                                    ) : (
+
+                                          <div className="d-flex align-items-center p-4">
+                                             <p
+                                                className="fw-bolder"
+                                                style={{
+                                                   fontSize: "22px",
+                                                   color: "#0f6990",
+                                                }}
+                                             >
+                                                or
+                                             </p>
+                                          </div>
+                                          <div className="courseDetailCard shadow">
+                                             <div className="paymentImgContainer p-3">
+                                                <img
+                                                   className="paymentImg"
+                                                   src={paymemtImg}
+                                                   alt=""
+                                                />
+                                             </div>
+                                             <h5
+                                                className="text-center pt-4 px-4 fw-bolder"
+                                                style={{
+                                                   color: "#0F6990",
+                                                }}
+                                             >
+                                                {" "}
+                                                Pay ₹5000 to unlock course list.
+                                             </h5>
+                                             <div className="pb-3 d-flex justify-content-center ">
+                                                <button
+                                                   className="btnNew btn2 w-50 text-center"
+                                                   onClick={() =>
+                                                      navigate("/payment")
+                                                   }
+                                                >
+                                                   Pay Now
+                                                </button>
+                                             </div>
+                                          </div>
+                                       </>
+                                    )}
+
+                                    {/* agency form */}
+
+                                    {showFindrCard && (
                                        <>
-                                          {!showFindrCard && (
-                                             <>
-                                                <div className="courseDetailCard shadow">
-                                                   <div className="paymentImgContainer p-3">
-                                                      <img
-                                                         className="paymentImg"
-                                                         src={paymemtImg2}
-                                                         alt=""
-                                                      />
-                                                   </div>
-                                                   <h5
-                                                      className="text-center pt-4 px-4 fw-bolder"
+                                          <div className="courseDetailCard shadow">
+                                             <div className="paymentImgContainer p-3">
+                                                <img
+                                                   className="paymentImg"
+                                                   src={Consultant}
+                                                   alt=""
+                                                />
+                                             </div>
+                                             <div
+                                                className="paymentCardContent "
+                                                style={{
+                                                   height: "340px",
+                                                }}
+                                             >
+                                                <h5
+                                                   className="text-center pt-4 px-4 fw-bolder"
+                                                   style={{
+                                                      color: "#0F6990",
+                                                   }}
+                                                >
+                                                   {" "}
+                                                   Let Findr Choose Best
+                                                   Consultant For You
+                                                </h5>
+                                                <div className="checkList">
+                                                   <ul
+                                                      className="ms-3 mt-4"
                                                       style={{
-                                                         color: "#0F6990",
+                                                         listStyle: "none",
                                                       }}
                                                    >
-                                                      {" "}
-                                                      Let Consultant Pay for
-                                                      You.
-                                                   </h5>
-                                                   <div className="pb-3 d-flex justify-content-center ">
-                                                      <button
-                                                         className="btnNew btn2 w-50 text-center"
-                                                         data-bs-toggle="modal"
-                                                         data-bs-target="#exampleModal"
-                                                      >
-                                                         Proceed
-                                                      </button>
-                                                   </div>
+                                                      <li className="fw-bolder">
+                                                         <img
+                                                            className="checkImg me-2"
+                                                            src={tick}
+                                                            alt=""
+                                                         />
+                                                         Cheapest Option
+                                                         Available
+                                                      </li>
+                                                      <li className="fw-bolder mt-2">
+                                                         <img
+                                                            className="checkImg me-2"
+                                                            src={tick}
+                                                            alt=""
+                                                         />
+                                                         Trusted And Verified
+                                                         Agencies
+                                                      </li>
+                                                      <li className="fw-bolder mt-2">
+                                                         <img
+                                                            className="checkImg me-2"
+                                                            src={tick}
+                                                            alt=""
+                                                         />
+                                                         Hassle Free Service
+                                                      </li>
+                                                   </ul>
                                                 </div>
-
-                                                <div className="d-flex align-items-center p-4">
-                                                   <p
-                                                      className="fw-bolder"
-                                                      style={{
-                                                         fontSize: "22px",
-                                                         color: "#0f6990",
-                                                      }}
+                                                <div className="d-flex flex-wrap px-5 py-5 pb-4 pt-3 ">
+                                                   <label
+                                                      htmlFor=""
+                                                      className="d-block fw-bolder mb-2"
                                                    >
-                                                      or
-                                                   </p>
-                                                </div>
-                                                <div className="courseDetailCard shadow">
-                                                   <div className="paymentImgContainer p-3">
-                                                      <img
-                                                         className="paymentImg"
-                                                         src={paymemtImg}
-                                                         alt=""
-                                                      />
-                                                   </div>
-                                                   <h5
-                                                      className="text-center pt-4 px-4 fw-bolder"
-                                                      style={{
-                                                         color: "#0F6990",
-                                                      }}
+                                                      Location:
+                                                   </label>
+                                                   <select
+                                                      id="district"
+                                                      name="preferred_location"
+                                                      className="profileInputBox"
+                                                      onChange={(e) =>
+                                                         getFormData(e)
+                                                      }
                                                    >
-                                                      {" "}
-                                                      Pay ₹5000 to unlock course
-                                                      list.
-                                                   </h5>
-                                                   <div className="pb-3 d-flex justify-content-center ">
-                                                      <button
-                                                         className="btnNew btn2 w-50 text-center"
-                                                         onClick={() =>
-                                                            navigate("/payment")
-                                                         }
-                                                      >
-                                                         Pay Now
-                                                      </button>
-                                                   </div>
-                                                </div>
-                                             </>
-                                          )}
-
-                                          {/* agency form */}
-
-                                          {showFindrCard && (
-                                             <>
-                                                <div className="courseDetailCard shadow">
-                                                   <div className="paymentImgContainer p-3">
-                                                      <img
-                                                         className="paymentImg"
-                                                         src={Consultant}
-                                                         alt=""
-                                                      />
-                                                   </div>
-                                                   <div
-                                                      className="paymentCardContent "
-                                                      style={{
-                                                         height: "340px",
-                                                      }}
-                                                   >
-                                                      <h5
-                                                         className="text-center pt-4 px-4 fw-bolder"
-                                                         style={{
-                                                            color: "#0F6990",
-                                                         }}
-                                                      >
-                                                         {" "}
-                                                         Let Findr Choose Best
-                                                         Consultant For You
-                                                      </h5>
-                                                      <div className="checkList">
-                                                         <ul
-                                                            className="ms-3 mt-4"
-                                                            style={{
-                                                               listStyle:
-                                                                  "none",
-                                                            }}
-                                                         >
-                                                            <li className="fw-bolder">
-                                                               <img
-                                                                  className="checkImg me-2"
-                                                                  src={tick}
-                                                                  alt=""
-                                                               />
-                                                               Cheapest Option
-                                                               Available
-                                                            </li>
-                                                            <li className="fw-bolder mt-2">
-                                                               <img
-                                                                  className="checkImg me-2"
-                                                                  src={tick}
-                                                                  alt=""
-                                                               />
-                                                               Trusted And
-                                                               Verified Agencies
-                                                            </li>
-                                                            <li className="fw-bolder mt-2">
-                                                               <img
-                                                                  className="checkImg me-2"
-                                                                  src={tick}
-                                                                  alt=""
-                                                               />
-                                                               Hassle Free
-                                                               Service
-                                                            </li>
-                                                         </ul>
-                                                      </div>
-                                                      <div className="d-flex flex-wrap px-5 py-5 pb-4 pt-3 ">
-                                                         <label
-                                                            htmlFor=""
-                                                            className="d-block fw-bolder mb-2"
-                                                         >
-                                                            Location:
-                                                         </label>
-                                                         <select
-                                                            id="district"
-                                                            name="preferred_location"
-                                                            className="profileInputBox"
-                                                            onChange={(e) =>
-                                                               getFormData(e)
-                                                            }
-                                                         >
-                                                            <option hidden>
-                                                               --Select your
-                                                               location--
+                                                      <option hidden>
+                                                         --Select your
+                                                         location--
+                                                      </option>
+                                                      {districts.map(
+                                                         (district, index) => (
+                                                            <option
+                                                               key={index}
+                                                               value={district}
+                                                            >
+                                                               {district}
                                                             </option>
-                                                            {districts.map(
-                                                               (
-                                                                  district,
-                                                                  index
-                                                               ) => (
-                                                                  <option
-                                                                     key={index}
-                                                                     value={
-                                                                        district
-                                                                     }
-                                                                  >
-                                                                     {district}
-                                                                  </option>
-                                                               )
-                                                            )}
-                                                         </select>
-                                                      </div>
-                                                   </div>
-                                                   <div className="pb-3 d-flex justify-content-center ">
-                                                      <button
-                                                         className="btnNew btn2 w-25 text-center"
-                                                         onClick={handleSubmit}
-                                                      >
-                                                         Submit
-                                                      </button>
-                                                   </div>
+                                                         )
+                                                      )}
+                                                   </select>
                                                 </div>
-                                                <div className="d-flex align-items-center p-4">
-                                                   <p
-                                                      className="fw-bolder"
-                                                      style={{
-                                                         fontSize: "22px",
-                                                         color: "#0f6990",
-                                                      }}
+                                             </div>
+                                             <div className="pb-3 d-flex justify-content-center ">
+                                                <button
+                                                   className="btnNew btn2 w-25 text-center"
+                                                   onClick={handleSubmit}
+                                                >
+                                                   Submit
+                                                </button>
+                                             </div>
+                                          </div>
+                                          <div className="d-flex align-items-center p-4">
+                                             <p
+                                                className="fw-bolder"
+                                                style={{
+                                                   fontSize: "22px",
+                                                   color: "#0f6990",
+                                                }}
+                                             >
+                                                or
+                                             </p>
+                                          </div>
+                                          <div className="courseDetailCard shadow">
+                                             <div className="paymentImgContainer p-3">
+                                                <img
+                                                   className="paymentImg"
+                                                   src={Consultantown}
+                                                   alt=""
+                                                />
+                                             </div>
+                                             <div
+                                                className="paymentCardContent "
+                                                style={{
+                                                   height: "340px",
+                                                }}
+                                             >
+                                                <h5
+                                                   className="text-center pt-4 px-4 fw-bolder"
+                                                   style={{
+                                                      color: "#0F6990",
+                                                   }}
+                                                >
+                                                   {" "}
+                                                   Give Your Preferrd
+                                                   Consultancy Details
+                                                </h5>
+                                                <div className="d-flex flex-wrap px-5 py-5 pb-4 pt-3 ">
+                                                   <label
+                                                      htmlFor=""
+                                                      className="d-block fw-bolder mb-2"
                                                    >
-                                                      or
-                                                   </p>
-                                                </div>
-                                                <div className="courseDetailCard shadow">
-                                                   <div className="paymentImgContainer p-3">
-                                                      <img
-                                                         className="paymentImg"
-                                                         src={Consultantown}
-                                                         alt=""
-                                                      />
-                                                   </div>
-                                                   <div
-                                                      className="paymentCardContent "
-                                                      style={{
-                                                         height: "340px",
-                                                      }}
+                                                      {" "}
+                                                      Consultancy Name:
+                                                   </label>
+                                                   <input
+                                                      className="profileInputBox"
+                                                      type="text"
+                                                      placeholder="Consultancy Name"
+                                                      name="consultancy_name"
+                                                      onChange={(e) =>
+                                                         getFormData(e)
+                                                      }
+                                                   />
+                                                   <label
+                                                      htmlFor=""
+                                                      className="d-block fw-bolder mb-2 mt-3"
                                                    >
-                                                      <h5
-                                                         className="text-center pt-4 px-4 fw-bolder"
-                                                         style={{
-                                                            color: "#0F6990",
-                                                         }}
-                                                      >
-                                                         {" "}
-                                                         Give Your Preferrd
-                                                         Consultancy Details
-                                                      </h5>
-                                                      <div className="d-flex flex-wrap px-5 py-5 pb-4 pt-3 ">
-                                                         <label
-                                                            htmlFor=""
-                                                            className="d-block fw-bolder mb-2"
-                                                         >
-                                                            {" "}
-                                                            Consultancy Name:
-                                                         </label>
-                                                         <input
-                                                            className="profileInputBox"
-                                                            type="text"
-                                                            placeholder="Consultancy Name"
-                                                            name="consultancy_name"
-                                                            onChange={(e) =>
-                                                               getFormData(e)
-                                                            }
-                                                         />
-                                                         <label
-                                                            htmlFor=""
-                                                            className="d-block fw-bolder mb-2 mt-3"
-                                                         >
-                                                            {" "}
-                                                            Address:
-                                                         </label>
-                                                         <input
-                                                            className="profileInputBox"
-                                                            type="text"
-                                                            placeholder="Consultancy Address"
-                                                            name="consultancy_address"
-                                                            onChange={(e) =>
-                                                               getFormData(e)
-                                                            }
-                                                         />
-                                                         <label
-                                                            htmlFor=""
-                                                            className="d-block fw-bolder mb-2 mt-3"
-                                                         >
-                                                            {" "}
-                                                            Phone:
-                                                         </label>
-                                                         <input
-                                                            className="profileInputBox"
-                                                            type="number"
-                                                            placeholder="Consultancy Number"
-                                                            name="consultancy_number"
-                                                            onChange={(e) =>
-                                                               getFormData(e)
-                                                            }
-                                                         />
-                                                      </div>
-                                                   </div>
-                                                   <div className="pb-3 d-flex justify-content-center ">
-                                                      <button
-                                                         className="btnNew btn2 w-25 text-center"
-                                                         onClick={handleSubmit}
-                                                      >
-                                                         Submit
-                                                      </button>
-                                                   </div>
+                                                      {" "}
+                                                      Address:
+                                                   </label>
+                                                   <input
+                                                      className="profileInputBox"
+                                                      type="text"
+                                                      placeholder="Consultancy Address"
+                                                      name="consultancy_address"
+                                                      onChange={(e) =>
+                                                         getFormData(e)
+                                                      }
+                                                   />
+                                                   <label
+                                                      htmlFor=""
+                                                      className="d-block fw-bolder mb-2 mt-3"
+                                                   >
+                                                      {" "}
+                                                      Phone:
+                                                   </label>
+                                                   <input
+                                                      className="profileInputBox"
+                                                      type="number"
+                                                      placeholder="Consultancy Number"
+                                                      name="consultancy_number"
+                                                      onChange={(e) =>
+                                                         getFormData(e)
+                                                      }
+                                                   />
                                                 </div>
-                                             </>
-                                          )}
+                                             </div>
+                                             <div className="pb-3 d-flex justify-content-center ">
+                                                <button
+                                                   className="btnNew btn2 w-25 text-center"
+                                                   onClick={handleSubmit}
+                                                >
+                                                   Submit
+                                                </button>
+                                             </div>
+                                          </div>
                                        </>
                                     )}
                                  </>
