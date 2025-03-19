@@ -1991,7 +1991,6 @@ function LanguageForm() {
                         <option value="Master's Degree">
                            Master&apos;s Degree
                         </option>
-                        <option value="Diploma">Diploma</option>
                         <option value="Vocational Training">
                            Vocational Training
                         </option>

@@ -31,7 +31,9 @@ function Login({ setShow, setSidebarShow }) {
    const { data, error } = useFrappeGetDocList("Student", {
       fields: ["email", "first_name", "last_name", "password", "name"],
       filters: [["email", "=", inputData.email]],
-   });   
+   });  
+   console.log(data);
+    
          
    const handleLogin = async (e) => {
       e.preventDefault();
