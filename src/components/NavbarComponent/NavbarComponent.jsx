@@ -1,6 +1,5 @@
 import Navbar from "react-bootstrap/Navbar";
 import Logo from "../../assets/logo3.png";
-import login from "../../assets/login.svg";
 
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
@@ -22,7 +21,7 @@ function NavbarComponent() {
    return (
       <>
          <Navbar
-            className="d-flex justify-content-between px-5 navBar"
+            className="d-flex justify-content-between px-4 navBar shadow-sm"
             style={{
                position: "fixed",
                top: "0",
@@ -59,11 +58,21 @@ function NavbarComponent() {
                      e.preventDefault();
                      navigate("/login");
                   }}
-                  className="btn text-light"
-                  style={{ backgroundColor: "#0F6990" }}
+                  className="d-flex align-items-center rounded-pill px-3 py-2"
+                  style={{
+                     backgroundImage:
+                        " linear-gradient(90deg, #0f6990 0%, #80D0C7 100%)  ",
+                     maxWidth: "max-content",
+                     color: "white",
+                     border: "none",
+                     textDecoration: "none",
+                     // fontSize:"10px"
+                  }}
                >
-                  <img className="me-2" src={login} alt="" />
-                  Sign In{" "}
+                  Sign Up
+                  <span className="material-symbols-outlined ms-1" style={{fontSize:"18px"}}>
+                     arrow_outward
+                  </span>
                </button>
             )}
          </Navbar>

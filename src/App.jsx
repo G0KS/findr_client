@@ -23,6 +23,7 @@ import PagenotFound from "./pages/PagenotFound/PagenotFound.jsx";
 import { FrappeProvider } from "frappe-react-sdk";
 import SliderComponent from "./components/SliderComponent/SliderComponent.jsx";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword.jsx";
+import Test from "./pages/Test.jsx";
 
 function App() {
    const [show, setShow] = useState(true);
@@ -45,6 +46,12 @@ function App() {
             {sidebarShow && <SliderComponent />}
             <ScrollToTop />
             <Routes>
+               <Route
+                  path="/test"
+                  element={
+                     <Test setShow={setShow} setSidebarShow={setSidebarShow} />
+                  }
+               />
                <Route
                   path="/"
                   element={

@@ -32,7 +32,6 @@ function ForgotPassword({ setShow, setSidebarShow }) {
       fields: ["email", "name", "password"],
       filters: [["email", "=", inputData.email]],
    });
-   console.log(data);
 
    const checkEmail = (e) => {
       e.preventDefault();

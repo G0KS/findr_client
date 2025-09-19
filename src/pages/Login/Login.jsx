@@ -32,7 +32,6 @@ function Login({ setShow, setSidebarShow }) {
       fields: ["email", "first_name", "last_name", "password", "name"],
       filters: [["email", "=", inputData.email]],
    });  
-    
          
    const handleLogin = async (e) => {
       e.preventDefault();
@@ -68,7 +67,7 @@ function Login({ setShow, setSidebarShow }) {
             className="loginCard rounded-4 p-4 bg-white shadow-lg"
             style={{ width: "22rem", height: "30rem" }}
          >
-            <div style={{ height: "70px", width: "70px" }}>
+            <div style={{ height: "70px", width: "70px"}}>
                <img src={Logo} style={{ height: "100%" }} alt="" />
             </div>
             <div className="title">
