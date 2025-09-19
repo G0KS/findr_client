@@ -194,7 +194,6 @@ function Home({ setShow, setSidebarShow }) {
                   data-aos="zoom-out-right"
                   style={{
                      width: "19rem",
-                     height: "21rem",
                      borderRadius: "16px",
                      cursor: "pointer",
                   }}
@@ -210,7 +209,6 @@ function Home({ setShow, setSidebarShow }) {
                   <p
                      style={{
                         fontSize: "15px",
-                        height: "180px",
                      }}
                   >
                      Every student is unique, and their education should match
@@ -224,7 +222,6 @@ function Home({ setShow, setSidebarShow }) {
                   data-aos="zoom-out-right"
                   style={{
                      width: "19rem",
-                     height: "21rem",
                      borderRadius: "16px",
                      cursor: "pointer",
                   }}
@@ -235,7 +232,7 @@ function Home({ setShow, setSidebarShow }) {
                      </span>
                   </div>
                   <h5 className="fw-bold mb-3">Affordable Pricing</h5>
-                  <p style={{ fontSize: "15px", height: "180px" }}>
+                  <p style={{ fontSize: "15px" }}>
                      We believe quality education should be accessible to all.
                      Our consultations are priced at just INR 7499, with
                      specialized scholarship guidance available for INR 2499.
@@ -246,7 +243,6 @@ function Home({ setShow, setSidebarShow }) {
                   data-aos="zoom-out-right"
                   style={{
                      width: "19rem",
-                     height: "21rem",
                      borderRadius: "16px",
                      cursor: "pointer",
                   }}
@@ -257,7 +253,7 @@ function Home({ setShow, setSidebarShow }) {
                      </span>
                   </div>
                   <h5 className="fw-bold mb-3">No Admission or Visa </h5>
-                  <p style={{ fontSize: "15px", height: "180px" }}>
+                  <p style={{ fontSize: "15px" }}>
                      Findr doesn’t do admissions or visas, we help you discover
                      the best courses worldwide, matched to your goals and
                      interests.
@@ -268,7 +264,6 @@ function Home({ setShow, setSidebarShow }) {
                   data-aos="zoom-out-right"
                   style={{
                      width: "19rem",
-                     height: "21rem",
                      borderRadius: "16px",
                      cursor: "pointer",
                   }}
@@ -281,7 +276,7 @@ function Home({ setShow, setSidebarShow }) {
                   <h5 className="fw-bold mb-3">
                      Curated Courses from Around the Globe
                   </h5>
-                  <p style={{ fontSize: "15px", height: "180px" }}>
+                  <p style={{ fontSize: "15px" }}>
                      With our global network of universities, we match you to
                      courses that fit your academic goals, whether it’s
                      engineering in Germany, business in the US, or literature

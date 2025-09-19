@@ -89,6 +89,7 @@ p {
 
 .cardBody {
    position: relative;
+   height: 21rem;
 }
 
 .cardBody::before,
@@ -327,6 +328,10 @@ p {
       font-size: 35px;
       padding-top: 20px;
       text-align: center;
+   }
+
+   .cardBody{
+      height: unset;
    }
 
    .statsContainer {
